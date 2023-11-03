@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="600"
+   height="600"
+   viewBox="0 0 158.75 158.75"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <g
+     id="layer1">
+    <rect
+       style="fill:#032436;stroke-width:1.00012;fill-opacity:1"
+       id="rect1"
+       width="158.75"
+       height="158.75"
+       x="0"
+       y="0" />
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:8.46667px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans Bold';text-align:center;text-anchor:middle;fill:#032436;fill-opacity:1;stroke-width:1.00012"
+       x="70.140221"
+       y="70.505531"
+       id="text1"><tspan
+         id="tspan1"
+         style="stroke-width:1.00012"
+         x="70.140221"
+         y="70.505531" /></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:348.94px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans Bold';text-align:center;text-anchor:middle;fill:#28546c;fill-opacity:1;stroke-width:41.2181"
+       x="79.549561"
+       y="202.55067"
+       id="text2"><tspan
+         id="tspan2"
+         style="fill:#28546c;fill-opacity:1;stroke-width:41.2181"
+         x="79.549561"
+         y="202.55067">×</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:semi-condensed;font-size:191.595px;font-family:Bahnschrift;-inkscape-font-specification:'Bahnschrift Bold Semi-Condensed';text-align:center;text-anchor:middle;fill:#aa8b39;fill-opacity:1;stroke-width:22.6321"
+       x="79.328224"
+       y="146.68582"
+       id="text3"><tspan
+         id="tspan3"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:semi-condensed;font-family:Bahnschrift;-inkscape-font-specification:'Bahnschrift Bold Semi-Condensed';fill:#aa8b39;fill-opacity:1;stroke-width:22.6321"
+         x="79.328224"
+         y="146.68582">5</tspan></text>
+  </g>
+</svg>
