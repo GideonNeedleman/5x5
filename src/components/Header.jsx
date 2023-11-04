@@ -11,12 +11,12 @@ function Header() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Offcanvas id="basic-navbar-nav" placement="end">
           <Offcanvas.Header closeButton>
-            <Offcanvas.Title id="offcanvas-title">Offcanvas</Offcanvas.Title>
+            <Offcanvas.Title id="offcanvas-title">Menu</Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#link">Link</Nav.Link>
+              <Nav.Link href="#home">Workouts</Nav.Link>
+              <Nav.Link href="#link">History</Nav.Link>
             </Nav>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
