@@ -2,9 +2,9 @@ import Button from "react-bootstrap/Button";
 import Stack from "react-bootstrap/Stack";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { BsGear } from "react-icons/bs";
-/* import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col"; */
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+import { Container } from "react-bootstrap";
 
 function SelectWorkout() {
   return (
@@ -32,6 +32,9 @@ function SelectWorkout() {
 
         <Button variant="outline-secondary">+ Add Workout</Button>
       </Stack>
+      <Container className="position-absolute bottom-0 mb-2 d-flex justify-content-center">
+        <Calendar />
+      </Container>
     </main>
   );
 }
