@@ -1,5 +1,14 @@
+import "bootstrap/dist/css/bootstrap.min.css";
+import Header from "./components/Header";
+import SelectWorkout from "./pages/SelectWorkout";
+
 function App() {
-  return <div>Hello this is my 5x5 tracker</div>;
+  return (
+    <>
+      <Header />
+      <SelectWorkout />
+    </>
+  );
 }
 
 export default App;
