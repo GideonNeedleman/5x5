@@ -184,3 +184,4 @@ These workflows are for copying & editing existing workouts
 - Navigating to a page while a workout is active. Shouldn't be able to select a new workout or edit a workout if you're currently in the middle of doing an active workout. Redirect to Do Workout page in this case. May need an `active-workout` flag in state to trigger redirects.
 - How to handle guest (local storage) accounts with signed-in (database storage) accounts? Some way to reconcile the two where if you were previously using a guest account, when you sign into an account, the local storage data is uploaded to the database.
 - Offline usage. Likewise if you're already signed in, but are offline, new data should be recorded to local storage and uploaded/reconciled with database when reconnected. If using multiple devices, then more recent database data should be added to local storage to keep in sync?
+- Option to auto start next set. Good for timed exercises.

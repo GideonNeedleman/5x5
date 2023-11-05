@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import SelectWorkout from "./pages/SelectWorkout";
 
 function App() {
+  const router = createBrowserRouter();
   return (
     <>
       <Header />
