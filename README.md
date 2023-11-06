@@ -46,6 +46,8 @@ The goal is to do three workouts per week, alternating between A days and B days
 - Edit existing workout routines
 - Add new workouts
 - Calendar view for past workouts
+- Group workouts into Programs
+  - Highlight next workout to do in the program
 
 ### Edit Workout
 
@@ -175,6 +177,27 @@ These workflows are for copying & editing existing workouts
    4. Redirect to Select Workout page
 
 ## Data Modelling & Flow
+
+### Hierarchy
+
+Program > Workout > Exercise > Set > Rep
+
+- Program: A group of individual workouts that you do over the course of several days/sessions. For a 5x5 program it's fairly simple with only 2 different workouts, A and B. Other programs (like 5-3-1) may have more than a dozen different workouts scheduled over the course of a month.
+- Workout: A group of individual exercises that you do in a single day/session. For 5x5 you go to the gym and do a series of 3 different exercises in your single workout.
+- Exercise: A single type of motion or lift. You often do several sets of an exercise like a deadlift or bench press.
+- Set: A set of reps of a single exercise. You may do a set of 5 x deadlifts. Typically all the reps in a set are done with the same weight.
+- Rep: A single instance of an exercise. One single squat or deadlift. Typically done with a single defined amount of weight.
+
+### Tables
+
+- Programs: A single program contains many workouts, so 1:N. Programs table will contain Program name, description, owner. Workouts table will contain FK linking to the program. Users own programs.
+- Workouts: Single workout contains many exercises. Single exercise may be in many workouts. N:N relationship. Workout could even contain the same exercise multiple times, for example Deadlifts, then Bench Press, then Deadlifts again. Each time could have different number of sets or default weights. Users own workouts.
+- Exercises: Users own exercises. Each exercise can have many sets. At least 1 set. 1:N sets. Users can create custom exercises.
+- Sets: Rows in the Sets table are the smallest piece of data captured. The number of reps is an integer in a row in the Sets table. If an exercise doesn't involve reps then the name 'set' may be changed, like a 'round' of punching or a 'run' with many laps. So user should be able to customize the 'set' name. Should also allow a note to be attached to any set. Maybe notes can bubble up to the workout and be visible on the calendar/day.
+
+#### Potential Issues
+
+There may be some kinds of exercises that are not done in sets or reps, like timed exercises. Running may be timed or measured in length. Holds like planks could be timed. Bodyweight exercises may not have a defined weight. Or you may do a sequence of exercises one after the other without rest and without any reps at all. Or something like a drop set where it's not easy to log the number of reps you do at each weight within the set.
 
 ## Niggles
 

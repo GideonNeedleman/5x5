@@ -5,39 +5,24 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { Container } from "react-bootstrap";
+import WorkoutButton from "../components/WorkoutButton";
 
 function SelectWorkout() {
   return (
     <main>
       <h1 className="d-flex justify-content-center">Select Workout</h1>
-      <Stack gap={2} className="col-sm-5 mx-auto px-2">
-        <div>
-          <Button className="w-100" variant="secondary">
-            A day
-          </Button>
-          <Button
-            variant="secondary"
-            style={{ position: "absolute", right: "8px" }}
-          >
-            <BsThreeDotsVertical />
-          </Button>
-        </div>
+      <Stack
+        gap={2}
+        className="col-sm-5 mx-auto px-2"
+        style={{ overflow: "hidden" }}
+      >
+        <WorkoutButton>A day</WorkoutButton>
+        <WorkoutButton>B day</WorkoutButton>
 
-        <div>
-          <Button className="w-100" variant="secondary">
-            B day
-          </Button>
-          <Button
-            variant="secondary"
-            style={{ position: "absolute", right: "8px" }}
-          >
-            <BsThreeDotsVertical />
-          </Button>
-        </div>
-
-        <Button variant="outline-secondary">+ Add Workout</Button>
+        <Button variant="outline-dark">+ Add Program / Workout</Button>
+        <Button variant="outline-secondary">Just go</Button>
       </Stack>
-      <Container className="position-absolute bottom-0 mb-2 d-flex justify-content-center">
+      <Container className="mt-2 mb-2 d-flex justify-content-center">
         <Calendar />
       </Container>
     </main>

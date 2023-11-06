@@ -15,8 +15,8 @@ function Header() {
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className="me-auto">
-              <Nav.Link href="#home">Workouts</Nav.Link>
-              <Nav.Link href="#link">History</Nav.Link>
+              <Nav.Link href="/">Workouts</Nav.Link>
+              <Nav.Link href="#">History</Nav.Link>
             </Nav>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
