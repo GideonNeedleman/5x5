@@ -7,7 +7,7 @@ import "react-calendar/dist/Calendar.css";
 import { Container } from "react-bootstrap";
 import WorkoutButton from "../components/WorkoutButton";
 
-function SelectWorkout() {
+function SelectWorkout({ workouts }) {
   return (
     <main>
       <h1 className="d-flex justify-content-center">Select Workout</h1>
@@ -16,8 +16,11 @@ function SelectWorkout() {
         className="col-sm-5 mx-auto px-2"
         style={{ overflow: "hidden" }}
       >
-        <WorkoutButton>A day</WorkoutButton>
-        <WorkoutButton>B day</WorkoutButton>
+        {workouts.map((workout) => (
+          <WorkoutButton key={workout.name} workout={workout}>
+            {workout.name}
+          </WorkoutButton>
+        ))}
 
         <Button variant="outline-dark">+ Add Program / Workout</Button>
         <Button variant="outline-secondary">Just go</Button>

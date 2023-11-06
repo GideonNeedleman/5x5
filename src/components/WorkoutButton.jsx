@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import WorkoutModal from "./WorkoutModal";
 
-function WorkoutButton({ children }) {
+function WorkoutButton({ children, workout }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
