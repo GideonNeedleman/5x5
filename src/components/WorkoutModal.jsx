@@ -11,11 +11,6 @@ export default function WorkoutModal({ show, onHide }) {
       centered
       onHide={onHide}
     >
-      {/*       <Modal.Header closeButton onClick={onHide}>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
-        </Modal.Title>
-      </Modal.Header> */}
       <Modal.Body>
         <Stack gap={2}>
           <Button>Edit</Button>
