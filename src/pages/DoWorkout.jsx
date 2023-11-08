@@ -1,5 +1,8 @@
+import { useGlobalContext } from "../context/GlobalContext";
+
 function DoWorkout() {
-  return <div></div>;
+  const { activeWorkout: workout, dispatch } = useGlobalContext();
+  return <main>Do {workout.name} here</main>;
 }
 
 export default DoWorkout;

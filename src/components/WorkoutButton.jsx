@@ -3,15 +3,22 @@ import { Button } from "react-bootstrap";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import WorkoutModal from "./WorkoutModal";
 import { useGlobalContext } from "../context/GlobalContext";
+import { useNavigate } from "react-router-dom";
 
 function WorkoutButton({ children, workout }) {
   const [isOpen, setIsOpen] = useState(false);
   const variant = workout.next ? "primary" : "secondary";
-  const { setActiveWorkout } = useGlobalContext();
+  const navigate = useNavigate();
+  const { dispatch } = useGlobalContext();
+
+  function handleClick() {
+    dispatch({ type: "select-workout", payload: workout });
+    navigate("/workout");
+  }
 
   return (
     <div className="WorkoutButton">
-      <Button className="w-100" variant={variant}>
+      <Button className="w-100" variant={variant} onClick={handleClick}>
         {children}
       </Button>
       <Button
