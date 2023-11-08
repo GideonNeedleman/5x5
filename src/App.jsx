@@ -49,12 +49,13 @@ const samplePrograms = [
       },
     ],
   },
-  /*   {
-    name: "Standard program",
+  {
+    name: "Some other program",
     workouts: [
       {
         name: "Push day",
         id: 3,
+        next: true,
         exercises: [
           {
             name: "Pushups",
@@ -69,6 +70,7 @@ const samplePrograms = [
       {
         name: "Pull day",
         id: 4,
+        next: false,
         exercises: [
           {
             name: "Pullups",
@@ -80,8 +82,23 @@ const samplePrograms = [
           },
         ],
       },
+      {
+        name: "Legs",
+        id: 5,
+        next: false,
+        exercises: [
+          {
+            name: "Squats",
+            sets: 5,
+          },
+          {
+            name: "Leg Press",
+            sets: 1,
+          },
+        ],
+      },
     ],
-  }, */
+  },
 ];
 
 function App() {

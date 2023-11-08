@@ -19,9 +19,10 @@ function reducer(state, action) {
         ...state,
         workoutStarted: true,
       };
-    case "end-workout":
+    case "finish-workout":
       return {
         ...state,
+        activeWorkout: null,
         workoutStarted: false,
       };
     default:
