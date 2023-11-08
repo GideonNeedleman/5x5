@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import SelectWorkout from "./pages/SelectWorkout";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import DoWorkout from "./pages/DoWorkout";
+import { GlobalContextProvider } from "./context/GlobalContext";
 
 const samplePrograms = [
   {
@@ -85,7 +86,7 @@ const samplePrograms = [
 
 function App() {
   return (
-    <div>
+    <GlobalContextProvider>
       <Header />
       <BrowserRouter>
         <Routes>
@@ -96,7 +97,7 @@ function App() {
           <Route path="/workout" element={<DoWorkout />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </GlobalContextProvider>
   );
 }
 
