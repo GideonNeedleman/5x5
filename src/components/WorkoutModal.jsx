@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { Stack } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-export default function WorkoutModal({ show, onHide }) {
+export default function WorkoutModal({ show, onHide, workout }) {
+  const [testMessage, setTestMessage] = useState();
+
   return (
     <Modal
       show={show}
@@ -11,11 +14,26 @@ export default function WorkoutModal({ show, onHide }) {
       centered
       onHide={onHide}
     >
+      <Modal.Title className="text-center">{testMessage}</Modal.Title>
       <Modal.Body>
         <Stack gap={2}>
-          <Button>Edit</Button>
-          <Button variant="secondary">Copy</Button>
-          <Button variant="danger">Delete</Button>
+          <Button
+            onClick={() => setTestMessage(`This will EDIT ${workout.name}`)}
+          >
+            Edit
+          </Button>
+          <Button
+            onClick={() => setTestMessage(`This will COPY ${workout.name}`)}
+            variant="secondary"
+          >
+            Copy
+          </Button>
+          <Button
+            onClick={() => setTestMessage(`This will DELETE ${workout.name}`)}
+            variant="danger"
+          >
+            Delete
+          </Button>
         </Stack>
       </Modal.Body>
       {/*       <Modal.Footer>

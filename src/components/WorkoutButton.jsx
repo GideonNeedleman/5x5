@@ -2,10 +2,12 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import WorkoutModal from "./WorkoutModal";
+import { useGlobalContext } from "../context/GlobalContext";
 
 function WorkoutButton({ children, workout }) {
   const [isOpen, setIsOpen] = useState(false);
   const variant = workout.next ? "primary" : "secondary";
+  const { setActiveWorkout } = useGlobalContext();
 
   return (
     <div className="WorkoutButton">
@@ -20,7 +22,11 @@ function WorkoutButton({ children, workout }) {
         <BsThreeDotsVertical />
       </Button>
 
-      <WorkoutModal show={isOpen} onHide={() => setIsOpen(false)} />
+      <WorkoutModal
+        show={isOpen}
+        onHide={() => setIsOpen(false)}
+        workout={workout}
+      />
     </div>
   );
 }
