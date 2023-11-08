@@ -7,7 +7,7 @@ function Header() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand>5x5 Tracker</Navbar.Brand>
+        <Navbar.Brand>Exercise Tracker</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Offcanvas id="basic-navbar-nav" placement="end">
           <Offcanvas.Header closeButton>

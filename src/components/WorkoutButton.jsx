@@ -5,15 +5,16 @@ import WorkoutModal from "./WorkoutModal";
 
 function WorkoutButton({ children, workout }) {
   const [isOpen, setIsOpen] = useState(false);
+  const variant = workout.next ? "primary" : "secondary";
 
   return (
     <div className="WorkoutButton">
-      <Button className="w-100" variant="secondary">
+      <Button className="w-100" variant={variant}>
         {children}
       </Button>
       <Button
-        variant="secondary"
-        style={{ position: "absolute", right: "8px" }}
+        variant={variant}
+        style={{ position: "absolute", right: "16px" }}
         onClick={() => setIsOpen(true)}
       >
         <BsThreeDotsVertical />

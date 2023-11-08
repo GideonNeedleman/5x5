@@ -20,6 +20,11 @@ The goal is to do three workouts per week, alternating between A days and B days
 3. Divide app into **feature categories**
 4. Decide on what **libraries** to use (tech stack)
 
+When building:
+
+1. Build basic UI
+2. Add in state & logic
+
 ## Project requirements
 
 - Track sets, reps, weights, times & notes for 5x5 workout
