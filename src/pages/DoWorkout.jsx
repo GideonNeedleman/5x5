@@ -15,7 +15,7 @@ function DoWorkout() {
     dispatch,
   } = useGlobalContext();
   const navigate = useNavigate();
-  const [activeKey, setActiveKey] = useState(null);
+  const [activeKey, setActiveKey] = useState(1);
 
   function handleBack() {
     dispatch({ type: "clear-workout" });
@@ -55,16 +55,33 @@ function DoWorkout() {
         </Row>
       )}
 
-      <Accordion className="mt-2" defaultActiveKey="0">
+      {/* use index + activeKey to allow auto open accordion item */}
+      <Accordion className="mt-2" defaultActiveKey={`0`}>
         {workout.exercises.map((exercise, index) => (
-          <DoExercise exercise={exercise} index={index} key={exercise.name} />
+          <DoExercise
+            exercise={exercise}
+            index={index + activeKey}
+            key={exercise.name}
+          />
         ))}
       </Accordion>
 
       {isWorkoutStarted === true && (
-        <Button className="w-100" onClick={handleFinishWorkout}>
-          Finish Workout
-        </Button>
+        <>
+          <Button
+            className="w-100 my-2"
+            onClick={() => setActiveKey((prev) => prev - 1)}
+          >
+            Increment
+          </Button>
+          <Button
+            variant="secondary"
+            className="w-100"
+            onClick={handleFinishWorkout}
+          >
+            Finish Workout
+          </Button>
+        </>
       )}
     </Container>
   );
