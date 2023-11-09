@@ -7,7 +7,9 @@ function Header() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand>Exercise Tracker</Navbar.Brand>
+        <Navbar.Brand>
+          <Nav.Link href="/">Exercise Tracker</Nav.Link>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Offcanvas id="basic-navbar-nav" placement="end">
           <Offcanvas.Header closeButton>
@@ -16,7 +18,7 @@ function Header() {
           <Offcanvas.Body>
             <Nav className="me-auto">
               <Nav.Link href="/">Workouts</Nav.Link>
-              <Nav.Link href="#">History</Nav.Link>
+              <Nav.Link href="/history">History</Nav.Link>
             </Nav>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
