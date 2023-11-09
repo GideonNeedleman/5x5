@@ -1,7 +1,28 @@
+import { useState } from "react";
 import { Button } from "react-bootstrap";
 import Accordion from "react-bootstrap/Accordion";
 
 function DoExercise({ exercise, index }) {
+  const [activeKey, setActiveKey] = useState(1);
+  const sets = [];
+  for (let i = 0; i < exercise.sets; i++) {
+    sets.push(
+      <Accordion.Item eventKey={`${i - 1 + activeKey}`} key={i}>
+        <Accordion.Header>Set #{i + 1}</Accordion.Header>
+        <Accordion.Body>
+          <>
+            input weight & rep values
+            <Button
+              className="w-100 my-2"
+              onClick={() => setActiveKey((prev) => prev - 1)}
+            >
+              Rest Timer
+            </Button>
+          </>
+        </Accordion.Body>
+      </Accordion.Item>
+    );
+  }
   return (
     <Accordion.Item eventKey={`${index}`}>
       <Accordion.Header>
@@ -12,13 +33,9 @@ function DoExercise({ exercise, index }) {
       </Accordion.Header>
       <Accordion.Body>
         <>
-          Map over sets when open
-          <Button
-            className="w-100 my-2"
-            onClick={() => setActiveKey((prev) => prev - 1)}
-          >
-            Rest Timer
-          </Button>
+          <Accordion defaultActiveKey="0" flush>
+            {sets}
+          </Accordion>
         </>
       </Accordion.Body>
     </Accordion.Item>

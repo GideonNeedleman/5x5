@@ -213,3 +213,7 @@ There may be some kinds of exercises that are not done in sets or reps, like tim
 - How to handle guest (local storage) accounts with signed-in (database storage) accounts? Some way to reconcile the two where if you were previously using a guest account, when you sign into an account, the local storage data is uploaded to the database.
 - Offline usage. Likewise if you're already signed in, but are offline, new data should be recorded to local storage and uploaded/reconciled with database when reconnected. If using multiple devices, then more recent database data should be added to local storage to keep in sync?
 - Option to auto start next set. Good for timed exercises.
+
+## To do
+
+- Properly style accordion items to be more compact
