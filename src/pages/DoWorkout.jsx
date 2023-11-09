@@ -68,12 +68,12 @@ function DoWorkout() {
 
       {isWorkoutStarted === true && (
         <>
-          <Button
+          {/*           <Button
             className="w-100 my-2"
             onClick={() => setActiveKey((prev) => prev - 1)}
           >
             Increment
-          </Button>
+          </Button> */}
           <Button
             variant="secondary"
             className="w-100"
