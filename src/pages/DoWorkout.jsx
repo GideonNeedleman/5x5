@@ -6,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Accordion from "react-bootstrap/Accordion";
 import DoExercise from "../components/DoExercise";
+import { useState } from "react";
 
 function DoWorkout() {
   const {
@@ -14,6 +15,7 @@ function DoWorkout() {
     dispatch,
   } = useGlobalContext();
   const navigate = useNavigate();
+  const [activeKey, setActiveKey] = useState(null);
 
   function handleBack() {
     dispatch({ type: "clear-workout" });
@@ -22,11 +24,12 @@ function DoWorkout() {
 
   function handleBeginWorkout() {
     dispatch({ type: "begin-workout" });
+    setActiveKey(0);
   }
 
   function handleFinishWorkout() {
     dispatch({ type: "finish-workout" });
-    navigate("/");
+    navigate("/history");
   }
 
   return (
@@ -52,9 +55,9 @@ function DoWorkout() {
         </Row>
       )}
 
-      <Accordion className="mt-2">
-        {workout.exercises.map((exercise) => (
-          <DoExercise exercise={exercise} key={exercise.name} />
+      <Accordion className="mt-2" defaultActiveKey="0">
+        {workout.exercises.map((exercise, index) => (
+          <DoExercise exercise={exercise} index={index} key={exercise.name} />
         ))}
       </Accordion>
 

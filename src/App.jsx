@@ -4,6 +4,7 @@ import SelectWorkout from "./pages/SelectWorkout";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import DoWorkout from "./pages/DoWorkout";
 import { GlobalContextProvider } from "./context/GlobalContext";
+import History from "./pages/History";
 
 const samplePrograms = [
   {
@@ -112,6 +113,7 @@ function App() {
             element={<SelectWorkout programs={samplePrograms} />}
           />
           <Route path="/workout" element={<DoWorkout />} />
+          <Route path="/history" element={<History />} />
         </Routes>
       </BrowserRouter>
     </GlobalContextProvider>
