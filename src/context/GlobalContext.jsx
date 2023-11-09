@@ -14,16 +14,16 @@ function reducer(state, action) {
         ...state,
         activeWorkout: null,
       };
-    case "start-workout":
+    case "begin-workout":
       return {
         ...state,
-        workoutStarted: true,
+        isWorkoutStarted: true,
       };
     case "finish-workout":
       return {
         ...state,
         activeWorkout: null,
-        workoutStarted: false,
+        isWorkoutStarted: false,
       };
     default:
       throw new Error("unknown action type");
