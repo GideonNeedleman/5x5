@@ -4,6 +4,8 @@ import Button from "react-bootstrap/Button";
 import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Accordion from "react-bootstrap/Accordion";
+import DoExercise from "../components/DoExercise";
 
 function DoWorkout() {
   const {
@@ -50,11 +52,11 @@ function DoWorkout() {
         </Row>
       )}
 
-      <Container>
+      <Accordion className="mt-2">
         {workout.exercises.map((exercise) => (
-          <Row key={exercise.name}>{exercise.name}</Row>
+          <DoExercise exercise={exercise} key={exercise.name} />
         ))}
-      </Container>
+      </Accordion>
 
       {isWorkoutStarted === true && (
         <Button className="w-100" onClick={handleFinishWorkout}>
