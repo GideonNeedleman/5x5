@@ -10,13 +10,13 @@ function ConfirmFinishWorkoutModal({ onHide, show, handleClose }) {
       centered
     >
       <Modal.Body>
-        <p>Are you sure you want to finish the workout?</p>
+        <h3 className="text-center">Confirm finish workout</h3>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={handleClose} variant="secondary">
+        <Button onClick={onHide} variant="secondary">
           Cancel
         </Button>
-        <Button onClick={onHide}>Confirm</Button>
+        <Button onClick={handleClose}>Confirm</Button>
       </Modal.Footer>
     </Modal>
   );

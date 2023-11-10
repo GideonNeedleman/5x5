@@ -7,6 +7,7 @@ import Col from "react-bootstrap/Col";
 import Accordion from "react-bootstrap/Accordion";
 import DoExercise from "../components/DoExercise";
 import { useState } from "react";
+import ConfirmFinishWorkoutModal from "../components/ConfirmFinishWorkoutModal";
 
 function DoWorkout() {
   const {
@@ -16,6 +17,7 @@ function DoWorkout() {
   } = useGlobalContext();
   const navigate = useNavigate();
   const [activeKey, setActiveKey] = useState(1);
+  const [show, setShow] = useState(false);
 
   function handleBack() {
     dispatch({ type: "clear-workout" });
@@ -27,6 +29,12 @@ function DoWorkout() {
     setActiveKey(0);
   }
 
+  function handleConfirmationModal() {
+    // If workout completed then don't need modal
+    // Or change final 'rest timer' press trigger handleFinishWorkout
+    setShow(true);
+  }
+
   function handleFinishWorkout() {
     dispatch({ type: "finish-workout" });
     navigate("/history");
@@ -34,7 +42,7 @@ function DoWorkout() {
 
   return (
     <Container as="main">
-      <h1 className="display-1 text-center">{workout.name} </h1>
+      <h1 className="display-3 text-center">{workout.name} </h1>
 
       {isWorkoutStarted === false && (
         <Row>
@@ -68,21 +76,20 @@ function DoWorkout() {
 
       {isWorkoutStarted === true && (
         <>
-          {/*           <Button
-            className="w-100 my-2"
-            onClick={() => setActiveKey((prev) => prev - 1)}
-          >
-            Increment
-          </Button> */}
           <Button
             variant="secondary"
             className="w-100"
-            onClick={handleFinishWorkout}
+            onClick={handleConfirmationModal}
           >
             Finish Workout
           </Button>
         </>
       )}
+      <ConfirmFinishWorkoutModal
+        show={show}
+        onHide={() => setShow(false)}
+        handleClose={handleFinishWorkout}
+      />
     </Container>
   );
 }

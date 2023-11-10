@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 function History() {
   return (
     <Container as="main">
-      Past data will be displayed here along with visualizations & graphs
+      <h3 className="text-center mt-3">Visualize past data here</h3>
     </Container>
   );
 }

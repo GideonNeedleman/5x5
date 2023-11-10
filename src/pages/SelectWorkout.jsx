@@ -8,7 +8,9 @@ import WorkoutButton from "../components/WorkoutButton";
 function SelectWorkout({ programs }) {
   return (
     <main>
-      <h1 className="d-flex justify-content-center">Select Workout</h1>
+      <h1 className="d-flex display-3 justify-content-center">
+        Select Workout
+      </h1>
       <Stack
         gap={2}
         className="col-sm-5 mx-auto px-2"
