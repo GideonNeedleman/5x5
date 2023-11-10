@@ -3,18 +3,27 @@ import { Button } from "react-bootstrap";
 import Accordion from "react-bootstrap/Accordion";
 import DoSet from "./DoSet";
 
-function DoExercise({ exercise, index }) {
+function DoExercise({
+  exercise,
+  numExercises,
+  index,
+  tracker,
+  handleNextExercise,
+  handleFinishWorkout,
+}) {
   const [activeKey, setActiveKey] = useState(1);
+  const numSets = exercise.sets.length;
+  const isLastExercise = numExercises === index + 1;
 
   function handleFinishSet() {
     setActiveKey((prev) => prev - 1);
   }
   return (
-    <Accordion.Item eventKey={`${index}`}>
+    <Accordion.Item eventKey={`${tracker}`}>
       <Accordion.Header>
         <span className="d-flex justify-content-between w-100 px-1">
           <span className="fw-bold">{exercise.name}</span>
-          <span className="mx-1">{exercise.sets.length} sets</span>
+          <span className="mx-1">{numSets} sets</span>
         </span>
       </Accordion.Header>
       <Accordion.Body>
@@ -27,6 +36,10 @@ function DoExercise({ exercise, index }) {
                 index={i}
                 activeKey={activeKey}
                 handleFinishSet={handleFinishSet}
+                numSets={numSets}
+                isLastExercise={isLastExercise}
+                handleNextExercise={handleNextExercise}
+                handleFinishWorkout={handleFinishWorkout}
               />
             ))}
           </Accordion>
