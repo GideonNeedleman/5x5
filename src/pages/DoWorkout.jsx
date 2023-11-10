@@ -18,6 +18,7 @@ function DoWorkout() {
   const navigate = useNavigate();
   const [activeKey, setActiveKey] = useState(1);
   const [show, setShow] = useState(false);
+  const numExercises = workout.exercises.length;
 
   function handleBack() {
     dispatch({ type: "clear-workout" });
@@ -33,6 +34,10 @@ function DoWorkout() {
     // If workout completed then don't need modal
     // Or change final 'rest timer' press trigger handleFinishWorkout
     setShow(true);
+  }
+
+  function handleNextExercise() {
+    setActiveKey((prev) => prev - 1);
   }
 
   function handleFinishWorkout() {
@@ -68,8 +73,12 @@ function DoWorkout() {
         {workout.exercises.map((exercise, index) => (
           <DoExercise
             exercise={exercise}
-            index={index + activeKey}
+            numExercises={numExercises}
+            index={index}
+            tracker={index + activeKey}
             key={exercise.name}
+            handleNextExercise={handleNextExercise}
+            handleFinishWorkout={handleFinishWorkout}
           />
         ))}
       </Accordion>
@@ -81,7 +90,7 @@ function DoWorkout() {
             className="w-100"
             onClick={handleConfirmationModal}
           >
-            Finish Workout
+            Finish Workout Early
           </Button>
         </>
       )}
