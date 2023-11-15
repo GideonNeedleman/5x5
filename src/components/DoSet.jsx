@@ -10,14 +10,15 @@ function DoSet({
   handleFinishSet,
   isLastExercise,
 }) {
-  const handleFinishWorkout = useFinishWorkout();
+  // const handleFinishWorkout = useFinishWorkout();
   const { dispatch } = useGlobalContext();
 
   const isLastSet = index + 1 === numSets && isLastExercise;
 
   function handleClick() {
     if (isLastSet) {
-      handleFinishWorkout();
+      // handleFinishWorkout();
+      handleFinishSet();
       return;
     }
     if (index + 1 === numSets) dispatch({ type: "next-exercise" });
@@ -35,7 +36,7 @@ function DoSet({
         <p>Weight: {set.weight}lbs</p>
         <p>Reps: {set.reps}lbs</p>
         <Button className="w-100 my-2" onClick={handleClick}>
-          {isLastSet ? "Finish Workout" : "Rest Timer"}
+          {isLastSet ? "Finish Set" : "Rest Timer"}
         </Button>
       </Accordion.Body>
     </Accordion.Item>
