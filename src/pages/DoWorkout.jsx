@@ -9,6 +9,7 @@ import DoExercise from "../components/DoExercise";
 import { useState } from "react";
 import ConfirmFinishWorkoutModal from "../components/ConfirmFinishWorkoutModal";
 import { useFinishWorkout } from "../hooks/useFinishWorkout";
+import ConfirmCancelWorkoutModal from "../components/ConfirmCancelWorkoutModal";
 
 function DoWorkout() {
   const {
@@ -19,6 +20,7 @@ function DoWorkout() {
   } = useGlobalContext();
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
+  const [showCancelModal, setShowCancelModal] = useState(false);
   const numExercises = workout.exercises.length;
   const handleFinishWorkout = useFinishWorkout();
 
@@ -33,6 +35,10 @@ function DoWorkout() {
 
   function handleConfirmationModal() {
     setShow(true);
+  }
+
+  function handleCancelModal() {
+    setShowCancelModal(true);
   }
 
   return (
@@ -74,8 +80,12 @@ function DoWorkout() {
       {isWorkoutStarted === true && (
         <Row>
           <Col xs={3}>
-            <Button variant="warning" className="w-100" onClick={handleBack}>
-              Back
+            <Button
+              variant="warning"
+              className="w-100"
+              onClick={handleCancelModal}
+            >
+              Cancel
             </Button>
           </Col>
           <Col>
@@ -93,6 +103,11 @@ function DoWorkout() {
         show={show}
         onHide={() => setShow(false)}
         handleClose={handleFinishWorkout}
+      />
+      <ConfirmCancelWorkoutModal
+        show={showCancelModal}
+        onHide={() => setShowCancelModal(false)}
+        handleClose={handleBack}
       />
     </Container>
   );
