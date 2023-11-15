@@ -72,15 +72,22 @@ function DoWorkout() {
       </Accordion>
 
       {isWorkoutStarted === true && (
-        <>
-          <Button
-            variant="secondary"
-            className="w-100"
-            onClick={handleConfirmationModal}
-          >
-            Finish Workout Early
-          </Button>
-        </>
+        <Row>
+          <Col xs={3}>
+            <Button variant="warning" className="w-100" onClick={handleBack}>
+              Back
+            </Button>
+          </Col>
+          <Col>
+            <Button
+              variant="secondary"
+              className="w-100"
+              onClick={handleConfirmationModal}
+            >
+              Finish Workout Early
+            </Button>
+          </Col>
+        </Row>
       )}
       <ConfirmFinishWorkoutModal
         show={show}

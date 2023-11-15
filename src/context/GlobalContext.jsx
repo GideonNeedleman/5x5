@@ -14,12 +14,14 @@ function reducer(state, action) {
       return {
         ...state,
         activeWorkout: null,
+        isWorkoutStarted: false,
         activeProgramId: null,
+        activeKey: 1,
       };
     case "begin-workout":
       return {
         ...state,
-        // if currentOrder < workouts.length ? increment 1 : set to 0
+        // calculate nextWorkoutOrder to increment 'next' flag. if currentOrder < workouts.length ? increment 1 : set to 0
         nextWorkoutOrder:
           state.activeWorkout.order <
           state.programData.filter(
