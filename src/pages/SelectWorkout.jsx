@@ -27,7 +27,11 @@ function SelectWorkout() {
               style={{ overflow: "hidden" }}
             >
               {program.workouts.map((workout) => (
-                <WorkoutButton key={workout.name} workout={workout}>
+                <WorkoutButton
+                  key={workout.name}
+                  workout={workout}
+                  program={program}
+                >
                   {workout.name}
                 </WorkoutButton>
               ))}

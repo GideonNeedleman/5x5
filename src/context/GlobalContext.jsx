@@ -7,23 +7,42 @@ function reducer(state, action) {
     case "select-workout":
       return {
         ...state,
-        activeWorkout: action.payload,
+        activeWorkout: action.payload.workout,
+        activeProgramId: action.payload.program.id,
       };
     case "clear-workout":
       return {
         ...state,
         activeWorkout: null,
+        activeProgramId: null,
       };
     case "begin-workout":
       return {
         ...state,
+        /*         {
+          ...state.activeProgram,
+          state.activeProgram.workouts: state.activeProgram.workouts.map((workout) => {
+            workout, (workout.next = false);
+          }),
+        }, */
         isWorkoutStarted: true,
         activeKey: 0,
       };
     case "finish-workout":
       return {
         ...state,
+        programData: state.programData.map((program) =>
+          program.id === state.activeProgramId
+            ? {
+                ...program,
+                workouts: program.workouts.map((workout) =>
+                  workout.next ? { ...workout, next: false } : workout
+                ),
+              }
+            : program
+        ),
         activeWorkout: null,
+        activeProgramId: null,
         isWorkoutStarted: false,
         activeKey: 1,
       };
@@ -39,19 +58,18 @@ function reducer(state, action) {
 
 const initialState = {
   activeWorkout: null,
+  activeProgramId: null,
   isWorkoutStarted: false,
   activeKey: 1,
   programData: [
     {
       name: "Stronglifts 5x5",
       id: 1,
-      isActive: false,
       workouts: [
         {
           name: "A day",
           id: 1,
           next: true,
-          isActive: false,
           exercises: [
             {
               name: "Barbell Squats",
@@ -89,7 +107,6 @@ const initialState = {
           name: "B day",
           id: 2,
           next: false,
-          isActive: false,
           exercises: [
             {
               name: "Barbell Squats",
@@ -122,13 +139,11 @@ const initialState = {
     {
       name: "Some other program",
       id: 2,
-      isActive: false,
       workouts: [
         {
           name: "Push day",
           id: 3,
           next: true,
-          isActive: false,
           exercises: [
             {
               name: "Pushups",
@@ -156,7 +171,6 @@ const initialState = {
           name: "Pull day",
           id: 4,
           next: false,
-          isActive: false,
           exercises: [
             {
               name: "Pullups",
@@ -176,7 +190,6 @@ const initialState = {
           name: "Legs",
           id: 5,
           next: false,
-          isActive: false,
           exercises: [
             {
               name: "BarbellSquats",
