@@ -35,8 +35,11 @@ function reducer(state, action) {
           program.id === state.activeProgramId
             ? {
                 ...program,
-                workouts: program.workouts.map((workout) =>
-                  workout.next ? { ...workout, next: false } : workout
+                //need to set next: true if it's the next workout. To do this need to calculate from activeWorkout, program.workouts.length and account for being only workout in program or not being in any specified program or being last workout in program to reset to first.
+                workouts: program.workouts.map((workout, index) =>
+                  workout.next
+                    ? { ...workout, next: index /* just testing */ }
+                    : workout
                 ),
               }
             : program
@@ -56,6 +59,7 @@ function reducer(state, action) {
   }
 }
 
+// use program id=null for self workouts not in a program
 const initialState = {
   activeWorkout: null,
   activeProgramId: null,
@@ -69,6 +73,7 @@ const initialState = {
         {
           name: "A day",
           id: 1,
+          order: 0,
           next: true,
           exercises: [
             {
@@ -106,6 +111,7 @@ const initialState = {
         {
           name: "B day",
           id: 2,
+          order: 1,
           next: false,
           exercises: [
             {
@@ -143,6 +149,7 @@ const initialState = {
         {
           name: "Push day",
           id: 3,
+          order: 0,
           next: true,
           exercises: [
             {
@@ -170,6 +177,7 @@ const initialState = {
         {
           name: "Pull day",
           id: 4,
+          order: 1,
           next: false,
           exercises: [
             {
@@ -189,6 +197,7 @@ const initialState = {
         {
           name: "Legs",
           id: 5,
+          order: 2,
           next: false,
           exercises: [
             {
