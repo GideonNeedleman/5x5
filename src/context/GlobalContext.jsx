@@ -49,11 +49,10 @@ function reducer(state, action) {
           program.id === state.activeProgramId
             ? {
                 ...program,
-                //need to set next: true if it's the next workout. To do this need to calculate from activeWorkout, program.workouts.length and account for being only workout in program or not being in any specified program or being last workout in program to reset to first.
-                workouts: program.workouts.map((workout, index) =>
-                  workout.next
-                    ? { ...workout, next: index /* just testing */ }
-                    : workout
+                workouts: program.workouts.map((workout) =>
+                  workout.order === state.nextWorkoutOrder
+                    ? { ...workout, next: true }
+                    : { ...workout, next: false }
                 ),
               }
             : program
@@ -61,6 +60,7 @@ function reducer(state, action) {
         activeWorkout: null,
         activeProgramId: null,
         isWorkoutStarted: false,
+        nextWorkoutOrder: null,
         activeKey: 1,
       };
     case "next-exercise":
