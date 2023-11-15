@@ -6,7 +6,7 @@ import DoWorkout from "./pages/DoWorkout";
 import { GlobalContextProvider } from "./context/GlobalContext";
 import History from "./pages/History";
 
-const samplePrograms = [
+/* const samplePrograms = [
   {
     name: "Stronglifts 5x5",
     workouts: [
@@ -100,7 +100,7 @@ const samplePrograms = [
       },
     ],
   },
-];
+]; */
 
 const samplePrograms2 = [
   {

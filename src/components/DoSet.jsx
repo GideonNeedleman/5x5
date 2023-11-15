@@ -1,5 +1,6 @@
-import { useState } from "react";
 import { Accordion, Button } from "react-bootstrap";
+import { useGlobalContext } from "../context/GlobalContext";
+import { useFinishWorkout } from "../hooks/useFinishWorkout";
 
 function DoSet({
   set,
@@ -7,10 +8,11 @@ function DoSet({
   index,
   activeKey,
   handleFinishSet,
-  handleNextExercise,
   isLastExercise,
-  handleFinishWorkout,
 }) {
+  const handleFinishWorkout = useFinishWorkout();
+  const { dispatch } = useGlobalContext();
+
   const isLastSet = index + 1 === numSets && isLastExercise;
 
   function handleClick() {
@@ -18,7 +20,7 @@ function DoSet({
       handleFinishWorkout();
       return;
     }
-    if (index + 1 === numSets) handleNextExercise();
+    if (index + 1 === numSets) dispatch({ type: "next-exercise" });
     else handleFinishSet();
   }
 

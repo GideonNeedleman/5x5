@@ -1,19 +1,13 @@
 import { useState } from "react";
-import { Button } from "react-bootstrap";
 import Accordion from "react-bootstrap/Accordion";
 import DoSet from "./DoSet";
 
-function DoExercise({
-  exercise,
-  numExercises,
-  index,
-  tracker,
-  handleNextExercise,
-  handleFinishWorkout,
-}) {
+function DoExercise({ exercise, numExercises, index, tracker }) {
   const [activeKey, setActiveKey] = useState(1);
   const numSets = exercise.sets.length;
   const isLastExercise = numExercises === index + 1;
+
+  console.log("tracker ", tracker);
 
   function handleFinishSet() {
     setActiveKey((prev) => prev - 1);
@@ -38,8 +32,6 @@ function DoExercise({
                 handleFinishSet={handleFinishSet}
                 numSets={numSets}
                 isLastExercise={isLastExercise}
-                handleNextExercise={handleNextExercise}
-                handleFinishWorkout={handleFinishWorkout}
               />
             ))}
           </Accordion>

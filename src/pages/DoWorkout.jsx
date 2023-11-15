@@ -8,17 +8,19 @@ import Accordion from "react-bootstrap/Accordion";
 import DoExercise from "../components/DoExercise";
 import { useState } from "react";
 import ConfirmFinishWorkoutModal from "../components/ConfirmFinishWorkoutModal";
+import { useFinishWorkout } from "../hooks/useFinishWorkout";
 
 function DoWorkout() {
   const {
     activeWorkout: workout,
     isWorkoutStarted,
+    activeKey,
     dispatch,
   } = useGlobalContext();
   const navigate = useNavigate();
-  const [activeKey, setActiveKey] = useState(1);
   const [show, setShow] = useState(false);
   const numExercises = workout.exercises.length;
+  const handleFinishWorkout = useFinishWorkout();
 
   function handleBack() {
     dispatch({ type: "clear-workout" });
@@ -27,22 +29,12 @@ function DoWorkout() {
 
   function handleBeginWorkout() {
     dispatch({ type: "begin-workout" });
-    setActiveKey(0);
   }
 
   function handleConfirmationModal() {
     // If workout completed then don't need modal
     // Or change final 'rest timer' press trigger handleFinishWorkout
     setShow(true);
-  }
-
-  function handleNextExercise() {
-    setActiveKey((prev) => prev - 1);
-  }
-
-  function handleFinishWorkout() {
-    dispatch({ type: "finish-workout" });
-    navigate("/history");
   }
 
   return (
@@ -77,8 +69,6 @@ function DoWorkout() {
             index={index}
             tracker={index + activeKey}
             key={exercise.name}
-            handleNextExercise={handleNextExercise}
-            handleFinishWorkout={handleFinishWorkout}
           />
         ))}
       </Accordion>

@@ -18,12 +18,19 @@ function reducer(state, action) {
       return {
         ...state,
         isWorkoutStarted: true,
+        activeKey: 0,
       };
     case "finish-workout":
       return {
         ...state,
         activeWorkout: null,
         isWorkoutStarted: false,
+        activeKey: 1,
+      };
+    case "next-exercise":
+      return {
+        ...state,
+        activeKey: state.activeKey - 1,
       };
     default:
       throw new Error("unknown action type");
@@ -33,10 +40,11 @@ function reducer(state, action) {
 const initialState = {
   activeWorkout: null,
   isWorkoutStarted: false,
+  activeKey: 1,
 };
 
 function GlobalContextProvider({ children }) {
-  const [{ activeWorkout, isWorkoutStarted }, dispatch] = useReducer(
+  const [{ activeWorkout, isWorkoutStarted, activeKey }, dispatch] = useReducer(
     reducer,
     initialState
   );
@@ -45,7 +53,7 @@ function GlobalContextProvider({ children }) {
 
   return (
     <GlobalContext.Provider
-      value={{ activeWorkout, isWorkoutStarted, dispatch }}
+      value={{ activeWorkout, isWorkoutStarted, activeKey, dispatch }}
     >
       {children}
     </GlobalContext.Provider>
