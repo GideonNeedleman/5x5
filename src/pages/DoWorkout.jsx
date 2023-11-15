@@ -32,8 +32,6 @@ function DoWorkout() {
   }
 
   function handleConfirmationModal() {
-    // If workout completed then don't need modal
-    // Or change final 'rest timer' press trigger handleFinishWorkout
     setShow(true);
   }
 
