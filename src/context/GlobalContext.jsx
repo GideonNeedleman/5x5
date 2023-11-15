@@ -28,23 +28,13 @@ function reducer(state, action) {
             1
             ? state.activeWorkout.order + 1
             : 0,
-        /*         currentWorkoutOrder: state.programData
-          .filter((program) => program.id === state.activeProgramId)[0]
-          .workouts.filter(
-            (workout) => workout.id === state.activeWorkout.id
-          )[0].order, */
-        /*         {
-          ...state.activeProgram,
-          state.activeProgram.workouts: state.activeProgram.workouts.map((workout) => {
-            workout, (workout.next = false);
-          }),
-        }, */
         isWorkoutStarted: true,
         activeKey: 0,
       };
     case "finish-workout":
       return {
         ...state,
+        // increment 'next' flag when workout.order === nextWorkoutOrder
         programData: state.programData.map((program) =>
           program.id === state.activeProgramId
             ? {
