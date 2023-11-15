@@ -1,6 +1,7 @@
 import { Accordion, Button } from "react-bootstrap";
 import { useGlobalContext } from "../context/GlobalContext";
-import { useFinishWorkout } from "../hooks/useFinishWorkout";
+import SetBody from "./SetBody";
+// import { useFinishWorkout } from "../hooks/useFinishWorkout";
 
 function DoSet({
   set,
@@ -33,8 +34,9 @@ function DoSet({
         </span>
       </Accordion.Header>
       <Accordion.Body>
-        <p>Weight: {set.weight}lbs</p>
-        <p>Reps: {set.reps}lbs</p>
+        <SetBody weight={set.weight} reps={set.reps} />
+        {/* <p>Weight: {set.weight}lbs</p>
+        <p>Reps: {set.reps}lbs</p> */}
         <Button className="w-100 my-2" onClick={handleClick}>
           {isLastSet ? "Finish Set" : "Rest Timer"}
         </Button>
