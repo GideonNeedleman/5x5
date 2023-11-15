@@ -41,19 +41,185 @@ const initialState = {
   activeWorkout: null,
   isWorkoutStarted: false,
   activeKey: 1,
+  programData: [
+    {
+      name: "Stronglifts 5x5",
+      id: 1,
+      isActive: false,
+      workouts: [
+        {
+          name: "A day",
+          id: 1,
+          next: true,
+          isActive: false,
+          exercises: [
+            {
+              name: "Barbell Squats",
+              sets: [
+                { weight: 185, reps: 5 },
+                { weight: 185, reps: 5 },
+                { weight: 185, reps: 5 },
+                { weight: 185, reps: 5 },
+                { weight: 185, reps: 5 },
+              ],
+            },
+            {
+              name: "Barbell Row",
+              sets: [
+                { weight: 135, reps: 5 },
+                { weight: 135, reps: 5 },
+                { weight: 135, reps: 5 },
+                { weight: 135, reps: 5 },
+                { weight: 135, reps: 5 },
+              ],
+            },
+            {
+              name: "Bench Press",
+              sets: [
+                { weight: 125, reps: 5 },
+                { weight: 125, reps: 5 },
+                { weight: 125, reps: 5 },
+                { weight: 125, reps: 5 },
+                { weight: 125, reps: 5 },
+              ],
+            },
+          ],
+        },
+        {
+          name: "B day",
+          id: 2,
+          next: false,
+          isActive: false,
+          exercises: [
+            {
+              name: "Barbell Squats",
+              sets: [
+                { weight: 185, reps: 5 },
+                { weight: 185, reps: 5 },
+                { weight: 185, reps: 5 },
+                { weight: 185, reps: 5 },
+                { weight: 185, reps: 5 },
+              ],
+            },
+            {
+              name: "Overhead Press",
+              sets: [
+                { weight: 95, reps: 5 },
+                { weight: 95, reps: 5 },
+                { weight: 95, reps: 5 },
+                { weight: 95, reps: 5 },
+                { weight: 95, reps: 5 },
+              ],
+            },
+            {
+              name: "Deadlift",
+              sets: [{ weight: 195, reps: 5 }],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "Some other program",
+      id: 2,
+      isActive: false,
+      workouts: [
+        {
+          name: "Push day",
+          id: 3,
+          next: true,
+          isActive: false,
+          exercises: [
+            {
+              name: "Pushups",
+              sets: [
+                { weight: null, reps: 15 },
+                { weight: null, reps: 15 },
+                { weight: null, reps: 15 },
+                { weight: null, reps: 15 },
+                { weight: null, reps: 15 },
+              ],
+            },
+            {
+              name: "Bench Press",
+              sets: [
+                { weight: 125, reps: 5 },
+                { weight: 125, reps: 5 },
+                { weight: 125, reps: 5 },
+                { weight: 125, reps: 5 },
+                { weight: 125, reps: 5 },
+              ],
+            },
+          ],
+        },
+        {
+          name: "Pull day",
+          id: 4,
+          next: false,
+          isActive: false,
+          exercises: [
+            {
+              name: "Pullups",
+              sets: [
+                { weight: null, reps: 8 },
+                { weight: null, reps: 6 },
+                { weight: null, reps: 3 },
+              ],
+            },
+            {
+              name: "Deadlift",
+              sets: [{ weight: 195, reps: 5 }],
+            },
+          ],
+        },
+        {
+          name: "Legs",
+          id: 5,
+          next: false,
+          isActive: false,
+          exercises: [
+            {
+              name: "BarbellSquats",
+              sets: [
+                { weight: 185, reps: 5 },
+                { weight: 185, reps: 5 },
+                { weight: 185, reps: 5 },
+                { weight: 185, reps: 5 },
+                { weight: 185, reps: 5 },
+              ],
+            },
+            {
+              name: "Leg Press",
+              sets: [
+                { weight: 215, reps: 5 },
+                { weight: 215, reps: 5 },
+                { weight: 215, reps: 5 },
+                { weight: 215, reps: 5 },
+                { weight: 215, reps: 5 },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
 };
 
 function GlobalContextProvider({ children }) {
-  const [{ activeWorkout, isWorkoutStarted, activeKey }, dispatch] = useReducer(
-    reducer,
-    initialState
-  );
-
-  // const [activeWorkout, setActiveWorkout] = useState(null);
+  const [
+    { activeWorkout, isWorkoutStarted, activeKey, programData },
+    dispatch,
+  ] = useReducer(reducer, initialState);
 
   return (
     <GlobalContext.Provider
-      value={{ activeWorkout, isWorkoutStarted, activeKey, dispatch }}
+      value={{
+        activeWorkout,
+        isWorkoutStarted,
+        activeKey,
+        programData,
+        dispatch,
+      }}
     >
       {children}
     </GlobalContext.Provider>

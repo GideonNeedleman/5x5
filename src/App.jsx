@@ -5,7 +5,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import DoWorkout from "./pages/DoWorkout";
 import { GlobalContextProvider } from "./context/GlobalContext";
 import History from "./pages/History";
-import { SampleDataProvider } from "./context/SampleData";
 
 /* const samplePrograms = [
   {
@@ -260,16 +259,14 @@ import { SampleDataProvider } from "./context/SampleData";
 function App() {
   return (
     <GlobalContextProvider>
-      <SampleDataProvider>
-        <Header />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<SelectWorkout />} />
-            <Route path="/workout" element={<DoWorkout />} />
-            <Route path="/history" element={<History />} />
-          </Routes>
-        </BrowserRouter>
-      </SampleDataProvider>
+      <Header />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<SelectWorkout />} />
+          <Route path="/workout" element={<DoWorkout />} />
+          <Route path="/history" element={<History />} />
+        </Routes>
+      </BrowserRouter>
     </GlobalContextProvider>
   );
 }
