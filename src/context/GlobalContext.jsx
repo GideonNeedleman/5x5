@@ -19,6 +19,20 @@ function reducer(state, action) {
     case "begin-workout":
       return {
         ...state,
+        // if currentOrder < workouts.length ? increment 1 : set to 0
+        nextWorkoutOrder:
+          state.activeWorkout.order <
+          state.programData.filter(
+            (program) => program.id === state.activeProgramId
+          )[0].workouts.length -
+            1
+            ? state.activeWorkout.order + 1
+            : 0,
+        /*         currentWorkoutOrder: state.programData
+          .filter((program) => program.id === state.activeProgramId)[0]
+          .workouts.filter(
+            (workout) => workout.id === state.activeWorkout.id
+          )[0].order, */
         /*         {
           ...state.activeProgram,
           state.activeProgram.workouts: state.activeProgram.workouts.map((workout) => {
@@ -65,6 +79,7 @@ const initialState = {
   activeProgramId: null,
   isWorkoutStarted: false,
   activeKey: 1,
+  nextWorkoutOrder: null,
   programData: [
     {
       name: "Stronglifts 5x5",
