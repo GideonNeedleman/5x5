@@ -4,8 +4,10 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { Container } from "react-bootstrap";
 import WorkoutButton from "../components/WorkoutButton";
+import { useSampleData } from "../context/SampleData";
 
-function SelectWorkout({ programs }) {
+function SelectWorkout() {
+  const { programData: programs } = useSampleData();
   return (
     <main>
       <h1 className="d-flex display-3 justify-content-center">
