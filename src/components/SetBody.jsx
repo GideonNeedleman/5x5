@@ -2,8 +2,10 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { BsPlusLg, BsDashLg } from "react-icons/bs";
+import { useGlobalContext } from "../context/GlobalContext";
 
 function SetBody({ weight, reps }) {
+  const { isWorkoutStarted } = useGlobalContext();
   return (
     <>
       {/*       <InputGroup className="mb-3">
@@ -19,7 +21,11 @@ function SetBody({ weight, reps }) {
         <>
           <p className="text-center fw-semibold m-0">Weight (lbs)</p>
           <InputGroup className="mb-2">
-            <Button variant="outline-primary" id="button-addon2">
+            <Button
+              variant="outline-primary"
+              id="button-minus-weight"
+              disabled={!isWorkoutStarted}
+            >
               <BsDashLg />
             </Button>
             <Form.Control
@@ -27,8 +33,13 @@ function SetBody({ weight, reps }) {
               type="number"
               value={weight}
               aria-label="Weight"
+              disabled={!isWorkoutStarted}
             />
-            <Button variant="outline-primary" id="button-addon2">
+            <Button
+              variant="outline-primary"
+              id="button-plus-weight"
+              disabled={!isWorkoutStarted}
+            >
               <BsPlusLg />
             </Button>
           </InputGroup>
@@ -36,15 +47,24 @@ function SetBody({ weight, reps }) {
       )}
       <p className="text-center fw-semibold m-0">Reps</p>
       <InputGroup className="mb-2">
-        <Button variant="outline-primary" id="button-addon2">
+        <Button
+          variant="outline-primary"
+          id="button-minus-reps"
+          disabled={!isWorkoutStarted}
+        >
           <BsDashLg />
         </Button>
         <Form.Control
           className="text-center"
           value={reps}
           aria-label="Weight"
+          disabled={!isWorkoutStarted}
         />
-        <Button variant="outline-primary" id="button-addon2">
+        <Button
+          variant="outline-primary"
+          id="button-plus-reps"
+          disabled={!isWorkoutStarted}
+        >
           <BsPlusLg />
         </Button>
       </InputGroup>

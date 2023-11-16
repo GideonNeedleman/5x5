@@ -1,5 +1,6 @@
 import { Button, Col, Row } from "react-bootstrap";
 import { BsStickyFill } from "react-icons/bs";
+import { useGlobalContext } from "../context/GlobalContext";
 
 function SetButtons({
   isNoteVisible,
@@ -7,6 +8,7 @@ function SetButtons({
   handleClick,
   isLastSet,
 }) {
+  const { isWorkoutStarted } = useGlobalContext();
   return (
     <Row className="mt-3">
       {!isNoteVisible && (
@@ -15,13 +17,18 @@ function SetButtons({
             variant="secondary"
             className=""
             onClick={() => setIsNoteVisible(true)}
+            disabled={!isWorkoutStarted}
           >
             <BsStickyFill />
           </Button>
         </Col>
       )}
       <Col>
-        <Button className="w-100" onClick={handleClick}>
+        <Button
+          className="w-100"
+          onClick={handleClick}
+          disabled={!isWorkoutStarted}
+        >
           {isLastSet ? "Finish Set" : "Finish Set"}
         </Button>
       </Col>
