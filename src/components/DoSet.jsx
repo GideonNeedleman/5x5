@@ -43,7 +43,9 @@ function DoSet({
       <Accordion.Header>
         <span className="d-flex justify-content-between w-100 px-1">
           <span className={isFinished ? "text-secondary" : "fw-bold "}>
-            {isFinished && <BsCheckSquareFill style={{ color: "#007afe" }} />}{" "}
+            {isFinished && (
+              <BsCheckSquareFill style={{ color: "var(--bs-blue)" }} />
+            )}{" "}
             Set {index + 1}
           </span>
         </span>

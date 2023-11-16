@@ -23,7 +23,9 @@ function DoExercise({ exercise, numExercises, index, tracker }) {
       <Accordion.Header>
         <span className="d-flex justify-content-between w-100 px-1">
           <span className={isFinished ? "text-secondary" : "fw-bold "}>
-            {isFinished && <BsCheckSquareFill style={{ color: "#007afe" }} />}{" "}
+            {isFinished && (
+              <BsCheckSquareFill style={{ color: "var(--bs-blue)" }} />
+            )}{" "}
             {exercise.name}
           </span>
           <span className="mx-1">{numSets} sets</span>
