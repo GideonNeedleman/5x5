@@ -17,43 +17,37 @@ function SetBody({ weight, reps }) {
       </InputGroup> */}
       {weight && (
         <>
-          <p className="text-center m-0">Weight (lbs)</p>
+          <p className="text-center fw-semibold m-0">Weight (lbs)</p>
           <InputGroup className="mb-2">
             <Button variant="outline-primary" id="button-addon2">
               <BsDashLg />
             </Button>
-            <Form.Control placeholder={weight} aria-label="Weight" />
+            <Form.Control
+              className="text-center"
+              type="number"
+              value={weight}
+              aria-label="Weight"
+            />
             <Button variant="outline-primary" id="button-addon2">
               <BsPlusLg />
             </Button>
           </InputGroup>
         </>
       )}
-      <p className="text-center m-0">Reps</p>
+      <p className="text-center fw-semibold m-0">Reps</p>
       <InputGroup className="mb-2">
         <Button variant="outline-primary" id="button-addon2">
           <BsDashLg />
         </Button>
-        <Form.Control placeholder={reps} aria-label="Weight" />
+        <Form.Control
+          className="text-center"
+          value={reps}
+          aria-label="Weight"
+        />
         <Button variant="outline-primary" id="button-addon2">
           <BsPlusLg />
         </Button>
       </InputGroup>
-
-      {/*       <InputGroup className="mb-3">
-        <Button variant="outline-secondary">Button</Button>
-        <Button variant="outline-secondary">Button</Button>
-        <Form.Control aria-label="Example text with two button addons" />
-      </InputGroup>
-
-      <InputGroup>
-        <Form.Control
-          placeholder="Recipient's username"
-          aria-label="Recipient's username with two button addons"
-        />
-        <Button variant="outline-secondary">Button</Button>
-        <Button variant="outline-secondary">Button</Button>
-      </InputGroup> */}
     </>
   );
 }

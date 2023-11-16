@@ -1,6 +1,10 @@
-import { Accordion, Button } from "react-bootstrap";
+import { Accordion, Button, Col, Row } from "react-bootstrap";
 import { useGlobalContext } from "../context/GlobalContext";
 import SetBody from "./SetBody";
+import { BsStickyFill } from "react-icons/bs";
+import SetNote from "./SetNote";
+import { useState } from "react";
+
 // import { useFinishWorkout } from "../hooks/useFinishWorkout";
 
 function DoSet({
@@ -13,6 +17,7 @@ function DoSet({
 }) {
   // const handleFinishWorkout = useFinishWorkout();
   const { dispatch } = useGlobalContext();
+  const [isNoteVisible, setIsNoteVisible] = useState(false);
 
   const isLastSet = index + 1 === numSets && isLastExercise;
 
@@ -35,11 +40,26 @@ function DoSet({
       </Accordion.Header>
       <Accordion.Body>
         <SetBody weight={set.weight} reps={set.reps} />
-        {/* <p>Weight: {set.weight}lbs</p>
-        <p>Reps: {set.reps}lbs</p> */}
-        <Button className="w-100 my-2" onClick={handleClick}>
-          {isLastSet ? "Finish Set" : "Rest Timer"}
-        </Button>
+        {isNoteVisible && <SetNote />}
+
+        <Row className="mt-3">
+          {!isNoteVisible && (
+            <Col xs={2}>
+              <Button
+                variant="secondary"
+                className=""
+                onClick={() => setIsNoteVisible(true)}
+              >
+                <BsStickyFill />
+              </Button>
+            </Col>
+          )}
+          <Col>
+            <Button className="w-100" onClick={handleClick}>
+              {isLastSet ? "Finish Set" : "Finish Set"}
+            </Button>
+          </Col>
+        </Row>
       </Accordion.Body>
     </Accordion.Item>
   );
