@@ -18,7 +18,7 @@ function DoExercise({ exercise, numExercises, index, tracker }) {
     <Accordion.Item eventKey={`${tracker}`}>
       <Accordion.Header>
         <span className="d-flex justify-content-between w-100 px-1">
-          <span className="fw-bold">
+          <span className={isFinished ? "text-secondary" : "fw-bold "}>
             {isFinished && <BsCheckSquareFill style={{ color: "#007afe" }} />}{" "}
             {exercise.name}
           </span>

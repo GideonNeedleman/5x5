@@ -42,7 +42,7 @@ function DoSet({
     <Accordion.Item eventKey={`${index - 1 + activeKey}`}>
       <Accordion.Header>
         <span className="d-flex justify-content-between w-100 px-1">
-          <span className="fw-bold">
+          <span className={isFinished ? "text-secondary" : "fw-bold "}>
             {isFinished && <BsCheckSquareFill style={{ color: "#007afe" }} />}{" "}
             Set {index + 1}
           </span>
