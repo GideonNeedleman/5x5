@@ -8,7 +8,7 @@ export function useFinishWorkout() {
 
   function finishWorkout() {
     dispatch({ type: "finish-workout" });
-    navigate("/history");
+    navigate("/");
   }
 
   return finishWorkout;

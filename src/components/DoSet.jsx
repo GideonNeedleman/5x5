@@ -1,9 +1,10 @@
-import { Accordion, Button, Col, Row } from "react-bootstrap";
+import { Accordion } from "react-bootstrap";
+import { BsCheckSquareFill } from "react-icons/bs";
+import { useState } from "react";
 import { useGlobalContext } from "../context/GlobalContext";
 import SetBody from "./SetBody";
-import { BsStickyFill, BsCheckSquareFill } from "react-icons/bs";
 import SetNote from "./SetNote";
-import { useState } from "react";
+import SetButtons from "./SetButtons";
 
 // import { useFinishWorkout } from "../hooks/useFinishWorkout";
 
@@ -50,25 +51,12 @@ function DoSet({
       <Accordion.Body>
         <SetBody weight={set.weight} reps={set.reps} />
         {isNoteVisible && <SetNote />}
-
-        <Row className="mt-3">
-          {!isNoteVisible && (
-            <Col xs={2}>
-              <Button
-                variant="secondary"
-                className=""
-                onClick={() => setIsNoteVisible(true)}
-              >
-                <BsStickyFill />
-              </Button>
-            </Col>
-          )}
-          <Col>
-            <Button className="w-100" onClick={handleClick}>
-              {isLastSet ? "Finish Set" : "Finish Set"}
-            </Button>
-          </Col>
-        </Row>
+        <SetButtons
+          isNoteVisible={isNoteVisible}
+          setIsNoteVisible={setIsNoteVisible}
+          handleClick={handleClick}
+          isLastSet={isLastSet}
+        />
       </Accordion.Body>
     </Accordion.Item>
   );
