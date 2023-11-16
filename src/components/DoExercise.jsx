@@ -6,13 +6,17 @@ import { BsCheckSquareFill } from "react-icons/bs";
 function DoExercise({ exercise, numExercises, index, tracker }) {
   const [activeKey, setActiveKey] = useState(1);
   const [isFinished, setIsFinished] = useState(false);
+  const [numFinishedSets, setNumFinishedSets] = useState(0);
   const numSets = exercise.sets.length;
   const isLastExercise = numExercises === index + 1;
 
-  console.log("tracker ", tracker);
-
   function handleFinishSet() {
     setActiveKey((prev) => prev - 1);
+  }
+
+  function checkExerciseFinished() {
+    // numSets - 1 bc setNumFinishedSets async, so OBOB
+    if (numFinishedSets === numSets - 1) setIsFinished(true);
   }
   return (
     <Accordion.Item eventKey={`${tracker}`}>
@@ -37,7 +41,8 @@ function DoExercise({ exercise, numExercises, index, tracker }) {
                 handleFinishSet={handleFinishSet}
                 numSets={numSets}
                 isLastExercise={isLastExercise}
-                checkExercise={() => setIsFinished(true)}
+                checkExercise={checkExerciseFinished}
+                setNumFinishedSets={setNumFinishedSets}
               />
             ))}
           </Accordion>

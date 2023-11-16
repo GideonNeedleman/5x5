@@ -7,6 +7,7 @@ function SetButtons({
   setIsNoteVisible,
   handleClick,
   isLastSet,
+  isFinished,
 }) {
   const { isWorkoutStarted } = useGlobalContext();
   return (
@@ -27,7 +28,7 @@ function SetButtons({
         <Button
           className="w-100"
           onClick={handleClick}
-          disabled={!isWorkoutStarted}
+          disabled={!isWorkoutStarted || isFinished}
         >
           {isLastSet ? "Finish Set" : "Finish Set"}
         </Button>

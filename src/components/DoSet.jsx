@@ -16,6 +16,7 @@ function DoSet({
   handleFinishSet,
   isLastExercise,
   checkExercise,
+  setNumFinishedSets,
 }) {
   // const handleFinishWorkout = useFinishWorkout();
   const { dispatch } = useGlobalContext();
@@ -26,15 +27,14 @@ function DoSet({
 
   function handleClick() {
     setIsFinished(true);
+    setNumFinishedSets((prev) => prev + 1);
+    checkExercise();
     if (isLastSet) {
-      // handleFinishWorkout();
       handleFinishSet();
-      checkExercise();
       return;
     }
     if (index + 1 === numSets) {
       dispatch({ type: "next-exercise" });
-      checkExercise();
     } else handleFinishSet();
   }
 
@@ -56,6 +56,7 @@ function DoSet({
           setIsNoteVisible={setIsNoteVisible}
           handleClick={handleClick}
           isLastSet={isLastSet}
+          isFinished={isFinished}
         />
       </Accordion.Body>
     </Accordion.Item>
