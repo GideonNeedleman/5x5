@@ -209,7 +209,7 @@ const initialState = {
           next: false,
           exercises: [
             {
-              name: "BarbellSquats",
+              name: "Barbell Squats",
               sets: [
                 { weight: 185, reps: 5 },
                 { weight: 185, reps: 5 },
