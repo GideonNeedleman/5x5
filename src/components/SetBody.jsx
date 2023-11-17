@@ -16,6 +16,7 @@ function SetBody({ set, register }) {
               variant="secondary"
               id="button-minus-weight"
               disabled={!isWorkoutStarted}
+              // how to decrement weight value?
             >
               <BsDashLg />
             </Button>

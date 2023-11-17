@@ -16,7 +16,6 @@ function ConfirmFinishWorkoutModal({ onHide, show }) {
         <Button onClick={onHide} variant="secondary">
           Cancel
         </Button>
-        {/* need to submit form from modal. It's not located within <form> tags! */}
         <Button type="submit" form="workoutForm">
           Confirm
         </Button>

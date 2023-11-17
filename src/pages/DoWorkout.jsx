@@ -4,13 +4,13 @@ import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
 import { useGlobalContext } from "../context/GlobalContext";
-import { useFinishWorkout } from "../hooks/useFinishWorkout";
 import ConfirmFinishWorkoutModal from "../components/ConfirmFinishWorkoutModal";
 import ConfirmCancelWorkoutModal from "../components/ConfirmCancelWorkoutModal";
 import BeginWorkoutButtons from "../components/BeginWorkoutButtons";
 import FinishWorkoutButtons from "../components/FinishWorkoutButtons";
 import WorkoutAccordion from "../components/WorkoutAccordion";
 import WorkoutTable from "../components/WorkoutTable";
+import { getDefaultValues } from "../utils/helpers";
 
 function DoWorkout() {
   const {
@@ -25,21 +25,18 @@ function DoWorkout() {
   const [numFinishedExercises, setNumFinishedExercises] = useState(0);
   const numExercises = workout.exercises.length;
   const [isWorkoutFinished, setIsWorkoutFinished] = useState(false);
-  // const handleFinishWorkout = useFinishWorkout();
 
   /*   To set defaultValues:
   1. generate array of all sets? 
   2. map array => `weight-${set.id}`: set.weight, `reps-${set.id}`: set.reps
   3. create defaultValues: {...array}
   
-  maybe generate defaultValues object with a function getDefaultValues(workout)
+  maybe generate defaultValues object with a function:
+  const form = useForm({ defaultValues: getDefaultValues(workout) });
   
   include rest time values? could do restTime=set.time? || 90000*/
   const form = useForm({
-    defaultValues: {
-      "weight-1": 1010,
-      "reps-1": 1010,
-    },
+    defaultValues: getDefaultValues(workout),
   });
   const { register, control, handleSubmit } = form;
 

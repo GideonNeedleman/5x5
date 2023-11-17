@@ -49,7 +49,7 @@ function DoSet({
       </Accordion.Header>
       <Accordion.Body style={{ backgroundColor: "var(--bs-gray-200)" }}>
         <SetBody set={set} register={register} />
-        {isNoteVisible && <SetNote />}
+        {isNoteVisible && <SetNote set={set} register={register} />}
         <SetButtons
           isNoteVisible={isNoteVisible}
           setIsNoteVisible={setIsNoteVisible}
