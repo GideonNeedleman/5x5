@@ -25,10 +25,23 @@ function DoWorkout() {
   const [numFinishedExercises, setNumFinishedExercises] = useState(0);
   const numExercises = workout.exercises.length;
   const [isWorkoutFinished, setIsWorkoutFinished] = useState(false);
-  const handleFinishWorkout = useFinishWorkout();
+  // const handleFinishWorkout = useFinishWorkout();
 
-  const form = useForm();
-  const { register, control } = form;
+  /*   To set defaultValues:
+  1. generate array of all sets? 
+  2. map array => `weight-${set.id}`: set.weight, `reps-${set.id}`: set.reps
+  3. create defaultValues: {...array}
+  
+  maybe generate defaultValues object with a function getDefaultValues(workout)
+  
+  include rest time values? could do restTime=set.time? || 90000*/
+  const form = useForm({
+    defaultValues: {
+      "weight-1": 1010,
+      "reps-1": 1010,
+    },
+  });
+  const { register, control, handleSubmit } = form;
 
   function handleBack() {
     dispatch({ type: "clear-workout" });
@@ -47,13 +60,19 @@ function DoWorkout() {
     setShowCancelModal(true);
   }
 
+  function handleFinishWorkout(data) {
+    dispatch({ type: "finish-workout", payload: data });
+    console.log("Form submitted", data);
+    navigate("/");
+  }
+
   useEffect(() => {
     if (numFinishedExercises === numExercises) setIsWorkoutFinished(true);
   }, [numFinishedExercises, numExercises]);
 
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit(handleFinishWorkout)}>
         <h1 className="display-3 text-center">{workout.name} </h1>
 
         <BeginWorkoutButtons
@@ -77,7 +96,6 @@ function DoWorkout() {
         <FinishWorkoutButtons
           isWorkoutStarted={isWorkoutStarted}
           isWorkoutFinished={isWorkoutFinished}
-          handleFinishWorkout={handleFinishWorkout}
           handleCancelModal={handleCancelModal}
           handleConfirmationModal={handleConfirmationModal}
         />

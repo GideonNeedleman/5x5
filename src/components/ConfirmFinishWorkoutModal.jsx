@@ -16,7 +16,10 @@ function ConfirmFinishWorkoutModal({ onHide, show, handleClose }) {
         <Button onClick={onHide} variant="secondary">
           Cancel
         </Button>
-        <Button onClick={handleClose}>Confirm</Button>
+        {/* need to submit form from modal */}
+        <Button type="submit" onClick={onHide}>
+          Confirm
+        </Button>
       </Modal.Footer>
     </Modal>
   );

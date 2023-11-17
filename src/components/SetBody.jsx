@@ -22,8 +22,8 @@ function SetBody({ set, register }) {
             <Form.Control
               className="text-center"
               type="number"
-              {...register(`weight-${set.id}`)} //need to use set id to register name
-              value={set.weight}
+              {...register(`weight-${set.id}`)}
+              // value={set.weight} // how to onChange value with react hook form?
               aria-label="Weight"
               disabled={!isWorkoutStarted}
             />
@@ -50,7 +50,7 @@ function SetBody({ set, register }) {
           className="text-center"
           {...register(`reps-${set.id}`)}
           type="number"
-          value={set.reps}
+          // value={set.reps}
           aria-label="reps"
           disabled={!isWorkoutStarted}
         />
