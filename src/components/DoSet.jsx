@@ -23,19 +23,15 @@ function DoSet({
   const [isNoteVisible, setIsNoteVisible] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
 
-  const isLastSet = index + 1 === numSets && isLastExercise;
+  const isLastSetOfWorkout = index + 1 === numSets && isLastExercise;
 
   function handleClick() {
-    setIsFinished(true);
-    setNumFinishedSets((prev) => prev + 1);
-    checkExercise();
-    if (isLastSet) {
-      handleFinishSet();
-      return;
-    }
-    if (index + 1 === numSets) {
-      dispatch({ type: "next-exercise" });
-    } else handleFinishSet();
+    setIsFinished(true); // disables 'finish set' button
+    setNumFinishedSets((prev) => prev + 1); // tally to display check mark in exercise head
+    checkExercise(); // display check mark in set head
+    handleFinishSet(); // increment to next set
+
+    if (index + 1 === numSets) dispatch({ type: "next-exercise" }); // if last set for exercise then go to next exercise
   }
 
   return (
@@ -57,7 +53,7 @@ function DoSet({
           isNoteVisible={isNoteVisible}
           setIsNoteVisible={setIsNoteVisible}
           handleClick={handleClick}
-          isLastSet={isLastSet}
+          isLastSetOfWorkout={isLastSetOfWorkout}
           isFinished={isFinished}
         />
       </Accordion.Body>

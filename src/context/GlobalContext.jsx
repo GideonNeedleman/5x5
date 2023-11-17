@@ -69,7 +69,7 @@ function reducer(state, action) {
 const initialState = {
   activeWorkout: null,
   activeProgramId: null,
-  isWorkoutStarted: true,
+  isWorkoutStarted: false,
   activeKey: 1,
   nextWorkoutOrder: null,
   programData: [

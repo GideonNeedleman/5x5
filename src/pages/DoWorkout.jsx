@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../context/GlobalContext";
 import Button from "react-bootstrap/Button";
-import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Accordion from "react-bootstrap/Accordion";
@@ -64,7 +63,7 @@ function DoWorkout() {
         </Row>
       )}
 
-      <Accordion className="mt-2" defaultActiveKey={`0`}>
+      <Accordion defaultActiveKey={`0`}>
         {workout.exercises.map((exercise, index) => (
           <DoExercise
             exercise={exercise}

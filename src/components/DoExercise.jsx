@@ -32,23 +32,21 @@ function DoExercise({ exercise, numExercises, index, tracker }) {
         </span>
       </Accordion.Header>
       <Accordion.Body>
-        <>
-          <Accordion defaultActiveKey="0" flush>
-            {exercise.sets.map((set, i) => (
-              <DoSet
-                set={set}
-                key={i}
-                index={i}
-                activeKey={activeKey}
-                handleFinishSet={handleFinishSet}
-                numSets={numSets}
-                isLastExercise={isLastExercise}
-                checkExercise={checkExerciseFinished}
-                setNumFinishedSets={setNumFinishedSets}
-              />
-            ))}
-          </Accordion>
-        </>
+        <Accordion defaultActiveKey="0" flush>
+          {exercise.sets.map((set, i) => (
+            <DoSet
+              set={set}
+              key={i}
+              index={i}
+              activeKey={activeKey}
+              handleFinishSet={handleFinishSet}
+              numSets={numSets}
+              isLastExercise={isLastExercise}
+              checkExercise={checkExerciseFinished}
+              setNumFinishedSets={setNumFinishedSets}
+            />
+          ))}
+        </Accordion>
       </Accordion.Body>
     </Accordion.Item>
   );
