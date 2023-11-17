@@ -19,7 +19,7 @@ function ExerciseTable({ exercise }) {
       <thead className="text-center">
         <tr>
           <th>Set</th>
-          {exercise.sets[0].weight && <th>Weight</th>}
+          {exercise.sets[0].weight && <th>Weight (lbs)</th>}
           <th>Reps</th>
         </tr>
       </thead>
