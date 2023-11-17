@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../context/GlobalContext";
-import Accordion from "react-bootstrap/Accordion";
 import { useFinishWorkout } from "../hooks/useFinishWorkout";
-import DoExercise from "../components/DoExercise";
 import ConfirmFinishWorkoutModal from "../components/ConfirmFinishWorkoutModal";
 import ConfirmCancelWorkoutModal from "../components/ConfirmCancelWorkoutModal";
 import BeginWorkoutButtons from "../components/BeginWorkoutButtons";
