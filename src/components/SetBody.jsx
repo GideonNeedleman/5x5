@@ -22,7 +22,7 @@ function SetBody({ weight, reps }) {
           <p className="text-center fw-semibold m-0">Weight (lbs)</p>
           <InputGroup className="mb-2">
             <Button
-              variant="outline-primary"
+              variant="secondary"
               id="button-minus-weight"
               disabled={!isWorkoutStarted}
             >
@@ -36,7 +36,7 @@ function SetBody({ weight, reps }) {
               disabled={!isWorkoutStarted}
             />
             <Button
-              variant="outline-primary"
+              variant="secondary"
               id="button-plus-weight"
               disabled={!isWorkoutStarted}
             >
@@ -48,7 +48,7 @@ function SetBody({ weight, reps }) {
       <p className="text-center fw-semibold m-0">Reps</p>
       <InputGroup className="mb-2">
         <Button
-          variant="outline-primary"
+          variant="secondary"
           id="button-minus-reps"
           disabled={!isWorkoutStarted}
         >
@@ -61,7 +61,7 @@ function SetBody({ weight, reps }) {
           disabled={!isWorkoutStarted}
         />
         <Button
-          variant="outline-primary"
+          variant="secondary"
           id="button-plus-reps"
           disabled={!isWorkoutStarted}
         >

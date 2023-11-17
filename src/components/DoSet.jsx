@@ -46,7 +46,7 @@ function DoSet({
           </span>
         </span>
       </Accordion.Header>
-      <Accordion.Body>
+      <Accordion.Body style={{ backgroundColor: "var(--bs-gray-200)" }}>
         <SetBody weight={set.weight} reps={set.reps} />
         {isNoteVisible && <SetNote />}
         <SetButtons
