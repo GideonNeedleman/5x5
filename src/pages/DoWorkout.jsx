@@ -8,6 +8,8 @@ import ConfirmFinishWorkoutModal from "../components/ConfirmFinishWorkoutModal";
 import ConfirmCancelWorkoutModal from "../components/ConfirmCancelWorkoutModal";
 import BeginWorkoutButtons from "../components/BeginWorkoutButtons";
 import FinishWorkoutButtons from "../components/FinishWorkoutButtons";
+import WorkoutAccordion from "../components/WorkoutAccordion";
+import WorkoutTable from "../components/WorkoutTable";
 
 function DoWorkout() {
   const {
@@ -42,8 +44,6 @@ function DoWorkout() {
   }
 
   useEffect(() => {
-    console.log("finished exercises: ", numFinishedExercises);
-    console.log("total exercises ", numExercises);
     if (numFinishedExercises === numExercises) setIsWorkoutFinished(true);
   }, [numFinishedExercises, numExercises]);
 
@@ -57,18 +57,16 @@ function DoWorkout() {
         handleBeginWorkout={handleBeginWorkout}
       />
 
-      <Accordion defaultActiveKey={`0`}>
-        {workout.exercises.map((exercise, index) => (
-          <DoExercise
-            exercise={exercise}
-            numExercises={numExercises}
-            index={index}
-            tracker={index + activeKey}
-            key={exercise.name}
-            setNumFinishedExercises={setNumFinishedExercises}
-          />
-        ))}
-      </Accordion>
+      {isWorkoutStarted ? (
+        <WorkoutAccordion
+          workout={workout}
+          numExercises={numExercises}
+          activeKey={activeKey}
+          setNumFinishedExercises={setNumFinishedExercises}
+        />
+      ) : (
+        <WorkoutTable workout={workout} />
+      )}
 
       <FinishWorkoutButtons
         isWorkoutStarted={isWorkoutStarted}
