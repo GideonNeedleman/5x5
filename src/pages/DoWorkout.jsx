@@ -72,7 +72,7 @@ function DoWorkout() {
 
   return (
     <>
-      <form onSubmit={handleSubmit(handleFinishWorkout)}>
+      <form id="workoutForm" onSubmit={handleSubmit(handleFinishWorkout)}>
         <h1 className="display-3 text-center">{workout.name} </h1>
 
         <BeginWorkoutButtons

@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-function ConfirmFinishWorkoutModal({ onHide, show, handleClose }) {
+function ConfirmFinishWorkoutModal({ onHide, show }) {
   return (
     <Modal
       size="lg"
@@ -16,8 +16,8 @@ function ConfirmFinishWorkoutModal({ onHide, show, handleClose }) {
         <Button onClick={onHide} variant="secondary">
           Cancel
         </Button>
-        {/* need to submit form from modal */}
-        <Button type="submit" onClick={onHide}>
+        {/* need to submit form from modal. It's not located within <form> tags! */}
+        <Button type="submit" form="workoutForm">
           Confirm
         </Button>
       </Modal.Footer>
