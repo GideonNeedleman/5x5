@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../context/GlobalContext";
 import Button from "react-bootstrap/Button";
+import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Accordion from "react-bootstrap/Accordion";
@@ -41,11 +42,11 @@ function DoWorkout() {
   }
 
   return (
-    <main>
+    <Container as="main">
       <h1 className="display-3 text-center">{workout.name} </h1>
 
       {isWorkoutStarted === false && (
-        <Row className="mx-1 g-2">
+        <Row>
           <Col xs={3}>
             <Button variant="warning" className="w-100" onClick={handleBack}>
               Back
@@ -63,7 +64,8 @@ function DoWorkout() {
         </Row>
       )}
 
-      <Accordion defaultActiveKey={`0`}>
+      {/* use index + activeKey to allow auto open accordion item */}
+      <Accordion className="mt-2" defaultActiveKey={`0`}>
         {workout.exercises.map((exercise, index) => (
           <DoExercise
             exercise={exercise}
@@ -76,7 +78,7 @@ function DoWorkout() {
       </Accordion>
 
       {isWorkoutStarted === true && (
-        <Row className="mx-1 my-2 g-2">
+        <Row>
           <Col xs={3}>
             <Button
               variant="warning"
@@ -107,7 +109,7 @@ function DoWorkout() {
         onHide={() => setShowCancelModal(false)}
         handleClose={handleBack}
       />
-    </main>
+    </Container>
   );
 }
 
