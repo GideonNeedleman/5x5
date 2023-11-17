@@ -4,20 +4,11 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { BsPlusLg, BsDashLg } from "react-icons/bs";
 import { useGlobalContext } from "../context/GlobalContext";
 
-function SetBody({ weight, reps }) {
+function SetBody({ set, register }) {
   const { isWorkoutStarted } = useGlobalContext();
   return (
     <>
-      {/*       <InputGroup className="mb-3">
-        <Button variant="outline-secondary" id="button-addon1">
-          Button
-        </Button>
-        <Form.Control
-          aria-label="Example text with button addon"
-          aria-describedby="basic-addon1"
-        />
-      </InputGroup> */}
-      {weight && (
+      {set.weight && (
         <>
           <p className="text-center fw-semibold m-0">Weight (lbs)</p>
           <InputGroup className="mb-2">
@@ -31,7 +22,8 @@ function SetBody({ weight, reps }) {
             <Form.Control
               className="text-center"
               type="number"
-              value={weight}
+              {...register(`weight-${set.id}`)} //need to use set id to register name
+              value={set.weight}
               aria-label="Weight"
               disabled={!isWorkoutStarted}
             />
@@ -56,8 +48,10 @@ function SetBody({ weight, reps }) {
         </Button>
         <Form.Control
           className="text-center"
-          value={reps}
-          aria-label="Weight"
+          {...register(`reps-${set.id}`)}
+          type="number"
+          value={set.reps}
+          aria-label="reps"
           disabled={!isWorkoutStarted}
         />
         <Button

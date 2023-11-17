@@ -9,6 +9,7 @@ function DoExercise({
   index,
   tracker,
   setNumFinishedExercises,
+  register,
 }) {
   const [activeKey, setActiveKey] = useState(1);
   const [isFinished, setIsFinished] = useState(false);
@@ -53,6 +54,7 @@ function DoExercise({
               isLastExercise={isLastExercise}
               checkExercise={checkExerciseFinished}
               setNumFinishedSets={setNumFinishedSets}
+              register={register}
             />
           ))}
         </Accordion>

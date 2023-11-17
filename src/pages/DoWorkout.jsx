@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { DevTool } from "@hookform/devtools";
+
 import { useGlobalContext } from "../context/GlobalContext";
 import { useFinishWorkout } from "../hooks/useFinishWorkout";
 import ConfirmFinishWorkoutModal from "../components/ConfirmFinishWorkoutModal";
@@ -24,6 +27,9 @@ function DoWorkout() {
   const [isWorkoutFinished, setIsWorkoutFinished] = useState(false);
   const handleFinishWorkout = useFinishWorkout();
 
+  const form = useForm();
+  const { register, control } = form;
+
   function handleBack() {
     dispatch({ type: "clear-workout" });
     navigate("/");
@@ -46,46 +52,50 @@ function DoWorkout() {
   }, [numFinishedExercises, numExercises]);
 
   return (
-    <main>
-      <h1 className="display-3 text-center">{workout.name} </h1>
+    <>
+      <form>
+        <h1 className="display-3 text-center">{workout.name} </h1>
 
-      <BeginWorkoutButtons
-        isWorkoutStarted={isWorkoutStarted}
-        handleBack={handleBack}
-        handleBeginWorkout={handleBeginWorkout}
-      />
-
-      {isWorkoutStarted ? (
-        <WorkoutAccordion
-          workout={workout}
-          numExercises={numExercises}
-          activeKey={activeKey}
-          setNumFinishedExercises={setNumFinishedExercises}
+        <BeginWorkoutButtons
+          isWorkoutStarted={isWorkoutStarted}
+          handleBack={handleBack}
+          handleBeginWorkout={handleBeginWorkout}
         />
-      ) : (
-        <WorkoutTable workout={workout} />
-      )}
 
-      <FinishWorkoutButtons
-        isWorkoutStarted={isWorkoutStarted}
-        isWorkoutFinished={isWorkoutFinished}
-        handleFinishWorkout={handleFinishWorkout}
-        handleCancelModal={handleCancelModal}
-        handleConfirmationModal={handleConfirmationModal}
-      />
+        {isWorkoutStarted ? (
+          <WorkoutAccordion
+            workout={workout}
+            numExercises={numExercises}
+            activeKey={activeKey}
+            setNumFinishedExercises={setNumFinishedExercises}
+            register={register}
+          />
+        ) : (
+          <WorkoutTable workout={workout} />
+        )}
 
-      <ConfirmFinishWorkoutModal
-        show={show}
-        onHide={() => setShow(false)}
-        handleClose={handleFinishWorkout}
-      />
+        <FinishWorkoutButtons
+          isWorkoutStarted={isWorkoutStarted}
+          isWorkoutFinished={isWorkoutFinished}
+          handleFinishWorkout={handleFinishWorkout}
+          handleCancelModal={handleCancelModal}
+          handleConfirmationModal={handleConfirmationModal}
+        />
 
-      <ConfirmCancelWorkoutModal
-        show={showCancelModal}
-        onHide={() => setShowCancelModal(false)}
-        handleClose={handleBack}
-      />
-    </main>
+        <ConfirmFinishWorkoutModal
+          show={show}
+          onHide={() => setShow(false)}
+          handleClose={handleFinishWorkout}
+        />
+
+        <ConfirmCancelWorkoutModal
+          show={showCancelModal}
+          onHide={() => setShowCancelModal(false)}
+          handleClose={handleBack}
+        />
+      </form>
+      <DevTool control={control} />
+    </>
   );
 }
 
