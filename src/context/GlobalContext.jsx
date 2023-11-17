@@ -72,6 +72,7 @@ const initialState = {
   isWorkoutStarted: false,
   activeKey: 1,
   nextWorkoutOrder: null,
+  isWorkoutFinished: false,
   programData: [
     {
       name: "Stronglifts 5x5",

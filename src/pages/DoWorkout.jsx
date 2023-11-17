@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Accordion from "react-bootstrap/Accordion";
 import DoExercise from "../components/DoExercise";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ConfirmFinishWorkoutModal from "../components/ConfirmFinishWorkoutModal";
 import { useFinishWorkout } from "../hooks/useFinishWorkout";
 import ConfirmCancelWorkoutModal from "../components/ConfirmCancelWorkoutModal";
@@ -20,7 +20,9 @@ function DoWorkout() {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [showCancelModal, setShowCancelModal] = useState(false);
+  const [numFinishedExercises, setNumFinishedExercises] = useState(0);
   const numExercises = workout.exercises.length;
+  const [isWorkoutFinished, setIsWorkoutFinished] = useState(false);
   const handleFinishWorkout = useFinishWorkout();
 
   function handleBack() {
@@ -39,6 +41,12 @@ function DoWorkout() {
   function handleCancelModal() {
     setShowCancelModal(true);
   }
+
+  useEffect(() => {
+    console.log("finished exercises: ", numFinishedExercises);
+    console.log("total exercises ", numExercises);
+    if (numFinishedExercises === numExercises) setIsWorkoutFinished(true);
+  }, [numFinishedExercises, numExercises]);
 
   return (
     <main>
@@ -71,6 +79,7 @@ function DoWorkout() {
             index={index}
             tracker={index + activeKey}
             key={exercise.name}
+            setNumFinishedExercises={setNumFinishedExercises}
           />
         ))}
       </Accordion>
@@ -87,13 +96,23 @@ function DoWorkout() {
             </Button>
           </Col>
           <Col>
-            <Button
-              variant="secondary"
-              className="w-100"
-              onClick={handleConfirmationModal}
-            >
-              Finish Workout Early
-            </Button>
+            {isWorkoutFinished ? (
+              <Button
+                variant="primary"
+                className="w-100"
+                onClick={handleFinishWorkout}
+              >
+                Finish Workout
+              </Button>
+            ) : (
+              <Button
+                variant="secondary"
+                className="w-100"
+                onClick={handleConfirmationModal}
+              >
+                Finish Workout Early
+              </Button>
+            )}
           </Col>
         </Row>
       )}

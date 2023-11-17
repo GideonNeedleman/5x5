@@ -3,7 +3,13 @@ import Accordion from "react-bootstrap/Accordion";
 import DoSet from "./DoSet";
 import { BsCheckSquareFill } from "react-icons/bs";
 
-function DoExercise({ exercise, numExercises, index, tracker }) {
+function DoExercise({
+  exercise,
+  numExercises,
+  index,
+  tracker,
+  setNumFinishedExercises,
+}) {
   const [activeKey, setActiveKey] = useState(1);
   const [isFinished, setIsFinished] = useState(false);
   const [numFinishedSets, setNumFinishedSets] = useState(0);
@@ -16,7 +22,10 @@ function DoExercise({ exercise, numExercises, index, tracker }) {
 
   function checkExerciseFinished() {
     // numSets - 1 bc setNumFinishedSets async, so OBOB
-    if (numFinishedSets === numSets - 1) setIsFinished(true);
+    if (numFinishedSets === numSets - 1) {
+      setIsFinished(true);
+      setNumFinishedExercises((prev) => prev + 1);
+    }
   }
   return (
     <Accordion.Item eventKey={`${tracker}`}>
