@@ -220,3 +220,4 @@ There may be some kinds of exercises that are not done in sets or reps, like tim
 ## To do
 
 - Properly style accordion items to be more compact
+- Try to fix accordion items not collapsing
