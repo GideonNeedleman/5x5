@@ -4,7 +4,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { BsPlusLg, BsDashLg } from "react-icons/bs";
 import { useGlobalContext } from "../context/GlobalContext";
 
-function SetBody({ set, register }) {
+function SetBody({ set, register, exerciseId }) {
   const { isWorkoutStarted } = useGlobalContext();
   return (
     <>
@@ -23,7 +23,7 @@ function SetBody({ set, register }) {
             <Form.Control
               className="text-center"
               type="number"
-              {...register(`weight-${set.id}`)}
+              {...register(`exercise-${exerciseId}-weight-${set.id}`)}
               // value={set.weight} // how to onChange value with react hook form?
               aria-label="Weight"
               disabled={!isWorkoutStarted}
@@ -49,7 +49,7 @@ function SetBody({ set, register }) {
         </Button>
         <Form.Control
           className="text-center"
-          {...register(`reps-${set.id}`)}
+          {...register(`exercise-${exerciseId}-reps-${set.id}`)}
           type="number"
           // value={set.reps}
           aria-label="reps"

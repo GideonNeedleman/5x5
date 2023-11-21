@@ -27,13 +27,13 @@ function DoWorkout() {
   const [isWorkoutFinished, setIsWorkoutFinished] = useState(false);
 
   /*   To set defaultValues:
-  1. generate array of all sets? 
+  1. generate array of all sets?
   2. map array => `weight-${set.id}`: set.weight, `reps-${set.id}`: set.reps
   3. create defaultValues: {...array}
-  
+
   maybe generate defaultValues object with a function:
   const form = useForm({ defaultValues: getDefaultValues(workout) });
-  
+
   include rest time values? could do restTime=set.time? || 90000*/
   const form = useForm({
     defaultValues: getDefaultValues(workout),

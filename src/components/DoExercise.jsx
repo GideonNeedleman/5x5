@@ -55,6 +55,7 @@ function DoExercise({
               checkExercise={checkExerciseFinished}
               setNumFinishedSets={setNumFinishedSets}
               register={register}
+              exerciseId={exercise.id}
             />
           ))}
         </Accordion>

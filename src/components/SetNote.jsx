@@ -1,13 +1,13 @@
 import { Form, InputGroup } from "react-bootstrap";
 
-function SetNote({ set, register }) {
+function SetNote({ set, register, exerciseId }) {
   return (
     <InputGroup className="mt-3">
       <Form.Control
         as="textarea"
         placeholder="Notes"
         aria-label="With textarea"
-        {...register(`note-${set.id}`)}
+        {...register(`exercise-${exerciseId}-note-${set.id}`)}
       />
     </InputGroup>
   );

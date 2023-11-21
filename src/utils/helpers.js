@@ -1,3 +1,3 @@
 export function getDefaultValues(workout) {
-  return { "weight-1": 1010, "reps-1": 2020 };
+  return { "exercise-1-weight-1": 1010, "exercise-1-reps-1": 3020 };
 }
