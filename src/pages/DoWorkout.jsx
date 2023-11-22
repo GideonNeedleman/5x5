@@ -67,6 +67,8 @@ function DoWorkout() {
     if (numFinishedExercises === numExercises) setIsWorkoutFinished(true);
   }, [numFinishedExercises, numExercises]);
 
+  console.log(workout);
+
   return (
     <>
       <form id="workoutForm" onSubmit={handleSubmit(handleFinishWorkout)}>
