@@ -2,7 +2,6 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { BsPlusLg, BsDashLg } from "react-icons/bs";
-import { useGlobalContext } from "../context/GlobalContext";
 
 function SetBody({
   set,
@@ -11,8 +10,8 @@ function SetBody({
   setValue,
   getValues,
   isFinished,
+  isUnlocked,
 }) {
-  const { isWorkoutStarted } = useGlobalContext();
   const weightFieldName = `exercise-${exerciseId}-weight-${set.id}`;
   const repsFieldName = `exercise-${exerciseId}-reps-${set.id}`;
 
@@ -41,7 +40,7 @@ function SetBody({
             <Button
               variant="secondary"
               id="button-minus-weight"
-              disabled={isFinished}
+              disabled={isFinished && !isUnlocked}
               onClick={decrementWeight}
               // how to decrement weight value?
             >
@@ -53,12 +52,12 @@ function SetBody({
               {...register(weightFieldName)}
               // value={set.weight} // how to onChange value with react hook form?
               aria-label="Weight"
-              disabled={isFinished}
+              disabled={isFinished && !isUnlocked}
             />
             <Button
               variant="secondary"
               id="button-plus-weight"
-              disabled={isFinished}
+              disabled={isFinished && !isUnlocked}
               onClick={incrementWeight}
             >
               <BsPlusLg />
@@ -71,7 +70,7 @@ function SetBody({
         <Button
           variant="secondary"
           id="button-minus-reps"
-          disabled={isFinished}
+          disabled={isFinished && !isUnlocked}
           onClick={decrementReps}
         >
           <BsDashLg />
@@ -80,14 +79,13 @@ function SetBody({
           className="text-center"
           {...register(repsFieldName)}
           type="number"
-          // value={set.reps}
           aria-label="reps"
-          disabled={isFinished}
+          disabled={isFinished && !isUnlocked}
         />
         <Button
           variant="secondary"
           id="button-plus-reps"
-          disabled={isFinished}
+          disabled={isFinished && !isUnlocked}
           onClick={incrementReps}
         >
           <BsPlusLg />

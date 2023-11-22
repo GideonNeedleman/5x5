@@ -14,7 +14,6 @@ function DoSet({
   index,
   activeKey,
   handleFinishSet,
-  isLastExercise,
   checkExercise,
   setNumFinishedSets,
   register,
@@ -26,8 +25,7 @@ function DoSet({
   const { dispatch } = useGlobalContext();
   const [isNoteVisible, setIsNoteVisible] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
-
-  const isLastSetOfWorkout = index + 1 === numSets && isLastExercise;
+  const [isUnlocked, setIsUnlocked] = useState(false);
 
   function handleClick() {
     setIsFinished(true); // disables 'finish set' button
@@ -58,6 +56,7 @@ function DoSet({
           setValue={setValue}
           getValues={getValues}
           isFinished={isFinished}
+          isUnlocked={isUnlocked}
         />
         {isNoteVisible && (
           <SetNote
@@ -65,14 +64,16 @@ function DoSet({
             register={register}
             exerciseId={exerciseId}
             isFinished={isFinished}
+            isUnlocked={isUnlocked}
           />
         )}
         <SetButtons
           isNoteVisible={isNoteVisible}
           setIsNoteVisible={setIsNoteVisible}
           handleClick={handleClick}
-          isLastSetOfWorkout={isLastSetOfWorkout}
           isFinished={isFinished}
+          isUnlocked={isUnlocked}
+          setIsUnlocked={setIsUnlocked}
         />
       </Accordion.Body>
     </Accordion.Item>

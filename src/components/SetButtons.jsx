@@ -1,15 +1,14 @@
 import { Button, Col, Row } from "react-bootstrap";
-import { BsStickyFill } from "react-icons/bs";
-import { useGlobalContext } from "../context/GlobalContext";
+import { BsStickyFill, BsLockFill, BsUnlockFill } from "react-icons/bs";
 
 function SetButtons({
   isNoteVisible,
   setIsNoteVisible,
   handleClick,
-  isLastSetOfWorkout,
   isFinished,
+  isUnlocked,
+  setIsUnlocked,
 }) {
-  const { isWorkoutStarted } = useGlobalContext();
   return (
     <Row className="mt-3">
       {!isNoteVisible && (
@@ -18,20 +17,38 @@ function SetButtons({
             variant="secondary"
             className=""
             onClick={() => setIsNoteVisible(true)}
-            disabled={!isWorkoutStarted || isFinished}
+            disabled={isFinished && !isUnlocked}
           >
             <BsStickyFill />
           </Button>
         </Col>
       )}
       <Col>
-        <Button
-          className="w-100"
-          onClick={handleClick}
-          disabled={!isWorkoutStarted || isFinished}
-        >
-          {isLastSetOfWorkout ? "Finish Set" : "Finish Set"}
-        </Button>
+        {!isFinished ? (
+          <Button className="w-100" onClick={handleClick}>
+            Finish Set
+          </Button>
+        ) : isUnlocked ? (
+          <Button
+            onClick={() => setIsUnlocked((prev) => !prev)}
+            className="w-100"
+            variant="primary"
+          >
+            <span>
+              <BsLockFill /> Save
+            </span>
+          </Button>
+        ) : (
+          <Button
+            onClick={() => setIsUnlocked((prev) => !prev)}
+            className="w-100"
+            variant="warning"
+          >
+            <span>
+              <BsUnlockFill /> Edit
+            </span>
+          </Button>
+        )}
       </Col>
     </Row>
   );
