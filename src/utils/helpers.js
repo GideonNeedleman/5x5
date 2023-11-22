@@ -34,7 +34,5 @@ function workoutValues(exercisesArray) {
 export function getDefaultValues(workout) {
   const defaultWorkoutValues = workoutValues(workout.exercises);
 
-  console.log("workout results", defaultWorkoutValues);
-
   return defaultWorkoutValues;
 }
