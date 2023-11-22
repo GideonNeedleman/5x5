@@ -57,9 +57,15 @@ function DoSet({
           exerciseId={exerciseId}
           setValue={setValue}
           getValues={getValues}
+          isFinished={isFinished}
         />
         {isNoteVisible && (
-          <SetNote set={set} register={register} exerciseId={exerciseId} />
+          <SetNote
+            set={set}
+            register={register}
+            exerciseId={exerciseId}
+            isFinished={isFinished}
+          />
         )}
         <SetButtons
           isNoteVisible={isNoteVisible}

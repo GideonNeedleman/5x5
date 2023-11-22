@@ -18,7 +18,7 @@ function SetButtons({
             variant="secondary"
             className=""
             onClick={() => setIsNoteVisible(true)}
-            disabled={!isWorkoutStarted}
+            disabled={!isWorkoutStarted || isFinished}
           >
             <BsStickyFill />
           </Button>
