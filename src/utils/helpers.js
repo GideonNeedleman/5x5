@@ -1,9 +1,15 @@
-// should be a way to iterate over all set properties to make this more general
 function setValues(exerciseId, set) {
-  return {
-    [`exercise-${exerciseId}-weight-${set.id}`]: set.weight,
-    [`exercise-${exerciseId}-reps-${set.id}`]: set.reps,
-  };
+  let properties = Object.keys(set);
+  let results = {};
+  for (let i in properties) {
+    if (properties[i] === "id") continue;
+    if (set[properties[i]] === null) continue;
+    results = {
+      ...results,
+      [`exercise-${exerciseId}-${properties[i]}-${set.id}`]: set[properties[i]],
+    };
+  }
+  return results;
 }
 
 function exerciseValues(exerciseId, setsArray) {
