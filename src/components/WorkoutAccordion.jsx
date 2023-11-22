@@ -7,6 +7,8 @@ function WorkoutAccordion({
   activeKey,
   setNumFinishedExercises,
   register,
+  setValue,
+  getValues,
 }) {
   return (
     <Accordion defaultActiveKey={`0`}>
@@ -19,6 +21,8 @@ function WorkoutAccordion({
           key={exercise.name}
           setNumFinishedExercises={setNumFinishedExercises}
           register={register}
+          setValue={setValue}
+          getValues={getValues}
         />
       ))}
     </Accordion>

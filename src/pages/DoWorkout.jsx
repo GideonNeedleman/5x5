@@ -38,7 +38,7 @@ function DoWorkout() {
   const form = useForm({
     defaultValues: getDefaultValues(workout),
   });
-  const { register, control, handleSubmit } = form;
+  const { register, control, handleSubmit, setValue, getValues } = form;
 
   function handleBack() {
     dispatch({ type: "clear-workout" });
@@ -85,6 +85,8 @@ function DoWorkout() {
             activeKey={activeKey}
             setNumFinishedExercises={setNumFinishedExercises}
             register={register}
+            setValue={setValue}
+            getValues={getValues}
           />
         ) : (
           <WorkoutTable workout={workout} />
