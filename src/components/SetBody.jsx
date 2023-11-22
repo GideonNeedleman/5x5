@@ -4,8 +4,27 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { BsPlusLg, BsDashLg } from "react-icons/bs";
 import { useGlobalContext } from "../context/GlobalContext";
 
-function SetBody({ set, register, exerciseId }) {
+function SetBody({ set, register, exerciseId, setValue, getValues }) {
   const { isWorkoutStarted } = useGlobalContext();
+  const weightFieldName = `exercise-${exerciseId}-weight-${set.id}`;
+  const repsFieldName = `exercise-${exerciseId}-reps-${set.id}`;
+
+  function incrementWeight() {
+    setValue(weightFieldName, getValues(weightFieldName) + 5);
+  }
+
+  function decrementWeight() {
+    setValue(weightFieldName, getValues(weightFieldName) - 5);
+  }
+
+  function incrementReps() {
+    setValue(repsFieldName, getValues(repsFieldName) + 1);
+  }
+
+  function decrementReps() {
+    setValue(repsFieldName, getValues(repsFieldName) - 1);
+  }
+
   return (
     <>
       {set.weight && (
@@ -16,6 +35,7 @@ function SetBody({ set, register, exerciseId }) {
               variant="secondary"
               id="button-minus-weight"
               disabled={!isWorkoutStarted}
+              onClick={decrementWeight}
               // how to decrement weight value?
             >
               <BsDashLg />
@@ -23,7 +43,7 @@ function SetBody({ set, register, exerciseId }) {
             <Form.Control
               className="text-center"
               type="number"
-              {...register(`exercise-${exerciseId}-weight-${set.id}`)}
+              {...register(weightFieldName)}
               // value={set.weight} // how to onChange value with react hook form?
               aria-label="Weight"
               disabled={!isWorkoutStarted}
@@ -32,6 +52,7 @@ function SetBody({ set, register, exerciseId }) {
               variant="secondary"
               id="button-plus-weight"
               disabled={!isWorkoutStarted}
+              onClick={incrementWeight}
             >
               <BsPlusLg />
             </Button>
@@ -44,12 +65,13 @@ function SetBody({ set, register, exerciseId }) {
           variant="secondary"
           id="button-minus-reps"
           disabled={!isWorkoutStarted}
+          onClick={decrementReps}
         >
           <BsDashLg />
         </Button>
         <Form.Control
           className="text-center"
-          {...register(`exercise-${exerciseId}-reps-${set.id}`)}
+          {...register(repsFieldName)}
           type="number"
           // value={set.reps}
           aria-label="reps"
@@ -59,6 +81,7 @@ function SetBody({ set, register, exerciseId }) {
           variant="secondary"
           id="button-plus-reps"
           disabled={!isWorkoutStarted}
+          onClick={incrementReps}
         >
           <BsPlusLg />
         </Button>
