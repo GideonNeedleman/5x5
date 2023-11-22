@@ -81,7 +81,6 @@ function DoWorkout() {
         {isWorkoutStarted ? (
           <WorkoutAccordion
             workout={workout}
-            numExercises={numExercises}
             activeKey={activeKey}
             setNumFinishedExercises={setNumFinishedExercises}
             register={register}

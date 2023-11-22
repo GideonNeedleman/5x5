@@ -3,7 +3,6 @@ import DoExercise from "./DoExercise";
 
 function WorkoutAccordion({
   workout,
-  numExercises,
   activeKey,
   setNumFinishedExercises,
   register,
@@ -15,7 +14,6 @@ function WorkoutAccordion({
       {workout.exercises.map((exercise, index) => (
         <DoExercise
           exercise={exercise}
-          numExercises={numExercises}
           index={index}
           tracker={index + activeKey}
           key={exercise.name}

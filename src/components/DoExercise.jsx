@@ -5,8 +5,6 @@ import { BsCheckSquareFill } from "react-icons/bs";
 
 function DoExercise({
   exercise,
-  numExercises,
-  index,
   tracker,
   setNumFinishedExercises,
   register,
@@ -17,7 +15,6 @@ function DoExercise({
   const [isFinished, setIsFinished] = useState(false);
   const [numFinishedSets, setNumFinishedSets] = useState(0);
   const numSets = exercise.sets.length;
-  const isLastExercise = numExercises === index + 1;
 
   function handleFinishSet() {
     setActiveKey((prev) => prev - 1);
@@ -53,7 +50,6 @@ function DoExercise({
               activeKey={activeKey}
               handleFinishSet={handleFinishSet}
               numSets={numSets}
-              isLastExercise={isLastExercise}
               checkExercise={checkExerciseFinished}
               setNumFinishedSets={setNumFinishedSets}
               register={register}
