@@ -4,20 +4,11 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { BsPlusLg, BsDashLg } from "react-icons/bs";
 import { useGlobalContext } from "../context/GlobalContext";
 
-function SetBody({ weight, reps }) {
+function SetBody({ set, register, exerciseId }) {
   const { isWorkoutStarted } = useGlobalContext();
   return (
     <>
-      {/*       <InputGroup className="mb-3">
-        <Button variant="outline-secondary" id="button-addon1">
-          Button
-        </Button>
-        <Form.Control
-          aria-label="Example text with button addon"
-          aria-describedby="basic-addon1"
-        />
-      </InputGroup> */}
-      {weight && (
+      {set.weight && (
         <>
           <p className="text-center fw-semibold m-0">Weight (lbs)</p>
           <InputGroup className="mb-2">
@@ -25,13 +16,15 @@ function SetBody({ weight, reps }) {
               variant="secondary"
               id="button-minus-weight"
               disabled={!isWorkoutStarted}
+              // how to decrement weight value?
             >
               <BsDashLg />
             </Button>
             <Form.Control
               className="text-center"
               type="number"
-              value={weight}
+              {...register(`exercise-${exerciseId}-weight-${set.id}`)}
+              // value={set.weight} // how to onChange value with react hook form?
               aria-label="Weight"
               disabled={!isWorkoutStarted}
             />
@@ -56,8 +49,10 @@ function SetBody({ weight, reps }) {
         </Button>
         <Form.Control
           className="text-center"
-          value={reps}
-          aria-label="Weight"
+          {...register(`exercise-${exerciseId}-reps-${set.id}`)}
+          type="number"
+          // value={set.reps}
+          aria-label="reps"
           disabled={!isWorkoutStarted}
         />
         <Button

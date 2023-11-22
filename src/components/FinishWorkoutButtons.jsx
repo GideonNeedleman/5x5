@@ -3,7 +3,6 @@ import { Button, Col, Row } from "react-bootstrap";
 function FinishWorkoutButtons({
   isWorkoutStarted,
   isWorkoutFinished,
-  handleFinishWorkout,
   handleCancelModal,
   handleConfirmationModal,
 }) {
@@ -25,7 +24,8 @@ function FinishWorkoutButtons({
               <Button
                 variant="primary"
                 className="w-100"
-                onClick={handleFinishWorkout}
+                type="submit"
+                // onClick={handleFinishWorkout}
               >
                 Finish Workout
               </Button>

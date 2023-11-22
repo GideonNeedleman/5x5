@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { DevTool } from "@hookform/devtools";
+
 import { useGlobalContext } from "../context/GlobalContext";
-import { useFinishWorkout } from "../hooks/useFinishWorkout";
 import ConfirmFinishWorkoutModal from "../components/ConfirmFinishWorkoutModal";
 import ConfirmCancelWorkoutModal from "../components/ConfirmCancelWorkoutModal";
 import BeginWorkoutButtons from "../components/BeginWorkoutButtons";
 import FinishWorkoutButtons from "../components/FinishWorkoutButtons";
 import WorkoutAccordion from "../components/WorkoutAccordion";
 import WorkoutTable from "../components/WorkoutTable";
+import { getDefaultValues } from "../utils/helpers";
 
 function DoWorkout() {
   const {
@@ -22,7 +25,20 @@ function DoWorkout() {
   const [numFinishedExercises, setNumFinishedExercises] = useState(0);
   const numExercises = workout.exercises.length;
   const [isWorkoutFinished, setIsWorkoutFinished] = useState(false);
-  const handleFinishWorkout = useFinishWorkout();
+
+  /*   To set defaultValues:
+  1. generate array of all sets?
+  2. map array => `weight-${set.id}`: set.weight, `reps-${set.id}`: set.reps
+  3. create defaultValues: {...array}
+
+  maybe generate defaultValues object with a function:
+  const form = useForm({ defaultValues: getDefaultValues(workout) });
+
+  include rest time values? could do restTime=set.time? || 90000*/
+  const form = useForm({
+    defaultValues: getDefaultValues(workout),
+  });
+  const { register, control, handleSubmit } = form;
 
   function handleBack() {
     dispatch({ type: "clear-workout" });
@@ -41,51 +57,60 @@ function DoWorkout() {
     setShowCancelModal(true);
   }
 
+  function handleFinishWorkout(data) {
+    dispatch({ type: "finish-workout", payload: data });
+    console.log("Form submitted", data);
+    navigate("/");
+  }
+
   useEffect(() => {
     if (numFinishedExercises === numExercises) setIsWorkoutFinished(true);
   }, [numFinishedExercises, numExercises]);
 
   return (
-    <main>
-      <h1 className="display-3 text-center">{workout.name} </h1>
+    <>
+      <form id="workoutForm" onSubmit={handleSubmit(handleFinishWorkout)}>
+        <h1 className="display-3 text-center">{workout.name} </h1>
 
-      <BeginWorkoutButtons
-        isWorkoutStarted={isWorkoutStarted}
-        handleBack={handleBack}
-        handleBeginWorkout={handleBeginWorkout}
-      />
-
-      {isWorkoutStarted ? (
-        <WorkoutAccordion
-          workout={workout}
-          numExercises={numExercises}
-          activeKey={activeKey}
-          setNumFinishedExercises={setNumFinishedExercises}
+        <BeginWorkoutButtons
+          isWorkoutStarted={isWorkoutStarted}
+          handleBack={handleBack}
+          handleBeginWorkout={handleBeginWorkout}
         />
-      ) : (
-        <WorkoutTable workout={workout} />
-      )}
 
-      <FinishWorkoutButtons
-        isWorkoutStarted={isWorkoutStarted}
-        isWorkoutFinished={isWorkoutFinished}
-        handleFinishWorkout={handleFinishWorkout}
-        handleCancelModal={handleCancelModal}
-        handleConfirmationModal={handleConfirmationModal}
-      />
+        {isWorkoutStarted ? (
+          <WorkoutAccordion
+            workout={workout}
+            numExercises={numExercises}
+            activeKey={activeKey}
+            setNumFinishedExercises={setNumFinishedExercises}
+            register={register}
+          />
+        ) : (
+          <WorkoutTable workout={workout} />
+        )}
 
-      <ConfirmFinishWorkoutModal
-        show={show}
-        onHide={() => setShow(false)}
-        handleClose={handleFinishWorkout}
-      />
+        <FinishWorkoutButtons
+          isWorkoutStarted={isWorkoutStarted}
+          isWorkoutFinished={isWorkoutFinished}
+          handleCancelModal={handleCancelModal}
+          handleConfirmationModal={handleConfirmationModal}
+        />
 
-      <ConfirmCancelWorkoutModal
-        show={showCancelModal}
-        onHide={() => setShowCancelModal(false)}
-        handleClose={handleBack}
-      />
-    </main>
+        <ConfirmFinishWorkoutModal
+          show={show}
+          onHide={() => setShow(false)}
+          handleClose={handleFinishWorkout}
+        />
+
+        <ConfirmCancelWorkoutModal
+          show={showCancelModal}
+          onHide={() => setShowCancelModal(false)}
+          handleClose={handleBack}
+        />
+      </form>
+      <DevTool control={control} />
+    </>
   );
 }
 

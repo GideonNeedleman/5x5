@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-function ConfirmFinishWorkoutModal({ onHide, show, handleClose }) {
+function ConfirmFinishWorkoutModal({ onHide, show }) {
   return (
     <Modal
       size="lg"
@@ -16,7 +16,9 @@ function ConfirmFinishWorkoutModal({ onHide, show, handleClose }) {
         <Button onClick={onHide} variant="secondary">
           Cancel
         </Button>
-        <Button onClick={handleClose}>Confirm</Button>
+        <Button type="submit" form="workoutForm">
+          Confirm
+        </Button>
       </Modal.Footer>
     </Modal>
   );

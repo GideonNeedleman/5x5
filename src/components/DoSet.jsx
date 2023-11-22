@@ -17,6 +17,8 @@ function DoSet({
   isLastExercise,
   checkExercise,
   setNumFinishedSets,
+  register,
+  exerciseId,
 }) {
   // const handleFinishWorkout = useFinishWorkout();
   const { dispatch } = useGlobalContext();
@@ -47,8 +49,10 @@ function DoSet({
         </span>
       </Accordion.Header>
       <Accordion.Body style={{ backgroundColor: "var(--bs-gray-200)" }}>
-        <SetBody weight={set.weight} reps={set.reps} />
-        {isNoteVisible && <SetNote />}
+        <SetBody set={set} register={register} exerciseId={exerciseId} />
+        {isNoteVisible && (
+          <SetNote set={set} register={register} exerciseId={exerciseId} />
+        )}
         <SetButtons
           isNoteVisible={isNoteVisible}
           setIsNoteVisible={setIsNoteVisible}
