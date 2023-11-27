@@ -5,7 +5,7 @@ function SetNote({ register, isFinished, isUnlocked }) {
     <InputGroup className="mt-3">
       <Form.Control
         as="textarea"
-        placeholder="Notes"
+        placeholder="Write notes here..."
         aria-label="With textarea"
         disabled={isFinished && !isUnlocked}
         {...register(`note`)}

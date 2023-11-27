@@ -11,9 +11,6 @@ function SetBody({
   isFinished,
   isUnlocked,
 }) {
-  const weightFieldName = `weight`;
-  const repsFieldName = `reps`;
-
   function stepMetric(metric, step) {
     setValue(metric, Number(getValues(metric)) + step);
   }
@@ -29,15 +26,13 @@ function SetBody({
               id="button-minus-weight"
               disabled={isFinished && !isUnlocked}
               onClick={() => stepMetric("weight", -5)}
-              // how to decrement weight value?
             >
               <BsDashLg />
             </Button>
             <Form.Control
               className="text-center"
               type="number"
-              {...register(weightFieldName)}
-              // value={set.weight} // how to onChange value with react hook form?
+              {...register("weight")}
               aria-label="Weight"
               disabled={isFinished && !isUnlocked}
             />
@@ -64,7 +59,7 @@ function SetBody({
         </Button>
         <Form.Control
           className="text-center"
-          {...register(repsFieldName)}
+          {...register("reps")}
           type="number"
           aria-label="reps"
           disabled={isFinished && !isUnlocked}
