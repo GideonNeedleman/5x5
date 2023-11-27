@@ -60,6 +60,11 @@ function reducer(state, action) {
         ...state,
         activeKey: state.activeKey - 1,
       };
+    case "submit-set-data":
+      return {
+        ...state,
+        tempWorkoutData: [...state.tempWorkoutData, action.payload],
+      };
     default:
       throw new Error("unknown action type");
   }
@@ -71,8 +76,8 @@ const initialState = {
   activeProgramId: null,
   isWorkoutStarted: false,
   activeKey: 1,
-  nextWorkoutOrder: null,
-  isWorkoutFinished: false,
+  nextWorkoutOrder: null, //check if needed
+  tempWorkoutData: [], //each element is a completed set
   programData: [
     {
       name: "Stronglifts 5x5",
@@ -249,7 +254,13 @@ const initialState = {
 
 function GlobalContextProvider({ children }) {
   const [
-    { activeWorkout, isWorkoutStarted, activeKey, programData },
+    {
+      activeWorkout,
+      isWorkoutStarted,
+      activeKey,
+      programData,
+      tempWorkoutData,
+    },
     dispatch,
   ] = useReducer(reducer, initialState);
 
@@ -260,6 +271,7 @@ function GlobalContextProvider({ children }) {
         isWorkoutStarted,
         activeKey,
         programData,
+        tempWorkoutData,
         dispatch,
       }}
     >

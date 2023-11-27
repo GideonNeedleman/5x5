@@ -6,31 +6,16 @@ import { BsPlusLg, BsDashLg } from "react-icons/bs";
 function SetBody({
   set,
   register,
-  exerciseId,
   setValue,
   getValues,
   isFinished,
   isUnlocked,
 }) {
-  const weightFieldName = `exercise-${exerciseId}-weight-${set.id}`;
-  const repsFieldName = `exercise-${exerciseId}-reps-${set.id}`;
-
-  function incrementWeight() {
-    setValue(weightFieldName, getValues(weightFieldName) + 5);
+  function stepMetric(metric, step) {
+    setValue(metric, Number(getValues(metric)) + step);
   }
 
-  function decrementWeight() {
-    setValue(weightFieldName, getValues(weightFieldName) - 5);
-  }
-
-  function incrementReps() {
-    setValue(repsFieldName, getValues(repsFieldName) + 1);
-  }
-
-  function decrementReps() {
-    setValue(repsFieldName, getValues(repsFieldName) - 1);
-  }
-
+  // in future can generalize to other metrics by looping over set metrics and displaying input fields for each one. Can also have different types of metrics (integer values, times, distances, text dropdown, etc) to properly format the inputs
   return (
     <>
       {set.weight && (
@@ -41,16 +26,14 @@ function SetBody({
               variant="secondary"
               id="button-minus-weight"
               disabled={isFinished && !isUnlocked}
-              onClick={decrementWeight}
-              // how to decrement weight value?
+              onClick={() => stepMetric("weight", -5)}
             >
               <BsDashLg />
             </Button>
             <Form.Control
               className="text-center"
               type="number"
-              {...register(weightFieldName)}
-              // value={set.weight} // how to onChange value with react hook form?
+              {...register("weight")}
               aria-label="Weight"
               disabled={isFinished && !isUnlocked}
             />
@@ -58,7 +41,7 @@ function SetBody({
               variant="secondary"
               id="button-plus-weight"
               disabled={isFinished && !isUnlocked}
-              onClick={incrementWeight}
+              onClick={() => stepMetric("weight", 5)}
             >
               <BsPlusLg />
             </Button>
@@ -71,13 +54,13 @@ function SetBody({
           variant="secondary"
           id="button-minus-reps"
           disabled={isFinished && !isUnlocked}
-          onClick={decrementReps}
+          onClick={() => stepMetric("reps", -1)}
         >
           <BsDashLg />
         </Button>
         <Form.Control
           className="text-center"
-          {...register(repsFieldName)}
+          {...register("reps")}
           type="number"
           aria-label="reps"
           disabled={isFinished && !isUnlocked}
@@ -86,7 +69,7 @@ function SetBody({
           variant="secondary"
           id="button-plus-reps"
           disabled={isFinished && !isUnlocked}
-          onClick={incrementReps}
+          onClick={() => stepMetric("reps", 1)}
         >
           <BsPlusLg />
         </Button>

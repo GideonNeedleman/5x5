@@ -4,7 +4,6 @@ import { BsStickyFill, BsLockFill, BsUnlockFill } from "react-icons/bs";
 function SetButtons({
   isNoteVisible,
   setIsNoteVisible,
-  handleClick,
   isFinished,
   isUnlocked,
   setIsUnlocked,
@@ -25,7 +24,7 @@ function SetButtons({
       )}
       <Col>
         {!isFinished ? (
-          <Button className="w-100" onClick={handleClick}>
+          <Button className="w-100" type="submit">
             Finish Set
           </Button>
         ) : isUnlocked ? (
