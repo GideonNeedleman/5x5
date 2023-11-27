@@ -259,8 +259,8 @@ import History from "./pages/History";
 function App() {
   return (
     <GlobalContextProvider>
-      <Header />
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/" element={<SelectWorkout />} />
           <Route path="/workout" element={<DoWorkout />} />

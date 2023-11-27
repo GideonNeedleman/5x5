@@ -2,14 +2,15 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { LinkContainer } from "react-router-bootstrap";
 
 function Header() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand>
-          <Nav.Link href="/">Exercise Tracker</Nav.Link>
-        </Navbar.Brand>
+        <LinkContainer to={"/"}>
+          <Navbar.Brand>Exercise Tracker</Navbar.Brand>
+        </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Offcanvas id="basic-navbar-nav" placement="end">
           <Offcanvas.Header closeButton>
@@ -17,8 +18,12 @@ function Header() {
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className="me-auto">
-              <Nav.Link href="/">Workouts</Nav.Link>
-              <Nav.Link href="/history">History</Nav.Link>
+              <LinkContainer to={"/"}>
+                <p>Workouts</p>
+              </LinkContainer>
+              <LinkContainer to={"/history"}>
+                <p>History</p>
+              </LinkContainer>
             </Nav>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
