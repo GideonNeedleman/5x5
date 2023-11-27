@@ -60,6 +60,11 @@ function reducer(state, action) {
         ...state,
         activeKey: state.activeKey - 1,
       };
+    case "submit-set-data":
+      return {
+        ...state,
+        tempWorkoutData: [...state.tempWorkoutData, action.payload],
+      };
     default:
       throw new Error("unknown action type");
   }
@@ -72,7 +77,7 @@ const initialState = {
   isWorkoutStarted: false,
   activeKey: 1,
   nextWorkoutOrder: null, //check if needed
-  tempWorkoutData: {}, //each property is a completed set
+  tempWorkoutData: [], //each element is a completed set
   programData: [
     {
       name: "Stronglifts 5x5",

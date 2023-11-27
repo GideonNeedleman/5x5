@@ -21,9 +21,6 @@ function DoSet({
   checkExercise,
   setNumFinishedSets,
   exerciseId,
-  /*   register,
-  setValue,
-  getValues, */
 }) {
   // const handleFinishWorkout = useFinishWorkout();
   const { dispatch } = useGlobalContext();
@@ -37,14 +34,20 @@ function DoSet({
   const { register, control, handleSubmit, setValue, getValues } = form;
 
   function handleSubmitSet(data) {
-    console.log("form submitted", data);
-
     setIsFinished(true); // disables 'finish set' button
     setNumFinishedSets((prev) => prev + 1); // tally to display check mark in exercise head
     checkExercise(); // display check mark in set head
     handleFinishSet(); // increment to next set
 
     if (index + 1 === numSets) dispatch({ type: "next-exercise" }); // if last set for exercise then go to next exercise
+
+    const formatData = {
+      exerciseId,
+      setId: set.id,
+      datetime: new Date(),
+      ...data,
+    };
+    dispatch({ type: "submit-set-data", payload: formatData });
   }
 
   return (

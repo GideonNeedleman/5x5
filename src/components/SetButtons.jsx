@@ -24,7 +24,7 @@ function SetButtons({
       )}
       <Col>
         {!isFinished ? (
-          <Button className="w-100" type="submit" /* onClick={handleClick} */>
+          <Button className="w-100" type="submit">
             Finish Set
           </Button>
         ) : isUnlocked ? (
