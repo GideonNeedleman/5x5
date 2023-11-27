@@ -36,3 +36,17 @@ export function getDefaultValues(workout) {
 
   return defaultWorkoutValues;
 }
+
+export function getSetDefaultValues(set) {
+  let properties = Object.keys(set);
+  let results = {};
+  for (let i in properties) {
+    if (properties[i] === "id") continue;
+    if (set[properties[i]] === null) continue;
+    results = {
+      ...results,
+      [`${properties[i]}`]: set[properties[i]],
+    };
+  }
+  return results;
+}

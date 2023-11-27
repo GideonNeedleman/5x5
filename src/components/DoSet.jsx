@@ -2,11 +2,13 @@ import { Accordion } from "react-bootstrap";
 import { BsCheckSquareFill } from "react-icons/bs";
 import { useState } from "react";
 import { useGlobalContext } from "../context/GlobalContext";
+import { useForm } from "react-hook-form";
+import { DevTool } from "@hookform/devtools";
+
+import { getSetDefaultValues } from "../utils/helpers";
 import SetBody from "./SetBody";
 import SetNote from "./SetNote";
 import SetButtons from "./SetButtons";
-import { useForm } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
 
 // import { useFinishWorkout } from "../hooks/useFinishWorkout";
 
@@ -29,7 +31,9 @@ function DoSet({
   const [isFinished, setIsFinished] = useState(false);
   const [isUnlocked, setIsUnlocked] = useState(false);
 
-  const form = useForm();
+  const form = useForm({
+    defaultValues: getSetDefaultValues(set),
+  });
   const { register, control, handleSubmit, setValue, getValues } = form;
 
   function handleClick() {
@@ -42,6 +46,8 @@ function DoSet({
   }
 
   function handleLogSet() {}
+
+  console.log(set);
 
   return (
     <Accordion.Item eventKey={`${index - 1 + activeKey}`}>
