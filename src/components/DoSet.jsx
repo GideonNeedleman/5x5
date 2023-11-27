@@ -5,6 +5,8 @@ import { useGlobalContext } from "../context/GlobalContext";
 import SetBody from "./SetBody";
 import SetNote from "./SetNote";
 import SetButtons from "./SetButtons";
+import { useForm } from "react-hook-form";
+import { DevTool } from "@hookform/devtools";
 
 // import { useFinishWorkout } from "../hooks/useFinishWorkout";
 
@@ -16,16 +18,19 @@ function DoSet({
   handleFinishSet,
   checkExercise,
   setNumFinishedSets,
-  register,
   exerciseId,
+  /*   register,
   setValue,
-  getValues,
+  getValues, */
 }) {
   // const handleFinishWorkout = useFinishWorkout();
   const { dispatch } = useGlobalContext();
   const [isNoteVisible, setIsNoteVisible] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
   const [isUnlocked, setIsUnlocked] = useState(false);
+
+  const form = useForm();
+  const { register, control, handleSubmit, setValue, getValues } = form;
 
   function handleClick() {
     setIsFinished(true); // disables 'finish set' button
@@ -35,6 +40,8 @@ function DoSet({
 
     if (index + 1 === numSets) dispatch({ type: "next-exercise" }); // if last set for exercise then go to next exercise
   }
+
+  function handleLogSet() {}
 
   return (
     <Accordion.Item eventKey={`${index - 1 + activeKey}`}>
@@ -49,32 +56,35 @@ function DoSet({
         </span>
       </Accordion.Header>
       <Accordion.Body style={{ backgroundColor: "var(--bs-gray-200)" }}>
-        <SetBody
-          set={set}
-          register={register}
-          exerciseId={exerciseId}
-          setValue={setValue}
-          getValues={getValues}
-          isFinished={isFinished}
-          isUnlocked={isUnlocked}
-        />
-        {isNoteVisible && (
-          <SetNote
+        <form onSubmit={handleSubmit(handleLogSet)}>
+          <SetBody
             set={set}
-            register={register}
             exerciseId={exerciseId}
+            register={register}
+            setValue={setValue}
+            getValues={getValues}
             isFinished={isFinished}
             isUnlocked={isUnlocked}
           />
-        )}
-        <SetButtons
-          isNoteVisible={isNoteVisible}
-          setIsNoteVisible={setIsNoteVisible}
-          handleClick={handleClick}
-          isFinished={isFinished}
-          isUnlocked={isUnlocked}
-          setIsUnlocked={setIsUnlocked}
-        />
+          {isNoteVisible && (
+            <SetNote
+              set={set}
+              register={register}
+              exerciseId={exerciseId}
+              isFinished={isFinished}
+              isUnlocked={isUnlocked}
+            />
+          )}
+          <SetButtons
+            isNoteVisible={isNoteVisible}
+            setIsNoteVisible={setIsNoteVisible}
+            handleClick={handleClick}
+            isFinished={isFinished}
+            isUnlocked={isUnlocked}
+            setIsUnlocked={setIsUnlocked}
+          />
+        </form>
+        <DevTool control={control} />
       </Accordion.Body>
     </Accordion.Item>
   );
