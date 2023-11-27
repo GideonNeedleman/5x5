@@ -15,6 +15,7 @@ function SetBody({
     setValue(metric, Number(getValues(metric)) + step);
   }
 
+  // in future can generalize to other metrics by looping over set metrics and displaying input fields for each one. Can also have different types of metrics (integer values, times, distances, text dropdown, etc) to properly format the inputs
   return (
     <>
       {set.weight && (

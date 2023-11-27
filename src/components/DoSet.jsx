@@ -36,7 +36,9 @@ function DoSet({
   });
   const { register, control, handleSubmit, setValue, getValues } = form;
 
-  function handleClick() {
+  function handleSubmitSet(data) {
+    console.log("form submitted", data);
+
     setIsFinished(true); // disables 'finish set' button
     setNumFinishedSets((prev) => prev + 1); // tally to display check mark in exercise head
     checkExercise(); // display check mark in set head
@@ -44,10 +46,6 @@ function DoSet({
 
     if (index + 1 === numSets) dispatch({ type: "next-exercise" }); // if last set for exercise then go to next exercise
   }
-
-  function handleLogSet() {}
-
-  console.log(set);
 
   return (
     <Accordion.Item eventKey={`${index - 1 + activeKey}`}>
@@ -62,7 +60,7 @@ function DoSet({
         </span>
       </Accordion.Header>
       <Accordion.Body style={{ backgroundColor: "var(--bs-gray-200)" }}>
-        <form onSubmit={handleSubmit(handleLogSet)}>
+        <form onSubmit={handleSubmit(handleSubmitSet)}>
           <SetBody
             set={set}
             register={register}
@@ -81,7 +79,6 @@ function DoSet({
           <SetButtons
             isNoteVisible={isNoteVisible}
             setIsNoteVisible={setIsNoteVisible}
-            handleClick={handleClick}
             isFinished={isFinished}
             isUnlocked={isUnlocked}
             setIsUnlocked={setIsUnlocked}
