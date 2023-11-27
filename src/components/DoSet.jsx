@@ -59,7 +59,6 @@ function DoSet({
         <form onSubmit={handleSubmit(handleLogSet)}>
           <SetBody
             set={set}
-            exerciseId={exerciseId}
             register={register}
             setValue={setValue}
             getValues={getValues}
@@ -68,9 +67,7 @@ function DoSet({
           />
           {isNoteVisible && (
             <SetNote
-              set={set}
               register={register}
-              exerciseId={exerciseId}
               isFinished={isFinished}
               isUnlocked={isUnlocked}
             />

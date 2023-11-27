@@ -6,29 +6,16 @@ import { BsPlusLg, BsDashLg } from "react-icons/bs";
 function SetBody({
   set,
   register,
-  exerciseId,
   setValue,
   getValues,
   isFinished,
   isUnlocked,
 }) {
-  const weightFieldName = `exercise-${exerciseId}-weight-${set.id}`;
-  const repsFieldName = `exercise-${exerciseId}-reps-${set.id}`;
+  const weightFieldName = `weight`;
+  const repsFieldName = `reps`;
 
-  function incrementWeight() {
-    setValue(weightFieldName, getValues(weightFieldName) + 5);
-  }
-
-  function decrementWeight() {
-    setValue(weightFieldName, getValues(weightFieldName) - 5);
-  }
-
-  function incrementReps() {
-    setValue(repsFieldName, getValues(repsFieldName) + 1);
-  }
-
-  function decrementReps() {
-    setValue(repsFieldName, getValues(repsFieldName) - 1);
+  function stepMetric(metric, step) {
+    setValue(metric, Number(getValues(metric)) + step);
   }
 
   return (
@@ -41,7 +28,7 @@ function SetBody({
               variant="secondary"
               id="button-minus-weight"
               disabled={isFinished && !isUnlocked}
-              onClick={decrementWeight}
+              onClick={() => stepMetric("weight", -5)}
               // how to decrement weight value?
             >
               <BsDashLg />
@@ -58,7 +45,7 @@ function SetBody({
               variant="secondary"
               id="button-plus-weight"
               disabled={isFinished && !isUnlocked}
-              onClick={incrementWeight}
+              onClick={() => stepMetric("weight", 5)}
             >
               <BsPlusLg />
             </Button>
@@ -71,7 +58,7 @@ function SetBody({
           variant="secondary"
           id="button-minus-reps"
           disabled={isFinished && !isUnlocked}
-          onClick={decrementReps}
+          onClick={() => stepMetric("reps", -1)}
         >
           <BsDashLg />
         </Button>
@@ -86,7 +73,7 @@ function SetBody({
           variant="secondary"
           id="button-plus-reps"
           disabled={isFinished && !isUnlocked}
-          onClick={incrementReps}
+          onClick={() => stepMetric("reps", 1)}
         >
           <BsPlusLg />
         </Button>
