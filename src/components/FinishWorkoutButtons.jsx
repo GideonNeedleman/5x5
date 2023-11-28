@@ -1,11 +1,14 @@
 import { Button, Col, Row } from "react-bootstrap";
+import { useGlobalContext } from "../context/GlobalContext";
 
 function FinishWorkoutButtons({
   isWorkoutStarted,
   isWorkoutFinished,
   handleCancelModal,
   handleConfirmationModal,
+  handleFinishWorkout,
 }) {
+  const { tempWorkoutData } = useGlobalContext();
   return (
     <>
       {isWorkoutStarted === true && (
@@ -25,7 +28,7 @@ function FinishWorkoutButtons({
                 variant="primary"
                 className="w-100"
                 type="submit"
-                // onClick={handleFinishWorkout}
+                onClick={() => handleFinishWorkout(tempWorkoutData)}
               >
                 Finish Workout
               </Button>

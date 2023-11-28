@@ -1,7 +1,10 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { useGlobalContext } from "../context/GlobalContext";
 
-function ConfirmFinishWorkoutModal({ onHide, show }) {
+function ConfirmFinishWorkoutModal({ onHide, show, handleFinishWorkout }) {
+  const { tempWorkoutData } = useGlobalContext();
+
   return (
     <Modal
       size="lg"
@@ -16,7 +19,7 @@ function ConfirmFinishWorkoutModal({ onHide, show }) {
         <Button onClick={onHide} variant="secondary">
           Cancel
         </Button>
-        <Button type="submit" form="workoutForm">
+        <Button onClick={() => handleFinishWorkout(tempWorkoutData)}>
           Confirm
         </Button>
       </Modal.Footer>
