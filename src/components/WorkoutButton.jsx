@@ -13,7 +13,7 @@ function WorkoutButton({ children, workout, program }) {
 
   function handleClick() {
     dispatch({ type: "select-workout", payload: { program, workout } });
-    navigate("/workout");
+    navigate("/");
   }
 
   return (

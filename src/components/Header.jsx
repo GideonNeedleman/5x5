@@ -19,10 +19,10 @@ function Header() {
           <Offcanvas.Body>
             <Nav className="me-auto">
               <LinkContainer to={"/"}>
-                <p>Workouts</p>
+                <Nav.Link>Workouts</Nav.Link>
               </LinkContainer>
               <LinkContainer to={"/history"}>
-                <p>History</p>
+                <Nav.Link>History</Nav.Link>
               </LinkContainer>
             </Nav>
           </Offcanvas.Body>
