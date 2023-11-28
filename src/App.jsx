@@ -1,10 +1,9 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./components/Header";
-import SelectWorkout from "./pages/SelectWorkout";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import DoWorkout from "./pages/DoWorkout";
 import { GlobalContextProvider } from "./context/GlobalContext";
 import History from "./pages/History";
+import Workout from "./pages/Workout";
 
 /* const samplePrograms = [
   {
@@ -259,11 +258,10 @@ import History from "./pages/History";
 function App() {
   return (
     <GlobalContextProvider>
-      <Header />
       <BrowserRouter>
+        <Header />
         <Routes>
-          <Route path="/" element={<SelectWorkout />} />
-          <Route path="/workout" element={<DoWorkout />} />
+          <Route path="/" element={<Workout />} />
           <Route path="/history" element={<History />} />
         </Routes>
       </BrowserRouter>
