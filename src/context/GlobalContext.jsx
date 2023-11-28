@@ -264,6 +264,10 @@ function GlobalContextProvider({ children }) {
     dispatch,
   ] = useReducer(reducer, initialState);
 
+  function handleFinishWorkout() {
+    dispatch({ type: "finish-workout", payload: tempWorkoutData });
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -273,6 +277,8 @@ function GlobalContextProvider({ children }) {
         programData,
         tempWorkoutData,
         dispatch,
+
+        handleFinishWorkout,
       }}
     >
       {children}

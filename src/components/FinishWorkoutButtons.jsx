@@ -6,9 +6,8 @@ function FinishWorkoutButtons({
   isWorkoutFinished,
   handleCancelModal,
   handleConfirmationModal,
-  handleFinishWorkout,
 }) {
-  const { tempWorkoutData } = useGlobalContext();
+  const { handleFinishWorkout } = useGlobalContext();
   return (
     <>
       {isWorkoutStarted === true && (
@@ -28,7 +27,7 @@ function FinishWorkoutButtons({
                 variant="primary"
                 className="w-100"
                 type="submit"
-                onClick={() => handleFinishWorkout(tempWorkoutData)}
+                onClick={handleFinishWorkout}
               >
                 Finish Workout
               </Button>

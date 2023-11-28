@@ -40,12 +40,6 @@ function DoWorkout() {
     setShowCancelModal(true);
   }
 
-  function handleFinishWorkout(data) {
-    dispatch({ type: "finish-workout", payload: data });
-    console.log("Form submitted", data);
-    // navigate("/");
-  }
-
   useEffect(() => {
     if (numFinishedExercises === numExercises) setIsWorkoutFinished(true);
   }, [numFinishedExercises, numExercises]);
@@ -75,14 +69,9 @@ function DoWorkout() {
         isWorkoutFinished={isWorkoutFinished}
         handleCancelModal={handleCancelModal}
         handleConfirmationModal={handleConfirmationModal}
-        handleFinishWorkout={handleFinishWorkout}
       />
 
-      <ConfirmFinishWorkoutModal
-        show={show}
-        onHide={() => setShow(false)}
-        handleFinishWorkout={handleFinishWorkout}
-      />
+      <ConfirmFinishWorkoutModal show={show} onHide={() => setShow(false)} />
 
       <ConfirmCancelWorkoutModal
         show={showCancelModal}
