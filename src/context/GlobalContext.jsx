@@ -269,7 +269,13 @@ function GlobalContextProvider({ children }) {
   ] = useReducer(reducer, initialState);
 
   function handleFinishWorkout() {
+    // strip out setId
+    for (let i in tempWorkoutData) {
+      delete tempWorkoutData[i].setId;
+    }
+
     dispatch({ type: "finish-workout", payload: tempWorkoutData });
+    0;
   }
 
   useEffect(() => {
