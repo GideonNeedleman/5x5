@@ -275,7 +275,6 @@ function GlobalContextProvider({ children }) {
     }
 
     dispatch({ type: "finish-workout", payload: tempWorkoutData });
-    0;
   }
 
   useEffect(() => {

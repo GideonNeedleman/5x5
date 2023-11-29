@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Button, Col, Row } from "react-bootstrap";
 import { useGlobalContext } from "../context/GlobalContext";
 
@@ -8,6 +9,7 @@ function FinishWorkoutButtons({
   handleConfirmationModal,
 }) {
   const { handleFinishWorkout } = useGlobalContext();
+  const navigate = useNavigate();
   return (
     <>
       {isWorkoutStarted === true && (
@@ -27,7 +29,10 @@ function FinishWorkoutButtons({
                 variant="primary"
                 className="w-100"
                 type="submit"
-                onClick={handleFinishWorkout}
+                onClick={() => {
+                  handleFinishWorkout();
+                  navigate("/history");
+                }}
               >
                 Finish Workout
               </Button>
