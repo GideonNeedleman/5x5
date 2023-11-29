@@ -41,7 +41,17 @@ function DoSet({
 
     if (index + 1 === numSets) dispatch({ type: "next-exercise" }); // if last set for exercise then go to next exercise
 
-    const { note, ...metrics } = data;
+    const { note, ...metricsObject } = data;
+
+    console.log(metricsObject);
+
+    const metrics = [];
+
+    for (const property in metricsObject) {
+      metrics.push({ name: property, value: metricsObject[property] });
+    }
+
+    console.log(metrics);
 
     const formatData = {
       exerciseId: exercise.id,

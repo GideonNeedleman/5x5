@@ -12,9 +12,10 @@ function DataRow({ set }) {
     <>
       <tr className="text-center">
         <td>{date}</td>
-        <td>{set.exerciseName}</td>
-        <td>{set.metrics.weight}</td>
-        <td>{set.metrics.reps}</td>
+        {/* Might be a bug where order of metrics in set object !== order of metrics in exercise object used to set header. */}
+        {set.metrics.map((metric) => (
+          <td key={metric.name}>{metric.value}</td>
+        ))}
         <td>
           {set.note && (
             <IconContext.Provider
