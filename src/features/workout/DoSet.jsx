@@ -1,11 +1,11 @@
 import { Accordion } from "react-bootstrap";
 import { BsCheckSquareFill } from "react-icons/bs";
 import { useState } from "react";
-import { useGlobalContext } from "../context/GlobalContext";
+import { useGlobalContext } from "../../context/GlobalContext";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
-import { getSetDefaultValues } from "../utils/helpers";
+import { getSetDefaultValues } from "../../utils/helpers";
 import SetBody from "./SetBody";
 import SetNote from "./SetNote";
 import SetButtons from "./SetButtons";

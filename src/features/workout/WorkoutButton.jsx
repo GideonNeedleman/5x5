@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import WorkoutModal from "./WorkoutModal";
-import { useGlobalContext } from "../context/GlobalContext";
+import { useGlobalContext } from "../../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
 
 function WorkoutButton({ children, workout, program }) {

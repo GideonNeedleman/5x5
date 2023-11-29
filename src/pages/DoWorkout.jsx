@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useGlobalContext } from "../context/GlobalContext";
-import ConfirmFinishWorkoutModal from "../components/ConfirmFinishWorkoutModal";
-import ConfirmCancelWorkoutModal from "../components/ConfirmCancelWorkoutModal";
-import BeginWorkoutButtons from "../components/BeginWorkoutButtons";
-import FinishWorkoutButtons from "../components/FinishWorkoutButtons";
-import WorkoutAccordion from "../components/WorkoutAccordion";
-import WorkoutTable from "../components/WorkoutTable";
+import ConfirmFinishWorkoutModal from "../features/workout/ConfirmFinishWorkoutModal";
+import ConfirmCancelWorkoutModal from "../features/workout/ConfirmCancelWorkoutModal";
+import BeginWorkoutButtons from "../features/workout/BeginWorkoutButtons";
+import FinishWorkoutButtons from "../features/workout/FinishWorkoutButtons";
+import WorkoutAccordion from "../features/workout/WorkoutAccordion";
+import WorkoutTable from "../features/workout/WorkoutTable";
 
 function DoWorkout() {
   const {
