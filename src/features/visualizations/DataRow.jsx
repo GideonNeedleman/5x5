@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 function DataRow({ set }) {
   const [isShowNote, setIsShowNote] = useState(false);
   const date = dayjs(set.datetime).format("ddd M/D");
+  const numCols = 5;
 
   return (
     <>
@@ -17,16 +18,22 @@ function DataRow({ set }) {
         <td>
           {set.note && (
             <IconContext.Provider
-              value={{ color: "var(--bs-primary)", size: "1.2em" }}
+              value={{
+                color: "var(--bs-primary)",
+                size: "1.2em",
+              }}
             >
-              <BsStickyFill onClick={() => setIsShowNote((prev) => !prev)} />
+              <BsStickyFill
+                onClick={() => setIsShowNote((prev) => !prev)}
+                style={{ cursor: "pointer" }}
+              />
             </IconContext.Provider>
           )}
         </td>
       </tr>
       {isShowNote && (
         <tr>
-          <td colSpan={5} className="text-center">
+          <td colSpan={numCols} className="text-center">
             {set.note}
           </td>
         </tr>

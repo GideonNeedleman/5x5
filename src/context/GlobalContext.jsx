@@ -32,6 +32,7 @@ function reducer(state, action) {
             : 0,
         isWorkoutStarted: true,
         activeKey: 0,
+        // mostRecentWorkout: null,
       };
     case "finish-workout":
       return {
@@ -49,6 +50,7 @@ function reducer(state, action) {
               }
             : program
         ),
+        mostRecentWorkout: state.activeWorkout,
         activeWorkout: null,
         activeProgramId: null,
         isWorkoutStarted: false,
@@ -76,6 +78,7 @@ function reducer(state, action) {
 const initialState = {
   activeWorkout: null,
   activeProgramId: null,
+  mostRecentWorkout: null,
   isWorkoutStarted: false,
   activeKey: 1,
   nextWorkoutOrder: null, //check if needed
@@ -259,6 +262,7 @@ function GlobalContextProvider({ children }) {
   const [
     {
       activeWorkout,
+      mostRecentWorkout,
       isWorkoutStarted,
       activeKey,
       programData,
@@ -285,6 +289,7 @@ function GlobalContextProvider({ children }) {
     <GlobalContext.Provider
       value={{
         activeWorkout,
+        mostRecentWorkout,
         isWorkoutStarted,
         activeKey,
         programData,
