@@ -98,6 +98,7 @@ const initialState = {
             {
               name: "Barbell Squats",
               id: 1,
+              metrics: [{ name: "weight" }, { mame: "reps" }],
               sets: [
                 { id: 1, weight: 185, reps: 5 },
                 { id: 2, weight: 185, reps: 5 },
@@ -109,6 +110,7 @@ const initialState = {
             {
               name: "Barbell Row",
               id: 2,
+              metrics: [{ name: "weight" }, { mame: "reps" }],
               sets: [
                 { id: 6, weight: 135, reps: 5 },
                 { id: 7, weight: 135, reps: 5 },
@@ -120,6 +122,7 @@ const initialState = {
             {
               name: "Bench Press",
               id: 3,
+              metrics: [{ name: "weight" }, { mame: "reps" }],
               sets: [
                 { id: 11, weight: 125, reps: 5 },
                 { id: 12, weight: 125, reps: 5 },
@@ -139,6 +142,7 @@ const initialState = {
             {
               name: "Barbell Squats",
               id: 4,
+              metrics: [{ name: "weight" }, { mame: "reps" }],
               sets: [
                 { id: 16, weight: 185, reps: 5 },
                 { id: 17, weight: 185, reps: 5 },
@@ -150,6 +154,7 @@ const initialState = {
             {
               name: "Overhead Press",
               id: 5,
+              metrics: [{ name: "weight" }, { mame: "reps" }],
               sets: [
                 { id: 21, weight: 95, reps: 5 },
                 { id: 22, weight: 95, reps: 5 },
@@ -161,6 +166,7 @@ const initialState = {
             {
               name: "Deadlift",
               id: 6,
+              metrics: [{ name: "weight" }, { mame: "reps" }],
               sets: [{ id: 26, weight: 195, reps: 5 }],
             },
           ],
@@ -180,17 +186,19 @@ const initialState = {
             {
               name: "Pushups",
               id: 7,
+              metrics: [{ name: "reps" }],
               sets: [
-                { id: 27, weight: null, reps: 15 },
-                { id: 28, weight: null, reps: 15 },
-                { id: 29, weight: null, reps: 15 },
-                { id: 30, weight: null, reps: 15 },
-                { id: 31, weight: null, reps: 15 },
+                { id: 27, reps: 15 },
+                { id: 28, reps: 15 },
+                { id: 29, reps: 15 },
+                { id: 30, reps: 15 },
+                { id: 31, reps: 15 },
               ],
             },
             {
               name: "Bench Press",
               id: 8,
+              metrics: [{ name: "weight" }, { mame: "reps" }],
               sets: [
                 { id: 32, weight: 125, reps: 5 },
                 { id: 33, weight: 125, reps: 5 },
@@ -210,15 +218,17 @@ const initialState = {
             {
               name: "Pullups",
               id: 9,
+              metrics: [{ mame: "reps" }],
               sets: [
-                { id: 37, weight: null, reps: 8 },
-                { id: 38, weight: null, reps: 6 },
-                { id: 39, weight: null, reps: 3 },
+                { id: 37, reps: 8 },
+                { id: 38, reps: 6 },
+                { id: 39, reps: 3 },
               ],
             },
             {
               name: "Deadlift",
               id: 10,
+              metrics: [{ name: "weight" }, { mame: "reps" }],
               sets: [{ id: 40, weight: 195, reps: 5 }],
             },
           ],
@@ -232,6 +242,7 @@ const initialState = {
             {
               name: "Barbell Squats",
               id: 11,
+              metrics: [{ name: "weight" }, { mame: "reps" }],
               sets: [
                 { id: 41, weight: 185, reps: 5 },
                 { id: 42, weight: 185, reps: 5 },
@@ -243,6 +254,7 @@ const initialState = {
             {
               name: "Leg Press",
               id: 12,
+              metrics: [{ name: "weight" }, { mame: "reps" }],
               sets: [
                 { id: 46, weight: 215, reps: 5 },
                 { id: 47, weight: 215, reps: 5 },

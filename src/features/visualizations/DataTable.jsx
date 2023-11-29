@@ -1,26 +1,34 @@
 import Table from "react-bootstrap/Table";
 import DataRow from "./DataRow";
+import { useGlobalContext } from "../../context/GlobalContext";
 
 // data is an array of set records: exerciseId, (exerciseType,) datetime, metrics, note
 
-function DataTable({ data }) {
+function DataTable({ exercise }) {
+  console.log(exercise);
+  const { workoutData } = useGlobalContext();
   return (
-    <Table striped bordered hover>
-      <thead className="text-center">
-        <tr>
-          <th>Date</th>
-          <th>Exercise</th>
-          <th>Weight</th>
-          <th>Reps</th>
-          <th>Note</th>
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((set, index) => (
-          <DataRow set={set} key={index} />
-        ))}
-      </tbody>
-    </Table>
+    <>
+      <h2 className="text-center">{exercise.name}</h2>
+      <Table striped bordered hover>
+        <thead className="text-center">
+          <tr>
+            <th>Date</th>
+            {exercise.metrics.map((metric) => (
+              <th key={metric.name}>{metric.name}</th>
+            ))}
+
+            <th>Reps</th>
+            <th>Note</th>
+          </tr>
+        </thead>
+        {/* <tbody>
+          {workoutData.map((set, index) => (
+            <DataRow set={set} key={index} />
+          ))}
+        </tbody> */}
+      </Table>
+    </>
   );
 }
 
