@@ -15,10 +15,11 @@ function DataTable({ exercise }) {
           <tr>
             <th>Date</th>
             {exercise.metrics.map((metric) => (
-              <th key={metric.name}>{metric.name}</th>
+              <th key={metric.name} className="text-capitalize">
+                {metric.name}
+              </th>
             ))}
 
-            <th>Reps</th>
             <th>Note</th>
           </tr>
         </thead>
