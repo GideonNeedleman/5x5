@@ -12,9 +12,9 @@ function DataRow({ set }) {
     <>
       <tr className="text-center">
         <td>{date}</td>
-        <td>{set.exerciseId}</td>
-        <td>{set.weight}</td>
-        <td>{set.reps}</td>
+        <td>{set.exerciseName}</td>
+        <td>{set.metrics.weight}</td>
+        <td>{set.metrics.reps}</td>
         <td>
           {set.note && (
             <IconContext.Provider
