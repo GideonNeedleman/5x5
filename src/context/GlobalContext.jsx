@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useEffect } from "react";
 
 const GlobalContext = createContext();
 
@@ -54,6 +54,8 @@ function reducer(state, action) {
         isWorkoutStarted: false,
         nextWorkoutOrder: null,
         activeKey: 1,
+        workoutData: [...state.workoutData, ...state.tempWorkoutData],
+        tempWorkoutData: [],
       };
     case "next-exercise":
       return {
@@ -78,6 +80,7 @@ const initialState = {
   activeKey: 1,
   nextWorkoutOrder: null, //check if needed
   tempWorkoutData: [], //each element is a completed set
+  workoutData: JSON.parse(localStorage.getItem("workoutData")) || [],
   programData: [
     {
       name: "Stronglifts 5x5",
@@ -260,9 +263,23 @@ function GlobalContextProvider({ children }) {
       activeKey,
       programData,
       tempWorkoutData,
+      workoutData,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
+
+  function handleFinishWorkout() {
+    // strip out setId
+    for (let i in tempWorkoutData) {
+      delete tempWorkoutData[i].setId;
+    }
+
+    dispatch({ type: "finish-workout", payload: tempWorkoutData });
+  }
+
+  useEffect(() => {
+    localStorage.setItem("workoutData", JSON.stringify(workoutData));
+  }, [workoutData]);
 
   return (
     <GlobalContext.Provider
@@ -272,7 +289,10 @@ function GlobalContextProvider({ children }) {
         activeKey,
         programData,
         tempWorkoutData,
+        workoutData,
         dispatch,
+
+        handleFinishWorkout,
       }}
     >
       {children}
