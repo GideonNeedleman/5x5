@@ -6,7 +6,7 @@ import DataRow from "./DataRow";
 function DataTable({ data }) {
   return (
     <Table striped bordered hover>
-      <thead>
+      <thead className="text-center">
         <tr>
           <th>Date</th>
           <th>Exercise</th>

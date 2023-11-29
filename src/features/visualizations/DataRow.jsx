@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { BsStickyFill } from "react-icons/bs";
 import { IconContext } from "react-icons";
+import dayjs from "dayjs";
 
 function DataRow({ set }) {
   const [isShowNote, setIsShowNote] = useState(false);
+  const date = dayjs(set.datetime).format("ddd M/D");
 
   return (
     <>
-      <tr>
-        <td>{set.datetime}</td>
+      <tr className="text-center">
+        <td>{date}</td>
         <td>{set.exerciseId}</td>
         <td>{set.weight}</td>
         <td>{set.reps}</td>
