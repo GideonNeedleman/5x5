@@ -19,13 +19,13 @@ function DataRow({ set, isDate = true }) {
     <>
       <tr className="text-center">
         <td>
-          <IconContext.Provider
+          {/* <IconContext.Provider
             value={{
               color: "var(--bs-secondary)",
             }}
           >
             <BsPencilFill className="me-2" onClick={editSet} />
-          </IconContext.Provider>
+          </IconContext.Provider> */}
           {isDate ? date : time}
         </td>
         {/* Possible bug if order of metrics in set object !== order of metrics in exercise object used to set header. */}
