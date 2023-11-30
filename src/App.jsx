@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { GlobalContextProvider } from "./context/GlobalContext";
 import History from "./pages/History";
 import Workout from "./pages/Workout";
+import Review from "./pages/Review";
 
 /* const samplePrograms = [
   {
@@ -263,6 +264,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Workout />} />
           <Route path="/history" element={<History />} />
+          <Route path="/review" element={<Review />} />
         </Routes>
       </BrowserRouter>
     </GlobalContextProvider>

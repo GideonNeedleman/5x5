@@ -12,7 +12,7 @@ function SelectDataTable({ exercise }) {
 
   return (
     <>
-      <h2 className="text-center">{exercise}</h2>
+      {/* <h2 className="text-center">{exercise}</h2> */}
       <Table striped bordered>
         <thead className="text-center">
           <tr>
