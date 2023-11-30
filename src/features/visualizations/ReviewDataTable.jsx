@@ -2,9 +2,9 @@ import Table from "react-bootstrap/Table";
 import DataRow from "./DataRow";
 import { useGlobalContext } from "../../context/GlobalContext";
 
-// data is an array of set records: exerciseId, (exerciseType,) datetime, metrics, note
+// data is an array of set records: exerciseId,(exerciseType,) exerciseName, datetime, metrics, note
 
-function DataTable({ exercise }) {
+function ReviewDataTable({ exercise }) {
   const { workoutData } = useGlobalContext();
   const exerciseData = workoutData.filter(
     (set) => set.exerciseName === exercise.name
@@ -12,7 +12,7 @@ function DataTable({ exercise }) {
 
   return (
     <>
-      <h2 className="text-center">{exercise.name}</h2>
+      <h2 className="text-center fw-normal fs-3">{exercise.name}</h2>
       <Table striped bordered>
         <thead className="text-center">
           <tr>
@@ -36,4 +36,4 @@ function DataTable({ exercise }) {
   );
 }
 
-export default DataTable;
+export default ReviewDataTable;

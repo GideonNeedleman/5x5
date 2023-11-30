@@ -1,13 +1,14 @@
 import { useGlobalContext } from "../context/GlobalContext";
-import DataTable from "../features/visualizations/DataTable";
+import ReviewDataTable from "../features/visualizations/ReviewDataTable";
 
 function Review() {
-  const { mostRecentWorkout, workoutData } = useGlobalContext();
+  const { mostRecentWorkout } = useGlobalContext();
   return (
+    // congratulations toast?
     <div>
       <h1 className="text-center">Review Your Workout</h1>
       {mostRecentWorkout.exercises.map((exercise) => (
-        <DataTable exercise={exercise} key={exercise.id} />
+        <ReviewDataTable exercise={exercise} key={exercise.id} />
       ))}
     </div>
   );
