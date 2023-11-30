@@ -17,7 +17,7 @@ function DoWorkout() {
     dispatch,
   } = useGlobalContext();
   const navigate = useNavigate();
-  const [show, setShow] = useState(false);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [showCancelModal, setShowCancelModal] = useState(false);
   const [numFinishedExercises, setNumFinishedExercises] = useState(0);
   const numExercises = workout.exercises.length;
@@ -33,7 +33,7 @@ function DoWorkout() {
   }
 
   function handleConfirmationModal() {
-    setShow(true);
+    setShowConfirmationModal(true);
   }
 
   function handleCancelModal() {
@@ -71,7 +71,10 @@ function DoWorkout() {
         handleConfirmationModal={handleConfirmationModal}
       />
 
-      <ConfirmFinishWorkoutModal show={show} onHide={() => setShow(false)} />
+      <ConfirmFinishWorkoutModal
+        show={showConfirmationModal}
+        onHide={() => setShowConfirmationModal(false)}
+      />
 
       <ConfirmCancelWorkoutModal
         show={showCancelModal}

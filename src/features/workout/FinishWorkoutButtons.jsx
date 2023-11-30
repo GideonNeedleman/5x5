@@ -31,7 +31,7 @@ function FinishWorkoutButtons({
                 type="submit"
                 onClick={() => {
                   handleFinishWorkout();
-                  navigate("/history");
+                  navigate("/review");
                 }}
               >
                 Finish Workout

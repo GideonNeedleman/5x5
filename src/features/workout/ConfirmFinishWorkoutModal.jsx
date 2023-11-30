@@ -24,7 +24,7 @@ function ConfirmFinishWorkoutModal({ onHide, show }) {
         <Button
           onClick={() => {
             handleFinishWorkout();
-            navigate("/history");
+            navigate("/review");
           }}
         >
           Confirm

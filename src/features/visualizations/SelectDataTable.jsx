@@ -1,18 +1,20 @@
 import Table from "react-bootstrap/Table";
 import DataRow from "./DataRow";
 import { useGlobalContext } from "../../context/GlobalContext";
+import dayjs from "dayjs";
 
 // data is an array of set records: exerciseId, (exerciseType,) datetime, metrics, note
 
 function SelectDataTable({ exercise }) {
   const { workoutData } = useGlobalContext();
-  const exerciseData = workoutData.filter(
-    (set) => set.exerciseName === exercise
-  );
+  // match exercise name, sort reverse chronological order
+  const exerciseData = workoutData
+    .filter((set) => set.exerciseName === exercise)
+    .sort((a, b) => dayjs(b.datetime).unix() - dayjs(a.datetime).unix());
 
   return (
     <>
-      <h2 className="text-center">{exercise}</h2>
+      {/* <h2 className="text-center">{exercise}</h2> */}
       <Table striped bordered>
         <thead className="text-center">
           <tr>
