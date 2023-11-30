@@ -4,21 +4,21 @@ import { useGlobalContext } from "../../context/GlobalContext";
 
 // data is an array of set records: exerciseId, (exerciseType,) datetime, metrics, note
 
-function DataTable({ exercise }) {
+function SelectDataTable({ exercise }) {
   const { workoutData } = useGlobalContext();
   const exerciseData = workoutData.filter(
-    (set) => set.exerciseName === exercise.name
+    (set) => set.exerciseName === exercise
   );
 
   return (
     <>
-      <h2 className="text-center">{exercise.name}</h2>
+      <h2 className="text-center">{exercise}</h2>
       <Table striped bordered>
         <thead className="text-center">
           <tr>
             <th>Date</th>
             {/* Headers for metrics */}
-            {exercise.metrics.map((metric) => (
+            {exerciseData[0].metrics.map((metric) => (
               <th key={metric.name} className="text-capitalize">
                 {metric.name}
               </th>
@@ -36,4 +36,4 @@ function DataTable({ exercise }) {
   );
 }
 
-export default DataTable;
+export default SelectDataTable;
