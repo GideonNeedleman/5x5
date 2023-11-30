@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import DataTable from "../features/visualizations/DataTable";
 import { useGlobalContext } from "../context/GlobalContext";
 import SelectDataTable from "../features/visualizations/SelectDataTable";
+import Button from "react-bootstrap/Button";
 
 function History() {
   const { mostRecentWorkout, workoutData } = useGlobalContext();
@@ -18,36 +19,51 @@ function History() {
 
   return (
     <main>
-      <h1 className="text-center">History</h1>
       {!showMostRecentWorkout && (
         <>
-          <div className="px-2">
-            <Form.Select
-              className="my-2"
-              name="selectedExercise"
-              value={chosenExercise}
-              onChange={(e) => setChosenExercise(e.target.value)}
-            >
-              {exerciseList.map((exercise, index) => (
-                <option
-                  value={exercise}
-                  key={index + 1}
-                  className="text-center"
-                >
-                  {exercise}
-                </option>
-              ))}
-            </Form.Select>
-          </div>
+          <h1 className="text-center">History</h1>
+          {workoutData.length === 0 ? (
+            <p>Do some exercises to build up your history</p>
+          ) : (
+            <div className="px-2">
+              <Form.Select
+                className="my-2"
+                name="selectedExercise"
+                value={chosenExercise}
+                onChange={(e) => setChosenExercise(e.target.value)}
+              >
+                {exerciseList.map((exercise, index) => (
+                  <option
+                    value={exercise}
+                    key={index + 1}
+                    className="text-center"
+                  >
+                    {exercise}
+                  </option>
+                ))}
+              </Form.Select>
+            </div>
+          )}
           <SelectDataTable exercise={chosenExercise} />
         </>
       )}
 
-      {mostRecentWorkout &&
-        showMostRecentWorkout &&
-        mostRecentWorkout.exercises.map((exercise) => (
-          <DataTable exercise={exercise} key={exercise.id} />
-        ))}
+      {mostRecentWorkout && showMostRecentWorkout && (
+        <>
+          <div className="text-start">
+            <Button
+              className="m-2"
+              onClick={() => setShowMostRecentWorkout(false)}
+            >
+              View more exercises
+            </Button>
+          </div>
+          {/* <h1 className="text-center">Most Recent Workout</h1> */}
+          {mostRecentWorkout.exercises.map((exercise) => (
+            <DataTable exercise={exercise} key={exercise.id} />
+          ))}
+        </>
+      )}
     </main>
   );
 }
