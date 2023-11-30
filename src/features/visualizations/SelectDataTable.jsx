@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 
 function SelectDataTable({ exercise }) {
   const { workoutData } = useGlobalContext();
-  // match exercise name, sort descending order
+  // match exercise name, sort reverse chronological order
   const exerciseData = workoutData
     .filter((set) => set.exerciseName === exercise)
     .sort((a, b) => dayjs(b.datetime).unix() - dayjs(a.datetime).unix());
