@@ -9,7 +9,9 @@ function DataRow({ set, isDate = true }) {
   const time = dayjs(set.datetime).format("h:mm a");
   const numCols = 5;
 
-  function editSet() {}
+  function editSet() {
+    //add modal with modified SetBody to edit & delete set
+  }
 
   console.log(set);
 
