@@ -22,28 +22,24 @@ function History() {
       {!showMostRecentWorkout && (
         <>
           <h1 className="text-center">History</h1>
-          {workoutData.length === 0 ? (
-            <p>Do some exercises to build up your history</p>
-          ) : (
-            <div className="px-2">
-              <Form.Select
-                className="my-2"
-                name="selectedExercise"
-                value={chosenExercise}
-                onChange={(e) => setChosenExercise(e.target.value)}
-              >
-                {exerciseList.map((exercise, index) => (
-                  <option
-                    value={exercise}
-                    key={index + 1}
-                    className="text-center"
-                  >
-                    {exercise}
-                  </option>
-                ))}
-              </Form.Select>
-            </div>
-          )}
+          <div className="px-2">
+            <Form.Select
+              className="my-2"
+              name="selectedExercise"
+              value={chosenExercise}
+              onChange={(e) => setChosenExercise(e.target.value)}
+            >
+              {exerciseList.map((exercise, index) => (
+                <option
+                  value={exercise}
+                  key={index + 1}
+                  className="text-center"
+                >
+                  {exercise}
+                </option>
+              ))}
+            </Form.Select>
+          </div>
           <SelectDataTable exercise={chosenExercise} />
         </>
       )}
