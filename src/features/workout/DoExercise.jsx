@@ -45,7 +45,7 @@ function DoExercise({ exercise, tracker, setNumFinishedExercises }) {
               numSets={numSets}
               checkExercise={checkExerciseFinished}
               setNumFinishedSets={setNumFinishedSets}
-              exerciseId={exercise.id}
+              exercise={exercise}
             />
           ))}
         </Accordion>

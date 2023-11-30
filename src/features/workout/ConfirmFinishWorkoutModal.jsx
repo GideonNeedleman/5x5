@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { useGlobalContext } from "../context/GlobalContext";
+import { useGlobalContext } from "../../context/GlobalContext";
 
 function ConfirmFinishWorkoutModal({ onHide, show }) {
   const { handleFinishWorkout } = useGlobalContext();

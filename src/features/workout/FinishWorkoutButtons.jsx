@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Button, Col, Row } from "react-bootstrap";
-import { useGlobalContext } from "../context/GlobalContext";
+import { useGlobalContext } from "../../context/GlobalContext";
 
 function FinishWorkoutButtons({
   isWorkoutStarted,

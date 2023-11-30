@@ -1,11 +1,11 @@
 import { Accordion } from "react-bootstrap";
 import { BsCheckSquareFill } from "react-icons/bs";
 import { useState } from "react";
-import { useGlobalContext } from "../context/GlobalContext";
+import { useGlobalContext } from "../../context/GlobalContext";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
-import { getSetDefaultValues } from "../utils/helpers";
+import { getSetDefaultValues } from "../../utils/helpers";
 import SetBody from "./SetBody";
 import SetNote from "./SetNote";
 import SetButtons from "./SetButtons";
@@ -20,7 +20,7 @@ function DoSet({
   handleFinishSet,
   checkExercise,
   setNumFinishedSets,
-  exerciseId,
+  exercise,
 }) {
   // const handleFinishWorkout = useFinishWorkout();
   const { dispatch } = useGlobalContext();
@@ -41,11 +41,26 @@ function DoSet({
 
     if (index + 1 === numSets) dispatch({ type: "next-exercise" }); // if last set for exercise then go to next exercise
 
+    const { note, ...metricsObject } = data;
+
+    console.log(metricsObject);
+
+    const metrics = [];
+
+    for (const property in metricsObject) {
+      metrics.push({ name: property, value: metricsObject[property] });
+    }
+
+    console.log(metrics);
+
     const formatData = {
-      exerciseId,
+      exerciseId: exercise.id,
+      exerciseName: exercise.name,
       setId: set.id,
       datetime: new Date(),
-      ...data,
+      note,
+      metrics,
+      // put all metrics in a sub-object and separate out note. If no note, then note value is undefined
     };
     dispatch({ type: "submit-set-data", payload: formatData });
   }
