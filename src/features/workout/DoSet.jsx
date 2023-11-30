@@ -10,8 +10,6 @@ import SetBody from "./SetBody";
 import SetNote from "./SetNote";
 import SetButtons from "./SetButtons";
 
-// import { useFinishWorkout } from "../hooks/useFinishWorkout";
-
 function DoSet({
   set,
   numSets,
@@ -22,11 +20,11 @@ function DoSet({
   setNumFinishedSets,
   exercise,
 }) {
-  // const handleFinishWorkout = useFinishWorkout();
-  const { dispatch } = useGlobalContext();
+  const { dispatch, tempWorkoutData } = useGlobalContext();
   const [isNoteVisible, setIsNoteVisible] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
   const [isUnlocked, setIsUnlocked] = useState(false);
+  const [isEditSet, setIsEditSet] = useState(false);
 
   const form = useForm({
     defaultValues: getSetDefaultValues(set),
@@ -43,8 +41,6 @@ function DoSet({
 
     const { note, ...metricsObject } = data;
 
-    console.log(metricsObject);
-
     const metrics = [];
 
     for (const property in metricsObject) {
@@ -53,6 +49,7 @@ function DoSet({
 
     console.log(metrics);
 
+    // put all metrics in a sub-object and separate out note. If no note, then note value is undefined
     const formatData = {
       exerciseId: exercise.id,
       exerciseName: exercise.name,
@@ -60,9 +57,19 @@ function DoSet({
       datetime: new Date(),
       note,
       metrics,
-      // put all metrics in a sub-object and separate out note. If no note, then note value is undefined
     };
-    dispatch({ type: "submit-set-data", payload: formatData });
+
+    // when editing set, create copy of tempWorkoutData with edited set having updated note and metrics data. Then dispatch to replace workoutData with this copy
+    const editedWorkoutData = tempWorkoutData.map((oldSet) =>
+      oldSet.setId === set.id ? { ...oldSet, note, metrics } : oldSet
+    );
+
+    if (isEditSet) {
+      dispatch({
+        type: "edit-set-data",
+        payload: editedWorkoutData,
+      });
+    } else dispatch({ type: "submit-set-data", payload: formatData });
   }
 
   return (
@@ -100,6 +107,7 @@ function DoSet({
             isFinished={isFinished}
             isUnlocked={isUnlocked}
             setIsUnlocked={setIsUnlocked}
+            setIsEditSet={setIsEditSet}
           />
         </form>
         <DevTool control={control} />
