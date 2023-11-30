@@ -15,7 +15,7 @@ function History() {
       <h1 className="text-center">History</h1>
       <div className="px-2">
         <Form.Select
-          className="my-2 fs-2"
+          className="my-2 fs-3"
           name="selectedExercise"
           value={chosenExercise}
           onChange={(e) => setChosenExercise(e.target.value)}

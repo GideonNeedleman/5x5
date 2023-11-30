@@ -23,7 +23,7 @@ function ReviewDataTable({ exercise }) {
       <Table striped bordered>
         <thead className="text-center">
           <tr>
-            <th>Date</th>
+            <th>Time</th>
             {/* Headers for metrics */}
             {exercise.metrics.map((metric) => (
               <th key={metric.name} className="text-capitalize">
@@ -35,7 +35,7 @@ function ReviewDataTable({ exercise }) {
         </thead>
         <tbody>
           {exerciseData.map((set, index) => (
-            <DataRow set={set} key={index} />
+            <DataRow set={set} isDate={false} key={index} />
           ))}
         </tbody>
       </Table>
