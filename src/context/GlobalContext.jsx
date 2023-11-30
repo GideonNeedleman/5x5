@@ -69,6 +69,11 @@ function reducer(state, action) {
         ...state,
         tempWorkoutData: [...state.tempWorkoutData, action.payload],
       };
+    case "edit-set-data":
+      return {
+        ...state,
+        tempWorkoutData: [...action.payload],
+      };
     default:
       throw new Error("unknown action type");
   }

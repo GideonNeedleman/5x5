@@ -7,6 +7,7 @@ function SetButtons({
   isFinished,
   isUnlocked,
   setIsUnlocked,
+  setIsEditSet,
 }) {
   return (
     <Row className="mt-3">
@@ -39,7 +40,11 @@ function SetButtons({
           </Button>
         ) : (
           <Button
-            onClick={() => setIsUnlocked((prev) => !prev)}
+            onClick={() => {
+              setIsUnlocked((prev) => !prev);
+              setIsEditSet(true);
+            }}
+            type="submit"
             className="w-100"
             variant="warning"
           >
