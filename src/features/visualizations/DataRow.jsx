@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { BsArrowReturnRight, BsThreeDotsVertical } from "react-icons/bs";
+import {
+  BsArrowReturnRight,
+  BsThreeDotsVertical,
+  BsStickyFill,
+} from "react-icons/bs";
 import { IconContext } from "react-icons";
 import dayjs from "dayjs";
 import RowMenuModal from "./RowMenuModal";
@@ -21,22 +25,29 @@ function DataRow({ set, isDate = true }) {
     <>
       <tr className="text-center">
         <td className="text-start">
-          <IconContext.Provider
-            value={
-              isShowNote
-                ? {
-                    color: "var(--bs-secondary)",
-                  }
-                : {
-                    color: "var(--bs-primary)",
-                  }
-            }
-          >
-            <BsThreeDotsVertical
-              className="me-2"
-              onClick={() => setIsShowModal(true)}
-            />
-          </IconContext.Provider>
+          {isShowNote ? (
+            <IconContext.Provider value={{ color: "var(--bs-dark)" }}>
+              <BsThreeDotsVertical
+                className="me-2"
+                onClick={() => setIsShowModal(true)}
+                style={{ cursor: "pointer" }}
+              />
+            </IconContext.Provider>
+          ) : (
+            <IconContext.Provider
+              value={{
+                color: "var(--bs-primary)",
+                size: "1.2em",
+              }}
+            >
+              <BsStickyFill
+                className="me-1"
+                onClick={() => setIsShowNote((prev) => !prev)}
+                style={{ cursor: "pointer" }}
+              />
+            </IconContext.Provider>
+          )}
+
           {isDate ? date : time}
         </td>
         {/* Possible bug if order of metrics in set object !== order of metrics in exercise object used to set header. */}

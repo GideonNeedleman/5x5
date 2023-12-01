@@ -1,3 +1,4 @@
+import { Stack } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
@@ -11,16 +12,20 @@ function RowMenuModal({ isShowNote, onShowNote, show, onHide }) {
       centered
     >
       <Modal.Body>
-        {!isShowNote && (
-          <Button
-            onClick={() => {
-              onShowNote();
-              onHide();
-            }}
-          >
-            Show note
-          </Button>
-        )}
+        <Stack gap={2}>
+          <Button variant="warning">Edit set</Button>
+          <Button variant="danger">Delete set</Button>
+          {!isShowNote && (
+            <Button
+              onClick={() => {
+                onShowNote();
+                onHide();
+              }}
+            >
+              Show note
+            </Button>
+          )}
+        </Stack>
       </Modal.Body>
     </Modal>
   );
