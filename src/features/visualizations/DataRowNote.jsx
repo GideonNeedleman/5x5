@@ -3,7 +3,7 @@ import { BsArrowReturnRight } from "react-icons/bs";
 
 function DataRowNote({ numCols, setIsShowNote, note }) {
   return (
-    <tr>
+    <tr onClick={() => setIsShowNote(false)}>
       <td colSpan={numCols}>
         <IconContext.Provider
           value={{
@@ -11,10 +11,7 @@ function DataRowNote({ numCols, setIsShowNote, note }) {
             size: "1.2em",
           }}
         >
-          <BsArrowReturnRight
-            className="mx-2"
-            onClick={() => setIsShowNote(false)}
-          />
+          <BsArrowReturnRight className="mx-2" />
         </IconContext.Provider>
         {note}
       </td>

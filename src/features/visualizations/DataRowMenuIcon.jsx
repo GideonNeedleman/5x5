@@ -1,14 +1,14 @@
 import { IconContext } from "react-icons";
 import { BsThreeDotsVertical, BsStickyFill } from "react-icons/bs";
 
-function DataRowMenuIcon({ isShowNote, setIsShowModal, setIsShowNote }) {
+function DataRowMenuIcon({ isShowNote, setIsShowMenuModal, setIsShowNote }) {
   return (
     <>
       {isShowNote ? (
         <IconContext.Provider value={{ color: "var(--bs-dark)" }}>
           <BsThreeDotsVertical
             className="me-2"
-            onClick={() => setIsShowModal(true)}
+            onClick={() => setIsShowMenuModal(true)}
             style={{ cursor: "pointer" }}
           />
         </IconContext.Provider>

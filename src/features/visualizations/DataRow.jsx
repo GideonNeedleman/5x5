@@ -3,10 +3,12 @@ import dayjs from "dayjs";
 import RowMenuModal from "./RowMenuModal";
 import DataRowMenuIcon from "./DataRowMenuIcon";
 import DataRowNote from "./DataRowNote";
+import EditSetModal from "./EditSetModal";
 
 function DataRow({ set, isDate = true }) {
   const [isShowNote, setIsShowNote] = useState(true);
-  const [isShowModal, setIsShowModal] = useState(false);
+  const [isShowMenuModal, setIsShowMenuModal] = useState(false);
+  const [isShowEditModal, setIsShowEditModal] = useState(false);
   const date = dayjs(set.datetime).format("ddd M/D");
   const time = dayjs(set.datetime).format("h:mm a");
   const numCols = set.metrics.length + 1;
@@ -15,8 +17,6 @@ function DataRow({ set, isDate = true }) {
     //add modal with modified SetBody to edit & delete set
   }
 
-  function deleteSet() {}
-
   console.log(set);
 
   return (
@@ -24,7 +24,7 @@ function DataRow({ set, isDate = true }) {
       <tr className="text-center">
         <td className="text-start">
           <DataRowMenuIcon
-            setIsShowModal={setIsShowModal}
+            setIsShowMenuModal={setIsShowMenuModal}
             isShowNote={isShowNote}
             setIsShowNote={setIsShowNote}
           />
@@ -46,8 +46,15 @@ function DataRow({ set, isDate = true }) {
       <RowMenuModal
         isShowNote={isShowNote}
         onShowNote={() => setIsShowNote(true)}
-        show={isShowModal}
-        onHide={() => setIsShowModal(false)}
+        show={isShowMenuModal}
+        onHide={() => setIsShowMenuModal(false)}
+        set={set}
+        setIsShowEditModal={setIsShowEditModal}
+      />
+      <EditSetModal
+        show={isShowEditModal}
+        onHide={() => setIsShowEditModal(false)}
+        set={set}
       />
     </>
   );

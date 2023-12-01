@@ -74,6 +74,15 @@ function reducer(state, action) {
         ...state,
         tempWorkoutData: [...action.payload],
       };
+    case "delete-set":
+      return {
+        ...state,
+        workoutData: [
+          ...state.workoutData.filter(
+            (set) => set.datetime !== action.payload.datetime
+          ),
+        ],
+      };
     default:
       throw new Error("unknown action type");
   }
