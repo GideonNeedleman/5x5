@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { BsArrowReturnRight, BsThreeDotsVertical } from "react-icons/bs";
 import { IconContext } from "react-icons";
-import Modal from "react-bootstrap/Modal";
 import dayjs from "dayjs";
+import RowMenuModal from "./RowMenuModal";
 
 function DataRow({ set, isDate = true }) {
   const [isShowNote, setIsShowNote] = useState(true);
+  const [isShowModal, setIsShowModal] = useState(false);
   const date = dayjs(set.datetime).format("ddd M/D");
   const time = dayjs(set.datetime).format("h:mm a");
   const numCols = set.metrics.length + 1;
@@ -31,7 +32,10 @@ function DataRow({ set, isDate = true }) {
                   }
             }
           >
-            <BsThreeDotsVertical className="me-2" onClick={editSet} />
+            <BsThreeDotsVertical
+              className="me-2"
+              onClick={() => setIsShowModal(true)}
+            />
           </IconContext.Provider>
           {isDate ? date : time}
         </td>
@@ -73,6 +77,12 @@ function DataRow({ set, isDate = true }) {
           </td>
         </tr>
       )}
+      <RowMenuModal
+        isShowNote={isShowNote}
+        onShowNote={() => setIsShowNote(true)}
+        show={isShowModal}
+        onHide={() => setIsShowModal(false)}
+      />
     </>
   );
 }
