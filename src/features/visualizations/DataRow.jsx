@@ -1,13 +1,14 @@
 import { useState } from "react";
-import { BsStickyFill, BsPencilFill } from "react-icons/bs";
+import { BsArrowReturnRight, BsThreeDotsVertical } from "react-icons/bs";
 import { IconContext } from "react-icons";
+import Modal from "react-bootstrap/Modal";
 import dayjs from "dayjs";
 
 function DataRow({ set, isDate = true }) {
-  const [isShowNote, setIsShowNote] = useState(false);
+  const [isShowNote, setIsShowNote] = useState(true);
   const date = dayjs(set.datetime).format("ddd M/D");
   const time = dayjs(set.datetime).format("h:mm a");
-  const numCols = 5;
+  const numCols = set.metrics.length + 1;
 
   function editSet() {
     //add modal with modified SetBody to edit & delete set
@@ -18,21 +19,27 @@ function DataRow({ set, isDate = true }) {
   return (
     <>
       <tr className="text-center">
-        <td>
-          {/* <IconContext.Provider
-            value={{
-              color: "var(--bs-secondary)",
-            }}
+        <td className="text-start">
+          <IconContext.Provider
+            value={
+              isShowNote
+                ? {
+                    color: "var(--bs-secondary)",
+                  }
+                : {
+                    color: "var(--bs-primary)",
+                  }
+            }
           >
-            <BsPencilFill className="me-2" onClick={editSet} />
-          </IconContext.Provider> */}
+            <BsThreeDotsVertical className="me-2" onClick={editSet} />
+          </IconContext.Provider>
           {isDate ? date : time}
         </td>
         {/* Possible bug if order of metrics in set object !== order of metrics in exercise object used to set header. */}
         {set.metrics.map((metric) => (
           <td key={metric.name}>{metric.value}</td>
         ))}
-        <td>
+        {/* <td>
           {set.note && (
             <IconContext.Provider
               value={{
@@ -46,11 +53,22 @@ function DataRow({ set, isDate = true }) {
               />
             </IconContext.Provider>
           )}
-        </td>
+        </td> */}
       </tr>
-      {isShowNote && (
+      {set.note && isShowNote && (
         <tr>
-          <td colSpan={numCols} className="text-center">
+          <td colSpan={numCols}>
+            <IconContext.Provider
+              value={{
+                color: "var(--bs-primary)",
+                size: "1.2em",
+              }}
+            >
+              <BsArrowReturnRight
+                className="mx-2"
+                onClick={() => setIsShowNote(false)}
+              />
+            </IconContext.Provider>
             {set.note}
           </td>
         </tr>

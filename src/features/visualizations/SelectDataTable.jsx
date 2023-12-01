@@ -25,7 +25,6 @@ function SelectDataTable({ exercise }) {
                 {metric.name}
               </th>
             ))}
-            <th>Note</th>
           </tr>
         </thead>
         <tbody>
