@@ -27,7 +27,7 @@ function History() {
           ))}
         </Form.Select>
       </div>
-      <SelectDataTable exercise={chosenExercise} />
+      <SelectDataTable exercise={chosenExercise} key={chosenExercise} />
     </main>
   );
 }

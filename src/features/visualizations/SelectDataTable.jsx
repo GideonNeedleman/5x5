@@ -15,7 +15,7 @@ function SelectDataTable({ exercise }) {
   return (
     <>
       {/* <h2 className="text-center">{exercise}</h2> */}
-      <Table striped bordered>
+      <Table striped bordered key={exercise.name}>
         <thead className="text-center">
           <tr>
             <th>Date</th>

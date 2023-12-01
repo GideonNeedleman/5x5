@@ -1,12 +1,8 @@
 import { useState } from "react";
-import {
-  BsArrowReturnRight,
-  BsThreeDotsVertical,
-  BsStickyFill,
-} from "react-icons/bs";
-import { IconContext } from "react-icons";
 import dayjs from "dayjs";
 import RowMenuModal from "./RowMenuModal";
+import DataRowMenuIcon from "./DataRowMenuIcon";
+import DataRowNote from "./DataRowNote";
 
 function DataRow({ set, isDate = true }) {
   const [isShowNote, setIsShowNote] = useState(true);
@@ -19,74 +15,33 @@ function DataRow({ set, isDate = true }) {
     //add modal with modified SetBody to edit & delete set
   }
 
+  function deleteSet() {}
+
   console.log(set);
 
   return (
     <>
       <tr className="text-center">
         <td className="text-start">
-          {isShowNote ? (
-            <IconContext.Provider value={{ color: "var(--bs-dark)" }}>
-              <BsThreeDotsVertical
-                className="me-2"
-                onClick={() => setIsShowModal(true)}
-                style={{ cursor: "pointer" }}
-              />
-            </IconContext.Provider>
-          ) : (
-            <IconContext.Provider
-              value={{
-                color: "var(--bs-primary)",
-                size: "1.2em",
-              }}
-            >
-              <BsStickyFill
-                className="me-1"
-                onClick={() => setIsShowNote((prev) => !prev)}
-                style={{ cursor: "pointer" }}
-              />
-            </IconContext.Provider>
-          )}
+          <DataRowMenuIcon
+            setIsShowModal={setIsShowModal}
+            isShowNote={isShowNote}
+            setIsShowNote={setIsShowNote}
+          />
 
           {isDate ? date : time}
         </td>
-        {/* Possible bug if order of metrics in set object !== order of metrics in exercise object used to set header. */}
+        {/* Ensure metrics order in set object === order in exercise object used to set header. */}
         {set.metrics.map((metric) => (
           <td key={metric.name}>{metric.value}</td>
         ))}
-        {/* <td>
-          {set.note && (
-            <IconContext.Provider
-              value={{
-                color: "var(--bs-primary)",
-                size: "1.2em",
-              }}
-            >
-              <BsStickyFill
-                onClick={() => setIsShowNote((prev) => !prev)}
-                style={{ cursor: "pointer" }}
-              />
-            </IconContext.Provider>
-          )}
-        </td> */}
       </tr>
       {set.note && isShowNote && (
-        <tr>
-          <td colSpan={numCols}>
-            <IconContext.Provider
-              value={{
-                color: "var(--bs-primary)",
-                size: "1.2em",
-              }}
-            >
-              <BsArrowReturnRight
-                className="mx-2"
-                onClick={() => setIsShowNote(false)}
-              />
-            </IconContext.Provider>
-            {set.note}
-          </td>
-        </tr>
+        <DataRowNote
+          numCols={numCols}
+          setIsShowNote={setIsShowNote}
+          note={set.note}
+        />
       )}
       <RowMenuModal
         isShowNote={isShowNote}
