@@ -52,3 +52,13 @@ export function getSetDefaultValues(set) {
   }
   return results;
 }
+
+// potential BUG if value is not a number. Would need a way to check correct intended datatype
+export function objectToArray(object) {
+  let properties = Object.keys(object);
+  let array = [];
+  for (let i in properties) {
+    array = [...array, { name: properties[i], value: object[properties[i]] }];
+  }
+  return array;
+}

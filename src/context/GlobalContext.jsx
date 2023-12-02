@@ -78,7 +78,7 @@ function reducer(state, action) {
       return {
         ...state,
         workoutData: [
-          state.workoutData.map((set) =>
+          ...state.workoutData.map((set) =>
             set.datetime === action.payload.datetime ? action.payload : set
           ),
         ],

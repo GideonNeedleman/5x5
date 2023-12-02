@@ -5,9 +5,10 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
+import { objectToArray } from "../../utils/helpers";
 
 function EditSetModal({ show, onHide, set }) {
-  const { programData } = useGlobalContext();
+  const { programData, dispatch } = useGlobalContext();
   const form = useForm();
   const { register, control, handleSubmit } = form;
 
@@ -24,22 +25,11 @@ function EditSetModal({ show, onHide, set }) {
     .exercises.find((exercise) => exercise.id === set.exerciseId);
 
   function handleSubmitSet(data) {
-    /* const { note, ...newMetrics } = data;
-    const newSetData = {
-      ...set.exerciseId,
-      ...set.exerciseName,
-      ...set.datetime,
-      ...data.note,
-      metrics: [newMetrics],
-    }; */
-
-    // const newSetData = { ...set, note, ...newMetrics };
-    const { note, ...newMetrics } = data;
-    const newSet = { ...set, note };
-    console.log("data", data);
-    console.log("new set", newSet);
-    console.log(newMetrics);
-    // I need to convert {weight: '1800', reps: '10'} into [{name: 'weight', value: 1800},{name: 'reps', value: 10}]
+    const { note, ...editedMetrics } = data;
+    const metricsArray = objectToArray(editedMetrics);
+    const editedSet = { ...set, note, metrics: metricsArray };
+    dispatch({ type: "edit-set-data", payload: editedSet });
+    onHide();
   }
   return (
     <Modal
