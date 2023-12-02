@@ -218,7 +218,7 @@ const initialState = {
       ],
     },
     {
-      name: "Some other program",
+      name: "Sample training program",
       id: 2,
       workouts: [
         {
