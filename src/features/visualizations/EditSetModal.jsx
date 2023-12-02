@@ -62,7 +62,13 @@ function EditSetModal({ show, onHide, set }) {
                     ).type
                   }
                   defaultValue={metric.value}
-                  {...register(metric.name)}
+                  {...register(metric.name, {
+                    valueAsNumber:
+                      "number" ===
+                      exerciseMatch.metrics.find(
+                        (exMetric) => exMetric.name === metric.name
+                      ).type,
+                  })}
                 />
               </InputGroup>
             </>
