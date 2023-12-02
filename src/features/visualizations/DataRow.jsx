@@ -4,18 +4,25 @@ import RowMenuModal from "./RowMenuModal";
 import DataRowMenuIcon from "./DataRowMenuIcon";
 import DataRowNote from "./DataRowNote";
 import EditSetModal from "./EditSetModal";
+import ConfirmationModal from "./ConfirmationModal";
+import { useGlobalContext } from "../../context/GlobalContext";
 
 function DataRow({ set, isDate = true }) {
   const [isShowNote, setIsShowNote] = useState(true);
   const [isShowMenuModal, setIsShowMenuModal] = useState(false);
   const [isShowEditModal, setIsShowEditModal] = useState(false);
+  const [isShowConfirmationModal, setIsShowConfirmationModal] = useState(false);
+
   const date = dayjs(set.datetime).format("ddd M/D");
   const time = dayjs(set.datetime).format("h:mm a");
   const numCols = set.metrics.length + 1;
 
-  /*   function editSet() {
-    //add modal with modified SetBody to edit & delete set
-  } */
+  const { dispatch } = useGlobalContext();
+
+  function deleteSet() {
+    dispatch({ type: "delete-set", payload: set });
+    setIsShowConfirmationModal(false);
+  }
 
   console.log(set);
 
@@ -44,12 +51,17 @@ function DataRow({ set, isDate = true }) {
         />
       )}
       <RowMenuModal
-        isShowNote={isShowNote}
-        onShowNote={() => setIsShowNote(true)}
         show={isShowMenuModal}
         onHide={() => setIsShowMenuModal(false)}
         set={set}
         setIsShowEditModal={setIsShowEditModal}
+        setIsShowConfirmationModal={setIsShowConfirmationModal}
+      />
+      <ConfirmationModal
+        message={`Confirm delete record`}
+        show={isShowConfirmationModal}
+        onHide={() => setIsShowConfirmationModal(false)}
+        handleConfirm={deleteSet}
       />
       <EditSetModal
         show={isShowEditModal}
