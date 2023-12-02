@@ -19,7 +19,10 @@ function RowMenuModal({
     <Modal
       size="lg"
       show={show}
-      onHide={onHide}
+      onHide={() => {
+        onHide();
+        setIsShowConfirm(false);
+      }}
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
