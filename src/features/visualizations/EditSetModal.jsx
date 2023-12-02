@@ -24,7 +24,22 @@ function EditSetModal({ show, onHide, set }) {
     .exercises.find((exercise) => exercise.id === set.exerciseId);
 
   function handleSubmitSet(data) {
-    console.log(data);
+    /* const { note, ...newMetrics } = data;
+    const newSetData = {
+      ...set.exerciseId,
+      ...set.exerciseName,
+      ...set.datetime,
+      ...data.note,
+      metrics: [newMetrics],
+    }; */
+
+    // const newSetData = { ...set, note, ...newMetrics };
+    const { note, ...newMetrics } = data;
+    const newSet = { ...set, note };
+    console.log("data", data);
+    console.log("new set", newSet);
+    console.log(newMetrics);
+    // I need to convert {weight: '1800', reps: '10'} into [{name: 'weight', value: 1800},{name: 'reps', value: 10}]
   }
   return (
     <Modal
@@ -73,7 +88,12 @@ function EditSetModal({ show, onHide, set }) {
               {...register("note")}
             />
           </InputGroup>
-          <Button type="submit">Save</Button>
+          <div className="text-end">
+            <Button className="me-2" variant="secondary" onClick={onHide}>
+              Cancel
+            </Button>
+            <Button type="submit">Save</Button>
+          </div>
         </Form>
         <DevTool control={control} />
       </Modal.Body>

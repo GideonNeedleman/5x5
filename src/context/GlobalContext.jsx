@@ -74,6 +74,15 @@ function reducer(state, action) {
         ...state,
         tempWorkoutData: [...action.payload],
       };
+    case "edit-set-data":
+      return {
+        ...state,
+        workoutData: [
+          state.workoutData.map((set) =>
+            set.datetime === action.payload.datetime ? action.payload : set
+          ),
+        ],
+      };
     case "delete-set":
       return {
         ...state,
