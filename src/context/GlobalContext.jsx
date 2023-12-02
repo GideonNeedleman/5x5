@@ -69,7 +69,7 @@ function reducer(state, action) {
         ...state,
         tempWorkoutData: [...state.tempWorkoutData, action.payload],
       };
-    case "edit-set-data":
+    case "edit-temp-set-data":
       return {
         ...state,
         tempWorkoutData: [...action.payload],

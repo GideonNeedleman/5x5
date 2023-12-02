@@ -66,7 +66,7 @@ function DoSet({
 
     if (isEditSet) {
       dispatch({
-        type: "edit-set-data",
+        type: "edit-temp-set-data",
         payload: editedWorkoutData,
       });
     } else dispatch({ type: "submit-set-data", payload: formatData });
