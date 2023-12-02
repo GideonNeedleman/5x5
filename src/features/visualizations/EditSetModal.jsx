@@ -12,7 +12,7 @@ function EditSetModal({ show, onHide, set }) {
   const form = useForm();
   const { register, control, handleSubmit } = form;
 
-  // super nested search. First part digs to find the matching program, then again to find matching workout, then again to find matching exercise.
+  // super nested search. First part digs to find the matching program, then again to find matching workout, then again to find matching exercise. Should be better way
   const exerciseMatch = programData
     .find((program) =>
       program.workouts.find((workout) =>
@@ -42,6 +42,7 @@ function EditSetModal({ show, onHide, set }) {
       <Modal.Body>
         <h2 className="text-center">Edit {set.exerciseName}</h2>
         <Form onSubmit={handleSubmit(handleSubmitSet)}>
+          {/* Map out fields for metrics */}
           {set.metrics.map((metric) => (
             <>
               <Form.Label
@@ -66,6 +67,7 @@ function EditSetModal({ show, onHide, set }) {
               </InputGroup>
             </>
           ))}
+          {/* Field for note */}
           <Form.Label htmlFor="note">Note</Form.Label>
           <InputGroup>
             <Form.Control
