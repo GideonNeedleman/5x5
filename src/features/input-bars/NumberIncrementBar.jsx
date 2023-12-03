@@ -1,43 +1,46 @@
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { BsDashLg, BsPlusLg } from "react-icons/bs";
 
+// not including units. Could try pass in metric then get metric.name and metric.inputBar.step
+
 function NumberIncrementBar({
-  metricName,
-  metricStep,
+  metric,
   register,
   setValue,
   getValues,
   isFinished = false,
   isUnlocked = true,
+  defaultValue,
 }) {
-  function stepMetric(metric, step) {
-    setValue(metric, Number(getValues(metric)) + step);
+  function stepMetric(metricToStep, step) {
+    setValue(metricToStep, Number(getValues(metricToStep)) + step);
   }
 
   return (
     <>
-      <p className="text-center fw-semibold m-0">{metricName} (lbs)</p>
+      <p className="text-center fw-semibold m-0">{metric.name}</p>
       <InputGroup className="mb-2">
         <Button
           variant="secondary"
           disabled={isFinished && !isUnlocked}
-          onClick={() => stepMetric(metricName, -metricStep)}
+          onClick={() => stepMetric(metric.name, -metric.inputBar.step)}
         >
           <BsDashLg />
         </Button>
         <Form.Control
           className="text-center"
           type="number"
-          {...register(metricName, {
+          {...register(metric.name, {
             valueAsNumber: true,
           })}
-          aria-label={metricName}
+          aria-label={metric.name}
+          defaultValue={defaultValue}
           disabled={isFinished && !isUnlocked}
         />
         <Button
           variant="secondary"
           disabled={isFinished && !isUnlocked}
-          onClick={() => stepMetric(metricName, metricStep)}
+          onClick={() => stepMetric(metric.name, metric.inputBar.step)}
         >
           <BsPlusLg />
         </Button>

@@ -39,6 +39,8 @@ export function getDefaultValues(workout) {
   return defaultWorkoutValues;
 } */
 
+/* I've stopped using react hook form useForm({defaultValues: xxx}) to set the default values. Instead I'm passing in the defaultValue prop directly to the input field when mapping over the inputBars. This is a much more natural way of doing it
+
 export function getSetDefaultValues(set) {
   let properties = Object.keys(set);
   let results = {};
@@ -51,7 +53,7 @@ export function getSetDefaultValues(set) {
     };
   }
   return results;
-}
+} */
 
 // potential BUG if value is not a number. Would need a way to check correct intended datatype
 export function objectToArray(object) {

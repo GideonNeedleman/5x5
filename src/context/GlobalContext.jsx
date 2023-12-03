@@ -125,8 +125,18 @@ const initialState = {
               exerciseIndex: 1,
               restTimer: 180,
               metrics: [
-                { name: "weight", type: "number", adaptive: true },
-                { name: "reps", type: "number", adaptive: true },
+                {
+                  name: "weight",
+                  type: "number",
+                  adaptive: true,
+                  inputBar: { type: "NumberIncrementBar", step: 5 },
+                },
+                {
+                  name: "reps",
+                  type: "number",
+                  adaptive: true,
+                  inputBar: { type: "NumberIncrementBar", step: 1 },
+                },
               ],
               sets: [
                 { id: 1, weight: 185, reps: 5 },
@@ -142,8 +152,18 @@ const initialState = {
               exerciseIndex: 2,
               restTimer: 180,
               metrics: [
-                { name: "weight", type: "number", adaptive: true },
-                { name: "reps", type: "number", adaptive: true },
+                {
+                  name: "weight",
+                  type: "number",
+                  adaptive: true,
+                  inputBar: { type: "NumberIncrementBar", step: 5 },
+                },
+                {
+                  name: "reps",
+                  type: "number",
+                  adaptive: true,
+                  inputBar: { type: "NumberIncrementBar", step: 1 },
+                },
               ],
               sets: [
                 { id: 6, weight: 135, reps: 5 },
@@ -159,8 +179,18 @@ const initialState = {
               exerciseIndex: 3,
               restTimer: 180,
               metrics: [
-                { name: "weight", type: "number", adaptive: true },
-                { name: "reps", type: "number", adaptive: true },
+                {
+                  name: "weight",
+                  type: "number",
+                  adaptive: true,
+                  inputBar: { type: "NumberIncrementBar", step: 5 },
+                },
+                {
+                  name: "reps",
+                  type: "number",
+                  adaptive: true,
+                  inputBar: { type: "NumberIncrementBar", step: 1 },
+                },
               ],
               sets: [
                 { id: 11, weight: 125, reps: 5 },
@@ -184,8 +214,18 @@ const initialState = {
               exerciseIndex: 1,
               restTimer: 180,
               metrics: [
-                { name: "weight", type: "number", adaptive: true },
-                { name: "reps", type: "number", adaptive: true },
+                {
+                  name: "weight",
+                  type: "number",
+                  adaptive: true,
+                  inputBar: { type: "NumberIncrementBar", step: 5 },
+                },
+                {
+                  name: "reps",
+                  type: "number",
+                  adaptive: true,
+                  inputBar: { type: "NumberIncrementBar", step: 1 },
+                },
               ],
               sets: [
                 { id: 16, weight: 185, reps: 5 },
@@ -201,8 +241,18 @@ const initialState = {
               exerciseIndex: 4,
               restTimer: 180,
               metrics: [
-                { name: "weight", type: "number", adaptive: true },
-                { name: "reps", type: "number", adaptive: true },
+                {
+                  name: "weight",
+                  type: "number",
+                  adaptive: true,
+                  inputBar: { type: "NumberIncrementBar", step: 5 },
+                },
+                {
+                  name: "reps",
+                  type: "number",
+                  adaptive: true,
+                  inputBar: { type: "NumberIncrementBar", step: 1 },
+                },
               ],
               sets: [
                 { id: 21, weight: 95, reps: 5 },
@@ -218,8 +268,18 @@ const initialState = {
               exerciseIndex: 5,
               restTimer: 180,
               metrics: [
-                { name: "weight", type: "number", adaptive: true },
-                { name: "reps", type: "number", adaptive: true },
+                {
+                  name: "weight",
+                  type: "number",
+                  adaptive: true,
+                  inputBar: { type: "NumberIncrementBar", step: 5 },
+                },
+                {
+                  name: "reps",
+                  type: "number",
+                  adaptive: true,
+                  inputBar: { type: "NumberIncrementBar", step: 1 },
+                },
               ],
               sets: [{ id: 26, weight: 195, reps: 5 }],
             },
@@ -242,7 +302,14 @@ const initialState = {
               id: 7,
               exerciseIndex: 6,
               restTimer: 180,
-              metrics: [{ name: "reps", type: "number", adaptive: true }],
+              metrics: [
+                {
+                  name: "reps",
+                  type: "number",
+                  adaptive: true,
+                  inputBar: { type: "NumberIncrementBar", step: 1 },
+                },
+              ],
               sets: [
                 { id: 27, reps: 15 },
                 { id: 28, reps: 15 },
@@ -257,8 +324,18 @@ const initialState = {
               exerciseIndex: 3,
               restTimer: 180,
               metrics: [
-                { name: "weight", type: "number", adaptive: true },
-                { name: "reps", type: "number", adaptive: true },
+                {
+                  name: "weight",
+                  type: "number",
+                  adaptive: true,
+                  inputBar: { type: "NumberIncrementBar", step: 5 },
+                },
+                {
+                  name: "reps",
+                  type: "number",
+                  adaptive: true,
+                  inputBar: { type: "NumberIncrementBar", step: 1 },
+                },
               ],
               sets: [
                 { id: 32, weight: 125, reps: 5 },
@@ -281,7 +358,14 @@ const initialState = {
               id: 9,
               exerciseIndex: 7,
               restTimer: 180,
-              metrics: [{ name: "reps", type: "number", adaptive: true }],
+              metrics: [
+                {
+                  name: "reps",
+                  type: "number",
+                  adaptive: true,
+                  inputBar: { type: "NumberIncrementBar", step: 1 },
+                },
+              ],
               sets: [
                 { id: 37, reps: 8 },
                 { id: 38, reps: 6 },
@@ -294,8 +378,18 @@ const initialState = {
               exerciseIndex: 5,
               restTimer: 180,
               metrics: [
-                { name: "weight", type: "number", adaptive: true },
-                { name: "reps", type: "number", adaptive: true },
+                {
+                  name: "weight",
+                  type: "number",
+                  adaptive: true,
+                  inputBar: { type: "NumberIncrementBar", step: 10 },
+                },
+                {
+                  name: "reps",
+                  type: "number",
+                  adaptive: true,
+                  inputBar: { type: "NumberIncrementBar", step: 1 },
+                },
               ],
               sets: [{ id: 40, weight: 195, reps: 5 }],
             },
@@ -313,8 +407,18 @@ const initialState = {
               exerciseIndex: 1,
               restTimer: 180,
               metrics: [
-                { name: "weight", type: "number", adaptive: true },
-                { name: "reps", type: "number", adaptive: true },
+                {
+                  name: "weight",
+                  type: "number",
+                  adaptive: true,
+                  inputBar: { type: "NumberIncrementBar", step: 5 },
+                },
+                {
+                  name: "reps",
+                  type: "number",
+                  adaptive: true,
+                  inputBar: { type: "NumberIncrementBar", step: 1 },
+                },
               ],
               sets: [
                 { id: 41, weight: 185, reps: 5 },
@@ -330,8 +434,18 @@ const initialState = {
               exerciseIndex: 8,
               restTimer: 180,
               metrics: [
-                { name: "weight", type: "number", adaptive: true },
-                { name: "reps", type: "number", adaptive: true },
+                {
+                  name: "weight",
+                  type: "number",
+                  adaptive: true,
+                  inputBar: { type: "NumberIncrementBar", step: 10 },
+                },
+                {
+                  name: "reps",
+                  type: "number",
+                  adaptive: true,
+                  inputBar: { type: "NumberIncrementBar", step: 1 },
+                },
               ],
               sets: [
                 { id: 46, weight: 215, reps: 5 },
