@@ -6,11 +6,12 @@ import { useGlobalContext } from "../../context/GlobalContext";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { objectToArray } from "../../utils/helpers";
+import NumberIncrementBar from "../input-bars/NumberIncrementBar";
 
 function EditSetModal({ show, onHide, set }) {
   const { programData, dispatch } = useGlobalContext();
   const form = useForm();
-  const { register, control, handleSubmit } = form;
+  const { register, control, handleSubmit, setValue, getValues } = form;
 
   // super nested search. First part digs to find the matching program, then again to find matching workout, then again to find matching exercise. Should be better way
   const exerciseMatch = programData
@@ -42,30 +43,16 @@ function EditSetModal({ show, onHide, set }) {
       <Modal.Body>
         <h2 className="text-center">Edit {set.exerciseName}</h2>
         <Form onSubmit={handleSubmit(handleSubmitSet)}>
-          {/* Map out fields for metrics */}
+          {/* There's no step value because set shape in workoutData !== set shape in programData. Cludge in fallback stepvalue inside NumberIncrementBar. Ideally slot in SetBody here with switch statement to find correct inputBar. Need to align object shapes to make it work. */}
           {set.metrics.map((metric) => (
-            <>
-              <Form.Label
-                className="text-capitalize"
-                htmlFor={metric.name}
-                // key={`label-${metric.name}`}
-              >
-                {metric.name}
-              </Form.Label>
-              <InputGroup className="mb-2" key={metric.name}>
-                <Form.Control
-                  id={metric.name}
-                  className="text-center"
-                  type={
-                    exerciseMatch.metrics.find(
-                      (exMetric) => exMetric.name === metric.name
-                    ).type
-                  }
-                  defaultValue={metric.value}
-                  {...register(metric.name)}
-                />
-              </InputGroup>
-            </>
+            <NumberIncrementBar
+              metric={metric}
+              register={register}
+              setValue={setValue}
+              getValues={getValues}
+              defaultValue={metric.value}
+              key={metric.name}
+            />
           ))}
           {/* Field for note */}
           <Form.Label htmlFor="note">Note</Form.Label>

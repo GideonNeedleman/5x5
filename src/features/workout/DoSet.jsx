@@ -5,7 +5,6 @@ import { useGlobalContext } from "../../context/GlobalContext";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
-import { getSetDefaultValues } from "../../utils/helpers";
 import SetBody from "./SetBody";
 import SetNote from "./SetNote";
 import SetButtons from "./SetButtons";
@@ -26,9 +25,7 @@ function DoSet({
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [isEditSet, setIsEditSet] = useState(false);
 
-  const form = useForm({
-    defaultValues: getSetDefaultValues(set),
-  });
+  const form = useForm();
   const { register, control, handleSubmit, setValue, getValues } = form;
 
   function handleSubmitSet(data) {
@@ -88,6 +85,7 @@ function DoSet({
         <form onSubmit={handleSubmit(handleSubmitSet)}>
           <SetBody
             set={set}
+            exercise={exercise}
             register={register}
             setValue={setValue}
             getValues={getValues}
