@@ -108,7 +108,149 @@ const initialState = {
   tempWorkoutData: [], //each element is a completed set
   workoutData: JSON.parse(localStorage.getItem("workoutData")) || [],
   workoutHistory: JSON.parse(localStorage.getItem("workoutHistory")) || [], //{workoutId, workoutName, startTime, finishTime}
-  programData: [
+  exerciseData: JSON.parse(localStorage.getItem("exerciseData")) || [
+    {
+      name: "Barbell Squats",
+      id: 1,
+      restTimer: 180,
+      metrics: [
+        {
+          name: "weight",
+          type: "number",
+          adaptive: true,
+          inputBar: { type: "NumberIncrementBar", step: 5 },
+        },
+        {
+          name: "reps",
+          type: "number",
+          adaptive: true,
+          inputBar: { type: "NumberIncrementBar", step: 1 },
+        },
+      ],
+    },
+    {
+      name: "Barbell Row",
+      id: 2,
+      restTimer: 180,
+      metrics: [
+        {
+          name: "weight",
+          type: "number",
+          adaptive: true,
+          inputBar: { type: "NumberIncrementBar", step: 5 },
+        },
+        {
+          name: "reps",
+          type: "number",
+          adaptive: true,
+          inputBar: { type: "NumberIncrementBar", step: 1 },
+        },
+      ],
+    },
+    {
+      name: "Bench Press",
+      id: 3,
+      restTimer: 180,
+      metrics: [
+        {
+          name: "weight",
+          type: "number",
+          adaptive: true,
+          inputBar: { type: "NumberIncrementBar", step: 5 },
+        },
+        {
+          name: "reps",
+          type: "number",
+          adaptive: true,
+          inputBar: { type: "NumberIncrementBar", step: 1 },
+        },
+      ],
+    },
+    {
+      name: "Overhead Press",
+      id: 4,
+      restTimer: 180,
+      metrics: [
+        {
+          name: "weight",
+          type: "number",
+          adaptive: true,
+          inputBar: { type: "NumberIncrementBar", step: 5 },
+        },
+        {
+          name: "reps",
+          type: "number",
+          adaptive: true,
+          inputBar: { type: "NumberIncrementBar", step: 1 },
+        },
+      ],
+    },
+    {
+      name: "Deadlift",
+      id: 5,
+      restTimer: 180,
+      metrics: [
+        {
+          name: "weight",
+          type: "number",
+          adaptive: true,
+          inputBar: { type: "NumberIncrementBar", step: 5 },
+        },
+        {
+          name: "reps",
+          type: "number",
+          adaptive: true,
+          inputBar: { type: "NumberIncrementBar", step: 1 },
+        },
+      ],
+    },
+    {
+      name: "Pushups",
+      id: 6,
+      restTimer: 180,
+      metrics: [
+        {
+          name: "reps",
+          type: "number",
+          adaptive: true,
+          inputBar: { type: "NumberIncrementBar", step: 1 },
+        },
+      ],
+    },
+    {
+      name: "Pullups",
+      id: 7,
+      restTimer: 180,
+      metrics: [
+        {
+          name: "reps",
+          type: "number",
+          adaptive: true,
+          inputBar: { type: "NumberIncrementBar", step: 1 },
+        },
+      ],
+    },
+    {
+      name: "Leg Press",
+      id: 8,
+      restTimer: 180,
+      metrics: [
+        {
+          name: "weight",
+          type: "number",
+          adaptive: true,
+          inputBar: { type: "NumberIncrementBar", step: 10 },
+        },
+        {
+          name: "reps",
+          type: "number",
+          adaptive: true,
+          inputBar: { type: "NumberIncrementBar", step: 1 },
+        },
+      ],
+    },
+  ],
+  programData: JSON.parse(localStorage.getItem("programData")) || [
     {
       name: "Stronglifts 5x5",
       id: 1,
@@ -473,6 +615,7 @@ function GlobalContextProvider({ children }) {
       tempWorkoutData,
       workoutData,
       workoutHistory,
+      exerciseData,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -494,6 +637,14 @@ function GlobalContextProvider({ children }) {
     localStorage.setItem("workoutHistory", JSON.stringify(workoutHistory));
   }, [workoutHistory]);
 
+  useEffect(() => {
+    localStorage.setItem("programData", JSON.stringify(programData));
+  }, [programData]);
+
+  useEffect(() => {
+    localStorage.setItem("exerciseData", JSON.stringify(exerciseData));
+  }, [exerciseData]);
+
   return (
     <GlobalContext.Provider
       value={{
@@ -505,6 +656,7 @@ function GlobalContextProvider({ children }) {
         tempWorkoutData,
         workoutData,
         workoutHistory,
+        exerciseData,
         dispatch,
 
         handleFinishWorkout,
