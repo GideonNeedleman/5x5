@@ -107,6 +107,7 @@ const initialState = {
   nextWorkoutOrder: null, //check if needed
   tempWorkoutData: [], //each element is a completed set
   workoutData: JSON.parse(localStorage.getItem("workoutData")) || [],
+  workoutHistory: JSON.parse(localStorage.getItem("workoutHistory")) || [], //{workoutId, workoutName, startTime, finishTime}
   programData: [
     {
       name: "Stronglifts 5x5",
@@ -357,6 +358,7 @@ function GlobalContextProvider({ children }) {
       programData,
       tempWorkoutData,
       workoutData,
+      workoutHistory,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -374,6 +376,10 @@ function GlobalContextProvider({ children }) {
     localStorage.setItem("workoutData", JSON.stringify(workoutData));
   }, [workoutData]);
 
+  useEffect(() => {
+    localStorage.setItem("workoutHistory", JSON.stringify(workoutHistory));
+  }, [workoutHistory]);
+
   return (
     <GlobalContext.Provider
       value={{
@@ -384,6 +390,7 @@ function GlobalContextProvider({ children }) {
         programData,
         tempWorkoutData,
         workoutData,
+        workoutHistory,
         dispatch,
 
         handleFinishWorkout,
