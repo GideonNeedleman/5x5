@@ -23,7 +23,7 @@ function NumberIncrementBar({
         <Button
           variant="secondary"
           disabled={isFinished && !isUnlocked}
-          onClick={() => stepMetric(metric.name, -metric.inputBar?.step || 1)}
+          onClick={() => stepMetric(metric.name, -metric.inputBar?.step || -1)}
         >
           <BsDashLg />
         </Button>
