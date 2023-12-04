@@ -18,6 +18,7 @@ function reducer(state, action) {
         activeWorkout: null,
         isWorkoutStarted: false,
         activeProgramId: null,
+        tempWorkoutData: [],
         activeKey: 1,
       };
     case "begin-workout":
@@ -33,6 +34,7 @@ function reducer(state, action) {
             ? state.activeWorkout.order + 1
             : 0,
         isWorkoutStarted: true,
+        isWorkoutFinished: false,
         activeKey: 0,
         // mostRecentWorkout: null,
       };
@@ -56,6 +58,7 @@ function reducer(state, action) {
         activeWorkout: null,
         activeProgramId: null,
         isWorkoutStarted: false,
+        isWorkoutFinished: true,
         nextWorkoutOrder: null,
         activeKey: 1,
         workoutData: [...state.workoutData, ...state.tempWorkoutData],
@@ -105,6 +108,7 @@ const initialState = {
   activeProgramId: null,
   mostRecentWorkout: null,
   isWorkoutStarted: false,
+  isWorkoutFinished: false,
   activeKey: 1,
   nextWorkoutOrder: null, //check if needed
   tempWorkoutData: [], //each element is a completed set
@@ -122,6 +126,7 @@ function GlobalContextProvider({ children }) {
       activeWorkout,
       mostRecentWorkout,
       isWorkoutStarted,
+      isWorkoutFinished,
       activeKey,
       programData,
       tempWorkoutData,
@@ -163,6 +168,7 @@ function GlobalContextProvider({ children }) {
         activeWorkout,
         mostRecentWorkout,
         isWorkoutStarted,
+        isWorkoutFinished,
         activeKey,
         programData,
         tempWorkoutData,
