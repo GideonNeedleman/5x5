@@ -32,7 +32,7 @@ function ConfirmFinishWorkoutModal({ onHide, show }) {
           onClick={() => {
             handleFinishWorkout();
             navigate("/review");
-            vibrator([20, 10, 20, 10, 500]);
+            vibrator([100, 100, 100, 100, 500]);
           }}
         >
           Confirm

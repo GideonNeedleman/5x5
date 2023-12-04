@@ -19,7 +19,7 @@ function Toaster() {
       <ToastContainer position="top-center" className="p-3">
         <Toast
           onClose={() => setShowStart(false)}
-          bg="success"
+          bg="warning"
           show={showStart}
           delay={3000}
           autohide
@@ -27,7 +27,7 @@ function Toaster() {
           <Toast.Header>
             <strong className="me-auto">Workout Started</strong>
           </Toast.Header>
-          <Toast.Body className="text-center text-light fw-bold">
+          <Toast.Body className="text-center fw-bold">
             <span>You&apos;ve got this!</span>
           </Toast.Body>
         </Toast>
@@ -37,7 +37,7 @@ function Toaster() {
       <ToastContainer position="top-center" className="p-3">
         <Toast
           onClose={() => setShowFinish(false)}
-          bg="success"
+          bg="warning"
           show={showFinish}
           delay={3000}
           autohide
@@ -45,7 +45,7 @@ function Toaster() {
           <Toast.Header>
             <strong className="me-auto">Workout Finished</strong>
           </Toast.Header>
-          <Toast.Body className="text-center text-light fw-bold">
+          <Toast.Body className="text-center fw-bold">
             <span>Great job!</span>
           </Toast.Body>
         </Toast>
