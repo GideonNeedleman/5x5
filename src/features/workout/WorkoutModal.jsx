@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Stack } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import vibrator from "vibrator";
 
 export default function WorkoutModal({ show, onHide, workout }) {
   const [testMessage, setTestMessage] = useState();

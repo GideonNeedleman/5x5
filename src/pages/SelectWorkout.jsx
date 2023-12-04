@@ -5,6 +5,7 @@ import "react-calendar/dist/Calendar.css";
 import { Container } from "react-bootstrap";
 import WorkoutButton from "../features/workout/WorkoutButton";
 import { useGlobalContext } from "../context/GlobalContext";
+import vibrator from "vibrator";
 
 function SelectWorkout() {
   const { programData: programs } = useGlobalContext();
@@ -38,8 +39,12 @@ function SelectWorkout() {
             </Stack>
           </div>
         ))}
-        <Button variant="outline-dark">+ Add Program / Workout</Button>
-        <Button variant="outline-secondary">Just go</Button>
+        <Button variant="outline-dark" onClick={() => vibrator(1)}>
+          + Add Program / Workout
+        </Button>
+        <Button variant="outline-secondary" onClick={() => vibrator(1)}>
+          Just go
+        </Button>
       </Stack>
       <Container className="mt-2 mb-2 d-flex justify-content-center">
         <Calendar />

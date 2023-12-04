@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useGlobalContext } from "../../context/GlobalContext";
+import vibrator from "vibrator";
 
 function ConfirmFinishWorkoutModal({ onHide, show }) {
   const { handleFinishWorkout } = useGlobalContext();
@@ -18,13 +19,20 @@ function ConfirmFinishWorkoutModal({ onHide, show }) {
         <h3 className="text-center">Confirm finish workout early</h3>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={onHide} variant="secondary">
+        <Button
+          onClick={() => {
+            onHide();
+            vibrator(1);
+          }}
+          variant="secondary"
+        >
           Cancel
         </Button>
         <Button
           onClick={() => {
             handleFinishWorkout();
             navigate("/review");
+            vibrator([20, 10, 20, 10, 500]);
           }}
         >
           Confirm

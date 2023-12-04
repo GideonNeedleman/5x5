@@ -1,5 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import vibrator from "vibrator";
 
 function ConfirmCancelWorkoutModal({ onHide, show, handleClose }) {
   return (
@@ -13,10 +14,22 @@ function ConfirmCancelWorkoutModal({ onHide, show, handleClose }) {
         <h3 className="text-center">Confirm cancel workout</h3>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={onHide} variant="secondary">
+        <Button
+          onClick={() => {
+            onHide();
+            vibrator(1);
+          }}
+          variant="secondary"
+        >
           Cancel
         </Button>
-        <Button onClick={handleClose} variant="warning">
+        <Button
+          onClick={() => {
+            handleClose();
+            vibrator(1);
+          }}
+          variant="warning"
+        >
           Confirm
         </Button>
       </Modal.Footer>

@@ -1,5 +1,6 @@
 import { Button, Col, Row } from "react-bootstrap";
 import { BsStickyFill, BsLockFill, BsUnlockFill } from "react-icons/bs";
+import vibrator from "vibrator";
 
 function SetButtons({
   isNoteVisible,
@@ -16,7 +17,10 @@ function SetButtons({
           <Button
             variant="secondary"
             className=""
-            onClick={() => setIsNoteVisible(true)}
+            onClick={() => {
+              setIsNoteVisible(true);
+              vibrator(1);
+            }}
             disabled={isFinished && !isUnlocked}
           >
             <BsStickyFill />
@@ -25,12 +29,15 @@ function SetButtons({
       )}
       <Col>
         {!isFinished ? (
-          <Button className="w-100" type="submit">
+          <Button className="w-100" type="submit" onClick={() => vibrator(100)}>
             Finish Set
           </Button>
         ) : isUnlocked ? (
           <Button
-            onClick={() => setIsUnlocked((prev) => !prev)}
+            onClick={() => {
+              setIsUnlocked((prev) => !prev);
+              vibrator(1);
+            }}
             className="w-100"
             variant="primary"
           >
@@ -43,6 +50,7 @@ function SetButtons({
             onClick={() => {
               setIsUnlocked((prev) => !prev);
               setIsEditSet(true);
+              vibrator(1);
             }}
             type="submit"
             className="w-100"
