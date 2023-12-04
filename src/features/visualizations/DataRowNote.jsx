@@ -1,9 +1,15 @@
 import { IconContext } from "react-icons";
 import { BsArrowReturnRight } from "react-icons/bs";
+import vibrator from "vibrator";
 
 function DataRowNote({ numCols, setIsShowNote, note }) {
   return (
-    <tr onClick={() => setIsShowNote(false)}>
+    <tr
+      onClick={() => {
+        setIsShowNote(false);
+        vibrator(1);
+      }}
+    >
       <td colSpan={numCols}>
         <IconContext.Provider
           value={{

@@ -1,5 +1,6 @@
 import { IconContext } from "react-icons";
 import { BsThreeDotsVertical, BsStickyFill } from "react-icons/bs";
+import vibrator from "vibrator";
 
 function DataRowMenuIcon({ isShowNote, setIsShowMenuModal, setIsShowNote }) {
   return (
@@ -8,7 +9,10 @@ function DataRowMenuIcon({ isShowNote, setIsShowMenuModal, setIsShowNote }) {
         <IconContext.Provider value={{ color: "var(--bs-dark)" }}>
           <BsThreeDotsVertical
             className="me-2"
-            onClick={() => setIsShowMenuModal(true)}
+            onClick={() => {
+              vibrator(1);
+              setIsShowMenuModal(true);
+            }}
             style={{ cursor: "pointer" }}
           />
         </IconContext.Provider>
@@ -21,7 +25,10 @@ function DataRowMenuIcon({ isShowNote, setIsShowMenuModal, setIsShowNote }) {
         >
           <BsStickyFill
             className="me-1"
-            onClick={() => setIsShowNote((prev) => !prev)}
+            onClick={() => {
+              vibrator(1);
+              setIsShowNote((prev) => !prev);
+            }}
             style={{ cursor: "pointer" }}
           />
         </IconContext.Provider>
