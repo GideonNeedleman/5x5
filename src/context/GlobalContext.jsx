@@ -20,6 +20,7 @@ function reducer(state, action) {
         activeProgramId: null,
         tempWorkoutData: [],
         activeKey: 1,
+        tempWorkoutHistoryRecord: {},
       };
     case "begin-workout":
       return {
