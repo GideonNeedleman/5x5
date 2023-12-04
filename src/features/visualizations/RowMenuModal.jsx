@@ -1,6 +1,7 @@
 import { Stack } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import vibrator from "vibrator";
 
 function RowMenuModal({
   show,
@@ -23,6 +24,7 @@ function RowMenuModal({
             onClick={() => {
               setIsShowEditModal(true);
               onHide();
+              vibrator(1);
             }}
           >
             Edit record
@@ -32,6 +34,7 @@ function RowMenuModal({
             onClick={() => {
               setIsShowConfirmationModal(true);
               onHide();
+              vibrator(1);
             }}
           >
             Delete record

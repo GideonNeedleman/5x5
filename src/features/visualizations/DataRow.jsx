@@ -57,16 +57,16 @@ function DataRow({ set, isDate = true }) {
         setIsShowEditModal={setIsShowEditModal}
         setIsShowConfirmationModal={setIsShowConfirmationModal}
       />
+      <EditSetModal
+        show={isShowEditModal}
+        onHide={() => setIsShowEditModal(false)}
+        set={set}
+      />
       <ConfirmationModal
         message={`Confirm delete record`}
         show={isShowConfirmationModal}
         onHide={() => setIsShowConfirmationModal(false)}
         handleConfirm={deleteSet}
-      />
-      <EditSetModal
-        show={isShowEditModal}
-        onHide={() => setIsShowEditModal(false)}
-        set={set}
       />
     </>
   );

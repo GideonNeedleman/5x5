@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Button, Col, Row } from "react-bootstrap";
 import { useGlobalContext } from "../../context/GlobalContext";
+import vibrator from "vibrator";
 
 function FinishWorkoutButtons({
   isWorkoutStarted,
@@ -18,7 +19,10 @@ function FinishWorkoutButtons({
             <Button
               variant="warning"
               className="w-100"
-              onClick={handleCancelModal}
+              onClick={() => {
+                handleCancelModal();
+                vibrator(1);
+              }}
             >
               Cancel
             </Button>
@@ -32,6 +36,7 @@ function FinishWorkoutButtons({
                 onClick={() => {
                   handleFinishWorkout();
                   navigate("/review");
+                  vibrator([100, 100, 100, 100, 500]);
                 }}
               >
                 Finish Workout
@@ -40,7 +45,10 @@ function FinishWorkoutButtons({
               <Button
                 variant="secondary"
                 className="w-100"
-                onClick={handleConfirmationModal}
+                onClick={() => {
+                  handleConfirmationModal();
+                  vibrator(1);
+                }}
               >
                 Finish Incomplete Workout
               </Button>

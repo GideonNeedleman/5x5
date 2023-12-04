@@ -1,5 +1,6 @@
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { BsDashLg, BsPlusLg } from "react-icons/bs";
+import vibrator from "vibrator";
 
 // not including units. Could try pass in metric then get metric.name and metric.inputBar.step
 
@@ -23,7 +24,10 @@ function NumberIncrementBar({
         <Button
           variant="secondary"
           disabled={isFinished && !isUnlocked}
-          onClick={() => stepMetric(metric.name, -metric.inputBar?.step || -1)}
+          onClick={() => {
+            stepMetric(metric.name, -metric.inputBar?.step || -1);
+            vibrator(1);
+          }}
         >
           <BsDashLg />
         </Button>
@@ -40,7 +44,10 @@ function NumberIncrementBar({
         <Button
           variant="secondary"
           disabled={isFinished && !isUnlocked}
-          onClick={() => stepMetric(metric.name, metric.inputBar?.step || 1)}
+          onClick={() => {
+            stepMetric(metric.name, metric.inputBar?.step || 1);
+            vibrator(1);
+          }}
         >
           <BsPlusLg />
         </Button>

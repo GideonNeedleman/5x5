@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { objectToArray } from "../../utils/helpers";
 import NumberIncrementBar from "../input-bars/NumberIncrementBar";
+import vibrator from "vibrator";
 
 function EditSetModal({ show, onHide, set }) {
   const { programData, dispatch } = useGlobalContext();
@@ -68,10 +69,19 @@ function EditSetModal({ show, onHide, set }) {
             />
           </InputGroup>
           <div className="text-end">
-            <Button className="me-2" variant="secondary" onClick={onHide}>
+            <Button
+              className="me-2"
+              variant="secondary"
+              onClick={() => {
+                onHide();
+                vibrator(1);
+              }}
+            >
               Cancel
             </Button>
-            <Button type="submit">Save</Button>
+            <Button type="submit" onClick={() => vibrator(1)}>
+              Save
+            </Button>
           </div>
         </Form>
         <DevTool control={control} />

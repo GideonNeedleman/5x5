@@ -4,6 +4,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import WorkoutModal from "./WorkoutModal";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
+import vibrator from "vibrator";
 
 function WorkoutButton({ children, workout, program }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,6 +15,7 @@ function WorkoutButton({ children, workout, program }) {
   function handleClick() {
     dispatch({ type: "select-workout", payload: { program, workout } });
     navigate("/");
+    vibrator(1);
   }
 
   return (
