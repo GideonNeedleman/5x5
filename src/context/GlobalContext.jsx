@@ -36,6 +36,11 @@ function reducer(state, action) {
         isWorkoutStarted: true,
         isWorkoutFinished: false,
         activeKey: 0,
+        tempWorkoutHistoryRecord: {
+          workoutId: state.activeWorkout.id,
+          workoutName: state.activeWorkout.name,
+          startTime: new Date(),
+        },
         // mostRecentWorkout: null,
       };
     case "finish-workout":
@@ -63,6 +68,11 @@ function reducer(state, action) {
         activeKey: 1,
         workoutData: [...state.workoutData, ...state.tempWorkoutData],
         tempWorkoutData: [],
+        workoutHistory: [
+          ...state.workoutHistory,
+          { ...state.tempWorkoutHistoryRecord, finishTime: new Date() },
+        ],
+        tempWorkoutHistoryRecord: {},
       };
     case "next-exercise":
       return {
@@ -113,6 +123,7 @@ const initialState = {
   nextWorkoutOrder: null, //check if needed
   tempWorkoutData: [], //each element is a completed set
   workoutData: JSON.parse(localStorage.getItem("workoutData")) || [],
+  tempWorkoutHistoryRecord: {},
   workoutHistory: JSON.parse(localStorage.getItem("workoutHistory")) || [], //{workoutId, workoutName, startTime, finishTime}
   exerciseData:
     JSON.parse(localStorage.getItem("exerciseData")) || initialExerciseData,
