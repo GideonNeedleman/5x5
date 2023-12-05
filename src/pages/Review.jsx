@@ -1,5 +1,6 @@
 import { useGlobalContext } from "../context/GlobalContext";
 import ReviewDataTable from "../features/visualizations/ReviewDataTable";
+import WorkoutOverview from "../features/visualizations/WorkoutOverview";
 
 function Review() {
   const { tempWorkoutData, exerciseData } = useGlobalContext();
@@ -14,7 +15,8 @@ function Review() {
 
   return (
     <div>
-      <h1 className="text-center">Review Your Workout</h1>
+      <h1 className="text-center">Workout Summary</h1>
+      <WorkoutOverview />
       {exercises.map((exercise) => (
         <ReviewDataTable exercise={exercise} key={exercise.id} />
       ))}
