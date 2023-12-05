@@ -11,7 +11,7 @@ function SetButtons({
   setIsEditSet,
 }) {
   return (
-    <Row className="mt-3">
+    <Row className="mt-2">
       {!isNoteVisible && (
         <Col xs={2}>
           <Button

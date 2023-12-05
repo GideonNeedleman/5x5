@@ -6,8 +6,9 @@ import DataRowNote from "./DataRowNote";
 import EditSetModal from "./EditSetModal";
 import ConfirmationModal from "./ConfirmationModal";
 import { useGlobalContext } from "../../context/GlobalContext";
+import { objectToArray } from "../../utils/helpers";
 
-function DataRow({ set, isDate = true }) {
+function DataRow({ set, isDate = true, exercise }) {
   const [isShowNote, setIsShowNote] = useState(true);
   const [isShowMenuModal, setIsShowMenuModal] = useState(false);
   const [isShowEditModal, setIsShowEditModal] = useState(false);
@@ -15,7 +16,8 @@ function DataRow({ set, isDate = true }) {
 
   const date = dayjs(set.datetime).format("ddd M/D");
   const time = dayjs(set.datetime).format("h:mm a");
-  const numCols = set.metrics.length + 1;
+  const numCols = exercise.metrics.length + 1;
+  const metricsArray = objectToArray(set.metrics);
 
   const { dispatch } = useGlobalContext();
 
@@ -23,8 +25,6 @@ function DataRow({ set, isDate = true }) {
     dispatch({ type: "delete-set", payload: set });
     setIsShowConfirmationModal(false);
   }
-
-  console.log(set);
 
   return (
     <>
@@ -39,7 +39,7 @@ function DataRow({ set, isDate = true }) {
           {isDate ? date : time}
         </td>
         {/* Ensure metrics order in set object === order in exercise object used to set header. */}
-        {set.metrics.map((metric) => (
+        {metricsArray.map((metric) => (
           <td key={metric.name}>{metric.value}</td>
         ))}
       </tr>
@@ -61,6 +61,7 @@ function DataRow({ set, isDate = true }) {
         show={isShowEditModal}
         onHide={() => setIsShowEditModal(false)}
         set={set}
+        exercise={exercise}
       />
       <ConfirmationModal
         message={`Confirm delete record`}

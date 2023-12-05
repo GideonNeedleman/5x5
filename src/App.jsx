@@ -12,7 +12,7 @@ function App() {
     <GlobalContextProvider>
       <BrowserRouter>
         <Header />
-        <Toaster />
+        {/* <Toaster /> */}
         <Routes>
           <Route path="/" element={<Workout />} />
           <Route path="/history" element={<History />} />

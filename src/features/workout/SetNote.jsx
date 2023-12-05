@@ -1,13 +1,20 @@
 import { Form, InputGroup } from "react-bootstrap";
 
-function SetNote({ register, isFinished, isUnlocked }) {
+function SetNote({
+  register,
+  isFinished = false,
+  isUnlocked = true,
+  defaultValue,
+}) {
   return (
-    <InputGroup className="mt-3">
+    <InputGroup>
       <Form.Control
+        id="note"
         as="textarea"
         placeholder="Write notes here..."
         aria-label="With textarea"
         disabled={isFinished && !isUnlocked}
+        defaultValue={defaultValue}
         {...register(`note`)}
       />
     </InputGroup>

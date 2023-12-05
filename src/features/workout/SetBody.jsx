@@ -20,7 +20,7 @@ function SetBody({
           getValues={getValues}
           isFinished={isFinished}
           isUnlocked={isUnlocked}
-          defaultValue={set[metric.name]}
+          defaultValue={set.metrics[metric.name]}
           key={metric.name}
         />
       ))}

@@ -36,19 +36,17 @@ function DoSet({
 
     if (index + 1 === numSets) dispatch({ type: "next-exercise" }); // if last set for exercise then go to next exercise
 
-    const { note, ...metricsObject } = data;
+    const { note, ...metrics } = data;
 
-    const metrics = [];
+    /* const metrics = [];
 
     for (const property in metricsObject) {
       metrics.push({ name: property, value: metricsObject[property] });
-    }
-
-    console.log(metrics);
+    } */
 
     // put all metrics in a sub-object and separate out note. If no note, then note value is undefined
     const formatData = {
-      exerciseId: exercise.id,
+      exerciseId: exercise.exerciseIndex,
       exerciseName: exercise.name,
       setId: set.id,
       datetime: new Date(),

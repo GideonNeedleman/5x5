@@ -32,7 +32,7 @@ function ReviewDataTable({ exercise }) {
         </thead>
         <tbody>
           {exerciseData.map((set, index) => (
-            <DataRow set={set} isDate={false} key={index} />
+            <DataRow set={set} isDate={false} key={index} exercise={exercise} />
           ))}
         </tbody>
       </Table>

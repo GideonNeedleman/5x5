@@ -1,4 +1,5 @@
 import Table from "react-bootstrap/Table";
+import { objectToArray } from "../../utils/helpers";
 
 export default function WorkoutTable({ workout }) {
   return (
@@ -19,8 +20,11 @@ function ExerciseTable({ exercise }) {
       <thead className="text-center">
         <tr>
           <th>Set</th>
-          {exercise.sets[0].weight && <th>Weight (lbs)</th>}
-          <th>Reps</th>
+          {exercise.metrics.map((metric) => (
+            <th key={metric.name} className="text-capitalize">
+              {metric.name}
+            </th>
+          ))}
         </tr>
       </thead>
       <tbody>
@@ -33,11 +37,14 @@ function ExerciseTable({ exercise }) {
 }
 
 function SetRow({ set, index }) {
+  const metricsArray = objectToArray(set.metrics);
+  console.log(metricsArray);
   return (
     <tr className="text-center">
       <td>{index + 1}</td>
-      {set.weight && <td>{set.weight}</td>}
-      <td>{set.reps}</td>
+      {metricsArray.map((metric) => (
+        <td key={metric.name}>{metric.value}</td>
+      ))}
     </tr>
   );
 }
