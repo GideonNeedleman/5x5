@@ -13,13 +13,13 @@ function WorkoutOverview() {
   console.log(mostRecentWorkout);
   console.log(duration);
   return (
-    <div style={{ display: "flex", justifyContent: "center" }} className="pb-2">
+    <div className="pb-2 d-flex justify-content-center">
       <Card
         border="primary"
         className="text-center "
         style={{ width: "18rem" }}
       >
-        <Card.Header as="h5">{mostRecentWorkout.workoutName}</Card.Header>
+        <Card.Header as="h2">{mostRecentWorkout.workoutName}</Card.Header>
         <Card.Body>
           <Card.Text>You worked out for {displayDuration(duration)}</Card.Text>
         </Card.Body>

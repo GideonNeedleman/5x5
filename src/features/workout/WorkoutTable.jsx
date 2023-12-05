@@ -3,14 +3,17 @@ import { objectToArray } from "../../utils/helpers";
 
 export default function WorkoutTable({ workout }) {
   return (
-    <div className="mt-3">
-      {workout.exercises.map((exercise) => (
-        <div key={exercise.id}>
-          <h2 className="text-center fw-normal">{exercise.name}</h2>
-          <ExerciseTable exercise={exercise} />
-        </div>
-      ))}
-    </div>
+    <>
+      <h2 className="text-center fw-medium mt-1">Preview Workout</h2>
+      <div className="mt-2">
+        {workout.exercises.map((exercise) => (
+          <div key={exercise.id}>
+            <h3 className="text-center fw-normal">{exercise.name}</h3>
+            <ExerciseTable exercise={exercise} />
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
 

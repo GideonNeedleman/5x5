@@ -17,7 +17,7 @@ function ReviewDataTable({ exercise }) {
 
   return (
     <>
-      <h2 className="text-center fw-normal fs-3">{exercise.name}</h2>
+      <h2 className="text-center fw-normal">{exercise.name}</h2>
       <Table striped bordered>
         <thead className="text-center">
           <tr>

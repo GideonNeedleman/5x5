@@ -15,7 +15,7 @@ function Review() {
 
   return (
     <div>
-      <h1 className="text-center">Workout Summary</h1>
+      <h1 className="text-center display-3">Workout Summary</h1>
       <WorkoutOverview />
       {exercises.map((exercise) => (
         <ReviewDataTable exercise={exercise} key={exercise.id} />

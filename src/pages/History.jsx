@@ -23,7 +23,7 @@ function History() {
   console.log("chosen exercise", chosenExerciseId);
   return (
     <main>
-      <h1 className="text-center">History</h1>
+      <h1 className="text-center display-3">History</h1>
       <div className="px-2">
         <Form.Select
           className="my-2 fs-3"
