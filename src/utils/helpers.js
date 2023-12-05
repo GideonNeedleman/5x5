@@ -64,3 +64,23 @@ export function objectToArray(object) {
   }
   return array;
 }
+
+export function displayDuration(seconds) {
+  const minutes = seconds / 60;
+  const hours = minutes / 60;
+  const Minutes = Math.floor(minutes);
+  const Hours = Math.floor(hours);
+
+  if (Hours > 0) {
+    return `${Hours}h${Math.floor(minutes - Hours * 60)}m${Math.floor(
+      seconds - Minutes * 60
+    )}s`;
+  }
+
+  if (Minutes > 0)
+    return `${Math.floor(minutes - Hours * 60)}m${Math.floor(
+      seconds - Minutes * 60
+    )}s`;
+
+  return `${Math.floor(seconds)}s`;
+}
