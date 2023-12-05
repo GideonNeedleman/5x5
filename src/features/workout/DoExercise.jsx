@@ -46,6 +46,7 @@ function DoExercise({ exercise, tracker, setNumFinishedExercises }) {
               checkExercise={checkExerciseFinished}
               setNumFinishedSets={setNumFinishedSets}
               exercise={exercise}
+              canToggle={i <= numFinishedSets}
             />
           ))}
         </Accordion>

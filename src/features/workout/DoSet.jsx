@@ -18,6 +18,7 @@ function DoSet({
   checkExercise,
   setNumFinishedSets,
   exercise,
+  canToggle,
 }) {
   const { dispatch, tempWorkoutData } = useGlobalContext();
   const [isNoteVisible, setIsNoteVisible] = useState(false);
@@ -37,14 +38,6 @@ function DoSet({
     if (index + 1 === numSets) dispatch({ type: "next-exercise" }); // if last set for exercise then go to next exercise
 
     const { note, ...metrics } = data;
-
-    /* const metrics = [];
-
-    for (const property in metricsObject) {
-      metrics.push({ name: property, value: metricsObject[property] });
-    } */
-
-    // put all metrics in a sub-object and separate out note. If no note, then note value is undefined
     const formatData = {
       exerciseId: exercise.exerciseIndex,
       exerciseName: exercise.name,
@@ -69,9 +62,13 @@ function DoSet({
 
   return (
     <Accordion.Item eventKey={`${index - 1 + activeKey}`}>
-      <Accordion.Header>
+      <Accordion.Header style={canToggle ? {} : { pointerEvents: "none" }}>
         <span className="d-flex justify-content-between w-100 px-1">
-          <span className={isFinished ? "text-secondary" : "fw-bold "}>
+          <span
+            className={
+              isFinished ? "text-secondary" : canToggle ? "fw-bold" : ""
+            }
+          >
             {isFinished && (
               <BsCheckSquareFill style={{ color: "var(--bs-blue)" }} />
             )}{" "}
