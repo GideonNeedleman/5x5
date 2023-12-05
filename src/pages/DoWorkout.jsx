@@ -46,8 +46,11 @@ function DoWorkout() {
 
   return (
     <>
-      <h1 className="display-3 text-center">{workout.name} </h1>
-
+      {isWorkoutStarted ? (
+        <h1 className="display-3 text-center">{workout.name} </h1>
+      ) : (
+        <h1 className="text-center display-3">Preview {workout.name}</h1>
+      )}
       <BeginWorkoutButtons
         isWorkoutStarted={isWorkoutStarted}
         handleBack={handleBack}

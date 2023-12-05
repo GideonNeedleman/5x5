@@ -4,7 +4,7 @@ import { objectToArray } from "../../utils/helpers";
 export default function WorkoutTable({ workout }) {
   return (
     <>
-      <h2 className="text-center fw-medium mt-1">Preview Workout</h2>
+      {/* <h2 className="text-center fw-medium mt-1">Preview Workout</h2> */}
       <div className="mt-2">
         {workout.exercises.map((exercise) => (
           <div key={exercise.id}>
