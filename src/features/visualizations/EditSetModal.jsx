@@ -1,35 +1,27 @@
 import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
+// import InputGroup from "react-bootstrap/InputGroup";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
-import { objectToArray } from "../../utils/helpers";
-import NumberIncrementBar from "../input-bars/NumberIncrementBar";
 import vibrator from "vibrator";
+import SetBody from "../workout/SetBody";
+import SetNote from "../workout/SetNote";
 
-function EditSetModal({ show, onHide, set }) {
-  const { programData, dispatch } = useGlobalContext();
+function EditSetModal({ show, onHide, set, exercise }) {
+  const { dispatch } = useGlobalContext();
   const form = useForm();
   const { register, control, handleSubmit, setValue, getValues } = form;
 
-  // super nested search. First part digs to find the matching program, then again to find matching workout, then again to find matching exercise. Should be better way
-  const exerciseMatch = programData
-    .find((program) =>
-      program.workouts.find((workout) =>
-        workout.exercises.find((exercise) => exercise.id === set.exerciseId)
-      )
-    )
-    .workouts.find((workout) =>
-      workout.exercises.find((exercise) => exercise.id === set.exerciseId)
-    )
-    .exercises.find((exercise) => exercise.id === set.exerciseId);
+  console.log("set", set);
+  console.log("exercise", exercise);
 
   function handleSubmitSet(data) {
+    console.log("data", data);
     const { note, ...editedMetrics } = data;
-    const metricsArray = objectToArray(editedMetrics);
-    const editedSet = { ...set, note, metrics: metricsArray };
+    const editedSet = { ...set, note, metrics: editedMetrics };
+    console.log("editedSet", editedSet);
     dispatch({ type: "edit-set-data", payload: editedSet });
     onHide();
   }
@@ -44,20 +36,17 @@ function EditSetModal({ show, onHide, set }) {
       <Modal.Body>
         <h2 className="text-center">Edit {set.exerciseName}</h2>
         <Form onSubmit={handleSubmit(handleSubmitSet)}>
-          {/* There's no step value because set shape in workoutData !== set shape in programData. Cludge in fallback stepvalue inside NumberIncrementBar. Ideally slot in SetBody here with switch statement to find correct inputBar. Need to align object shapes to make it work. */}
-          {set.metrics.map((metric) => (
-            <NumberIncrementBar
-              metric={metric}
-              register={register}
-              setValue={setValue}
-              getValues={getValues}
-              defaultValue={metric.value}
-              key={metric.name}
-            />
-          ))}
+          <SetBody
+            set={set}
+            exercise={exercise}
+            register={register}
+            setValue={setValue}
+            getValues={getValues}
+          />
           {/* Field for note */}
           <Form.Label htmlFor="note">Note</Form.Label>
-          <InputGroup>
+          <SetNote register={register} defaultValue={set.note} />
+          {/* <InputGroup>
             <Form.Control
               className="mb-3"
               id="note"
@@ -67,8 +56,8 @@ function EditSetModal({ show, onHide, set }) {
               defaultValue={set.note}
               {...register("note")}
             />
-          </InputGroup>
-          <div className="text-end">
+          </InputGroup> */}
+          <div className="text-end mt-3">
             <Button
               className="me-2"
               variant="secondary"

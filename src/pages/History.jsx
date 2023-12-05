@@ -4,12 +4,23 @@ import { useGlobalContext } from "../context/GlobalContext";
 import SelectDataTable from "../features/visualizations/SelectDataTable";
 
 function History() {
-  const { workoutData } = useGlobalContext();
-  const exerciseList = [
-    ...new Set(workoutData.map((element) => element.exerciseName)),
-  ].sort();
-  const [chosenExercise, setChosenExercise] = useState(exerciseList[0]);
+  const { workoutData, exerciseData } = useGlobalContext();
 
+  // list of exerciseIds in workoutData
+  const exerciseIds = [
+    ...new Set(workoutData.map((set) => set.exerciseId)),
+  ].sort();
+
+  // list of matching exercises
+  const exercises = exerciseData.filter((exercise) =>
+    exerciseIds.includes(exercise.id)
+  );
+
+  // select field option value
+  const [chosenExerciseId, setChosenExerciseId] = useState(exercises[0].id);
+
+  console.log("exercises", exercises);
+  console.log("chosen exercise", chosenExerciseId);
   return (
     <main>
       <h1 className="text-center">History</h1>
@@ -17,17 +28,17 @@ function History() {
         <Form.Select
           className="my-2 fs-3"
           name="selectedExercise"
-          value={chosenExercise}
-          onChange={(e) => setChosenExercise(e.target.value)}
+          value={chosenExerciseId}
+          onChange={(e) => setChosenExerciseId(Number(e.target.value))}
         >
-          {exerciseList.map((exercise, index) => (
-            <option value={exercise} key={index + 1} className="text-center">
-              {exercise}
+          {exercises.map((exercise, index) => (
+            <option value={exercise.id} key={index + 1} className="text-center">
+              {exercise.name}
             </option>
           ))}
         </Form.Select>
       </div>
-      <SelectDataTable exercise={chosenExercise} key={chosenExercise} />
+      <SelectDataTable exerciseId={chosenExerciseId} key={chosenExerciseId} />
     </main>
   );
 }

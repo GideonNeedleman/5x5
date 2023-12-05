@@ -20,6 +20,7 @@ function reducer(state, action) {
         activeProgramId: null,
         tempWorkoutData: [],
         activeKey: 1,
+        tempWorkoutHistoryRecord: {},
       };
     case "begin-workout":
       return {
@@ -36,7 +37,12 @@ function reducer(state, action) {
         isWorkoutStarted: true,
         isWorkoutFinished: false,
         activeKey: 0,
-        // mostRecentWorkout: null,
+        tempWorkoutHistoryRecord: {
+          workoutId: state.activeWorkout.id,
+          workoutName: state.activeWorkout.name,
+          startTime: new Date(),
+        },
+        tempWorkoutData: [],
       };
     case "finish-workout":
       return {
@@ -54,7 +60,6 @@ function reducer(state, action) {
               }
             : program
         ),
-        mostRecentWorkout: state.activeWorkout,
         activeWorkout: null,
         activeProgramId: null,
         isWorkoutStarted: false,
@@ -62,7 +67,12 @@ function reducer(state, action) {
         nextWorkoutOrder: null,
         activeKey: 1,
         workoutData: [...state.workoutData, ...state.tempWorkoutData],
-        tempWorkoutData: [],
+        // tempWorkoutData: [],
+        workoutHistory: [
+          ...state.workoutHistory,
+          { ...state.tempWorkoutHistoryRecord, finishTime: new Date() },
+        ],
+        tempWorkoutHistoryRecord: {},
       };
     case "next-exercise":
       return {
@@ -106,13 +116,13 @@ function reducer(state, action) {
 const initialState = {
   activeWorkout: null,
   activeProgramId: null,
-  mostRecentWorkout: null,
   isWorkoutStarted: false,
   isWorkoutFinished: false,
   activeKey: 1,
   nextWorkoutOrder: null, //check if needed
   tempWorkoutData: [], //each element is a completed set
   workoutData: JSON.parse(localStorage.getItem("workoutData")) || [],
+  tempWorkoutHistoryRecord: {},
   workoutHistory: JSON.parse(localStorage.getItem("workoutHistory")) || [], //{workoutId, workoutName, startTime, finishTime}
   exerciseData:
     JSON.parse(localStorage.getItem("exerciseData")) || initialExerciseData,
@@ -124,7 +134,6 @@ function GlobalContextProvider({ children }) {
   const [
     {
       activeWorkout,
-      mostRecentWorkout,
       isWorkoutStarted,
       isWorkoutFinished,
       activeKey,
@@ -166,7 +175,6 @@ function GlobalContextProvider({ children }) {
     <GlobalContext.Provider
       value={{
         activeWorkout,
-        mostRecentWorkout,
         isWorkoutStarted,
         isWorkoutFinished,
         activeKey,
