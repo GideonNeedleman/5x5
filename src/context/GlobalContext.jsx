@@ -10,12 +10,14 @@ function reducer(state, action) {
       return {
         ...state,
         activeWorkout: action.payload.workout,
+        tempWorkout: JSON.parse(JSON.stringify(action.payload.workout)),
         activeProgramId: action.payload.program.id,
       };
     case "clear-workout":
       return {
         ...state,
         activeWorkout: null,
+        tempWorkout: null,
         isWorkoutStarted: false,
         activeProgramId: null,
         tempWorkoutData: [],
@@ -62,6 +64,7 @@ function reducer(state, action) {
         ),
         activeWorkout: null,
         activeProgramId: null,
+        tempWorkout: null,
         isWorkoutStarted: false,
         isWorkoutFinished: true,
         nextWorkoutOrder: null,
@@ -107,6 +110,22 @@ function reducer(state, action) {
           ),
         ],
       };
+    case "update-adaptive-metrics":
+      return {
+        ...state,
+        programData: state.programData.map((program) =>
+          program.id === state.activeProgramId
+            ? {
+                ...program,
+                workouts: program.workouts.map((workout) =>
+                  workout.id === state.activeWorkout.id
+                    ? state.tempWorkout
+                    : workout
+                ),
+              }
+            : program
+        ),
+      };
     default:
       throw new Error("unknown action type");
   }
@@ -116,6 +135,7 @@ function reducer(state, action) {
 const initialState = {
   activeWorkout: null,
   activeProgramId: null,
+  tempWorkout: null, //updated with adaptive metrics as sets are finished
   isWorkoutStarted: false,
   isWorkoutFinished: false,
   activeKey: 1,
@@ -134,6 +154,8 @@ function GlobalContextProvider({ children }) {
   const [
     {
       activeWorkout,
+      activeProgramId,
+      tempWorkout,
       isWorkoutStarted,
       isWorkoutFinished,
       activeKey,
@@ -152,6 +174,7 @@ function GlobalContextProvider({ children }) {
       delete tempWorkoutData[i].setId;
     }
 
+    dispatch({ type: "update-adaptive-metrics" });
     dispatch({ type: "finish-workout", payload: tempWorkoutData });
   }
 
@@ -175,6 +198,8 @@ function GlobalContextProvider({ children }) {
     <GlobalContext.Provider
       value={{
         activeWorkout,
+        activeProgramId,
+        tempWorkout,
         isWorkoutStarted,
         isWorkoutFinished,
         activeKey,
