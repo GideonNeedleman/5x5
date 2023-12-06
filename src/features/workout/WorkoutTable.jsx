@@ -1,7 +1,10 @@
 import Table from "react-bootstrap/Table";
 import { objectToArray } from "../../utils/helpers";
+import { useGlobalContext } from "../../context/GlobalContext";
 
 export default function WorkoutTable({ workout }) {
+  const { programData } = useGlobalContext();
+  console.log(programData);
   return (
     <>
       {/* <h2 className="text-center fw-medium mt-1">Preview Workout</h2> */}
@@ -41,7 +44,6 @@ function ExerciseTable({ exercise }) {
 
 function SetRow({ set, index }) {
   const metricsArray = objectToArray(set.metrics);
-  console.log(metricsArray);
   return (
     <tr className="text-center">
       <td>{index + 1}</td>

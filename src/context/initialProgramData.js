@@ -24,7 +24,7 @@ export const initialProgramData = [
               {
                 name: "reps",
                 type: "number",
-                adaptive: true,
+                adaptive: false,
                 inputBar: { type: "NumberIncrementBar", step: 1 },
               },
             ],
@@ -51,7 +51,7 @@ export const initialProgramData = [
               {
                 name: "reps",
                 type: "number",
-                adaptive: true,
+                adaptive: false,
                 inputBar: { type: "NumberIncrementBar", step: 1 },
               },
             ],
@@ -78,7 +78,7 @@ export const initialProgramData = [
               {
                 name: "reps",
                 type: "number",
-                adaptive: true,
+                adaptive: false,
                 inputBar: { type: "NumberIncrementBar", step: 1 },
               },
             ],
@@ -113,7 +113,7 @@ export const initialProgramData = [
               {
                 name: "reps",
                 type: "number",
-                adaptive: true,
+                adaptive: false,
                 inputBar: { type: "NumberIncrementBar", step: 1 },
               },
             ],
@@ -140,7 +140,7 @@ export const initialProgramData = [
               {
                 name: "reps",
                 type: "number",
-                adaptive: true,
+                adaptive: false,
                 inputBar: { type: "NumberIncrementBar", step: 1 },
               },
             ],
@@ -167,7 +167,7 @@ export const initialProgramData = [
               {
                 name: "reps",
                 type: "number",
-                adaptive: true,
+                adaptive: false,
                 inputBar: { type: "NumberIncrementBar", step: 1 },
               },
             ],

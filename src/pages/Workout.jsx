@@ -3,8 +3,8 @@ import DoWorkout from "./DoWorkout";
 import SelectWorkout from "./SelectWorkout";
 
 function Workout() {
-  const { activeWorkout } = useGlobalContext();
-  return <>{activeWorkout ? <DoWorkout /> : <SelectWorkout />}</>;
+  const { activeProgramId } = useGlobalContext();
+  return <>{activeProgramId ? <DoWorkout /> : <SelectWorkout />}</>;
 }
 
 export default Workout;

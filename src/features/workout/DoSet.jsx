@@ -8,6 +8,7 @@ import { DevTool } from "@hookform/devtools";
 import SetBody from "./SetBody";
 import SetNote from "./SetNote";
 import SetButtons from "./SetButtons";
+import { filterObject } from "../../utils/helpers";
 
 function DoSet({
   set,
@@ -51,6 +52,21 @@ function DoSet({
     const editedWorkoutData = tempWorkoutData.map((oldSet) =>
       oldSet.setId === set.id ? { ...oldSet, note, metrics } : oldSet
     );
+
+    // To create object to replace metrics object in set.metrics: 1) get array of adaptive metrics in exercise.metrics[].
+    const adaptiveMetricsArray = exercise.metrics
+      .filter((metric) => metric.adaptive === true)
+      .map((element) => element.name);
+    console.log("adaptive metrics:", adaptiveMetricsArray);
+
+    // 2) filter submitted metrics into newObject based on adaptive values
+    const newMetrics = filterObject(metrics, adaptiveMetricsArray);
+    console.log("new metrics to be saved", newMetrics);
+
+    // 3) mutate set.metrics with newMetrics
+
+    set.metrics = { ...set.metrics, ...newMetrics };
+    console.log("updated default set metrics", metrics);
 
     if (isEditSet) {
       dispatch({

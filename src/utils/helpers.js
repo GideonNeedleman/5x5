@@ -84,3 +84,20 @@ export function displayDuration(seconds) {
 
   return `${Math.floor(seconds)}s`;
 }
+
+export function filterObject(object, filterList) {
+  // filterObject({reps: 5, weight: 100, height: 20}, [reps, weight]) returns {reps: 5, weight: 100}
+
+  // return an empty object if the filterList is not an array
+  if (!Array.isArray(filterList)) return {};
+
+  const newObject = {};
+
+  for (const property of filterList) {
+    if (property in object) {
+      newObject[property] = object[property];
+    }
+  }
+
+  return newObject;
+}

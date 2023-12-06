@@ -9,7 +9,7 @@ function reducer(state, action) {
     case "select-workout":
       return {
         ...state,
-        activeWorkout: action.payload.workout,
+        activeWorkout: JSON.parse(JSON.stringify(action.payload.workout)),
         activeProgramId: action.payload.program.id,
       };
     case "clear-workout":
@@ -107,6 +107,22 @@ function reducer(state, action) {
           ),
         ],
       };
+    case "update-adaptive-metrics":
+      return {
+        ...state,
+        programData: state.programData.map((program) =>
+          program.id === state.activeProgramId
+            ? {
+                ...program,
+                workouts: program.workouts.map((workout) =>
+                  workout.id === state.activeWorkout.id
+                    ? state.activeWorkout
+                    : workout
+                ),
+              }
+            : program
+        ),
+      };
     default:
       throw new Error("unknown action type");
   }
@@ -134,6 +150,7 @@ function GlobalContextProvider({ children }) {
   const [
     {
       activeWorkout,
+      activeProgramId,
       isWorkoutStarted,
       isWorkoutFinished,
       activeKey,
@@ -152,6 +169,7 @@ function GlobalContextProvider({ children }) {
       delete tempWorkoutData[i].setId;
     }
 
+    dispatch({ type: "update-adaptive-metrics" });
     dispatch({ type: "finish-workout", payload: tempWorkoutData });
   }
 
@@ -175,6 +193,7 @@ function GlobalContextProvider({ children }) {
     <GlobalContext.Provider
       value={{
         activeWorkout,
+        activeProgramId,
         isWorkoutStarted,
         isWorkoutFinished,
         activeKey,
