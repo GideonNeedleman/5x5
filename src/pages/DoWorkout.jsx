@@ -11,7 +11,7 @@ import WorkoutTable from "../features/workout/WorkoutTable";
 
 function DoWorkout() {
   const {
-    tempWorkout: workout,
+    activeWorkout: workout,
     isWorkoutStarted,
     activeKey,
     dispatch,

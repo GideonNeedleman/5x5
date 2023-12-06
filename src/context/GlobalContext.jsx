@@ -9,15 +9,13 @@ function reducer(state, action) {
     case "select-workout":
       return {
         ...state,
-        activeWorkout: action.payload.workout,
-        tempWorkout: JSON.parse(JSON.stringify(action.payload.workout)),
+        activeWorkout: JSON.parse(JSON.stringify(action.payload.workout)),
         activeProgramId: action.payload.program.id,
       };
     case "clear-workout":
       return {
         ...state,
         activeWorkout: null,
-        tempWorkout: null,
         isWorkoutStarted: false,
         activeProgramId: null,
         tempWorkoutData: [],
@@ -64,7 +62,6 @@ function reducer(state, action) {
         ),
         activeWorkout: null,
         activeProgramId: null,
-        tempWorkout: null,
         isWorkoutStarted: false,
         isWorkoutFinished: true,
         nextWorkoutOrder: null,
@@ -119,7 +116,7 @@ function reducer(state, action) {
                 ...program,
                 workouts: program.workouts.map((workout) =>
                   workout.id === state.activeWorkout.id
-                    ? state.tempWorkout
+                    ? state.activeWorkout
                     : workout
                 ),
               }
@@ -135,7 +132,6 @@ function reducer(state, action) {
 const initialState = {
   activeWorkout: null,
   activeProgramId: null,
-  tempWorkout: null, //updated with adaptive metrics as sets are finished
   isWorkoutStarted: false,
   isWorkoutFinished: false,
   activeKey: 1,
@@ -155,7 +151,6 @@ function GlobalContextProvider({ children }) {
     {
       activeWorkout,
       activeProgramId,
-      tempWorkout,
       isWorkoutStarted,
       isWorkoutFinished,
       activeKey,
@@ -199,7 +194,6 @@ function GlobalContextProvider({ children }) {
       value={{
         activeWorkout,
         activeProgramId,
-        tempWorkout,
         isWorkoutStarted,
         isWorkoutFinished,
         activeKey,
