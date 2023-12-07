@@ -9,6 +9,7 @@ import SetBody from "./SetBody";
 import SetNote from "./SetNote";
 import SetButtons from "./SetButtons";
 import { filterObject } from "../../utils/helpers";
+import vibrator from "vibrator";
 
 function DoSet({
   set,
@@ -30,14 +31,16 @@ function DoSet({
   const form = useForm();
   const { register, control, handleSubmit, setValue, getValues } = form;
 
+  function afterRestTimer() {
+    handleFinishSet(); // increment to next set
+    checkExercise(); // display check mark in set head
+    setNumFinishedSets((prev) => prev + 1); // tally to display check mark in exercise head
+    if (index + 1 === numSets) dispatch({ type: "next-exercise" }); // if last set for exercise then go to next exercise
+    vibrator(100);
+  }
+
   function handleSubmitSet(data) {
     setIsFinished(true); // disables 'finish set' button
-    setNumFinishedSets((prev) => prev + 1); // tally to display check mark in exercise head
-    checkExercise(); // display check mark in set head
-    handleFinishSet(); // increment to next set
-
-    if (index + 1 === numSets) dispatch({ type: "next-exercise" }); // if last set for exercise then go to next exercise
-
     const { note, ...metrics } = data;
     const formatData = {
       exerciseId: exercise.exerciseIndex,
@@ -57,16 +60,12 @@ function DoSet({
     const adaptiveMetricsArray = exercise.metrics
       .filter((metric) => metric.adaptive === true)
       .map((element) => element.name);
-    console.log("adaptive metrics:", adaptiveMetricsArray);
 
     // 2) filter submitted metrics into newObject based on adaptive values
     const newMetrics = filterObject(metrics, adaptiveMetricsArray);
-    console.log("new metrics to be saved", newMetrics);
 
     // 3) mutate set.metrics with newMetrics
-
     set.metrics = { ...set.metrics, ...newMetrics };
-    console.log("updated default set metrics", metrics);
 
     if (isEditSet) {
       dispatch({
@@ -117,6 +116,8 @@ function DoSet({
             isUnlocked={isUnlocked}
             setIsUnlocked={setIsUnlocked}
             setIsEditSet={setIsEditSet}
+            afterRestTimer={afterRestTimer}
+            exercise={exercise}
           />
         </form>
         <DevTool control={control} />

@@ -14,9 +14,6 @@ function EditSetModal({ show, onHide, set, exercise }) {
   const form = useForm();
   const { register, control, handleSubmit, setValue, getValues } = form;
 
-  console.log("set", set);
-  console.log("exercise", exercise);
-
   function handleSubmitSet(data) {
     console.log("data", data);
     const { note, ...editedMetrics } = data;

@@ -10,8 +10,6 @@ function WorkoutOverview() {
     dayjs(mostRecentWorkout.startTime),
     "second"
   );
-  console.log(mostRecentWorkout);
-  console.log(duration);
   return (
     <div className="pb-2 d-flex justify-content-center">
       <Card

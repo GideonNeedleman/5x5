@@ -19,8 +19,6 @@ function History() {
   // select field option value
   const [chosenExerciseId, setChosenExerciseId] = useState(exercises[0].id);
 
-  console.log("exercises", exercises);
-  console.log("chosen exercise", chosenExerciseId);
   return (
     <main>
       <h1 className="text-center display-3">History</h1>
