@@ -11,6 +11,7 @@ function SetNote({
       <Form.Control
         id="note"
         as="textarea"
+        autoFocus
         placeholder="Write notes here..."
         aria-label="With textarea"
         disabled={isFinished && !isUnlocked}
