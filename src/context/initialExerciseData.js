@@ -139,4 +139,17 @@ export const initialExerciseData = [
       },
     ],
   },
+  {
+    name: "Swimming Laps",
+    id: 9,
+    restTimer: 300,
+    metrics: [
+      {
+        name: "laps",
+        type: "number",
+        adaptive: true,
+        inputBar: { type: "NumberIncrementBar", step: 10 },
+      },
+    ],
+  },
 ];

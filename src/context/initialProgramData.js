@@ -347,6 +347,33 @@ export const initialProgramData = [
           },
         ],
       },
+      {
+        name: "Swimming Day",
+        id: 6,
+        order: 3,
+        next: false,
+        exercises: [
+          {
+            name: "Swimming Laps",
+            id: 13,
+            exerciseIndex: 9,
+            restTimer: 300,
+            metrics: [
+              {
+                name: "laps",
+                type: "number",
+                adaptive: true,
+                inputBar: { type: "NumberIncrementBar", step: 2 },
+              },
+            ],
+            sets: [
+              { id: 46, metrics: { laps: 12 } },
+              { id: 47, metrics: { laps: 12 } },
+              { id: 48, metrics: { laps: 12 } },
+            ],
+          },
+        ],
+      },
     ],
   },
 ];
