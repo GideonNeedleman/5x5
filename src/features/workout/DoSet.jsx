@@ -9,6 +9,7 @@ import SetBody from "./SetBody";
 import SetNote from "./SetNote";
 import SetButtons from "./SetButtons";
 import { filterObject } from "../../utils/helpers";
+import RestTimerButton from "./RestTimerButton";
 
 function DoSet({
   set,
@@ -30,13 +31,15 @@ function DoSet({
   const form = useForm();
   const { register, control, handleSubmit, setValue, getValues } = form;
 
+  function afterRestTimer() {
+    handleFinishSet(); // increment to next set
+    checkExercise(); // display check mark in set head
+    setNumFinishedSets((prev) => prev + 1); // tally to display check mark in exercise head
+    if (index + 1 === numSets) dispatch({ type: "next-exercise" }); // if last set for exercise then go to next exercise
+  }
+
   function handleSubmitSet(data) {
     setIsFinished(true); // disables 'finish set' button
-    setNumFinishedSets((prev) => prev + 1); // tally to display check mark in exercise head
-    checkExercise(); // display check mark in set head
-    handleFinishSet(); // increment to next set
-
-    if (index + 1 === numSets) dispatch({ type: "next-exercise" }); // if last set for exercise then go to next exercise
 
     const { note, ...metrics } = data;
     const formatData = {
@@ -118,6 +121,7 @@ function DoSet({
             setIsUnlocked={setIsUnlocked}
             setIsEditSet={setIsEditSet}
           />
+          <RestTimerButton seconds={10} onClick={afterRestTimer} />
         </form>
         <DevTool control={control} />
       </Accordion.Body>
