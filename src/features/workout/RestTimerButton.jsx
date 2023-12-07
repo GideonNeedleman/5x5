@@ -44,13 +44,14 @@ function RestTimerButton({ seconds, onClick, startTimer, setIsDoneCountDown }) {
         <Button
           className="w-100"
           variant="warning"
+          size="lg"
           onClick={() => setCountdown(0)}
         >
-          <span className="fw-bold">{formatTime(countdown)}</span> Remaining
+          <span className="fw-bold">{formatTime(countdown)}</span>
         </Button>
       ) : (
-        <Button className="w-100" type="submit">
-          <span className="fw-bold">{formatTime(countdown)}</span> Rest Timer
+        <Button className="w-100" type="submit" size="lg">
+          <span className="fw-bold">{formatTime(countdown)}</span> Rest
         </Button>
       )}
     </>

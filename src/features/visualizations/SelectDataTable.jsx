@@ -13,9 +13,6 @@ function SelectDataTable({ exerciseId }) {
     (exercise) => exercise.id === exerciseId
   )[0];
 
-  console.log(exercise);
-  console.log(exercise.metrics);
-
   return (
     <>
       <Table striped bordered key={exercise.name}>
