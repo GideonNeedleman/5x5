@@ -2,7 +2,7 @@ export const initialExerciseData = [
   {
     name: "Barbell Squats",
     id: 1,
-    restTimer: 180,
+    restTimer: 90,
     metrics: [
       {
         name: "weight",
@@ -21,7 +21,7 @@ export const initialExerciseData = [
   {
     name: "Barbell Row",
     id: 2,
-    restTimer: 180,
+    restTimer: 90,
     metrics: [
       {
         name: "weight",
@@ -40,7 +40,7 @@ export const initialExerciseData = [
   {
     name: "Bench Press",
     id: 3,
-    restTimer: 180,
+    restTimer: 90,
     metrics: [
       {
         name: "weight",
@@ -59,7 +59,7 @@ export const initialExerciseData = [
   {
     name: "Overhead Press",
     id: 4,
-    restTimer: 180,
+    restTimer: 90,
     metrics: [
       {
         name: "weight",
@@ -78,7 +78,7 @@ export const initialExerciseData = [
   {
     name: "Deadlift",
     id: 5,
-    restTimer: 180,
+    restTimer: 90,
     metrics: [
       {
         name: "weight",
@@ -97,7 +97,7 @@ export const initialExerciseData = [
   {
     name: "Pushups",
     id: 6,
-    restTimer: 180,
+    restTimer: 60,
     metrics: [
       {
         name: "reps",
@@ -110,7 +110,7 @@ export const initialExerciseData = [
   {
     name: "Pullups",
     id: 7,
-    restTimer: 180,
+    restTimer: 90,
     metrics: [
       {
         name: "reps",
@@ -123,7 +123,7 @@ export const initialExerciseData = [
   {
     name: "Leg Press",
     id: 8,
-    restTimer: 180,
+    restTimer: 90,
     metrics: [
       {
         name: "weight",

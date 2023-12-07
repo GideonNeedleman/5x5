@@ -21,6 +21,7 @@ function SetButtons({
   setIsUnlocked,
   setIsEditSet,
   afterRestTimer,
+  exercise,
 }) {
   const [isDoneCountdown, setIsDoneCountDown] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -87,9 +88,8 @@ function SetButtons({
             )
           ) : (
             <RestTimerButton
-              seconds={90}
+              seconds={exercise.restTimer}
               onClick={afterRestTimer}
-              startTimer={isFinished}
               setIsDoneCountDown={setIsDoneCountDown}
             />
           )}
