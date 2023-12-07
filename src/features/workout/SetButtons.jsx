@@ -1,4 +1,7 @@
-import { Button, Col, Row } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+
 import {
   BsStickyFill,
   BsLockFill,
@@ -8,6 +11,7 @@ import {
 import vibrator from "vibrator";
 import RestTimerButton from "./RestTimerButton";
 import { useState } from "react";
+import InfoModal from "./InfoModal";
 
 function SetButtons({
   isNoteVisible,
@@ -19,6 +23,7 @@ function SetButtons({
   afterRestTimer,
 }) {
   const [isDoneCountdown, setIsDoneCountDown] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <>
@@ -39,7 +44,11 @@ function SetButtons({
           </Col>
         )}
         <Col>
-          <Button variant="secondary" className="w-100">
+          <Button
+            variant="secondary"
+            className="w-100"
+            onClick={() => setIsModalOpen(true)}
+          >
             <BsInfoCircleFill /> Info
           </Button>
         </Col>
@@ -86,6 +95,7 @@ function SetButtons({
           )}
         </Col>
       </Row>
+      <InfoModal show={isModalOpen} onHide={() => setIsModalOpen(false)} />
     </>
   );
 }
