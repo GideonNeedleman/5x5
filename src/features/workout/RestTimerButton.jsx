@@ -16,7 +16,7 @@ function RestTimerButton({ seconds, onClick, setIsDoneCountDown }) {
       return minutes + ":" + seconds;
     }
 
-    if (minutes === 0) return seconds + "s";
+    if (minutes === 0) return "0:" + seconds;
   }
 
   function startTimer() {
