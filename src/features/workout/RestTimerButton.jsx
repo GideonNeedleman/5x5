@@ -25,7 +25,7 @@ function RestTimerButton({ seconds, onClick, setIsDoneCountDown }) {
   }
 
   useEffect(() => {
-    if (countdown <= 0) {
+    if (timerId.current && countdown <= 0) {
       clearInterval(timerId.current);
       setIsDoneCountDown(true);
       setCountdown(1);
@@ -58,7 +58,14 @@ function RestTimerButton({ seconds, onClick, setIsDoneCountDown }) {
             type="submit"
             size="lg"
           >
-            <span className="fw-bold">{formatTime(countdown)}</span> Rest
+            {countdown <= 0 ? (
+              "Finish Set"
+            ) : (
+              <>
+                <span>Rest </span>
+                <span className="fw-bold">{formatTime(countdown)}</span>
+              </>
+            )}
           </Button>
         )}
         <Button
