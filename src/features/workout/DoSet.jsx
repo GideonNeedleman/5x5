@@ -40,7 +40,6 @@ function DoSet({
 
   function handleSubmitSet(data) {
     setIsFinished(true); // disables 'finish set' button
-
     const { note, ...metrics } = data;
     const formatData = {
       exerciseId: exercise.exerciseIndex,
@@ -121,7 +120,11 @@ function DoSet({
             setIsUnlocked={setIsUnlocked}
             setIsEditSet={setIsEditSet}
           />
-          <RestTimerButton seconds={10} onClick={afterRestTimer} />
+          <RestTimerButton
+            seconds={10}
+            onClick={afterRestTimer}
+            startTimer={isFinished}
+          />
         </form>
         <DevTool control={control} />
       </Accordion.Body>

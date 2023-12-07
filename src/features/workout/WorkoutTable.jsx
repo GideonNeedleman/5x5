@@ -1,13 +1,9 @@
 import Table from "react-bootstrap/Table";
 import { objectToArray } from "../../utils/helpers";
-import { useGlobalContext } from "../../context/GlobalContext";
 
 export default function WorkoutTable({ workout }) {
-  const { programData } = useGlobalContext();
-  console.log(programData);
   return (
     <>
-      {/* <h2 className="text-center fw-medium mt-1">Preview Workout</h2> */}
       <div className="mt-2">
         {workout.exercises.map((exercise) => (
           <div key={exercise.id}>
