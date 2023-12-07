@@ -9,7 +9,7 @@ import SetBody from "./SetBody";
 import SetNote from "./SetNote";
 import SetButtons from "./SetButtons";
 import { filterObject } from "../../utils/helpers";
-import RestTimerButton from "./RestTimerButton";
+import vibrator from "vibrator";
 
 function DoSet({
   set,
@@ -36,9 +36,11 @@ function DoSet({
     checkExercise(); // display check mark in set head
     setNumFinishedSets((prev) => prev + 1); // tally to display check mark in exercise head
     if (index + 1 === numSets) dispatch({ type: "next-exercise" }); // if last set for exercise then go to next exercise
+    vibrator(100);
   }
 
   function handleSubmitSet(data) {
+    vibrator(1);
     setIsFinished(true); // disables 'finish set' button
     const { note, ...metrics } = data;
     const formatData = {
@@ -59,16 +61,12 @@ function DoSet({
     const adaptiveMetricsArray = exercise.metrics
       .filter((metric) => metric.adaptive === true)
       .map((element) => element.name);
-    console.log("adaptive metrics:", adaptiveMetricsArray);
 
     // 2) filter submitted metrics into newObject based on adaptive values
     const newMetrics = filterObject(metrics, adaptiveMetricsArray);
-    console.log("new metrics to be saved", newMetrics);
 
     // 3) mutate set.metrics with newMetrics
-
     set.metrics = { ...set.metrics, ...newMetrics };
-    console.log("updated default set metrics", metrics);
 
     if (isEditSet) {
       dispatch({
@@ -119,12 +117,13 @@ function DoSet({
             isUnlocked={isUnlocked}
             setIsUnlocked={setIsUnlocked}
             setIsEditSet={setIsEditSet}
+            afterRestTimer={afterRestTimer}
           />
-          <RestTimerButton
+          {/*           <RestTimerButton
             seconds={10}
             onClick={afterRestTimer}
             startTimer={isFinished}
-          />
+          /> */}
         </form>
         <DevTool control={control} />
       </Accordion.Body>

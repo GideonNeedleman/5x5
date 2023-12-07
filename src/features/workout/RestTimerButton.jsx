@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "react-bootstrap";
 
-function RestTimerButton({ seconds, onClick, startTimer }) {
+function RestTimerButton({ seconds, onClick, startTimer, setIsDoneCountDown }) {
   const [countdown, setCountdown] = useState(seconds);
 
   const timerId = useRef();
@@ -10,10 +10,14 @@ function RestTimerButton({ seconds, onClick, startTimer }) {
     let minutes = Math.floor(time / 60);
     let seconds = Math.floor(time - minutes * 60);
 
-    if (minutes < 10) minutes = "0" + minutes;
-    if (seconds < 10) seconds = "0" + seconds;
+    if (minutes >= 1) {
+      // if (minutes < 10) minutes = "0" + minutes;
+      if (seconds < 10) seconds = "0" + seconds;
 
-    return minutes + ":" + seconds;
+      return minutes + ":" + seconds;
+    }
+
+    if (minutes === 0) return seconds + "s";
   }
 
   useEffect(() => {
@@ -28,6 +32,7 @@ function RestTimerButton({ seconds, onClick, startTimer }) {
   useEffect(() => {
     if (countdown <= 0) {
       clearInterval(timerId.current);
+      setIsDoneCountDown(true);
       setCountdown(1);
       onClick();
     }
@@ -41,11 +46,11 @@ function RestTimerButton({ seconds, onClick, startTimer }) {
           variant="warning"
           onClick={() => setCountdown(0)}
         >
-          Rest Timer: {formatTime(countdown)}
+          <span className="fw-bold">{formatTime(countdown)}</span> Remaining
         </Button>
       ) : (
         <Button className="w-100" type="submit">
-          Start Rest Timer
+          <span className="fw-bold">{formatTime(countdown)}</span> Rest Timer
         </Button>
       )}
     </>
