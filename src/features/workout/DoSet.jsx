@@ -21,6 +21,7 @@ function DoSet({
   setNumFinishedSets,
   exercise,
   canToggle,
+  isLastSet,
 }) {
   const { dispatch, tempWorkoutData } = useGlobalContext();
   const [isNoteVisible, setIsNoteVisible] = useState(false);
@@ -37,6 +38,7 @@ function DoSet({
     setNumFinishedSets((prev) => prev + 1); // tally to display check mark in exercise head
     if (index + 1 === numSets) dispatch({ type: "next-exercise" }); // if last set for exercise then go to next exercise
     vibrator(100);
+    isLastSet ? window.scrollBy(0, 0) : window.scrollBy(0, 52); // Accordion header 52px tall
   }
 
   function handleSubmitSet(data) {

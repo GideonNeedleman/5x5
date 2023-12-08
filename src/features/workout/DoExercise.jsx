@@ -8,6 +8,7 @@ function DoExercise({ exercise, tracker, setNumFinishedExercises }) {
   const [isFinished, setIsFinished] = useState(false);
   const [numFinishedSets, setNumFinishedSets] = useState(0);
   const numSets = exercise.sets.length;
+  const isLastSet = numSets === numFinishedSets;
 
   function handleFinishSet() {
     setActiveKey((prev) => prev - 1);
@@ -20,6 +21,7 @@ function DoExercise({ exercise, tracker, setNumFinishedExercises }) {
       setNumFinishedExercises((prev) => prev + 1);
     }
   }
+
   return (
     <Accordion.Item eventKey={`${tracker}`}>
       <Accordion.Header>
@@ -47,6 +49,7 @@ function DoExercise({ exercise, tracker, setNumFinishedExercises }) {
               setNumFinishedSets={setNumFinishedSets}
               exercise={exercise}
               canToggle={i <= numFinishedSets}
+              isLastSet={isLastSet}
             />
           ))}
         </Accordion>
