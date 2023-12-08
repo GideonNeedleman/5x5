@@ -10,6 +10,7 @@ import SetNote from "./SetNote";
 import SetButtons from "./SetButtons";
 import { filterObject } from "../../utils/helpers";
 import vibrator from "vibrator";
+import { scroller } from "react-scroll";
 
 function DoSet({
   set,
@@ -21,6 +22,7 @@ function DoSet({
   setNumFinishedSets,
   exercise,
   canToggle,
+  exerciseIndex,
 }) {
   const { dispatch, tempWorkoutData } = useGlobalContext();
   const [isNoteVisible, setIsNoteVisible] = useState(false);
@@ -31,12 +33,17 @@ function DoSet({
   const form = useForm();
   const { register, control, handleSubmit, setValue, getValues } = form;
 
+  const ACCORDION_HEIGHT = 52;
+
   function afterRestTimer() {
     handleFinishSet(); // increment to next set
     checkExercise(); // display check mark in set head
     setNumFinishedSets((prev) => prev + 1); // tally to display check mark in exercise head
     if (index + 1 === numSets) dispatch({ type: "next-exercise" }); // if last set for exercise then go to next exercise
     vibrator(100);
+    numSets === index + 1
+      ? scroller.scrollTo(`ex-${exerciseIndex}`, { offset: ACCORDION_HEIGHT })
+      : window.scrollBy(0, ACCORDION_HEIGHT);
   }
 
   function handleSubmitSet(data) {

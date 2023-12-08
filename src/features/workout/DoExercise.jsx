@@ -3,7 +3,7 @@ import Accordion from "react-bootstrap/Accordion";
 import DoSet from "./DoSet";
 import { BsCheckSquareFill } from "react-icons/bs";
 
-function DoExercise({ exercise, tracker, setNumFinishedExercises }) {
+function DoExercise({ exercise, index, tracker, setNumFinishedExercises }) {
   const [activeKey, setActiveKey] = useState(1);
   const [isFinished, setIsFinished] = useState(false);
   const [numFinishedSets, setNumFinishedSets] = useState(0);
@@ -20,9 +20,10 @@ function DoExercise({ exercise, tracker, setNumFinishedExercises }) {
       setNumFinishedExercises((prev) => prev + 1);
     }
   }
+
   return (
     <Accordion.Item eventKey={`${tracker}`}>
-      <Accordion.Header>
+      <Accordion.Header id={`ex-${index}`}>
         <span className="d-flex justify-content-between w-100 px-1">
           <span className={isFinished ? "text-secondary" : "fw-bold "}>
             {isFinished && (
@@ -47,6 +48,7 @@ function DoExercise({ exercise, tracker, setNumFinishedExercises }) {
               setNumFinishedSets={setNumFinishedSets}
               exercise={exercise}
               canToggle={i <= numFinishedSets}
+              exerciseIndex={index}
             />
           ))}
         </Accordion>
