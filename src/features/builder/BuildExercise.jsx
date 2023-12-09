@@ -17,7 +17,9 @@ function BuildExercise() {
   const navigate = useNavigate();
   const form = useForm();
   const { register, control, handleSubmit, setValue, getValues } = form;
-  const [numMetrics, setNumMetrics] = useState(1);
+  const [numMetrics, setNumMetrics] = useState(0);
+  const arrayToMap = Array(numMetrics);
+  console.log("array to map", arrayToMap);
 
   function handleSubmitExercise(data) {
     // format data into correct exercise shape
@@ -56,7 +58,11 @@ function BuildExercise() {
             </InputGroup>
             <Form.Text>Enter 0 or blank for no rest timer.</Form.Text>
           </Form.Group>
-          <ExerciseMetric register={register} index={1} />
+
+          {[...arrayToMap].map((metric, index) => (
+            <ExerciseMetric register={register} index={index + 1} key={index} />
+          ))}
+
           <Button
             className="mt-3 w-100"
             variant="secondary"
