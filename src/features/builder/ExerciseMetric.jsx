@@ -6,8 +6,6 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 
 function ExerciseMetric({ register, index }) {
-  const adaptive = "this is a label";
-
   const Popup = ({ id, children, title }) => (
     <OverlayTrigger overlay={<Tooltip id={id}>{title}</Tooltip>}>
       <a href="#">{children}</a>

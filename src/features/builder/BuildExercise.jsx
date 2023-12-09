@@ -5,15 +5,19 @@ import {
   FormLabel,
   InputGroup,
 } from "react-bootstrap";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { useGlobalContext } from "../../context/GlobalContext";
 import ExerciseMetric from "./ExerciseMetric";
+import { useNavigate } from "react-router-dom";
 
 function BuildExercise() {
   const { dispatch, exerciseData } = useGlobalContext();
+  const navigate = useNavigate();
   const form = useForm();
   const { register, control, handleSubmit, setValue, getValues } = form;
+  const [numMetrics, setNumMetrics] = useState(1);
 
   function handleSubmitExercise(data) {
     // format data into correct exercise shape
@@ -52,12 +56,26 @@ function BuildExercise() {
             </InputGroup>
             <Form.Text>Enter 0 or blank for no rest timer.</Form.Text>
           </Form.Group>
-
           <ExerciseMetric register={register} index={1} />
-
-          <Button className="mt-3 w-100" type="submit">
-            Save Exercise
+          <Button
+            className="mt-3 w-100"
+            variant="secondary"
+            onClick={() => setNumMetrics((prev) => prev + 1)}
+          >
+            + Add Metric
           </Button>
+          <div className="d-flex gap-3 my-3">
+            <Button
+              variant="secondary"
+              className="flex-grow-1 w-100 "
+              onClick={() => navigate(-1)}
+            >
+              Cancel
+            </Button>
+            <Button className="flex-grow-1 w-100" type="submit">
+              Save Exercise
+            </Button>
+          </div>
         </Form>
         <DevTool control={control} />
       </Container>
