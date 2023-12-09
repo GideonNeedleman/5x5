@@ -8,6 +8,7 @@ import {
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
+import { useHookFormMask } from "use-mask-input";
 import { useGlobalContext } from "../../context/GlobalContext";
 import ExerciseMetric from "./ExerciseMetric";
 import { useNavigate } from "react-router-dom";
@@ -17,6 +18,7 @@ function BuildExercise() {
   const navigate = useNavigate();
   const form = useForm();
   const { register, control, handleSubmit, setValue, getValues } = form;
+  const registerWithMask = useHookFormMask(register);
   const [numMetrics, setNumMetrics] = useState(0);
   const arrayToMap = Array(numMetrics);
 
@@ -46,16 +48,17 @@ function BuildExercise() {
             <InputGroup>
               <Form.Control
                 type="text"
-                placeholder="Time between sets"
-                {...register("restTimer", {
-                  pattern: /^([0-9]?[0-9]?):?[0-5][0-9]$/g,
-                  min: 0,
-                  // need to x60 to get seconds
+                placeholder="0:00"
+                inputMode="numeric"
+                {...registerWithMask("restTimer", ["9:99", "99:99"], {
+                  required: false,
                 })}
               />
-              <InputGroup.Text>minutes</InputGroup.Text>
             </InputGroup>
-            <Form.Text>Leave blank for no rest timer.</Form.Text>
+            <Form.Text>
+              <p className="mb-0 mt-1">min : sec</p>
+              Leave blank for no rest timer
+            </Form.Text>
           </Form.Group>
 
           {[...arrayToMap].map((metric, index) => (
