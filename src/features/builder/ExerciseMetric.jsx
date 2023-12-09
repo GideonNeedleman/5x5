@@ -27,7 +27,7 @@ function ExerciseMetric({ register, index }) {
             type="text"
             list="metricNameOptions"
             placeholder="Metric name"
-            {...register(`metric-name-${index}`)}
+            {...register(`metric-${index}-name`)}
           />
           <datalist id="metricNameOptions">
             <option value="reps" />
@@ -35,20 +35,34 @@ function ExerciseMetric({ register, index }) {
           </datalist>
         </Form.Group>
         <Form.Group className="mt-3">
-          <Form.Label>Data Type</Form.Label>
+          <Form.Label>Input Bar Type</Form.Label>
           <InputGroup>
-            <Form.Select {...register(`metric-type-${index}`)}>
-              <option value="number">Number</option>
+            <Form.Select {...register(`metric-${index}-type`)}>
+              <option value="NumberIncrementBar">Number Increment</option>
               {/* <option value="string">Text</option> */}
             </Form.Select>
           </InputGroup>
         </Form.Group>
+
+        <Form.Group className="mt-3">
+          <Form.Label>Increment Step Amount</Form.Label>
+          <Form.Control
+            type="number"
+            placeholder="How much is each increment step?"
+            {...register(`metric-${index}-step`, {
+              valueAsNumber: true,
+              min: 0,
+            })}
+          />
+        </Form.Group>
+
         <div className="d-flex align-items-baseline gap-3 ">
           <Form.Check // prettier-ignore
             type="switch"
             id="custom-switch"
             label="Adaptive Metric"
             className="mt-3"
+            {...register(`metric-${index}-adaptive`)}
           />
           <Popup title="Default values will change to match your last entered value">
             <IconContext.Provider value={{ color: "var(--bs-primary)" }}>
