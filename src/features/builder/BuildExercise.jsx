@@ -19,7 +19,6 @@ function BuildExercise() {
   const { register, control, handleSubmit, setValue, getValues } = form;
   const [numMetrics, setNumMetrics] = useState(0);
   const arrayToMap = Array(numMetrics);
-  console.log("array to map", arrayToMap);
 
   function handleSubmitExercise(data) {
     // format data into correct exercise shape
@@ -46,33 +45,44 @@ function BuildExercise() {
             <Form.Label>Rest Timer</Form.Label>
             <InputGroup>
               <Form.Control
-                type="number"
+                type="text"
                 placeholder="Time between sets"
                 {...register("restTimer", {
-                  valueAsNumber: true,
+                  pattern: /^([0-9]?[0-9]?):?[0-5][0-9]$/g,
                   min: 0,
                   // need to x60 to get seconds
                 })}
               />
               <InputGroup.Text>minutes</InputGroup.Text>
             </InputGroup>
-            <Form.Text>Enter 0 or blank for no rest timer.</Form.Text>
+            <Form.Text>Leave blank for no rest timer.</Form.Text>
           </Form.Group>
 
           {[...arrayToMap].map((metric, index) => (
             <ExerciseMetric register={register} index={index + 1} key={index} />
           ))}
 
-          <Button
-            className="mt-3 w-100"
-            variant="secondary"
-            onClick={() => setNumMetrics((prev) => prev + 1)}
-          >
-            + Add Metric
-          </Button>
+          <div className="d-flex gap-3 my-3">
+            {numMetrics > 0 && (
+              <Button
+                className="mt-3 w-100"
+                variant="secondary"
+                onClick={() => setNumMetrics((prev) => prev - 1)}
+              >
+                - Remove Metric
+              </Button>
+            )}
+            <Button
+              className="mt-3 w-100"
+              variant="secondary"
+              onClick={() => setNumMetrics((prev) => prev + 1)}
+            >
+              + Add Metric
+            </Button>
+          </div>
           <div className="d-flex gap-3 my-3">
             <Button
-              variant="secondary"
+              variant="warning"
               className="flex-grow-1 w-100 "
               onClick={() => navigate(-1)}
             >
