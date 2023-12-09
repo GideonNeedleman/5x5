@@ -37,10 +37,12 @@ function ExerciseMetric({ register, index }) {
           <InputGroup>
             <Form.Select {...register(`metric-${index}-type`)}>
               <option value="NumberIncrementBar">Number Increment</option>
-              {/* <option value="string">Text</option> */}
+              {/* <option value="CountdownTimer">Countdown Timer</option> */}
             </Form.Select>
           </InputGroup>
         </Form.Group>
+
+        {/* Specify default value? */}
 
         <Form.Group className="mt-3">
           <Form.Label>Increment Step Amount</Form.Label>
