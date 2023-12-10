@@ -7,6 +7,7 @@ import {
 } from "react-bootstrap";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
 import { DevTool } from "@hookform/devtools";
 import { useHookFormMask } from "use-mask-input";
 import { useGlobalContext } from "../../context/GlobalContext";
@@ -17,7 +18,14 @@ function BuildExercise() {
   const { dispatch, exerciseData } = useGlobalContext();
   const navigate = useNavigate();
   const form = useForm();
-  const { register, control, handleSubmit, setValue, getValues } = form;
+  const {
+    register,
+    control,
+    handleSubmit,
+    setValue,
+    getValues,
+    formState: { errors },
+  } = form;
   const registerWithMask = useHookFormMask(register);
   const [numMetrics, setNumMetrics] = useState(0);
   const arrayToMap = Array(numMetrics);
@@ -28,7 +36,7 @@ function BuildExercise() {
     // navigate away
     console.log(data);
   }
-
+  console.log("errors", errors);
   return (
     <main>
       <h1 className="text-center display-3">New Exercise</h1>
@@ -52,13 +60,29 @@ function BuildExercise() {
                 inputMode="numeric"
                 {...registerWithMask("restTimer", ["9:99", "99:99"], {
                   required: false,
+                  pattern: {
+                    value: /^([0-9]?[0-9]?):?[0-5][0-9]$/g,
+                    message: "Seconds digits must be '00' to '59'",
+                  },
                 })}
               />
+
+              {/* {errors.restTimer && <p>seconds should be less than 60</p>} */}
+              {/* <Form.Control.Feedback>
+                  Seconds should be less than 60
+                </Form.Control.Feedback> */}
             </InputGroup>
             <Form.Text>
               <p className="mb-0 mt-1">min : sec</p>
               Leave blank for no rest timer
             </Form.Text>
+            <ErrorMessage
+              errors={errors}
+              name="restTimer"
+              render={({ message }) => (
+                <p style={{ color: "red" }}>{message}</p>
+              )}
+            />
           </Form.Group>
 
           {[...arrayToMap].map((metric, index) => (
