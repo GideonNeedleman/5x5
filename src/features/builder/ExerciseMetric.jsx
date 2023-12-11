@@ -33,6 +33,21 @@ function ExerciseMetric({ register, index }) {
             <option value="weight" />
           </datalist>
         </Form.Group>
+
+        <Form.Group className="mt-3">
+          <Form.Label>Units</Form.Label>
+          <Form.Control
+            type="text"
+            list="metricUnitOptions"
+            placeholder="Units"
+            {...register(`metric-${index}-units`)}
+          />
+          <datalist id="metricUnitOptions">
+            <option value="kg" />
+            <option value="lbs" />
+          </datalist>
+        </Form.Group>
+
         <Form.Group className="mt-3">
           <Form.Label>Input Bar Type</Form.Label>
           <InputGroup>
@@ -51,6 +66,18 @@ function ExerciseMetric({ register, index }) {
             type="number"
             placeholder="How much is each increment step?"
             {...register(`metric-${index}-step`, {
+              valueAsNumber: true,
+              min: 0,
+            })}
+          />
+        </Form.Group>
+
+        <Form.Group className="mt-3">
+          <Form.Label>Default Value</Form.Label>
+          <Form.Control
+            type="number"
+            placeholder="Metric default"
+            {...register(`metric-${index}-default`, {
               valueAsNumber: true,
               min: 0,
             })}
