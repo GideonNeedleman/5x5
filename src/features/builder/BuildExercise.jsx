@@ -13,6 +13,7 @@ import { useHookFormMask } from "use-mask-input";
 import { useGlobalContext } from "../../context/GlobalContext";
 import ExerciseMetric from "./ExerciseMetric";
 import { useNavigate } from "react-router-dom";
+import vibrator from "vibrator";
 
 function BuildExercise() {
   const { dispatch, exerciseData } = useGlobalContext();
@@ -94,7 +95,10 @@ function BuildExercise() {
               <Button
                 className="mt-3 w-100"
                 variant="secondary"
-                onClick={() => setNumMetrics((prev) => prev - 1)}
+                onClick={() => {
+                  setNumMetrics((prev) => prev - 1);
+                  vibrator(1);
+                }}
               >
                 - Remove Metric
               </Button>
@@ -102,7 +106,10 @@ function BuildExercise() {
             <Button
               className="mt-3 w-100"
               variant="secondary"
-              onClick={() => setNumMetrics((prev) => prev + 1)}
+              onClick={() => {
+                setNumMetrics((prev) => prev + 1);
+                vibrator(1);
+              }}
             >
               + Add Metric
             </Button>
@@ -111,11 +118,18 @@ function BuildExercise() {
             <Button
               variant="warning"
               className="flex-grow-1 w-100 "
-              onClick={() => navigate(-1)}
+              onClick={() => {
+                navigate(-1);
+                vibrator(1);
+              }}
             >
               Cancel
             </Button>
-            <Button className="flex-grow-1 w-100" type="submit">
+            <Button
+              className="flex-grow-1 w-100"
+              onClick={() => vibrator(1)}
+              type="submit"
+            >
               Save Exercise
             </Button>
           </div>
