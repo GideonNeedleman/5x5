@@ -1,6 +1,7 @@
 import { Card, Form, InputGroup } from "react-bootstrap";
 import { BsInfoCircleFill } from "react-icons/bs";
 import { IconContext } from "react-icons";
+import vibrator from "vibrator";
 
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
@@ -62,6 +63,7 @@ function ExerciseMetric({ register, index }) {
             id="custom-switch"
             label="Adaptive Metric"
             className="mt-3"
+            onClick={() => vibrator(1)}
             {...register(`metric-${index}-adaptive`)}
           />
           <Popup title="Default values will change to match your last entered value">
