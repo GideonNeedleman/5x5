@@ -5,9 +5,10 @@ import { GlobalContextProvider } from "./context/GlobalContext";
 import History from "./pages/History";
 import Workout from "./pages/Workout";
 import Review from "./pages/Review";
-import Toaster from "./features/toasts/Toaster";
+// import Toaster from "./features/toasts/Toaster";
 import Builder from "./pages/Builder";
 import BuildExercise from "./features/builder/BuildExercise";
+import BuildWorkout from "./features/builder/BuildWorkout";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/review" element={<Review />} />
           <Route path="/builder" element={<Builder />} />
           <Route path="/build-exercise" element={<BuildExercise />} />
+          <Route path="/build-workout" element={<BuildWorkout />} />
         </Routes>
       </BrowserRouter>
     </GlobalContextProvider>
