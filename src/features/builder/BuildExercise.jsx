@@ -18,8 +18,8 @@ function BuildExercise() {
     register,
     control,
     handleSubmit,
-    setValue,
-    getValues,
+    // setValue,
+    // getValues,
     formState: { errors },
   } = form;
   const registerWithMask = useHookFormMask(register);
@@ -72,6 +72,9 @@ function BuildExercise() {
     };
 
     console.log(exerciseObject);
+
+    dispatch({ type: "add-new-exercise", payload: exerciseObject });
+    navigate(-1);
   }
   // console.log("errors", errors);
 
