@@ -3,14 +3,14 @@ import { Button, Card, Form } from "react-bootstrap";
 import { useGlobalContext } from "../../context/GlobalContext";
 import AddSetToExercise from "./AddSetToExercise";
 
-function AddExerciseToWorkout({ register, watch, index }) {
+function AddExerciseToWorkout({ register, setValue, getValues, watch, index }) {
   const { exerciseData } = useGlobalContext();
   const chosenExerciseId = watch(`exercise-${index + 1}`);
   const chosenExercise = exerciseData.find((el) => el.id == chosenExerciseId);
   const [numSets, setNumSets] = useState(1);
   const arrayToMap = [...Array(numSets)];
 
-  console.log("chosen exercise", chosenExercise);
+  // console.log("chosen exercise", chosenExercise);
   // what if user defines sets, then changes the exercise? Should remove all the sets with useEffect, setNumSets(0)
   useEffect(() => {
     setNumSets(0);
@@ -19,7 +19,10 @@ function AddExerciseToWorkout({ register, watch, index }) {
   return (
     <Card border="primary">
       <Card.Body className="d-flex flex-column gap-3">
-        <Form.Select {...register(`exercise-${index + 1}`)}>
+        <Form.Select
+          {...register(`exercise-${index + 1}`)}
+          className="fs-3 text-center"
+        >
           <option>Choose exercise...</option>
           <option value="new">+ Create new exercise</option>
           {exerciseData.map((exercise) => (
@@ -32,6 +35,9 @@ function AddExerciseToWorkout({ register, watch, index }) {
           arrayToMap.map((el, index) => (
             <AddSetToExercise
               key={index}
+              register={register}
+              getValues={getValues}
+              setValue={setValue}
               setIndex={index}
               metrics={chosenExercise.metrics}
             />

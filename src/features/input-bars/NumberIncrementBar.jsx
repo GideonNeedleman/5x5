@@ -12,6 +12,7 @@ function NumberIncrementBar({
   isFinished = false,
   isUnlocked = true,
   defaultValue,
+  fieldName,
 }) {
   function stepMetric(metricToStep, step) {
     setValue(metricToStep, Number(getValues(metricToStep)) + step);
@@ -34,7 +35,7 @@ function NumberIncrementBar({
         <Form.Control
           className="text-center"
           type="number"
-          {...register(metric.name, {
+          {...register(fieldName, {
             valueAsNumber: true,
           })}
           aria-label={metric.name}

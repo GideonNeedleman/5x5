@@ -1,17 +1,38 @@
-import { Form } from "react-bootstrap";
+import { Card, Form } from "react-bootstrap";
+import NumberIncrementBar from "../input-bars/NumberIncrementBar";
 
-function AddSetToExercise({ setIndex, metrics }) {
+function AddSetToExercise({
+  register,
+  setIndex,
+  metrics,
+  setValue,
+  getValues,
+}) {
   return (
-    <div>
-      Set {setIndex + 1}:
-      {metrics.map((metric, index) => (
-        <span key={index}>
-          {metric.name}:
-          <Form.Control defaultValue={metric.default} />
-        </span>
-      ))}
-    </div>
+    <Card border="secondary">
+      <p className="mt-1 mb-0 text-center fs-4">Set {setIndex + 1} </p>
+      <Card.Body>
+        {metrics.map((metric, index) => (
+          <NumberIncrementBar
+            register={register}
+            metric={metric}
+            defaultValue={metric.default}
+            setValue={setValue}
+            getValues={getValues}
+            fieldName={metric.name}
+            key={index}
+          />
+        ))}
+      </Card.Body>
+    </Card>
   );
 }
 
 export default AddSetToExercise;
+
+{
+  /* <span key={index}>
+            {metric.name}:
+            <Form.Control defaultValue={metric.default} />
+          </span> */
+}

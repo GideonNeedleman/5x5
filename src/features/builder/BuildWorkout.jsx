@@ -17,8 +17,8 @@ function BuildWorkout() {
     control,
     handleSubmit,
     watch,
-    // setValue,
-    // getValues,
+    setValue,
+    getValues,
     formState: { errors },
   } = form;
 
@@ -51,6 +51,8 @@ function BuildWorkout() {
                 <AddExerciseToWorkout
                   key={index}
                   register={register}
+                  getValues={getValues}
+                  setValue={setValue}
                   watch={watch}
                   index={index}
                 />
