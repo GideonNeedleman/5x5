@@ -5,7 +5,7 @@ import AddSetToExercise from "./AddSetToExercise";
 
 function AddExerciseToWorkout({ register, setValue, getValues, watch, index }) {
   const { exerciseData } = useGlobalContext();
-  const chosenExerciseId = watch(`exercise-${index + 1}`);
+  const chosenExerciseId = watch(`exerciseIndex-${index + 1}`);
   const chosenExercise = exerciseData.find((el) => el.id == chosenExerciseId);
   const [numSets, setNumSets] = useState(1);
   const arrayToMap = [...Array(numSets)];
@@ -20,7 +20,7 @@ function AddExerciseToWorkout({ register, setValue, getValues, watch, index }) {
     <Card border="primary">
       <Card.Body className="d-flex flex-column gap-3">
         <Form.Select
-          {...register(`exercise-${index + 1}`)}
+          {...register(`exerciseIndex-${index + 1}`)}
           className="fs-3 text-center"
         >
           <option>Choose exercise...</option>
@@ -32,14 +32,15 @@ function AddExerciseToWorkout({ register, setValue, getValues, watch, index }) {
           ))}
         </Form.Select>
         {Number(chosenExerciseId) > 0 &&
-          arrayToMap.map((el, index) => (
+          arrayToMap.map((el, setIndex) => (
             <AddSetToExercise
-              key={index}
+              key={setIndex}
               register={register}
               getValues={getValues}
               setValue={setValue}
-              setIndex={index}
+              setIndex={setIndex}
               metrics={chosenExercise.metrics}
+              exerciseId={index + 1}
             />
           ))}
         {Number(chosenExerciseId) > 0 && (

@@ -12,7 +12,7 @@ function NumberIncrementBar({
   isFinished = false,
   isUnlocked = true,
   defaultValue,
-  fieldName,
+  fieldName = metric.name,
 }) {
   function stepMetric(metricToStep, step) {
     setValue(metricToStep, Number(getValues(metricToStep)) + step);
@@ -26,7 +26,7 @@ function NumberIncrementBar({
           variant="secondary"
           disabled={isFinished && !isUnlocked}
           onClick={() => {
-            stepMetric(metric.name, -metric.step || -1);
+            stepMetric(fieldName, -metric.step || -1);
             vibrator(1);
           }}
         >
@@ -38,7 +38,6 @@ function NumberIncrementBar({
           {...register(fieldName, {
             valueAsNumber: true,
           })}
-          aria-label={metric.name}
           defaultValue={defaultValue}
           disabled={isFinished && !isUnlocked}
         />
@@ -46,7 +45,7 @@ function NumberIncrementBar({
           variant="secondary"
           disabled={isFinished && !isUnlocked}
           onClick={() => {
-            stepMetric(metric.name, metric.step || 1);
+            stepMetric(fieldName, metric.step || 1);
             vibrator(1);
           }}
         >

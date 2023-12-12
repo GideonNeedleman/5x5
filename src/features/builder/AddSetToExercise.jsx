@@ -7,6 +7,7 @@ function AddSetToExercise({
   metrics,
   setValue,
   getValues,
+  exerciseId,
 }) {
   return (
     <Card border="secondary">
@@ -19,7 +20,7 @@ function AddSetToExercise({
             defaultValue={metric.default}
             setValue={setValue}
             getValues={getValues}
-            fieldName={metric.name}
+            fieldName={`exercise-${exerciseId}-set-${setIndex}-${metric.name}`}
             key={index}
           />
         ))}
