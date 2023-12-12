@@ -42,7 +42,7 @@ function BuildWorkout() {
           <div className="my-3">
             <p>Add Exercise to Workout</p>
             {arrayToMap.map((el, index) => (
-              <Form.Select key={index}>
+              <Form.Select key={index} {...register(`exercise-${index + 1}`)}>
                 <option value="new">Create new exercise</option>
                 {exerciseData.map((exercise) => (
                   <option value={exercise.id} key={exercise.id}>
