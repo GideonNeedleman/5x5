@@ -18,7 +18,7 @@ function reducer(state, action) {
         activeWorkout: null,
         isWorkoutStarted: false,
         activeProgramId: null,
-        tempWorkoutData: [],
+        tempRecordData: [],
         activeKey: 1,
         tempWorkoutHistoryRecord: {},
       };
@@ -42,7 +42,7 @@ function reducer(state, action) {
           workoutName: state.activeWorkout.name,
           startTime: new Date(),
         },
-        tempWorkoutData: [],
+        tempRecordData: [],
       };
     case "finish-workout":
       return {
@@ -66,8 +66,8 @@ function reducer(state, action) {
         isWorkoutFinished: true,
         nextWorkoutOrder: null,
         activeKey: 1,
-        workoutData: [...state.workoutData, ...state.tempWorkoutData],
-        // tempWorkoutData: [],
+        recordData: [...state.recordData, ...state.tempRecordData],
+        // tempRecordData: [],
         workoutHistory: [
           ...state.workoutHistory,
           { ...state.tempWorkoutHistoryRecord, finishTime: new Date() },
@@ -82,18 +82,18 @@ function reducer(state, action) {
     case "submit-set-data":
       return {
         ...state,
-        tempWorkoutData: [...state.tempWorkoutData, action.payload],
+        tempRecordData: [...state.tempRecordData, action.payload],
       };
     case "edit-temp-set-data":
       return {
         ...state,
-        tempWorkoutData: [...action.payload],
+        tempRecordData: [...action.payload],
       };
     case "edit-set-data":
       return {
         ...state,
-        workoutData: [
-          ...state.workoutData.map((set) =>
+        recordData: [
+          ...state.recordData.map((set) =>
             set.datetime === action.payload.datetime ? action.payload : set
           ),
         ],
@@ -101,8 +101,8 @@ function reducer(state, action) {
     case "delete-set":
       return {
         ...state,
-        workoutData: [
-          ...state.workoutData.filter(
+        recordData: [
+          ...state.recordData.filter(
             (set) => set.datetime !== action.payload.datetime
           ),
         ],
@@ -141,8 +141,8 @@ const initialState = {
   isWorkoutFinished: false,
   activeKey: 1,
   nextWorkoutOrder: null, //check if needed
-  tempWorkoutData: [], //each element is a completed set
-  workoutData: JSON.parse(localStorage.getItem("workoutData")) || [],
+  tempRecordData: [], //each element is a completed set
+  recordData: JSON.parse(localStorage.getItem("recordData")) || [],
   tempWorkoutHistoryRecord: {},
   workoutHistory: JSON.parse(localStorage.getItem("workoutHistory")) || [], //{workoutId, workoutName, startTime, finishTime}
   exerciseData:
@@ -160,8 +160,8 @@ function GlobalContextProvider({ children }) {
       isWorkoutFinished,
       activeKey,
       programData,
-      tempWorkoutData,
-      workoutData,
+      tempRecordData,
+      recordData,
       workoutHistory,
       exerciseData,
     },
@@ -170,17 +170,17 @@ function GlobalContextProvider({ children }) {
 
   function handleFinishWorkout() {
     // strip out setId
-    for (let i in tempWorkoutData) {
-      delete tempWorkoutData[i].setId;
+    for (let i in tempRecordData) {
+      delete tempRecordData[i].setId;
     }
 
     dispatch({ type: "update-adaptive-metrics" });
-    dispatch({ type: "finish-workout", payload: tempWorkoutData });
+    dispatch({ type: "finish-workout", payload: tempRecordData });
   }
 
   useEffect(() => {
-    localStorage.setItem("workoutData", JSON.stringify(workoutData));
-  }, [workoutData]);
+    localStorage.setItem("recordData", JSON.stringify(recordData));
+  }, [recordData]);
 
   useEffect(() => {
     localStorage.setItem("workoutHistory", JSON.stringify(workoutHistory));
@@ -203,8 +203,8 @@ function GlobalContextProvider({ children }) {
         isWorkoutFinished,
         activeKey,
         programData,
-        tempWorkoutData,
-        workoutData,
+        tempRecordData,
+        recordData,
         workoutHistory,
         exerciseData,
         dispatch,

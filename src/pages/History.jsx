@@ -4,11 +4,11 @@ import { useGlobalContext } from "../context/GlobalContext";
 import SelectDataTable from "../features/visualizations/SelectDataTable";
 
 function History() {
-  const { workoutData, exerciseData } = useGlobalContext();
+  const { recordData, exerciseData } = useGlobalContext();
 
-  // list of exerciseIds in workoutData
+  // list of exerciseIds in recordData
   const exerciseIds = [
-    ...new Set(workoutData.map((set) => set.exerciseId)),
+    ...new Set(recordData.map((set) => set.exerciseId)),
   ].sort();
 
   // list of matching exercises

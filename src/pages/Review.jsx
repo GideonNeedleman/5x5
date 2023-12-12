@@ -3,11 +3,9 @@ import ReviewDataTable from "../features/visualizations/ReviewDataTable";
 import WorkoutOverview from "../features/visualizations/WorkoutOverview";
 
 function Review() {
-  const { tempWorkoutData, exerciseData } = useGlobalContext();
-  // list of exerciseIds in tempWorkoutData
-  const exerciseIds = [
-    ...new Set(tempWorkoutData.map((set) => set.exerciseId)),
-  ];
+  const { tempRecordData, exerciseData } = useGlobalContext();
+  // list of exerciseIds in tempRecordData
+  const exerciseIds = [...new Set(tempRecordData.map((set) => set.exerciseId))];
   // list of matching exercises
   const exercises = exerciseData.filter((exercise) =>
     exerciseIds.includes(exercise.id)
