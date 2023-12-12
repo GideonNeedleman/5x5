@@ -8,6 +8,7 @@ import { useGlobalContext } from "../../context/GlobalContext";
 import ExerciseMetric from "./ExerciseMetric";
 import { useNavigate } from "react-router-dom";
 import vibrator from "vibrator";
+import { timeToSeconds } from "../../utils/helpers";
 
 function BuildExercise() {
   const { dispatch, exerciseData } = useGlobalContext();
@@ -46,7 +47,6 @@ function BuildExercise() {
         i++;
       }
     }
-    console.log("number of metrics", numMetrics);
 
     // 2) loop over numMetrics, for each loop add object to array containing all properties that match 'metric-i-', but remove that prefix
     let metricsArray = [];
@@ -61,22 +61,29 @@ function BuildExercise() {
       metricsArray = [...metricsArray, newMetric];
     }
 
-    // change type => inputBar Should eliminate nested inputBar data. Just prefex it with inputBar when it needs to be grabbed in DoSet or whatever.
+    // change type => inputBar Should eliminate nested inputBar data. Just prefex it with inputBar when it needs to be grabbed in DoSet or whatever. DONE!
+    const restTimerSeconds = timeToSeconds(restTimer);
+
     // transform restTimer to seconds (number)
-    const exerciseObject = { id, name, restTimer, metrics: metricsArray };
+    const exerciseObject = {
+      id,
+      name,
+      restTimer: restTimerSeconds,
+      metrics: metricsArray,
+    };
 
     console.log(exerciseObject);
-    console.log(
+    /*     console.log(
       "id",
       id,
       "name",
       name,
       "rest timer",
-      restTimer,
+      restTimerSeconds,
       "metrics array",
       metricsArray
     );
-    console.log("raw data", data);
+    console.log("raw data", data); */
   }
   // console.log("errors", errors);
   return (

@@ -103,6 +103,9 @@ export function filterObject(object, filterList) {
 }
 
 export function timeToSeconds(time) {
+  if (!time) return 0; // Guardian
   // time is a min:string string like '1:30' or '12:00'
   // cut it into substrings separated by ':' char, then get number value of each and x60 for minutes
+  const arr = time.split(":");
+  return Number(arr[0] * 60) + Number(arr[1]);
 }

@@ -17,17 +17,19 @@ export const initialProgramData = [
             metrics: [
               {
                 name: "weight",
-                type: "number",
                 adaptive: true,
                 inputBar: "NumberIncrementBar",
                 step: 5,
+                default: 185,
+                units: "lbs",
               },
               {
                 name: "reps",
-                type: "number",
-                adaptive: false,
+                adaptive: true,
                 inputBar: "NumberIncrementBar",
                 step: 1,
+                default: 5,
+                units: "",
               },
             ],
             sets: [
@@ -46,17 +48,19 @@ export const initialProgramData = [
             metrics: [
               {
                 name: "weight",
-                type: "number",
                 adaptive: true,
                 inputBar: "NumberIncrementBar",
                 step: 5,
+                default: 135,
+                units: "lbs",
               },
               {
                 name: "reps",
-                type: "number",
-                adaptive: false,
+                adaptive: true,
                 inputBar: "NumberIncrementBar",
                 step: 1,
+                default: 5,
+                units: "",
               },
             ],
             sets: [
@@ -75,17 +79,19 @@ export const initialProgramData = [
             metrics: [
               {
                 name: "weight",
-                type: "number",
                 adaptive: true,
                 inputBar: "NumberIncrementBar",
                 step: 5,
+                default: 135,
+                units: "lbs",
               },
               {
                 name: "reps",
-                type: "number",
-                adaptive: false,
+                adaptive: true,
                 inputBar: "NumberIncrementBar",
                 step: 1,
+                default: 5,
+                units: "",
               },
             ],
             sets: [
@@ -112,17 +118,19 @@ export const initialProgramData = [
             metrics: [
               {
                 name: "weight",
-                type: "number",
                 adaptive: true,
                 inputBar: "NumberIncrementBar",
                 step: 5,
+                default: 185,
+                units: "lbs",
               },
               {
                 name: "reps",
-                type: "number",
-                adaptive: false,
+                adaptive: true,
                 inputBar: "NumberIncrementBar",
                 step: 1,
+                default: 5,
+                units: "",
               },
             ],
             sets: [
@@ -141,17 +149,19 @@ export const initialProgramData = [
             metrics: [
               {
                 name: "weight",
-                type: "number",
                 adaptive: true,
                 inputBar: "NumberIncrementBar",
                 step: 5,
+                default: 105,
+                units: "lbs",
               },
               {
                 name: "reps",
-                type: "number",
-                adaptive: false,
+                adaptive: true,
                 inputBar: "NumberIncrementBar",
                 step: 1,
+                default: 5,
+                units: "",
               },
             ],
             sets: [
@@ -170,17 +180,19 @@ export const initialProgramData = [
             metrics: [
               {
                 name: "weight",
-                type: "number",
                 adaptive: true,
                 inputBar: "NumberIncrementBar",
                 step: 5,
+                default: 190,
+                units: "lbs",
               },
               {
                 name: "reps",
-                type: "number",
-                adaptive: false,
+                adaptive: true,
                 inputBar: "NumberIncrementBar",
                 step: 1,
+                default: 5,
+                units: "",
               },
             ],
             sets: [{ id: 26, metrics: { weight: 195, reps: 5 } }],
@@ -207,10 +219,11 @@ export const initialProgramData = [
             metrics: [
               {
                 name: "reps",
-                type: "number",
                 adaptive: true,
                 inputBar: "NumberIncrementBar",
                 step: 1,
+                default: 15,
+                units: "",
               },
             ],
             sets: [
@@ -229,17 +242,19 @@ export const initialProgramData = [
             metrics: [
               {
                 name: "weight",
-                type: "number",
                 adaptive: true,
                 inputBar: "NumberIncrementBar",
                 step: 5,
+                default: 135,
+                units: "lbs",
               },
               {
                 name: "reps",
-                type: "number",
                 adaptive: true,
                 inputBar: "NumberIncrementBar",
                 step: 1,
+                default: 5,
+                units: "",
               },
             ],
             sets: [
@@ -266,10 +281,11 @@ export const initialProgramData = [
             metrics: [
               {
                 name: "reps",
-                type: "number",
                 adaptive: true,
                 inputBar: "NumberIncrementBar",
                 step: 1,
+                default: 7,
+                units: "",
               },
             ],
             sets: [
@@ -286,17 +302,19 @@ export const initialProgramData = [
             metrics: [
               {
                 name: "weight",
-                type: "number",
                 adaptive: true,
                 inputBar: "NumberIncrementBar",
-                step: 10,
+                step: 5,
+                default: 190,
+                units: "lbs",
               },
               {
                 name: "reps",
-                type: "number",
                 adaptive: true,
                 inputBar: "NumberIncrementBar",
                 step: 1,
+                default: 5,
+                units: "",
               },
             ],
             sets: [{ id: 40, metrics: { weight: 195, reps: 5 } }],
@@ -317,17 +335,19 @@ export const initialProgramData = [
             metrics: [
               {
                 name: "weight",
-                type: "number",
                 adaptive: true,
                 inputBar: "NumberIncrementBar",
                 step: 5,
+                default: 185,
+                units: "lbs",
               },
               {
                 name: "reps",
-                type: "number",
                 adaptive: true,
                 inputBar: "NumberIncrementBar",
                 step: 1,
+                default: 5,
+                units: "",
               },
             ],
             sets: [
@@ -346,17 +366,19 @@ export const initialProgramData = [
             metrics: [
               {
                 name: "weight",
-                type: "number",
-                adaptive: true,
-                inputBar: "NumberIncrementBar",
-                step: 10,
-              },
-              {
-                name: "reps",
-                type: "number",
                 adaptive: true,
                 inputBar: "NumberIncrementBar",
                 step: 1,
+                default: 200,
+                units: "lbs",
+              },
+              {
+                name: "reps",
+                adaptive: true,
+                inputBar: "NumberIncrementBar",
+                step: 1,
+                default: 5,
+                units: "",
               },
             ],
             sets: [
@@ -383,10 +405,11 @@ export const initialProgramData = [
             metrics: [
               {
                 name: "laps",
-                type: "number",
                 adaptive: true,
                 inputBar: "NumberIncrementBar",
-                step: 2,
+                step: 1,
+                default: 8,
+                units: "",
               },
             ],
             sets: [
