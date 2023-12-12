@@ -71,7 +71,7 @@ function BuildExercise() {
       metrics: metricsArray,
     };
 
-    console.log(exerciseObject);
+    // console.log(exerciseObject);
 
     dispatch({ type: "add-new-exercise", payload: exerciseObject });
     navigate(-1);
@@ -107,11 +107,6 @@ function BuildExercise() {
                   },
                 })}
               />
-
-              {/* {errors.restTimer && <p>seconds should be less than 60</p>} */}
-              {/* <Form.Control.Feedback>
-                  Seconds should be less than 60
-                </Form.Control.Feedback> */}
             </InputGroup>
             <Form.Text>
               <p className="mb-0 mt-1">min : sec</p>
@@ -121,7 +116,7 @@ function BuildExercise() {
               errors={errors}
               name="restTimer"
               render={({ message }) => (
-                <p style={{ color: "red" }}>{message}</p>
+                <p style={{ color: "var(--bs-danger)" }}>{message}</p>
               )}
             />
           </Form.Group>
@@ -181,23 +176,3 @@ function BuildExercise() {
 }
 
 export default BuildExercise;
-
-/* name: "Barbell Squats",
-    id: 1,
-    restTimer: 90,
-    metrics: [
-      {
-        name: "weight",
-        type: "number",
-        adaptive: true,
-        inputBar: "NumberIncrementBar",
-        step: 5 ,
-      },
-      {
-        name: "reps",
-        type: "number",
-        adaptive: true,
-        inputBar: "NumberIncrementBar",
-        step: 1 ,
-      },
-    ], */

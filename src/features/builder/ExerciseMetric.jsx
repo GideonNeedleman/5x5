@@ -58,8 +58,6 @@ function ExerciseMetric({ register, index }) {
           </InputGroup>
         </Form.Group>
 
-        {/* Specify default value? */}
-
         <Form.Group className="mt-3">
           <Form.Label>Increment Step Amount</Form.Label>
           <Form.Control
@@ -85,7 +83,7 @@ function ExerciseMetric({ register, index }) {
         </Form.Group>
 
         <div className="d-flex align-items-baseline gap-3 ">
-          <Form.Check // prettier-ignore
+          <Form.Check
             type="switch"
             id="custom-switch"
             label="Adaptive Metric"
@@ -105,9 +103,3 @@ function ExerciseMetric({ register, index }) {
 }
 
 export default ExerciseMetric;
-
-{
-  /* <option value="increment">
-  <NumberIncrementBar metric={{ name: "thing" }} register={register} />
-</option>; */
-}
