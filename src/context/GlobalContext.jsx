@@ -1,6 +1,7 @@
 import { createContext, useContext, useReducer, useEffect } from "react";
 import { initialProgramData } from "./initialProgramData";
 import { initialExerciseData } from "./initialExerciseData";
+import { initialWorkoutData } from "./initialWorkoutData";
 
 const GlobalContext = createContext();
 
@@ -147,6 +148,8 @@ const initialState = {
   workoutHistory: JSON.parse(localStorage.getItem("workoutHistory")) || [], //{workoutId, workoutName, startTime, finishTime}
   exerciseData:
     JSON.parse(localStorage.getItem("exerciseData")) || initialExerciseData,
+  workoutData:
+    JSON.parse(localStorage.getItem("workoutData")) || initialWorkoutData,
   programData:
     JSON.parse(localStorage.getItem("programData")) || initialProgramData,
 };
@@ -164,6 +167,7 @@ function GlobalContextProvider({ children }) {
       recordData,
       workoutHistory,
       exerciseData,
+      workoutData,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -194,6 +198,10 @@ function GlobalContextProvider({ children }) {
     localStorage.setItem("exerciseData", JSON.stringify(exerciseData));
   }, [exerciseData]);
 
+  useEffect(() => {
+    localStorage.setItem("workoutData", JSON.stringify(workoutData));
+  }, [workoutData]);
+
   return (
     <GlobalContext.Provider
       value={{
@@ -207,6 +215,7 @@ function GlobalContextProvider({ children }) {
         recordData,
         workoutHistory,
         exerciseData,
+        workoutData,
         dispatch,
 
         handleFinishWorkout,
