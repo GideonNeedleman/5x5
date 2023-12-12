@@ -32,7 +32,8 @@ function BuildExercise() {
     // navigate away
     const id = exerciseData.length + 1;
     const { name, restTimer, ...metricsObject } = data;
-    // 1) count number of metrics: metricsObject.keys -> loop 'metric-i-' check matches string in keys
+
+    // 1) count number of metrics
     const keys = Object.keys(metricsObject);
     let numMetrics = 0;
     let i = 1;
@@ -48,7 +49,7 @@ function BuildExercise() {
       }
     }
 
-    // 2) loop over numMetrics, for each loop add object to array containing all properties that match 'metric-i-', but remove that prefix
+    // 2) loop over numMetrics, adding object to array containing all properties that match 'metric-i-' and remove that prefix
     let metricsArray = [];
     for (let i = 1; i <= numMetrics; i++) {
       const newMetric = {};
@@ -56,15 +57,13 @@ function BuildExercise() {
       for (const property in metricsObject) {
         if (property.includes(`metric-${i}-`))
           newMetric[property.substring(prefixLength)] = metricsObject[property];
-        // should be newMetric[property.substring minus prefix]
       }
       metricsArray = [...metricsArray, newMetric];
     }
 
-    // change type => inputBar Should eliminate nested inputBar data. Just prefex it with inputBar when it needs to be grabbed in DoSet or whatever. DONE!
     const restTimerSeconds = timeToSeconds(restTimer);
 
-    // transform restTimer to seconds (number)
+    // final formatted exercise object
     const exerciseObject = {
       id,
       name,
@@ -73,19 +72,9 @@ function BuildExercise() {
     };
 
     console.log(exerciseObject);
-    /*     console.log(
-      "id",
-      id,
-      "name",
-      name,
-      "rest timer",
-      restTimerSeconds,
-      "metrics array",
-      metricsArray
-    );
-    console.log("raw data", data); */
   }
   // console.log("errors", errors);
+
   return (
     <main>
       <h1 className="text-center display-3">New Exercise</h1>

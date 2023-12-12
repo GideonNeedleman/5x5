@@ -39,7 +39,7 @@ function ExerciseMetric({ register, index }) {
           <Form.Control
             type="text"
             list="metricUnitOptions"
-            placeholder="Units"
+            placeholder="Leave blank if unitless"
             {...register(`metric-${index}-units`)}
           />
           <datalist id="metricUnitOptions">
