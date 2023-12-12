@@ -6,9 +6,12 @@ import { Container } from "react-bootstrap";
 import WorkoutButton from "../features/workout/WorkoutButton";
 import { useGlobalContext } from "../context/GlobalContext";
 import vibrator from "vibrator";
+import { useNavigate } from "react-router-dom";
 
 function SelectWorkout() {
   const { programData: programs } = useGlobalContext();
+  const navigate = useNavigate();
+
   return (
     <main>
       <h1 className="d-flex display-3 justify-content-center">
@@ -39,7 +42,13 @@ function SelectWorkout() {
             </Stack>
           </div>
         ))}
-        <Button variant="outline-dark" onClick={() => vibrator(1)}>
+        <Button
+          variant="outline-dark"
+          onClick={() => {
+            vibrator(1);
+            navigate("/builder");
+          }}
+        >
           + Add Program / Workout
         </Button>
         <Button variant="outline-secondary" onClick={() => vibrator(1)}>

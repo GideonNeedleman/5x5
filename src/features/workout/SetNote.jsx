@@ -7,7 +7,7 @@ function SetNote({
   defaultValue,
 }) {
   return (
-    <InputGroup>
+    <InputGroup className="mt-3">
       <Form.Control
         id="note"
         as="textarea"

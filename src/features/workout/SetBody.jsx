@@ -9,7 +9,7 @@ function SetBody({
   isFinished,
   isUnlocked,
 }) {
-  // in future can generalize to other metrics by looping over set metrics and displaying input fields for each one. Can also have different types of metrics (integer values, times, distances, text dropdown, etc) to properly format the inputs. Use metric.inputBar.type to choose correct inputBar type. Maybe use switch statement when mapping over the metrics array.
+  // in future can generalize to other metrics by looping over set metrics and displaying input fields for each one. Can also have different types of metrics (integer values, times, distances, text dropdown, etc) to properly format the inputs. Use metric.inputBar to choose correct inputBar type. Maybe use switch statement when mapping over the metrics array.
   return (
     <>
       {exercise.metrics.map((metric) => (
