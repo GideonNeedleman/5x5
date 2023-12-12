@@ -101,3 +101,8 @@ export function filterObject(object, filterList) {
 
   return newObject;
 }
+
+export function timeToSeconds(time) {
+  // time is a min:string string like '1:30' or '12:00'
+  // cut it into substrings separated by ':' char, then get number value of each and x60 for minutes
+}

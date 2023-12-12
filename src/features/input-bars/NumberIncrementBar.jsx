@@ -25,7 +25,7 @@ function NumberIncrementBar({
           variant="secondary"
           disabled={isFinished && !isUnlocked}
           onClick={() => {
-            stepMetric(metric.name, -metric.inputBar?.step || -1);
+            stepMetric(metric.name, -metric.step || -1);
             vibrator(1);
           }}
         >
@@ -45,7 +45,7 @@ function NumberIncrementBar({
           variant="secondary"
           disabled={isFinished && !isUnlocked}
           onClick={() => {
-            stepMetric(metric.name, metric.inputBar?.step || 1);
+            stepMetric(metric.name, metric.step || 1);
             vibrator(1);
           }}
         >

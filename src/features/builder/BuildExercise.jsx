@@ -61,7 +61,7 @@ function BuildExercise() {
       metricsArray = [...metricsArray, newMetric];
     }
 
-    // change type => inputBar
+    // change type => inputBar Should eliminate nested inputBar data. Just prefex it with inputBar when it needs to be grabbed in DoSet or whatever.
     // transform restTimer to seconds (number)
     const exerciseObject = { id, name, restTimer, metrics: metricsArray };
 
@@ -191,12 +191,14 @@ export default BuildExercise;
         name: "weight",
         type: "number",
         adaptive: true,
-        inputBar: { type: "NumberIncrementBar", step: 5 },
+        inputBar: "NumberIncrementBar",
+        step: 5 ,
       },
       {
         name: "reps",
         type: "number",
         adaptive: true,
-        inputBar: { type: "NumberIncrementBar", step: 1 },
+        inputBar: "NumberIncrementBar",
+        step: 1 ,
       },
     ], */
