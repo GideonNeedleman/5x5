@@ -31,7 +31,8 @@ function DoSet({
   const [isEditSet, setIsEditSet] = useState(false);
 
   const form = useForm();
-  const { register, control, handleSubmit, setValue, getValues } = form;
+  const { register, control, handleSubmit, setValue, getValues, resetField } =
+    form;
 
   const ACCORDION_HEIGHT = 52;
 
@@ -106,6 +107,7 @@ function DoSet({
             register={register}
             setValue={setValue}
             getValues={getValues}
+            resetField={resetField}
             isFinished={isFinished}
             isUnlocked={isUnlocked}
           />

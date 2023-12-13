@@ -19,6 +19,7 @@ function BuildWorkout() {
     watch,
     setValue,
     getValues,
+    resetField,
     // formState: { errors },
   } = form;
 
@@ -91,6 +92,7 @@ function BuildWorkout() {
                   register={register}
                   getValues={getValues}
                   setValue={setValue}
+                  resetField={resetField}
                   watch={watch}
                   index={index}
                 />
