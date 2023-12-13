@@ -17,7 +17,13 @@ function Builder() {
         >
           + New Exercise
         </Button>
-        <Button className="w-100" onClick={() => vibrator(1)}>
+        <Button
+          className="w-100"
+          onClick={() => {
+            navigate("/build-workout");
+            vibrator(1);
+          }}
+        >
           + New Workout
         </Button>
         <Button className="w-100" onClick={() => vibrator(1)}>

@@ -5,7 +5,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useGlobalContext } from "../context/GlobalContext";
 
 function Header() {
-  const { isWorkoutStarted, workoutData } = useGlobalContext();
+  const { isWorkoutStarted, recordData } = useGlobalContext();
   return (
     <Navbar className="bg-body-tertiary">
       <Container>
@@ -13,7 +13,7 @@ function Header() {
           <Navbar.Brand>Exercise Tracker</Navbar.Brand>
         </LinkContainer>
         <Nav className="">
-          {!isWorkoutStarted && workoutData.length > 0 && (
+          {!isWorkoutStarted && recordData.length > 0 && (
             <LinkContainer to={"/history"}>
               <Nav.Link>History</Nav.Link>
             </LinkContainer>

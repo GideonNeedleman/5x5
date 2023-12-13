@@ -176,7 +176,7 @@ export const initialExerciseData = [
         name: "laps",
         adaptive: true,
         inputBar: "NumberIncrementBar",
-        step: 1,
+        step: 2,
         default: 8,
         units: "",
       },

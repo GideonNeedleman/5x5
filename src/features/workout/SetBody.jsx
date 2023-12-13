@@ -21,6 +21,7 @@ function SetBody({
           isFinished={isFinished}
           isUnlocked={isUnlocked}
           defaultValue={set.metrics[metric.name]}
+          // fieldName={metric.name}
           key={metric.name}
         />
       ))}

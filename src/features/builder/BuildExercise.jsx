@@ -24,7 +24,7 @@ function BuildExercise() {
   } = form;
   const registerWithMask = useHookFormMask(register);
   const [numMetrics, setNumMetrics] = useState(0);
-  const arrayToMap = Array(numMetrics);
+  const arrayToMap = [...Array(numMetrics)];
 
   function handleSubmitExercise(data) {
     // format data into correct exercise shape
@@ -121,7 +121,7 @@ function BuildExercise() {
             />
           </Form.Group>
 
-          {[...arrayToMap].map((metric, index) => (
+          {arrayToMap.map((metric, index) => (
             <ExerciseMetric register={register} index={index + 1} key={index} />
           ))}
 
@@ -135,7 +135,7 @@ function BuildExercise() {
                   vibrator(1);
                 }}
               >
-                - Remove Metric
+                &minus; Remove Metric
               </Button>
             )}
             <Button

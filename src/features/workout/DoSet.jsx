@@ -24,7 +24,7 @@ function DoSet({
   canToggle,
   exerciseIndex,
 }) {
-  const { dispatch, tempWorkoutData } = useGlobalContext();
+  const { dispatch, tempRecordData } = useGlobalContext();
   const [isNoteVisible, setIsNoteVisible] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
   const [isUnlocked, setIsUnlocked] = useState(false);
@@ -58,8 +58,8 @@ function DoSet({
       metrics,
     };
 
-    // when editing set, create copy of tempWorkoutData with edited set having updated note and metrics data. Then dispatch to replace workoutData with this copy
-    const editedWorkoutData = tempWorkoutData.map((oldSet) =>
+    // when editing set, create copy of tempRecordData with edited set having updated note and metrics data. Then dispatch to replace recordData with this copy
+    const editedRecordData = tempRecordData.map((oldSet) =>
       oldSet.setId === set.id ? { ...oldSet, note, metrics } : oldSet
     );
 
@@ -77,7 +77,7 @@ function DoSet({
     if (isEditSet) {
       dispatch({
         type: "edit-temp-set-data",
-        payload: editedWorkoutData,
+        payload: editedRecordData,
       });
     } else dispatch({ type: "submit-set-data", payload: formatData });
   }

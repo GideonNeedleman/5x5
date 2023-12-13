@@ -4,9 +4,9 @@ import { useGlobalContext } from "../../context/GlobalContext";
 import dayjs from "dayjs";
 
 function SelectDataTable({ exerciseId }) {
-  const { workoutData, exerciseData } = useGlobalContext();
+  const { recordData, exerciseData } = useGlobalContext();
   // match exercise name, sort reverse chronological order
-  const setData = workoutData
+  const setData = recordData
     .filter((set) => set.exerciseId === exerciseId)
     .sort((a, b) => dayjs(b.datetime).unix() - dayjs(a.datetime).unix());
   const exercise = exerciseData.filter(
