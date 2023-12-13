@@ -36,14 +36,13 @@ function BuildWorkout() {
     for (let i = 1; i <= numExercises; i++) {
       const exerciseIndex = Number(data[`exerciseIndex-${i}`]);
       const exercise = exerciseData.find((el) => el.id == exerciseIndex);
-      // console.log("exercise", exercise);
       // Find numSets
       const numSets = data[`exercise-${i}-numSets`];
       // Build sets array with another loop from all matching exercise-i-set-
       let sets = [];
       for (let j = 1; j <= numSets; j++) {
         nextSetId++;
-        // Get metrics for set i by looping over its k metrics and building up metricsObject
+        // Get metrics for set i by looping over its k metrics and building up metricsObject. Grab metric name (key) from exercise metrics array
         const metricsObject = {};
         for (let k = 0; k < exercise.metrics.length; k++) {
           const key = exercise.metrics[k].name;
@@ -54,8 +53,8 @@ function BuildWorkout() {
         sets = [...sets, setObject];
       }
 
-      // Combine to build exerciseObject
-      const exerciseObject = { exerciseIndex, id: i, ...exercise, sets };
+      // Combine to build exerciseObject (Note: specify id:i after spreading ...exercise to overwrite id property inside exercise)
+      const exerciseObject = { exerciseIndex, ...exercise, id: i, sets };
       // Add to exerciseArray
       exerciseArray = [...exerciseArray, exerciseObject];
     }

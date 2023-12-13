@@ -21,7 +21,7 @@ function AddExerciseToWorkout({ register, setValue, getValues, watch, index }) {
   // console.log("numSets", numSets);
 
   return (
-    <Card border="primary">
+    <Card bg="primary">
       <Card.Body className="d-flex flex-column gap-3">
         <Form.Select
           {...register(`exerciseIndex-${index + 1}`)}
