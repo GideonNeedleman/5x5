@@ -10,7 +10,7 @@ import vibrator from "vibrator";
 import AddWorkoutToProgram from "./AddWorkoutToProgram";
 
 function BuildProgram() {
-  const { dispatch, programData } = useGlobalContext();
+  const { dispatch, programData, workoutData } = useGlobalContext();
   const navigate = useNavigate();
   const form = useForm();
   const {
@@ -29,7 +29,28 @@ function BuildProgram() {
   function handleSubmitProgram(data) {
     const id = programData.length + 1;
     const { name } = data;
-    const workouts = [];
+
+    // need numWorkouts then loop i to numWorkouts, grab id=i, workoutIndex = workoutIndex-i, add name, next, exercises array, maybe order? I think can eliminate order and just use id. Since id is local variable, not PK.
+
+    // numWorkouts
+    const numWorkouts = Object.keys(data).filter((element) =>
+      element.includes("workoutIndex")
+    ).length;
+
+    // console.log("numWorkouts", numWorkouts);
+
+    let workouts = [];
+    for (let i = 1; i <= numWorkouts; i++) {
+      const id = i;
+      const workoutIndex = data[`workoutIndex-${i}`];
+      const chosenWorkout = workoutData.find((el) => el.id === workoutIndex);
+      const next = i === 1;
+
+      const workout = { ...chosenWorkout, id, next, workoutIndex };
+      workouts = [...workouts, workout];
+    }
+    // convert to workouts array = [{id: 1}, {id:4}, {}]
+
     const programObject = { id, name, workouts };
     console.log("raw data", data);
     console.log("final object", programObject);
@@ -59,9 +80,9 @@ function BuildProgram() {
                   key={index}
                   register={register}
                   index={index}
-                  getValues={getValues}
-                  setValue={setValue}
-                  resetField={resetField}
+                  // getValues={getValues}
+                  // setValue={setValue}
+                  // resetField={resetField}
                   watch={watch}
                 />
               ))}
