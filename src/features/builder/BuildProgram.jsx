@@ -10,7 +10,7 @@ import vibrator from "vibrator";
 import AddWorkoutToProgram from "./AddWorkoutToProgram";
 
 function BuildProgram() {
-  const { dispatch, workoutData } = useGlobalContext();
+  const { dispatch, programData } = useGlobalContext();
   const navigate = useNavigate();
   const form = useForm();
   const {
@@ -26,7 +26,13 @@ function BuildProgram() {
   const [numWorkouts, setNumWorkouts] = useState(0);
   const arrayToMap = [...Array(numWorkouts)];
 
-  function handleSubmitProgram() {
+  function handleSubmitProgram(data) {
+    const id = programData.length + 1;
+    const { name } = data;
+    const workouts = [];
+    const programObject = { id, name, workouts };
+    console.log("raw data", data);
+    console.log("final object", programObject);
     // add 'next' == true for first workout
   }
 
@@ -61,7 +67,7 @@ function BuildProgram() {
               ))}
             </div>
 
-            <div className="d-flex gap-3 my-3">
+            <div className="d-flex gap-3 ">
               {numWorkouts > 0 && (
                 <Button
                   className="mt-3 w-100"

@@ -1,82 +1,47 @@
-import { useState, useEffect } from "react";
-import { Button, Card, Form } from "react-bootstrap";
+import { Card, Form } from "react-bootstrap";
 import { useGlobalContext } from "../../context/GlobalContext";
-import AddSetToExercise from "./AddSetToExercise";
-import vibrator from "vibrator";
 
 function AddWorkoutToProgram({
   register,
   index,
-  setValue,
-  getValues,
-  resetField,
+  // setValue,
+  // getValues,
+  // resetField,
   watch,
 }) {
   const { workoutData } = useGlobalContext();
-  /*   const chosenExerciseId = watch(`exerciseIndex-${index + 1}`);
-  const chosenExercise = exerciseData.find((el) => el.id == chosenExerciseId);
-  const [numSets, setNumSets] = useState();
-  const arrayToMap = [...Array(numSets)]; */
+  const chosenWorkoutId = watch(`workoutIndex-${index + 1}`);
+  const chosenWorkout = workoutData.find((el) => el.id == chosenWorkoutId);
+
   // Display list of exercises inside workout
   return (
     <Card bg="primary">
       <Card.Body className="d-flex flex-column gap-3">
+        <Card.Title className="text-white">Workout #{index + 1}</Card.Title>
         <Form.Select
-          {...register(`exerciseIndex-${index + 1}`)}
+          {...register(`workoutIndex-${index + 1}`, {
+            valueAsNumber: true,
+          })}
           className="fs-3 text-center"
         >
-          <option>Choose exercise...</option>
-          <option value="new">+ Create new exercise</option>
-          {workoutData.map((exercise) => (
-            <option value={exercise.id} key={exercise.id}>
-              {exercise.name}
+          <option>Choose workout...</option>
+          {workoutData.map((workout) => (
+            <option value={workout.id} key={workout.id}>
+              {workout.name}
             </option>
           ))}
         </Form.Select>
 
-        {/* Hidden field holding numSets */}
-        <input {...register(`exercise-${index + 1}-numSets`)} type="hidden" />
-
-        {/* Set default cards */}
-        {/* {Number(chosenExerciseId) > 0 &&
-          arrayToMap.map((el, setIndex) => (
-            <AddSetToExercise
-              key={setIndex}
-              register={register}
-              getValues={getValues}
-              setValue={setValue}
-              resetField={resetField}
-              setIndex={setIndex}
-              metrics={chosenExercise.metrics}
-              exerciseId={index + 1}
-            />
-          ))} */}
-
-        {/* Add / Remove set buttons */}
-        {/* {Number(chosenExerciseId) > 0 && (
-          <div className="d-flex gap-3">
-            <Button
-              className="w-100"
-              variant="secondary"
-              onClick={() => {
-                numSets > 0 && setNumSets((prev) => prev - 1);
-                vibrator(1);
-              }}
-            >
-              &minus; Remove set
-            </Button>
-            <Button
-              className="w-100"
-              variant="secondary"
-              onClick={() => {
-                setNumSets((prev) => prev + 1);
-                vibrator(1);
-              }}
-            >
-              + Add set
-            </Button>
-          </div>
-        )} */}
+        {/* Display exercises */}
+        <div className="bg-light rounded">
+          <ul className="list-group">
+            {chosenWorkout?.exercises.map((exercise) => (
+              <li className="list-group-item" key={exercise.id}>
+                {exercise.name}
+              </li>
+            ))}
+          </ul>
+        </div>
       </Card.Body>
     </Card>
   );
