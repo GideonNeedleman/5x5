@@ -16,6 +16,10 @@ function AddExerciseToWorkout({ register, setValue, getValues, watch, index }) {
     setNumSets(0);
   }, [chosenExerciseId]);
 
+  setValue(`exercise-${index + 1}-numSets`, numSets);
+
+  console.log("numSets", numSets);
+
   return (
     <Card border="primary">
       <Card.Body className="d-flex flex-column gap-3">
@@ -31,6 +35,9 @@ function AddExerciseToWorkout({ register, setValue, getValues, watch, index }) {
             </option>
           ))}
         </Form.Select>
+
+        {/* Hidden field holding numSets */}
+        <input {...register(`exercise-${index + 1}-numSets`)} type="hidden" />
 
         {/* Set default cards */}
         {Number(chosenExerciseId) > 0 &&
