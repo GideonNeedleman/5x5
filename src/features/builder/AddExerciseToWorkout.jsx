@@ -11,11 +11,12 @@ function AddExerciseToWorkout({ register, setValue, getValues, watch, index }) {
   const [numSets, setNumSets] = useState();
   const arrayToMap = [...Array(numSets)];
 
-  // Remove sets if user changes exercise
+  // Remove sets if user changes exercise. Auto add first set.
   useEffect(() => {
     setNumSets(1);
   }, [chosenExerciseId]);
 
+  // set value of hidden numSets field. Tells handleSubmitWorkout() how many sets to grab
   setValue(`exercise-${index + 1}-numSets`, numSets);
 
   return (
