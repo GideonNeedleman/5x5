@@ -61,6 +61,10 @@ function BuildWorkout() {
 
     // combine exercises array with workout id & name
     const workoutObject = { id, name, exercises: exerciseArray };
+    // dispatch to add workout to workoutData
+    dispatch({ type: "add-new-workout", payload: workoutObject });
+    // navigate back
+    navigate(-1);
     console.log("raw data", data);
     console.log("final object", workoutObject);
   }

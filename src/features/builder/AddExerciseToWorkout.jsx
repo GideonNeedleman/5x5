@@ -7,7 +7,7 @@ function AddExerciseToWorkout({ register, setValue, getValues, watch, index }) {
   const { exerciseData } = useGlobalContext();
   const chosenExerciseId = watch(`exerciseIndex-${index + 1}`);
   const chosenExercise = exerciseData.find((el) => el.id == chosenExerciseId);
-  const [numSets, setNumSets] = useState(1);
+  const [numSets, setNumSets] = useState();
   const arrayToMap = [...Array(numSets)];
 
   // console.log("chosen exercise", chosenExercise);

@@ -129,6 +129,11 @@ function reducer(state, action) {
         ...state,
         exerciseData: [...state.exerciseData, action.payload],
       };
+    case "add-new-workout":
+      return {
+        ...state,
+        workoutData: [...state.workoutData, action.payload],
+      };
     default:
       throw new Error("unknown action type");
   }
