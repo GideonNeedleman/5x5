@@ -9,6 +9,7 @@ import Review from "./pages/Review";
 import Builder from "./pages/Builder";
 import BuildExercise from "./features/builder/BuildExercise";
 import BuildWorkout from "./features/builder/BuildWorkout";
+import BuildProgram from "./features/builder/BuildProgram";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/builder" element={<Builder />} />
           <Route path="/build-exercise" element={<BuildExercise />} />
           <Route path="/build-workout" element={<BuildWorkout />} />
+          <Route path="/build-program" element={<BuildProgram />} />
         </Routes>
       </BrowserRouter>
     </GlobalContextProvider>
