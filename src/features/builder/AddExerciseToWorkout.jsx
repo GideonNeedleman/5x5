@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button, Card, Form } from "react-bootstrap";
 import { useGlobalContext } from "../../context/GlobalContext";
 import AddSetToExercise from "./AddSetToExercise";
+import vibrator from "vibrator";
 
 function AddExerciseToWorkout({ register, setValue, getValues, watch, index }) {
   const { exerciseData } = useGlobalContext();
@@ -10,7 +11,7 @@ function AddExerciseToWorkout({ register, setValue, getValues, watch, index }) {
   const [numSets, setNumSets] = useState();
   const arrayToMap = [...Array(numSets)];
 
-  // Remove all sets if user changes exercise
+  // Remove sets if user changes exercise
   useEffect(() => {
     setNumSets(1);
   }, [chosenExerciseId]);
@@ -58,6 +59,7 @@ function AddExerciseToWorkout({ register, setValue, getValues, watch, index }) {
               variant="secondary"
               onClick={() => {
                 numSets > 0 && setNumSets((prev) => prev - 1);
+                vibrator(1);
               }}
             >
               &minus; Remove set
@@ -67,6 +69,7 @@ function AddExerciseToWorkout({ register, setValue, getValues, watch, index }) {
               variant="secondary"
               onClick={() => {
                 setNumSets((prev) => prev + 1);
+                vibrator(1);
               }}
             >
               + Add set

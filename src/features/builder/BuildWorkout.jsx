@@ -1,6 +1,6 @@
 import { Button, Container, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { ErrorMessage } from "@hookform/error-message";
+// import { ErrorMessage } from "@hookform/error-message";
 import { DevTool } from "@hookform/devtools";
 import { useNavigate } from "react-router-dom";
 import vibrator from "vibrator";
@@ -19,7 +19,7 @@ function BuildWorkout() {
     watch,
     setValue,
     getValues,
-    formState: { errors },
+    // formState: { errors },
   } = form;
 
   const [numExercises, setNumExercises] = useState(1);
@@ -28,7 +28,7 @@ function BuildWorkout() {
 
   function handleSubmitWorkout(data) {
     const id = workoutData.length + 1;
-    const { name, ...rest } = data; // grab workout name
+    const { name } = data; // grab workout name
     let nextSetId = 0; // running tally to specify setId
     // 1) Create exercises array to hold exercise objects
     let exerciseArray = [];

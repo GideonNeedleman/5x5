@@ -71,12 +71,9 @@ function BuildExercise() {
       metrics: metricsArray,
     };
 
-    // console.log(exerciseObject);
-
     dispatch({ type: "add-new-exercise", payload: exerciseObject });
     navigate(-1);
   }
-  // console.log("errors", errors);
 
   return (
     <main>

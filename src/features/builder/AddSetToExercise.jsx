@@ -1,4 +1,4 @@
-import { Card, Form } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import NumberIncrementBar from "../input-bars/NumberIncrementBar";
 
 function AddSetToExercise({
@@ -32,10 +32,3 @@ function AddSetToExercise({
 }
 
 export default AddSetToExercise;
-
-{
-  /* <span key={index}>
-            {metric.name}:
-            <Form.Control defaultValue={metric.default} />
-          </span> */
-}
