@@ -4,7 +4,14 @@ import { useGlobalContext } from "../../context/GlobalContext";
 import AddSetToExercise from "./AddSetToExercise";
 import vibrator from "vibrator";
 
-function AddExerciseToWorkout({ register, setValue, getValues, watch, index }) {
+function AddExerciseToWorkout({
+  register,
+  setValue,
+  getValues,
+  resetField,
+  watch,
+  index,
+}) {
   const { exerciseData } = useGlobalContext();
   const chosenExerciseId = watch(`exerciseIndex-${index + 1}`);
   const chosenExercise = exerciseData.find((el) => el.id == chosenExerciseId);
@@ -46,6 +53,7 @@ function AddExerciseToWorkout({ register, setValue, getValues, watch, index }) {
               register={register}
               getValues={getValues}
               setValue={setValue}
+              resetField={resetField}
               setIndex={setIndex}
               metrics={chosenExercise.metrics}
               exerciseId={index + 1}

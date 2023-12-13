@@ -12,7 +12,8 @@ import SetNote from "../workout/SetNote";
 function EditSetModal({ show, onHide, set, exercise }) {
   const { dispatch } = useGlobalContext();
   const form = useForm();
-  const { register, control, handleSubmit, setValue, getValues } = form;
+  const { register, control, handleSubmit, setValue, getValues, resetField } =
+    form;
 
   function handleSubmitSet(data) {
     console.log("data", data);
@@ -39,6 +40,7 @@ function EditSetModal({ show, onHide, set, exercise }) {
             register={register}
             setValue={setValue}
             getValues={getValues}
+            resetField={resetField}
           />
           {/* Field for note */}
           <Form.Label htmlFor="note">Note</Form.Label>

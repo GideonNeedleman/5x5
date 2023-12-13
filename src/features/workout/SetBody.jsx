@@ -6,6 +6,7 @@ function SetBody({
   register,
   setValue,
   getValues,
+  resetField,
   isFinished,
   isUnlocked,
 }) {
@@ -18,6 +19,7 @@ function SetBody({
           register={register}
           setValue={setValue}
           getValues={getValues}
+          resetField={resetField}
           isFinished={isFinished}
           isUnlocked={isUnlocked}
           defaultValue={set.metrics[metric.name]}

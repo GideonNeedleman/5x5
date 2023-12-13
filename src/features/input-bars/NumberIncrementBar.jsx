@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { BsDashLg, BsPlusLg } from "react-icons/bs";
 import vibrator from "vibrator";
@@ -9,6 +10,7 @@ function NumberIncrementBar({
   register,
   setValue,
   getValues,
+  resetField, // used to fix deleted field state bug
   isFinished = false,
   isUnlocked = true,
   defaultValue,
@@ -17,6 +19,10 @@ function NumberIncrementBar({
   function stepMetric(metricToStep, step) {
     setValue(metricToStep, Number(getValues(metricToStep)) + step);
   }
+
+  useEffect(() => {
+    resetField(fieldName, { defaultValue });
+  }, [resetField, fieldName, defaultValue]);
 
   return (
     <>

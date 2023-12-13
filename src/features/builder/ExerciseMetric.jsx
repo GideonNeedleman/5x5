@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Card, Form, InputGroup } from "react-bootstrap";
 import { BsInfoCircleFill } from "react-icons/bs";
 import { IconContext } from "react-icons";
@@ -6,12 +7,22 @@ import vibrator from "vibrator";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 
-function ExerciseMetric({ register, index }) {
+function ExerciseMetric({ register, resetField, index }) {
   const Popup = ({ id, children, title }) => (
     <OverlayTrigger overlay={<Tooltip id={id}>{title}</Tooltip>}>
       <a href="#">{children}</a>
     </OverlayTrigger>
   );
+
+  // resets fields to default to avoid bug where values are retained from previously deleted metric. Will need to redo a bit for additional inputBar options.
+  useEffect(() => {
+    resetField(`metric-${index}-name`);
+    resetField(`metric-${index}-units`);
+    // resetField(`metric-${index}-inputBar`);
+    resetField(`metric-${index}-step`);
+    resetField(`metric-${index}-default`);
+    resetField(`metric-${index}-adaptive`);
+  }, [resetField, index]);
 
   return (
     <Card border="primary" className="mt-3">
