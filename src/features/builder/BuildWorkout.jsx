@@ -1,4 +1,4 @@
-import { Button, Card, Container, Form } from "react-bootstrap";
+import { Button, Container, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { DevTool } from "@hookform/devtools";
@@ -29,23 +29,33 @@ function BuildWorkout() {
   function handleSubmitWorkout(data) {
     const id = workoutData.length + 1;
     const { name, ...rest } = data; // grab workout name
+    let nextSetId = 0; // running tally to specify setId
     // 1) Create exercises array to hold exercise objects
     let exerciseArray = [];
     // 2) loop over data for numExercises. Grab exerciseIndex to populate from exerciseData,
     for (let i = 1; i <= numExercises; i++) {
       const exerciseIndex = Number(data[`exerciseIndex-${i}`]);
       const exercise = exerciseData.find((el) => el.id == exerciseIndex);
-      console.log("exercise", exercise);
+      // console.log("exercise", exercise);
       // Find numSets
-
+      const numSets = data[`exercise-${i}-numSets`];
       // Build sets array with another loop from all matching exercise-i-set-
+      let sets = [];
+      for (let j = 1; j <= numSets; j++) {
+        nextSetId++;
+        // Get metrics for set i by looping over its k metrics and building up metricsObject
+        const metricsObject = {};
+        for (let k = 0; k < exercise.metrics.length; k++) {
+          const key = exercise.metrics[k].name;
+          metricsObject[key] = data[`exercise-${i}-set-${j}-${key}`];
+        }
 
-      /* for (let j = 1; j <= numSets; j++) {
-        
-      } */
+        const setObject = { id: nextSetId, metrics: metricsObject };
+        sets = [...sets, setObject];
+      }
 
       // Combine to build exerciseObject
-      const exerciseObject = { exerciseIndex, id: i, ...exercise };
+      const exerciseObject = { exerciseIndex, id: i, ...exercise, sets };
       // Add to exerciseArray
       exerciseArray = [...exerciseArray, exerciseObject];
     }

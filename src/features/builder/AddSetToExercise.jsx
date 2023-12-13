@@ -20,7 +20,9 @@ function AddSetToExercise({
             defaultValue={metric.default}
             setValue={setValue}
             getValues={getValues}
-            fieldName={`exercise-${exerciseId}-set-${setIndex}-${metric.name}`}
+            fieldName={`exercise-${exerciseId}-set-${setIndex + 1}-${
+              metric.name
+            }`}
             key={index}
           />
         ))}

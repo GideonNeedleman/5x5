@@ -18,7 +18,7 @@ function AddExerciseToWorkout({ register, setValue, getValues, watch, index }) {
 
   setValue(`exercise-${index + 1}-numSets`, numSets);
 
-  console.log("numSets", numSets);
+  // console.log("numSets", numSets);
 
   return (
     <Card border="primary">
