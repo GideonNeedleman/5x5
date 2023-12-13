@@ -87,6 +87,7 @@ function BuildExercise() {
               type="text"
               placeholder="Enter exercise name"
               {...register("name")}
+              autoFocus
             />
           </Form.Group>
 
