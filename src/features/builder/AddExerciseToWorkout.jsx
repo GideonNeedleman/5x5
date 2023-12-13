@@ -10,15 +10,12 @@ function AddExerciseToWorkout({ register, setValue, getValues, watch, index }) {
   const [numSets, setNumSets] = useState();
   const arrayToMap = [...Array(numSets)];
 
-  // console.log("chosen exercise", chosenExercise);
-  // what if user defines sets, then changes the exercise? Should remove all the sets with useEffect, setNumSets(0)
+  // Remove all sets if user changes exercise
   useEffect(() => {
-    setNumSets(0);
+    setNumSets(1);
   }, [chosenExerciseId]);
 
   setValue(`exercise-${index + 1}-numSets`, numSets);
-
-  // console.log("numSets", numSets);
 
   return (
     <Card bg="primary">
