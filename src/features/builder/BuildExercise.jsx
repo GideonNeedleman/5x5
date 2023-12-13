@@ -20,6 +20,7 @@ function BuildExercise() {
     handleSubmit,
     // setValue,
     // getValues,
+    resetField,
     formState: { errors },
   } = form;
   const registerWithMask = useHookFormMask(register);
@@ -119,7 +120,12 @@ function BuildExercise() {
           </Form.Group>
 
           {arrayToMap.map((metric, index) => (
-            <ExerciseMetric register={register} index={index + 1} key={index} />
+            <ExerciseMetric
+              register={register}
+              resetField={resetField}
+              index={index + 1}
+              key={index}
+            />
           ))}
 
           <div className="d-flex gap-3 my-3">
