@@ -31,6 +31,8 @@ function AddExerciseToWorkout({ register, setValue, getValues, watch, index }) {
             </option>
           ))}
         </Form.Select>
+
+        {/* Set default cards */}
         {Number(chosenExerciseId) > 0 &&
           arrayToMap.map((el, setIndex) => (
             <AddSetToExercise
@@ -43,6 +45,8 @@ function AddExerciseToWorkout({ register, setValue, getValues, watch, index }) {
               exerciseId={index + 1}
             />
           ))}
+
+        {/* Add / Remove set buttons */}
         {Number(chosenExerciseId) > 0 && (
           <div className="d-flex gap-3">
             <Button

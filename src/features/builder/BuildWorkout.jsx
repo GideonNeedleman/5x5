@@ -9,7 +9,7 @@ import { useGlobalContext } from "../../context/GlobalContext";
 import AddExerciseToWorkout from "./AddExerciseToWorkout";
 
 function BuildWorkout() {
-  const { dispatch, workoutData } = useGlobalContext();
+  const { dispatch, workoutData, exerciseData } = useGlobalContext();
   const navigate = useNavigate();
   const form = useForm();
   const {
@@ -28,7 +28,22 @@ function BuildWorkout() {
 
   function handleSubmitWorkout(data) {
     const id = workoutData.length + 1;
-    console.log(data);
+    const { name, ...rest } = data;
+    // 1) Create exercises array from the exerciseIndex properties
+    // loop over rest, for each index grab exerciseIndex to populate from exerciseData, then construct sets array with another loop from all matching exercise-i-set-
+    // const exerciseArray = rest.filter(el => key begins with exerciseIndex-)
+    let exerciseArray = [];
+    for (let i = 1; i <= numExercises; i++) {
+      const exerciseIndex = Number(data[`exerciseIndex-${i}`]);
+      const exercise = exerciseData.find((el) => el.id == exerciseIndex);
+      console.log("exercise", exercise);
+      const exerciseObject = { exerciseIndex, id: i, ...exercise };
+      exerciseArray = [...exerciseArray, exerciseObject];
+    }
+
+    const workoutObject = { id, name, exercises: exerciseArray };
+    console.log("raw data", data);
+    console.log("final object", workoutObject);
   }
   return (
     <main>
