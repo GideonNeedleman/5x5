@@ -11,9 +11,11 @@ function AddSetToExercise({
   exerciseId,
 }) {
   return (
-    <Card border="secondary">
-      <p className="mt-1 mb-0 text-center fs-4">Set {setIndex + 1} </p>
-      <Card.Body>
+    <Card border="secondary" className="p-0">
+      <Card.Header className="fw-semibold fs-5 text-center p-1">
+        Set {setIndex + 1}
+      </Card.Header>
+      <Card.Body className="pt-2">
         {metrics.map((metric, index) => (
           <NumberIncrementBar
             register={register}

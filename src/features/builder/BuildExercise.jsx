@@ -1,14 +1,15 @@
-import { Button, Container, Form, InputGroup } from "react-bootstrap";
+import { Container, Form, InputGroup } from "react-bootstrap";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { DevTool } from "@hookform/devtools";
 import { useHookFormMask } from "use-mask-input";
 import { useGlobalContext } from "../../context/GlobalContext";
-import ExerciseMetric from "./ExerciseMetric";
 import { useNavigate } from "react-router-dom";
-import vibrator from "vibrator";
 import { timeToSeconds } from "../../utils/helpers";
+import SubmitButtonBar from "../../components/SubmitButtonBar";
+import IncrementButtonBar from "../../components/IncrementButtonBar";
+import AddMetricToExercise from "./AddMetricToExercise";
 
 function BuildExercise() {
   const { dispatch, exerciseData } = useGlobalContext();
@@ -82,20 +83,25 @@ function BuildExercise() {
       <Container>
         <Form onSubmit={handleSubmit(handleSubmitExercise)}>
           <Form.Group controlId="exerciseName">
-            <Form.Label>Exercise Name</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter exercise name"
-              {...register("name")}
-              autoFocus
-            />
+            <InputGroup>
+              <InputGroup.Text>Name</InputGroup.Text>
+              <Form.Control
+                type="text"
+                className="text-center"
+                placeholder="Enter exercise name"
+                {...register("name")}
+                autoFocus
+              />
+            </InputGroup>
           </Form.Group>
 
           <Form.Group controlId="restTimer" className="mt-3">
-            <Form.Label>Rest Timer</Form.Label>
             <InputGroup>
+              <InputGroup.Text>Rest Timer</InputGroup.Text>
+
               <Form.Control
                 type="text"
+                className="text-center"
                 placeholder="0:00"
                 inputMode="numeric"
                 {...registerWithMask("restTimer", ["9:99", "99:99"], {
@@ -106,11 +112,8 @@ function BuildExercise() {
                   },
                 })}
               />
+              <InputGroup.Text>min : sec</InputGroup.Text>
             </InputGroup>
-            <Form.Text>
-              <p className="mb-0 mt-1">min : sec</p>
-              Leave blank for no rest timer
-            </Form.Text>
             <ErrorMessage
               errors={errors}
               name="restTimer"
@@ -121,7 +124,7 @@ function BuildExercise() {
           </Form.Group>
 
           {arrayToMap.map((metric, index) => (
-            <ExerciseMetric
+            <AddMetricToExercise
               register={register}
               resetField={resetField}
               index={index + 1}
@@ -129,49 +132,16 @@ function BuildExercise() {
             />
           ))}
 
-          <div className="d-flex gap-3 my-3">
-            {numMetrics > 0 && (
-              <Button
-                className="mt-3 w-100"
-                variant="secondary"
-                onClick={() => {
-                  setNumMetrics((prev) => prev - 1);
-                  vibrator(1);
-                }}
-              >
-                &minus; Remove Metric
-              </Button>
-            )}
-            <Button
-              className="mt-3 w-100"
-              variant="secondary"
-              onClick={() => {
-                setNumMetrics((prev) => prev + 1);
-                vibrator(1);
-              }}
-            >
-              + Add Metric
-            </Button>
-          </div>
-          <div className="d-flex gap-3 my-3">
-            <Button
-              variant="warning"
-              className="flex-grow-1 w-100 "
-              onClick={() => {
-                navigate(-1);
-                vibrator(1);
-              }}
-            >
-              Cancel
-            </Button>
-            <Button
-              className="flex-grow-1 w-100"
-              onClick={() => vibrator(1)}
-              type="submit"
-            >
-              Save Exercise
-            </Button>
-          </div>
+          <IncrementButtonBar
+            increment={() => setNumMetrics((prev) => prev + 1)}
+            decrement={() =>
+              numMetrics > 0 && setNumMetrics((prev) => prev - 1)
+            }
+          >
+            Metric
+          </IncrementButtonBar>
+
+          <SubmitButtonBar>Save Exercise</SubmitButtonBar>
         </Form>
         <DevTool control={control} />
       </Container>

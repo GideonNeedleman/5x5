@@ -99,7 +99,10 @@ function DoSet({
           </span>
         </span>
       </Accordion.Header>
-      <Accordion.Body style={{ backgroundColor: "var(--bs-gray-200)" }}>
+      <Accordion.Body
+        className="pt-2"
+        style={{ backgroundColor: "var(--bs-gray-200)" }}
+      >
         <form onSubmit={handleSubmit(handleSubmitSet)}>
           <SetBody
             set={set}

@@ -1,12 +1,13 @@
-import { Button, Container, Form } from "react-bootstrap";
+import { Container, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 // import { ErrorMessage } from "@hookform/error-message";
 import { DevTool } from "@hookform/devtools";
 import { useNavigate } from "react-router-dom";
-import vibrator from "vibrator";
 import { useState } from "react";
 import { useGlobalContext } from "../../context/GlobalContext";
 import AddExerciseToWorkout from "./AddExerciseToWorkout";
+import IncrementButtonBar from "../../components/IncrementButtonBar";
+import SubmitButtonBar from "../../components/SubmitButtonBar";
 
 function BuildWorkout() {
   const { dispatch, workoutData, exerciseData } = useGlobalContext();
@@ -100,7 +101,7 @@ function BuildWorkout() {
               ))}
             </div>
 
-            <div className="d-flex gap-3 my-3">
+            {/* <div className="d-flex gap-3">
               {numExercises > 0 && (
                 <Button
                   className="mt-3 w-100"
@@ -110,7 +111,7 @@ function BuildWorkout() {
                     vibrator(1);
                   }}
                 >
-                  &minus; Remove Exercise
+                  &minus; Exercise
                 </Button>
               )}
               <Button
@@ -121,30 +122,21 @@ function BuildWorkout() {
                   vibrator(1);
                 }}
               >
-                + Add Exercise
+                + Exercise
               </Button>
-            </div>
+            </div> */}
+
+            <IncrementButtonBar
+              increment={() => setNumExercises((prev) => prev + 1)}
+              decrement={() =>
+                numExercises > 1 && setNumExercises((prev) => prev - 1)
+              }
+            >
+              Exercise
+            </IncrementButtonBar>
           </div>
 
-          <div className="d-flex gap-3 my-3">
-            <Button
-              variant="warning"
-              className="flex-grow-1 w-100 "
-              onClick={() => {
-                navigate(-1);
-                vibrator(1);
-              }}
-            >
-              Cancel
-            </Button>
-            <Button
-              className="flex-grow-1 w-100"
-              onClick={() => vibrator(1)}
-              type="submit"
-            >
-              Save Workout
-            </Button>
-          </div>
+          <SubmitButtonBar>Save Workout</SubmitButtonBar>
         </Form>
         <DevTool control={control} />
       </Container>

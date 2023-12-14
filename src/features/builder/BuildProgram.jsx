@@ -1,12 +1,13 @@
-import { Button, Container, Form } from "react-bootstrap";
+import { Container, Form } from "react-bootstrap";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 // import { ErrorMessage } from "@hookform/error-message";
 import { DevTool } from "@hookform/devtools";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
-import vibrator from "vibrator";
 import AddWorkoutToProgram from "./AddWorkoutToProgram";
+import IncrementButtonBar from "../../components/IncrementButtonBar";
+import SubmitButtonBar from "../../components/SubmitButtonBar";
 
 function BuildProgram() {
   const { dispatch, programData, workoutData } = useGlobalContext();
@@ -22,7 +23,7 @@ function BuildProgram() {
     // resetField,
     // formState: { errors },
   } = form;
-  const [numWorkouts, setNumWorkouts] = useState(0);
+  const [numWorkouts, setNumWorkouts] = useState(1);
   const arrayToMap = [...Array(numWorkouts)];
 
   function handleSubmitProgram(data) {
@@ -86,51 +87,17 @@ function BuildProgram() {
               ))}
             </div>
 
-            <div className="d-flex gap-3 ">
-              {numWorkouts > 0 && (
-                <Button
-                  className="mt-3 w-100"
-                  variant="secondary"
-                  onClick={() => {
-                    setNumWorkouts((prev) => prev - 1);
-                    vibrator(1);
-                  }}
-                >
-                  &minus; Workout
-                </Button>
-              )}
-              <Button
-                className="mt-3 w-100"
-                variant="secondary"
-                onClick={() => {
-                  setNumWorkouts((prev) => prev + 1);
-                  vibrator(1);
-                }}
-              >
-                + Workout
-              </Button>
-            </div>
+            <IncrementButtonBar
+              increment={() => setNumWorkouts((prev) => prev + 1)}
+              decrement={() =>
+                numWorkouts > 1 && setNumWorkouts((prev) => prev - 1)
+              }
+            >
+              Workout
+            </IncrementButtonBar>
           </div>
 
-          <div className="d-flex gap-3 my-3">
-            <Button
-              variant="warning"
-              className="flex-grow-1 w-100 "
-              onClick={() => {
-                navigate(-1);
-                vibrator(1);
-              }}
-            >
-              Cancel
-            </Button>
-            <Button
-              className="flex-grow-1 w-100"
-              onClick={() => vibrator(1)}
-              type="submit"
-            >
-              Save Program
-            </Button>
-          </div>
+          <SubmitButtonBar>Save Program</SubmitButtonBar>
         </Form>
         <DevTool control={control} />
       </Container>

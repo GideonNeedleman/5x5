@@ -34,7 +34,7 @@ function DoExercise({ exercise, index, tracker, setNumFinishedExercises }) {
           <span className="mx-1">{numSets} sets</span>
         </span>
       </Accordion.Header>
-      <Accordion.Body>
+      <Accordion.Body className="">
         <Accordion defaultActiveKey="0" flush>
           {exercise.sets.map((set, i) => (
             <DoSet
