@@ -19,6 +19,11 @@ function NumberIncrementBar({
   placeholder,
 }) {
   function stepMetric(metricToStep, step) {
+    if (isNaN(getValues(metricToStep))) {
+      setValue(metricToStep, 0);
+      return;
+    }
+
     setValue(metricToStep, Number(getValues(metricToStep)) + step);
   }
 
@@ -46,6 +51,7 @@ function NumberIncrementBar({
         <Form.Control
           className="text-center"
           type="number"
+          step="any"
           {...register(fieldName, {
             valueAsNumber: true,
           })}

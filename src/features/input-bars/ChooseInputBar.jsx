@@ -10,13 +10,14 @@ function ChooseInputBar({
   defaultValue,
   units,
   placeholder,
+  fieldname,
 }) {
   switch (inputBar) {
     case "NumberIncrementBar":
       return (
         <NumberIncrementBar
           metric={metric}
-          fieldName="test"
+          fieldName={fieldname}
           register={register}
           setValue={setValue}
           getValues={getValues}
@@ -29,7 +30,7 @@ function ChooseInputBar({
     case "test":
       return <p>Test successful</p>;
     default:
-      return <p>No matching input bar</p>;
+      return <p>{/* No matching input bar */}</p>;
   }
 }
 

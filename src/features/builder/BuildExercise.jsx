@@ -73,6 +73,8 @@ function BuildExercise() {
       restTimer: restTimerSeconds,
       metrics: metricsArray,
     };
+    console.log("raw data", data);
+    console.log("exercise object", exerciseObject);
 
     dispatch({ type: "add-new-exercise", payload: exerciseObject });
     navigate(-1);
