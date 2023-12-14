@@ -77,6 +77,8 @@ function AddMetricToExercise({ register, resetField, index }) {
           </InputGroup>
         </Form.Group>
 
+        {/* Display inputBar here */}
+
         <Form.Group className="mt-3">
           <InputGroup>
             <InputGroup.Text>Step</InputGroup.Text>
