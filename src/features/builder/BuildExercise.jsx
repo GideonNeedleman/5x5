@@ -84,21 +84,25 @@ function BuildExercise() {
       <Container>
         <Form onSubmit={handleSubmit(handleSubmitExercise)}>
           <Form.Group controlId="exerciseName">
-            <Form.Label>Exercise Name</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter exercise name"
-              {...register("name")}
-              autoFocus
-            />
-          </Form.Group>
-
-          <Form.Group controlId="restTimer" className="mt-2">
-            <Form.Label>Rest Timer</Form.Label>
             <InputGroup>
-              <InputGroup.Text>min : sec</InputGroup.Text>
+              <InputGroup.Text>Name</InputGroup.Text>
               <Form.Control
                 type="text"
+                className="text-center"
+                placeholder="Enter exercise name"
+                {...register("name")}
+                autoFocus
+              />
+            </InputGroup>
+          </Form.Group>
+
+          <Form.Group controlId="restTimer" className="mt-3">
+            <InputGroup>
+              <InputGroup.Text>Rest Timer</InputGroup.Text>
+
+              <Form.Control
+                type="text"
+                className="text-center"
                 placeholder="0:00"
                 inputMode="numeric"
                 {...registerWithMask("restTimer", ["9:99", "99:99"], {
@@ -109,6 +113,7 @@ function BuildExercise() {
                   },
                 })}
               />
+              <InputGroup.Text>min : sec</InputGroup.Text>
             </InputGroup>
             <ErrorMessage
               errors={errors}
