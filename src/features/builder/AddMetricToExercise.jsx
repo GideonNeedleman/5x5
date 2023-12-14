@@ -38,7 +38,6 @@ function AddMetricToExercise({ register, resetField, index }) {
             <InputGroup.Text>Name</InputGroup.Text>
             <Form.Control
               type="text"
-              className="text-center"
               list="metricNameOptions"
               placeholder="Metric name"
               {...register(`metric-${index}-name`)}
@@ -55,7 +54,6 @@ function AddMetricToExercise({ register, resetField, index }) {
             <InputGroup.Text>Units</InputGroup.Text>
             <Form.Control
               type="text"
-              className="text-center"
               list="metricUnitOptions"
               placeholder="Optional"
               {...register(`metric-${index}-units`)}
@@ -84,8 +82,7 @@ function AddMetricToExercise({ register, resetField, index }) {
             <InputGroup.Text>Step</InputGroup.Text>
             <Form.Control
               type="number"
-              className="text-center"
-              placeholder="Each increment step"
+              placeholder="Increment step size"
               {...register(`metric-${index}-step`, {
                 valueAsNumber: true,
                 min: 0,
@@ -99,7 +96,6 @@ function AddMetricToExercise({ register, resetField, index }) {
             <InputGroup.Text>Default Value</InputGroup.Text>
             <Form.Control
               type="number"
-              className="text-center"
               placeholder="Enter default"
               {...register(`metric-${index}-default`, {
                 valueAsNumber: true,

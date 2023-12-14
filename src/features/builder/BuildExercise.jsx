@@ -87,7 +87,6 @@ function BuildExercise() {
               <InputGroup.Text>Name</InputGroup.Text>
               <Form.Control
                 type="text"
-                className="text-center"
                 placeholder="Enter exercise name"
                 {...register("name")}
                 autoFocus
@@ -101,7 +100,6 @@ function BuildExercise() {
 
               <Form.Control
                 type="text"
-                className="text-center"
                 placeholder="0:00"
                 inputMode="numeric"
                 {...registerWithMask("restTimer", ["9:99", "99:99"], {
