@@ -28,7 +28,7 @@ function AddMetricToExercise({
   useEffect(() => {
     resetField(`metric-${index}-name`);
     resetField(`metric-${index}-units`);
-    // resetField(`metric-${index}-inputBar`);
+    resetField(`metric-${index}-inputBar`, { defaultValue: "none" });
     resetField(`metric-${index}-step`);
     resetField(`metric-${index}-default`);
     resetField(`metric-${index}-adaptive`);
