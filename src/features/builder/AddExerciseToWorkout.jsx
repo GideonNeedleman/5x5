@@ -3,6 +3,7 @@ import { Button, Card, Form } from "react-bootstrap";
 import { useGlobalContext } from "../../context/GlobalContext";
 import AddSetToExercise from "./AddSetToExercise";
 import vibrator from "vibrator";
+import IncrementButtonBar from "../../components/IncrementButtonBar";
 
 function AddExerciseToWorkout({
   register,
@@ -28,13 +29,13 @@ function AddExerciseToWorkout({
 
   return (
     <Card bg="primary">
-      <Card.Body className="d-flex flex-column gap-3">
+      <Card.Body className="d-flex flex-column gap-1">
         <Form.Select
           {...register(`exerciseIndex-${index + 1}`)}
           className="fs-3 text-center"
         >
           <option>Choose exercise...</option>
-          <option value="new">+ Create new exercise</option>
+          {/* <option value="new">+ Create new exercise</option> */}
           {exerciseData.map((exercise) => (
             <option value={exercise.id} key={exercise.id}>
               {exercise.name}
@@ -62,28 +63,36 @@ function AddExerciseToWorkout({
 
         {/* Add / Remove set buttons */}
         {Number(chosenExerciseId) > 0 && (
-          <div className="d-flex gap-3">
-            <Button
-              className="w-100"
-              variant="secondary"
-              onClick={() => {
-                numSets > 0 && setNumSets((prev) => prev - 1);
-                vibrator(1);
-              }}
+          <>
+            {/* <div className="d-flex gap-3 mt-3">
+              <Button
+                className="w-100"
+                variant="secondary"
+                onClick={() => {
+                  numSets > 0 && setNumSets((prev) => prev - 1);
+                  vibrator(1);
+                }}
+              >
+                &minus; Set
+              </Button>
+              <Button
+                className="w-100"
+                variant="secondary"
+                onClick={() => {
+                  setNumSets((prev) => prev + 1);
+                  vibrator(1);
+                }}
+              >
+                + Set
+              </Button>
+            </div> */}
+            <IncrementButtonBar
+              decrement={() => numSets > 1 && setNumSets((prev) => prev - 1)}
+              increment={() => setNumSets((prev) => prev + 1)}
             >
-              &minus; Remove set
-            </Button>
-            <Button
-              className="w-100"
-              variant="secondary"
-              onClick={() => {
-                setNumSets((prev) => prev + 1);
-                vibrator(1);
-              }}
-            >
-              + Add set
-            </Button>
-          </div>
+              Set
+            </IncrementButtonBar>
+          </>
         )}
       </Card.Body>
     </Card>

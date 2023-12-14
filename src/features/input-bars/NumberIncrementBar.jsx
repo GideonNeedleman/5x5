@@ -27,7 +27,7 @@ function NumberIncrementBar({
   return (
     <>
       <p className="text-center fw-semibold m-0">{metric.name}</p>
-      <InputGroup className="mb-2">
+      <InputGroup className="mb-1">
         <Button
           variant="secondary"
           disabled={isFinished && !isUnlocked}
