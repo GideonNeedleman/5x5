@@ -1,16 +1,15 @@
-import { Button, Container, Form, InputGroup } from "react-bootstrap";
+import { Container, Form, InputGroup } from "react-bootstrap";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { DevTool } from "@hookform/devtools";
 import { useHookFormMask } from "use-mask-input";
 import { useGlobalContext } from "../../context/GlobalContext";
-import ExerciseMetric from "./ExerciseMetric";
 import { useNavigate } from "react-router-dom";
-import vibrator from "vibrator";
 import { timeToSeconds } from "../../utils/helpers";
 import SubmitButtonBar from "../../components/SubmitButtonBar";
 import IncrementButtonBar from "../../components/IncrementButtonBar";
+import AddMetricToExercise from "./AddMetricToExercise";
 
 function BuildExercise() {
   const { dispatch, exerciseData } = useGlobalContext();
@@ -125,7 +124,7 @@ function BuildExercise() {
           </Form.Group>
 
           {arrayToMap.map((metric, index) => (
-            <ExerciseMetric
+            <AddMetricToExercise
               register={register}
               resetField={resetField}
               index={index + 1}

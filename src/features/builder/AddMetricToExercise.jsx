@@ -7,7 +7,7 @@ import vibrator from "vibrator";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 
-function ExerciseMetric({ register, resetField, index }) {
+function AddMetricToExercise({ register, resetField, index }) {
   const Popup = ({ id, children, title }) => (
     <OverlayTrigger overlay={<Tooltip id={id}>{title}</Tooltip>}>
       <a href="#">{children}</a>
@@ -25,38 +25,46 @@ function ExerciseMetric({ register, resetField, index }) {
   }, [resetField, index]);
 
   return (
-    <Card border="primary" className="mt-3">
-      <Card.Body>
-        <Card.Title>Metric {index}</Card.Title>
-        <p className="fst-italic text-center">
+    <Card border="primary" className="mt-3 ">
+      <Card.Header className="fw-semibold fs-5 text-center p-1">
+        Metric {index}
+      </Card.Header>
+      <Card.Body className="pt-1">
+        <p className="fst-italic text-center ">
           How are you measuring this exercise?
         </p>
         <Form.Group>
-          <Form.Label>Metric Name</Form.Label>
-          <Form.Control
-            type="text"
-            list="metricNameOptions"
-            placeholder="Metric name"
-            {...register(`metric-${index}-name`)}
-          />
-          <datalist id="metricNameOptions">
-            <option value="reps" />
-            <option value="weight" />
-          </datalist>
+          <InputGroup>
+            <InputGroup.Text>Name</InputGroup.Text>
+            <Form.Control
+              type="text"
+              className="text-center"
+              list="metricNameOptions"
+              placeholder="Metric name"
+              {...register(`metric-${index}-name`)}
+            />
+            <datalist id="metricNameOptions">
+              <option value="reps" />
+              <option value="weight" />
+            </datalist>
+          </InputGroup>
         </Form.Group>
 
         <Form.Group className="mt-3">
-          <Form.Label>Units</Form.Label>
-          <Form.Control
-            type="text"
-            list="metricUnitOptions"
-            placeholder="Leave blank if unitless"
-            {...register(`metric-${index}-units`)}
-          />
-          <datalist id="metricUnitOptions">
-            <option value="kg" />
-            <option value="lbs" />
-          </datalist>
+          <InputGroup>
+            <InputGroup.Text>Units</InputGroup.Text>
+            <Form.Control
+              type="text"
+              className="text-center"
+              list="metricUnitOptions"
+              placeholder="Optional"
+              {...register(`metric-${index}-units`)}
+            />
+            <datalist id="metricUnitOptions">
+              <option value="kg" />
+              <option value="lbs" />
+            </datalist>
+          </InputGroup>
         </Form.Group>
 
         <Form.Group className="mt-3">
@@ -70,27 +78,33 @@ function ExerciseMetric({ register, resetField, index }) {
         </Form.Group>
 
         <Form.Group className="mt-3">
-          <Form.Label>Increment Step Amount</Form.Label>
-          <Form.Control
-            type="number"
-            placeholder="How much is each increment step?"
-            {...register(`metric-${index}-step`, {
-              valueAsNumber: true,
-              min: 0,
-            })}
-          />
+          <InputGroup>
+            <InputGroup.Text>Step</InputGroup.Text>
+            <Form.Control
+              type="number"
+              className="text-center"
+              placeholder="Each increment step"
+              {...register(`metric-${index}-step`, {
+                valueAsNumber: true,
+                min: 0,
+              })}
+            />
+          </InputGroup>
         </Form.Group>
 
         <Form.Group className="mt-3">
-          <Form.Label>Default Value</Form.Label>
-          <Form.Control
-            type="number"
-            placeholder="Metric default"
-            {...register(`metric-${index}-default`, {
-              valueAsNumber: true,
-              min: 0,
-            })}
-          />
+          <InputGroup>
+            <InputGroup.Text>Default Value</InputGroup.Text>
+            <Form.Control
+              type="number"
+              className="text-center"
+              placeholder="Enter default"
+              {...register(`metric-${index}-default`, {
+                valueAsNumber: true,
+                min: 0,
+              })}
+            />
+          </InputGroup>
         </Form.Group>
 
         <div className="d-flex align-items-baseline gap-3 ">
@@ -113,4 +127,4 @@ function ExerciseMetric({ register, resetField, index }) {
   );
 }
 
-export default ExerciseMetric;
+export default AddMetricToExercise;
