@@ -43,7 +43,7 @@ function SelectWorkout() {
           </div>
         ))}
         <Button
-          variant="outline-dark"
+          variant="dark"
           onClick={() => {
             vibrator(1);
             navigate("/builder");

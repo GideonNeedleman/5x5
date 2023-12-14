@@ -19,9 +19,10 @@ function BuildExercise() {
     register,
     control,
     handleSubmit,
-    // setValue,
-    // getValues,
+    setValue,
+    getValues,
     resetField,
+    watch,
     formState: { errors },
   } = form;
   const registerWithMask = useHookFormMask(register);
@@ -72,6 +73,8 @@ function BuildExercise() {
       restTimer: restTimerSeconds,
       metrics: metricsArray,
     };
+    console.log("raw data", data);
+    console.log("exercise object", exerciseObject);
 
     dispatch({ type: "add-new-exercise", payload: exerciseObject });
     navigate(-1);
@@ -124,7 +127,10 @@ function BuildExercise() {
           {arrayToMap.map((metric, index) => (
             <AddMetricToExercise
               register={register}
+              setValue={setValue}
+              getValues={getValues}
               resetField={resetField}
+              watch={watch}
               index={index + 1}
               key={index}
             />
