@@ -93,9 +93,10 @@ function BuildExercise() {
             />
           </Form.Group>
 
-          <Form.Group controlId="restTimer" className="mt-3">
+          <Form.Group controlId="restTimer" className="mt-2">
             <Form.Label>Rest Timer</Form.Label>
             <InputGroup>
+              <InputGroup.Text>min : sec</InputGroup.Text>
               <Form.Control
                 type="text"
                 placeholder="0:00"
@@ -109,10 +110,6 @@ function BuildExercise() {
                 })}
               />
             </InputGroup>
-            <Form.Text>
-              <p className="mb-0 mt-1">min : sec</p>
-              Leave blank for no rest timer
-            </Form.Text>
             <ErrorMessage
               errors={errors}
               name="restTimer"
