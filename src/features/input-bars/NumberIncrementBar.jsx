@@ -15,6 +15,8 @@ function NumberIncrementBar({
   isUnlocked = true,
   defaultValue,
   fieldName = metric.name,
+  units,
+  placeholder,
 }) {
   function stepMetric(metricToStep, step) {
     setValue(metricToStep, Number(getValues(metricToStep)) + step);
@@ -26,7 +28,10 @@ function NumberIncrementBar({
 
   return (
     <>
-      <p className="text-center fw-semibold m-0">{metric.name}</p>
+      <div className="text-center">
+        <span className="text-capitalize fw-semibold m-0">{metric.name}</span>
+        <span className="fw-normal fst-italic">{units && ` - ${units}`}</span>
+      </div>
       <InputGroup className="mb-1">
         <Button
           variant="secondary"
@@ -45,6 +50,7 @@ function NumberIncrementBar({
             valueAsNumber: true,
           })}
           defaultValue={defaultValue}
+          placeholder={placeholder}
           disabled={isFinished && !isUnlocked}
         />
         <Button

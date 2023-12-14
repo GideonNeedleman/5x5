@@ -6,8 +6,20 @@ import vibrator from "vibrator";
 
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
+import ChooseInputBar from "../input-bars/ChooseInputBar";
 
-function AddMetricToExercise({ register, resetField, index }) {
+function AddMetricToExercise({
+  register,
+  setValue,
+  getValues,
+  resetField,
+  watch,
+  index,
+}) {
+  const inputBarType = watch(`metric-${index}-inputBar`);
+  // const inputBarType = "test";
+  console.log(inputBarType);
+
   const Popup = ({ id, children, title }) => (
     <OverlayTrigger overlay={<Tooltip id={id}>{title}</Tooltip>}>
       <a href="#">{children}</a>
@@ -30,9 +42,7 @@ function AddMetricToExercise({ register, resetField, index }) {
         Metric {index}
       </Card.Header>
       <Card.Body className="pt-1">
-        <p className="fst-italic text-center ">
-          How are you measuring this exercise?
-        </p>
+        <p className="fst-italic text-center ">What are you measuring?</p>
         <Form.Group>
           <InputGroup>
             <InputGroup.Text>Name</InputGroup.Text>
@@ -50,6 +60,35 @@ function AddMetricToExercise({ register, resetField, index }) {
         </Form.Group>
 
         <Form.Group className="mt-3">
+          <p className="text-center fw-bold m-1">Choose Input Bar</p>
+          <Form.Select
+            className="mb-2 text-center"
+            {...register(`metric-${index}-inputBar`)}
+          >
+            <option value="NumberIncrementBar">Number Increment</option>
+            {/* <option value="CountdownTimer">Countdown Timer</option> */}
+          </Form.Select>
+        </Form.Group>
+
+        {/* Display inputBar here */}
+        {inputBarType && (
+          <ChooseInputBar
+            metric={{
+              name: watch(`metric-${index}-name`),
+              step: watch(`metric-${index}-step`),
+            }}
+            inputBar={inputBarType}
+            register={register}
+            setValue={setValue}
+            getValues={getValues}
+            resetField={resetField}
+            defaultValue={watch(`metric-${index}-default`)}
+            units={watch(`metric-${index}-units`)}
+            placeholder="set default value"
+          />
+        )}
+
+        <Form.Group className="mt-3">
           <InputGroup>
             <InputGroup.Text>Units</InputGroup.Text>
             <Form.Control
@@ -64,18 +103,6 @@ function AddMetricToExercise({ register, resetField, index }) {
             </datalist>
           </InputGroup>
         </Form.Group>
-
-        <Form.Group className="mt-3">
-          <Form.Label>Input Bar Type</Form.Label>
-          <InputGroup>
-            <Form.Select {...register(`metric-${index}-inputBar`)}>
-              <option value="NumberIncrementBar">Number Increment</option>
-              {/* <option value="CountdownTimer">Countdown Timer</option> */}
-            </Form.Select>
-          </InputGroup>
-        </Form.Group>
-
-        {/* Display inputBar here */}
 
         <Form.Group className="mt-3">
           <InputGroup>
@@ -105,21 +132,24 @@ function AddMetricToExercise({ register, resetField, index }) {
           </InputGroup>
         </Form.Group>
 
-        <div className="d-flex align-items-baseline gap-3 ">
-          <Form.Check
-            type="switch"
-            id="custom-switch"
-            label="Adaptive Metric"
-            className="mt-3"
-            onClick={() => vibrator(1)}
-            {...register(`metric-${index}-adaptive`)}
-          />
-          <Popup title="Default values will change to match your last entered value">
-            <IconContext.Provider value={{ color: "var(--bs-primary)" }}>
-              <BsInfoCircleFill />
-            </IconContext.Provider>
-          </Popup>
-        </div>
+        <details className="mt-2">
+          <summary>Advanced options</summary>
+          <div className="d-flex align-items-baseline gap-3 ">
+            <Form.Check
+              type="switch"
+              id="custom-switch"
+              label="Adaptive Metric"
+              className="mt-3"
+              onClick={() => vibrator(1)}
+              {...register(`metric-${index}-adaptive`)}
+            />
+            <Popup title="Default values will change to match your last entered value">
+              <IconContext.Provider value={{ color: "var(--bs-primary)" }}>
+                <BsInfoCircleFill />
+              </IconContext.Provider>
+            </Popup>
+          </div>
+        </details>
       </Card.Body>
     </Card>
   );
