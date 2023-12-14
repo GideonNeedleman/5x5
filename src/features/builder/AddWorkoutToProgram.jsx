@@ -13,7 +13,6 @@ function AddWorkoutToProgram({
   const chosenWorkoutId = watch(`workoutIndex-${index + 1}`);
   const chosenWorkout = workoutData.find((el) => el.id == chosenWorkoutId);
 
-  // Display list of exercises inside workout
   return (
     <Card bg="primary">
       <Card.Body className="d-flex flex-column gap-3">
@@ -32,7 +31,7 @@ function AddWorkoutToProgram({
           ))}
         </Form.Select>
 
-        {/* Display exercises */}
+        {/* Display exercises list */}
         <div className="bg-light rounded">
           <ul className="list-group">
             {chosenWorkout?.exercises.map((exercise) => (

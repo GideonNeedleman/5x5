@@ -1,9 +1,8 @@
-import { Button, Container, Form, InputGroup } from "react-bootstrap";
+import { Button, Container, Form } from "react-bootstrap";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { ErrorMessage } from "@hookform/error-message";
+// import { ErrorMessage } from "@hookform/error-message";
 import { DevTool } from "@hookform/devtools";
-import { useHookFormMask } from "use-mask-input";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
 import vibrator from "vibrator";
@@ -18,10 +17,10 @@ function BuildProgram() {
     control,
     handleSubmit,
     watch,
-    setValue,
-    getValues,
-    resetField,
-    formState: { errors },
+    // setValue,
+    // getValues,
+    // resetField,
+    // formState: { errors },
   } = form;
   const [numWorkouts, setNumWorkouts] = useState(0);
   const arrayToMap = [...Array(numWorkouts)];
@@ -30,15 +29,14 @@ function BuildProgram() {
     const id = programData.length + 1;
     const { name } = data;
 
-    // need numWorkouts then loop i to numWorkouts, grab id=i, workoutIndex = workoutIndex-i, add name, next, exercises array, maybe order? I think can eliminate order and just use id. Since id is local variable, not PK.
+    // Loop i to numWorkouts, build up workout object, add to workouts array, then build final programObject and dispatch.
 
-    // numWorkouts
+    // get numWorkouts
     const numWorkouts = Object.keys(data).filter((element) =>
       element.includes("workoutIndex")
     ).length;
 
-    // console.log("numWorkouts", numWorkouts);
-
+    // loop over all workouts
     let workouts = [];
     for (let i = 1; i <= numWorkouts; i++) {
       const id = i;
@@ -46,13 +44,11 @@ function BuildProgram() {
       const chosenWorkout = workoutData.find((el) => el.id === workoutIndex);
       const next = i === 1;
 
-      const workout = { ...chosenWorkout, id, next, workoutIndex };
-      workouts = [...workouts, workout];
+      const workoutObject = { ...chosenWorkout, id, next, workoutIndex };
+      workouts = [...workouts, workoutObject];
     }
-    // convert to workouts array = [{id: 1}, {id:4}, {}]
 
     const programObject = { id, name, workouts };
-
     dispatch({ type: "add-new-program", payload: programObject });
     navigate(-1);
     console.log("raw data", data);
@@ -75,7 +71,7 @@ function BuildProgram() {
           </Form.Group>
 
           <div className="my-3">
-            <p>Add Workout to Program</p>
+            <p>Add Workouts to Program</p>
             <div className="d-flex flex-column gap-3">
               {arrayToMap.map((el, index) => (
                 <AddWorkoutToProgram
