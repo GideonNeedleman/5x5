@@ -23,7 +23,7 @@ function BuildProgram() {
     // resetField,
     // formState: { errors },
   } = form;
-  const [numWorkouts, setNumWorkouts] = useState(0);
+  const [numWorkouts, setNumWorkouts] = useState(1);
   const arrayToMap = [...Array(numWorkouts)];
 
   function handleSubmitProgram(data) {
