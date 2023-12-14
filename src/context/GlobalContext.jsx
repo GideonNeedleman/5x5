@@ -28,13 +28,12 @@ function reducer(state, action) {
         ...state,
         // calculate nextWorkoutOrder to increment 'next' flag. if currentOrder < workouts.length ? increment 1 : set to 0
         nextWorkoutOrder:
-          state.activeWorkout.order <
-          state.programData.filter(
+          state.activeWorkout.id <
+          state.programData.find(
             (program) => program.id === state.activeProgramId
-          )[0].workouts.length -
-            1
-            ? state.activeWorkout.order + 1
-            : 0,
+          ).workouts.length
+            ? state.activeWorkout.id + 1
+            : 1,
         isWorkoutStarted: true,
         isWorkoutFinished: false,
         activeKey: 0,
@@ -54,7 +53,7 @@ function reducer(state, action) {
             ? {
                 ...program,
                 workouts: program.workouts.map((workout) =>
-                  workout.order === state.nextWorkoutOrder
+                  workout.id === state.nextWorkoutOrder
                     ? { ...workout, next: true }
                     : { ...workout, next: false }
                 ),
@@ -133,6 +132,11 @@ function reducer(state, action) {
       return {
         ...state,
         workoutData: [...state.workoutData, action.payload],
+      };
+    case "add-new-program":
+      return {
+        ...state,
+        programData: [...state.programData, action.payload],
       };
     default:
       throw new Error("unknown action type");
