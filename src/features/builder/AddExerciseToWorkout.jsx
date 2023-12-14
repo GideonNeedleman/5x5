@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import { Button, Card, Form } from "react-bootstrap";
+import { Card, Form } from "react-bootstrap";
 import { useGlobalContext } from "../../context/GlobalContext";
 import AddSetToExercise from "./AddSetToExercise";
-import vibrator from "vibrator";
 import IncrementButtonBar from "../../components/IncrementButtonBar";
 
 function AddExerciseToWorkout({

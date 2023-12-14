@@ -1,11 +1,10 @@
-import { Button, Container, Form } from "react-bootstrap";
+import { Container, Form } from "react-bootstrap";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 // import { ErrorMessage } from "@hookform/error-message";
 import { DevTool } from "@hookform/devtools";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
-import vibrator from "vibrator";
 import AddWorkoutToProgram from "./AddWorkoutToProgram";
 import IncrementButtonBar from "../../components/IncrementButtonBar";
 import SubmitButtonBar from "../../components/SubmitButtonBar";
