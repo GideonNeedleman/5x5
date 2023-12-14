@@ -7,6 +7,7 @@ import { useGlobalContext } from "../../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
 import vibrator from "vibrator";
 import AddWorkoutToProgram from "./AddWorkoutToProgram";
+import IncrementButtonBar from "../../components/IncrementButtonBar";
 
 function BuildProgram() {
   const { dispatch, programData, workoutData } = useGlobalContext();
@@ -86,7 +87,7 @@ function BuildProgram() {
               ))}
             </div>
 
-            <div className="d-flex gap-3 ">
+            {/* <div className="d-flex gap-3 ">
               {numWorkouts > 0 && (
                 <Button
                   className="mt-3 w-100"
@@ -109,7 +110,16 @@ function BuildProgram() {
               >
                 + Workout
               </Button>
-            </div>
+            </div> */}
+
+            <IncrementButtonBar
+              increment={() => setNumWorkouts((prev) => prev + 1)}
+              decrement={() =>
+                numWorkouts > 1 && setNumWorkouts((prev) => prev - 1)
+              }
+            >
+              Workout
+            </IncrementButtonBar>
           </div>
 
           <div className="d-flex gap-3 my-3">
