@@ -133,6 +133,11 @@ function reducer(state, action) {
         ...state,
         workoutData: [...state.workoutData, action.payload],
       };
+    case "add-new-program":
+      return {
+        ...state,
+        programData: [...state.programData, action.payload],
+      };
     default:
       throw new Error("unknown action type");
   }

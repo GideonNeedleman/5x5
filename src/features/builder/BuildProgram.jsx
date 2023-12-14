@@ -52,9 +52,11 @@ function BuildProgram() {
     // convert to workouts array = [{id: 1}, {id:4}, {}]
 
     const programObject = { id, name, workouts };
+
+    dispatch({ type: "add-new-program", payload: programObject });
+    navigate(-1);
     console.log("raw data", data);
     console.log("final object", programObject);
-    // add 'next' == true for first workout
   }
 
   return (
