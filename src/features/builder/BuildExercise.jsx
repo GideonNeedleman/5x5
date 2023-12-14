@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import vibrator from "vibrator";
 import { timeToSeconds } from "../../utils/helpers";
 import SubmitButtonBar from "../../components/SubmitButtonBar";
+import IncrementButtonBar from "../../components/IncrementButtonBar";
 
 function BuildExercise() {
   const { dispatch, exerciseData } = useGlobalContext();
@@ -130,30 +131,14 @@ function BuildExercise() {
             />
           ))}
 
-          <div className="d-flex gap-3 my-3">
-            {numMetrics > 0 && (
-              <Button
-                className="mt-3 w-100"
-                variant="secondary"
-                onClick={() => {
-                  setNumMetrics((prev) => prev - 1);
-                  vibrator(1);
-                }}
-              >
-                &minus; Remove Metric
-              </Button>
-            )}
-            <Button
-              className="mt-3 w-100"
-              variant="secondary"
-              onClick={() => {
-                setNumMetrics((prev) => prev + 1);
-                vibrator(1);
-              }}
-            >
-              + Add Metric
-            </Button>
-          </div>
+          <IncrementButtonBar
+            increment={() => setNumMetrics((prev) => prev + 1)}
+            decrement={() =>
+              numMetrics > 0 && setNumMetrics((prev) => prev - 1)
+            }
+          >
+            Metric
+          </IncrementButtonBar>
 
           <SubmitButtonBar>Save Exercise</SubmitButtonBar>
         </Form>
