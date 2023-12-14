@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useGlobalContext } from "../../context/GlobalContext";
 import AddExerciseToWorkout from "./AddExerciseToWorkout";
 import IncrementButtonBar from "../../components/IncrementButtonBar";
+import SubmitButtonBar from "../../components/SubmitButtonBar";
 
 function BuildWorkout() {
   const { dispatch, workoutData, exerciseData } = useGlobalContext();
@@ -136,25 +137,7 @@ function BuildWorkout() {
             </IncrementButtonBar>
           </div>
 
-          <div className="d-flex gap-3 my-3">
-            <Button
-              variant="warning"
-              className="flex-grow-1 w-100 "
-              onClick={() => {
-                navigate(-1);
-                vibrator(1);
-              }}
-            >
-              Cancel
-            </Button>
-            <Button
-              className="flex-grow-1 w-100"
-              onClick={() => vibrator(1)}
-              type="submit"
-            >
-              Save Workout
-            </Button>
-          </div>
+          <SubmitButtonBar>Save Workout</SubmitButtonBar>
         </Form>
         <DevTool control={control} />
       </Container>

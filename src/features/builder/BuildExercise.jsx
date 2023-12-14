@@ -9,6 +9,7 @@ import ExerciseMetric from "./ExerciseMetric";
 import { useNavigate } from "react-router-dom";
 import vibrator from "vibrator";
 import { timeToSeconds } from "../../utils/helpers";
+import SubmitButtonBar from "../../components/SubmitButtonBar";
 
 function BuildExercise() {
   const { dispatch, exerciseData } = useGlobalContext();
@@ -153,25 +154,8 @@ function BuildExercise() {
               + Add Metric
             </Button>
           </div>
-          <div className="d-flex gap-3 my-3">
-            <Button
-              variant="warning"
-              className="flex-grow-1 w-100 "
-              onClick={() => {
-                navigate(-1);
-                vibrator(1);
-              }}
-            >
-              Cancel
-            </Button>
-            <Button
-              className="flex-grow-1 w-100"
-              onClick={() => vibrator(1)}
-              type="submit"
-            >
-              Save Exercise
-            </Button>
-          </div>
+
+          <SubmitButtonBar>Save Exercise</SubmitButtonBar>
         </Form>
         <DevTool control={control} />
       </Container>
