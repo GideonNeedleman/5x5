@@ -11,12 +11,16 @@ function AddProgramWorkout() {
     (program) => !activePrograms.includes(program.id)
   );
 
-  console.log(availablePrograms);
+  // console.log(availablePrograms);
   return (
     <main>
       <h1 className="text-center display-3">Add to Home</h1>
-      <h2 className="text-center display-4">Programs</h2>
+      <h2 className="text-center">Programs</h2>
       <Container className="d-flex flex-column gap-2">
+        {availablePrograms.map((program) => (
+          <ProgramCard program={program} icon="add" key={program.id} />
+        ))}
+
         <Button
           className="w-100"
           onClick={() => {
@@ -26,11 +30,8 @@ function AddProgramWorkout() {
         >
           + New Program
         </Button>
-        {availablePrograms.map((program) => (
-          <ProgramCard program={program} icon="add" key={program.id} />
-        ))}
 
-        <h2 className="text-center display-4">Workouts</h2>
+        <h2 className="text-center">Workouts</h2>
         <Button
           className="w-100"
           onClick={() => {

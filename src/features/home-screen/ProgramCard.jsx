@@ -1,11 +1,22 @@
 import { useState } from "react";
 import { Card } from "react-bootstrap";
-import { BsThreeDotsVertical, BsPlusLg } from "react-icons/bs";
+import { BsThreeDotsVertical, BsFillPlusSquareFill } from "react-icons/bs";
 import WorkoutButton from "../workout/WorkoutButton";
 import ProgramModal from "../workout/ProgramModal";
+import { IconContext } from "react-icons";
+import { useGlobalContext } from "../../context/GlobalContext";
+import { useNavigate } from "react-router-dom";
 
 function ProgramCard({ program, icon = "none" }) {
+  const { dispatch } = useGlobalContext();
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+
+  function handleAddProgram() {
+    dispatch({ type: "add-program", payload: program });
+    console.log("added program", program);
+    navigate("/");
+  }
 
   function CorrectIcon({ icon }) {
     switch (icon) {
@@ -17,7 +28,13 @@ function ProgramCard({ program, icon = "none" }) {
           />
         );
       case "add":
-        return <BsPlusLg />;
+        return (
+          <IconContext.Provider
+            value={{ color: "var(--bs-primary)", size: "1.5rem" }}
+          >
+            <BsFillPlusSquareFill onClick={handleAddProgram} />
+          </IconContext.Provider>
+        );
       case "none":
         return <span />;
       default:

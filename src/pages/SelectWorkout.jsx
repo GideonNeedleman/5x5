@@ -3,7 +3,7 @@ import Stack from "react-bootstrap/Stack";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { Container } from "react-bootstrap";
-import WorkoutButton from "../features/workout/WorkoutButton";
+// import WorkoutButton from "../features/workout/WorkoutButton";
 import { useGlobalContext } from "../context/GlobalContext";
 import vibrator from "vibrator";
 import { useNavigate } from "react-router-dom";

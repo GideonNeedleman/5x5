@@ -139,6 +139,11 @@ function reducer(state, action) {
         ...state,
         programData: [...state.programData, action.payload],
       };
+    case "add-program":
+      return {
+        ...state,
+        activePrograms: [...state.activePrograms, action.payload.id],
+      };
     case "remove-program":
       return {
         ...state,
