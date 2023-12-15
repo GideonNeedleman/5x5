@@ -9,8 +9,14 @@ import vibrator from "vibrator";
 import { useNavigate } from "react-router-dom";
 
 function SelectWorkout() {
-  const { programData: programs } = useGlobalContext();
+  const { programData, activePrograms } = useGlobalContext();
   const navigate = useNavigate();
+
+  const programs = activePrograms.map((program) =>
+    programData.find((element) => element.id === program)
+  );
+
+  console.log(programs);
 
   return (
     <main>
