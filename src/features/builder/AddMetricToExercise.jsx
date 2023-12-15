@@ -29,7 +29,9 @@ function AddMetricToExercise({
         Metric {index}
       </Card.Header>
       <Card.Body className="pt-1">
-        <p className="fst-italic text-center ">What are you tracking?</p>
+        <p className="fst-italic text-center mb-2">What are you tracking?</p>
+
+        {/* Metric Name */}
         <Form.Group>
           <InputGroup>
             <InputGroup.Text>Metric</InputGroup.Text>
@@ -46,6 +48,7 @@ function AddMetricToExercise({
           </InputGroup>
         </Form.Group>
 
+        {/* Select Input Bar */}
         <Form.Group className="mt-3">
           <InputGroup>
             <InputGroup.Text className="">Input Bar</InputGroup.Text>
@@ -56,6 +59,8 @@ function AddMetricToExercise({
             </Form.Select>
           </InputGroup>
         </Form.Group>
+
+        {/* Options to Setup Input Bar */}
         <InputBarOptions
           inputBarType={inputBarType}
           register={register}
@@ -63,8 +68,7 @@ function AddMetricToExercise({
           watch={watch}
           metricName={watch(`metric-${index}-name`)}
         >
-          {/* Display inputBar here */}
-
+          {/* Display Input Bar */}
           {inputBarType !== "none" && (
             <Card className="mt-2" style={{ backgroundColor: "#0d6efd33" }}>
               <Card.Body className="p-2">

@@ -32,6 +32,7 @@ function InputBarOptions({
     case "NumberIncrementBar":
       return (
         <>
+          {/* Units */}
           <Form.Group className="mt-3">
             <InputGroup>
               <InputGroup.Text>Units</InputGroup.Text>
@@ -47,12 +48,12 @@ function InputBarOptions({
               </datalist>
             </InputGroup>
           </Form.Group>
+
+          {/* Step Value */}
           <div className="d-flex justify-content-between mt-3">
             <span className=" font-monospace mt-3">
               &nbsp; &nbsp;
               <BsArrow90DegDown />
-              {/* &nbsp;-
-              {watch(`metric-${index}-step`)} */}
             </span>
             <Form.Group className="w-50">
               <InputGroup>
@@ -77,10 +78,14 @@ function InputBarOptions({
               &nbsp; &nbsp;
             </span>
           </div>
+
+          {/* Input Bar as Child */}
           {children}
+
+          {/* Advanced Options */}
           <details className="mt-2">
             <summary>Advanced options</summary>
-            <div className="d-flex align-items-baseline gap-3 ">
+            <div className="d-flex align-items-baseline gap-2 ">
               <Form.Check
                 type="switch"
                 label="Adaptive Metric"
@@ -95,7 +100,8 @@ function InputBarOptions({
               </Popup>
             </div>
           </details>
-          {/* Display default value as summary */}
+
+          {/* Display Summary */}
           {!isNaN(watch(`metric-${index}-default`)) && (
             <Card border="secondary" className="text-center mt-2">
               <Card.Header className="p-1">Summary</Card.Header>
