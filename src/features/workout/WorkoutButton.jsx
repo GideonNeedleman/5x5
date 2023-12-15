@@ -1,13 +1,13 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { Button } from "react-bootstrap";
-import { BsThreeDotsVertical } from "react-icons/bs";
-import WorkoutModal from "./ProgramModal";
+// import { BsThreeDotsVertical } from "react-icons/bs";
+// import WorkoutModal from "./ProgramModal";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
 import vibrator from "vibrator";
 
 function WorkoutButton({ children, workout, program }) {
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
   const variant = workout.next ? "primary" : "secondary";
   const navigate = useNavigate();
   const { dispatch } = useGlobalContext();

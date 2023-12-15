@@ -1,20 +1,37 @@
 import { useState } from "react";
-import { Button, Card } from "react-bootstrap";
-import { BsThreeDotsVertical } from "react-icons/bs";
+import { Card } from "react-bootstrap";
+import { BsThreeDotsVertical, BsPlusLg } from "react-icons/bs";
 import WorkoutButton from "../workout/WorkoutButton";
 import ProgramModal from "../workout/ProgramModal";
 
-function ProgramCard({ program }) {
+function ProgramCard({ program, icon = "none" }) {
   const [isOpen, setIsOpen] = useState(false);
+
+  function CorrectIcon({ icon }) {
+    switch (icon) {
+      case "menu":
+        return (
+          <BsThreeDotsVertical
+            className="mt-1"
+            onClick={() => setIsOpen(true)}
+          />
+        );
+      case "add":
+        return <BsPlusLg />;
+      case "none":
+        return <span />;
+      default:
+        break;
+    }
+  }
+
+  // icon options: 'add': plus sign, 'menu': three dots, 'none': no icon
   return (
     <>
       <Card border="primary" style={{ width: "100%" }}>
         <Card.Header className="d-flex justify-content-between">
           <span className="fw-semibold text-capitalize">{program.name}</span>
-          <BsThreeDotsVertical
-            className="mt-1"
-            onClick={() => setIsOpen(true)}
-          />
+          <CorrectIcon icon={icon} />
         </Card.Header>
         <Card.Body className="d-flex flex-column gap-2 py-2">
           {program.workouts.map((workout) => (

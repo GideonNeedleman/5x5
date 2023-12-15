@@ -26,7 +26,7 @@ function SelectWorkout() {
       </h1>
       <Container className="d-flex flex-column align-items-center gap-2">
         {programs.map((program) => (
-          <ProgramCard program={program} key={program.id} />
+          <ProgramCard program={program} icon="menu" key={program.id} />
         ))}
 
         {/* Add Personal Workouts card here */}
@@ -40,7 +40,7 @@ function SelectWorkout() {
           variant="dark"
           onClick={() => {
             vibrator(1);
-            navigate("/builder");
+            navigate("/add-program-workout");
           }}
         >
           + Add Program / Workout

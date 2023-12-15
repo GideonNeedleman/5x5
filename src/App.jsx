@@ -10,6 +10,7 @@ import Builder from "./pages/Builder";
 import BuildExercise from "./features/builder/BuildExercise";
 import BuildWorkout from "./features/builder/BuildWorkout";
 import BuildProgram from "./features/builder/BuildProgram";
+import AddProgramWorkout from "./pages/AddProgramWorkout";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<Workout />} />
           <Route path="/history" element={<History />} />
           <Route path="/review" element={<Review />} />
+          <Route path="/add-program-workout" element={<AddProgramWorkout />} />
           <Route path="/builder" element={<Builder />} />
           <Route path="/build-exercise" element={<BuildExercise />} />
           <Route path="/build-workout" element={<BuildWorkout />} />
