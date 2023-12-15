@@ -20,7 +20,7 @@ function NumberIncrementBar({
 }) {
   function stepMetric(metricToStep, step) {
     if (isNaN(getValues(metricToStep))) {
-      setValue(metricToStep, 0);
+      setValue(metricToStep, step);
       return;
     }
 

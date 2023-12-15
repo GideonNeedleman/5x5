@@ -29,14 +29,16 @@ function AddMetricToExercise({
         Metric {index}
       </Card.Header>
       <Card.Body className="pt-1">
-        <p className="fst-italic text-center ">What are you measuring?</p>
+        <p className="fst-italic text-center mb-2">What are you tracking?</p>
+
+        {/* Metric Name */}
         <Form.Group>
           <InputGroup>
-            <InputGroup.Text>Name</InputGroup.Text>
+            <InputGroup.Text>Metric</InputGroup.Text>
             <Form.Control
               type="text"
               list="metricNameOptions"
-              placeholder="Metric name"
+              placeholder="Type of Metric"
               {...register(`metric-${index}-name`)}
             />
             <datalist id="metricNameOptions">
@@ -46,46 +48,48 @@ function AddMetricToExercise({
           </InputGroup>
         </Form.Group>
 
+        {/* Select Input Bar */}
         <Form.Group className="mt-3">
-          <p className="text-center fw-bold m-1">Input Bar</p>
-          <Form.Select
-            className="mb-2 text-center"
-            {...register(`metric-${index}-inputBar`)}
-          >
-            <option value="none">Select Input Bar</option>
-            <option value="NumberIncrementBar">Number Increment</option>
-            {/* <option value="CountdownTimer">Countdown Timer</option> */}
-          </Form.Select>
+          <InputGroup>
+            <InputGroup.Text className="">Input Bar</InputGroup.Text>
+            <Form.Select className="" {...register(`metric-${index}-inputBar`)}>
+              <option value="none">Select Input Bar</option>
+              <option value="NumberIncrementBar">Number Increment</option>
+              {/* <option value="CountdownTimer">Countdown Timer</option> */}
+            </Form.Select>
+          </InputGroup>
         </Form.Group>
 
-        {/* Display inputBar here */}
-
-        {inputBarType !== "none" && (
-          <>
-            <hr className="text-primary" />
-            <ChooseInputBar
-              metric={{
-                name: watch(`metric-${index}-name`),
-                step: watch(`metric-${index}-step`),
-              }}
-              inputBar={inputBarType}
-              register={register}
-              setValue={setValue}
-              getValues={getValues}
-              resetField={resetField}
-              units={watch(`metric-${index}-units`)}
-              placeholder="set default value"
-              fieldname={`metric-${index}-default`}
-            />
-          </>
-        )}
-
+        {/* Options to Setup Input Bar */}
         <InputBarOptions
           inputBarType={inputBarType}
           register={register}
           index={index}
           watch={watch}
-        />
+          metricName={watch(`metric-${index}-name`)}
+        >
+          {/* Display Input Bar */}
+          {inputBarType !== "none" && (
+            <Card className="mt-2" style={{ backgroundColor: "#0d6efd33" }}>
+              <Card.Body className="p-2">
+                <ChooseInputBar
+                  metric={{
+                    name: watch(`metric-${index}-name`),
+                    step: watch(`metric-${index}-step`),
+                  }}
+                  inputBar={inputBarType}
+                  register={register}
+                  setValue={setValue}
+                  getValues={getValues}
+                  resetField={resetField}
+                  units={watch(`metric-${index}-units`)}
+                  placeholder="set default value"
+                  fieldname={`metric-${index}-default`}
+                />
+              </Card.Body>
+            </Card>
+          )}
+        </InputBarOptions>
       </Card.Body>
     </Card>
   );
