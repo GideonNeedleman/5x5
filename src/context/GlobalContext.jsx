@@ -124,20 +124,27 @@ function reducer(state, action) {
             : program
         ),
       };
-    case "add-new-exercise":
+    case "create-new-exercise":
       return {
         ...state,
         exerciseData: [...state.exerciseData, action.payload],
       };
-    case "add-new-workout":
+    case "create-new-workout":
       return {
         ...state,
         workoutData: [...state.workoutData, action.payload],
       };
-    case "add-new-program":
+    case "create-new-program":
       return {
         ...state,
         programData: [...state.programData, action.payload],
+      };
+    case "remove-program":
+      return {
+        ...state,
+        activePrograms: state.activePrograms.filter(
+          (el) => el !== action.payload.id
+        ),
       };
     default:
       throw new Error("unknown action type");

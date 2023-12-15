@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import WorkoutModal from "./WorkoutModal";
+import WorkoutModal from "./ProgramModal";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
 import vibrator from "vibrator";
@@ -23,19 +23,6 @@ function WorkoutButton({ children, workout, program }) {
       <Button className="w-100" variant={variant} onClick={handleClick}>
         {children}
       </Button>
-      <Button
-        variant={variant}
-        style={{ position: "absolute", right: "16px" }}
-        onClick={() => setIsOpen(true)}
-      >
-        <BsThreeDotsVertical />
-      </Button>
-
-      <WorkoutModal
-        show={isOpen}
-        onHide={() => setIsOpen(false)}
-        workout={workout}
-      />
     </div>
   );
 }
