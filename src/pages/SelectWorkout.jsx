@@ -7,6 +7,7 @@ import WorkoutButton from "../features/workout/WorkoutButton";
 import { useGlobalContext } from "../context/GlobalContext";
 import vibrator from "vibrator";
 import { useNavigate } from "react-router-dom";
+import ProgramCard from "../features/home-screen/ProgramCard";
 
 function SelectWorkout() {
   const { programData, activePrograms } = useGlobalContext();
@@ -16,38 +17,25 @@ function SelectWorkout() {
     programData.find((element) => element.id === program)
   );
 
-  console.log(programs);
+  // console.log(programs);
 
   return (
     <main>
       <h1 className="d-flex display-3 justify-content-center">
         Select Workout
       </h1>
+      <Container className="d-flex flex-column align-items-center gap-2">
+        {programs.map((program) => (
+          <ProgramCard program={program} key={program.id} />
+        ))}
+
+        {/* Add Personal Workouts card here */}
+      </Container>
       <Stack
         gap={2}
-        className="col-sm-5 mx-auto px-2"
+        className="col-sm-5 mx-auto px-2 mt-2"
         style={{ overflow: "hidden" }}
       >
-        {programs.map((program) => (
-          <div key={program.name}>
-            <p className="mb-0">{program.name}</p>
-            <Stack
-              gap={2}
-              className="col-sm-5 mx-auto px-2"
-              style={{ overflow: "hidden" }}
-            >
-              {program.workouts.map((workout) => (
-                <WorkoutButton
-                  key={workout.name}
-                  workout={workout}
-                  program={program}
-                >
-                  {workout.name}
-                </WorkoutButton>
-              ))}
-            </Stack>
-          </div>
-        ))}
         <Button
           variant="dark"
           onClick={() => {
