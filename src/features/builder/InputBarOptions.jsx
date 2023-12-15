@@ -1,4 +1,10 @@
-import { Form, InputGroup, OverlayTrigger, Tooltip } from "react-bootstrap";
+import {
+  Card,
+  Form,
+  InputGroup,
+  OverlayTrigger,
+  Tooltip,
+} from "react-bootstrap";
 import {
   BsInfoCircleFill,
   BsArrow90DegUp,
@@ -8,7 +14,14 @@ import {
 import { IconContext } from "react-icons";
 import vibrator from "vibrator";
 
-function InputBarOptions({ inputBarType, register, index, watch, children }) {
+function InputBarOptions({
+  inputBarType,
+  register,
+  index,
+  watch,
+  metricName,
+  children,
+}) {
   const Popup = ({ id, children, title }) => (
     <OverlayTrigger overlay={<Tooltip id={id}>{title}</Tooltip>}>
       <a href="#">{children}</a>
@@ -70,7 +83,6 @@ function InputBarOptions({ inputBarType, register, index, watch, children }) {
             <div className="d-flex align-items-baseline gap-3 ">
               <Form.Check
                 type="switch"
-                id="custom-switch"
                 label="Adaptive Metric"
                 className="mt-3"
                 onClick={() => vibrator(1)}
@@ -84,12 +96,23 @@ function InputBarOptions({ inputBarType, register, index, watch, children }) {
             </div>
           </details>
           {/* Display default value as summary */}
-          {/* {!isNaN(watch(`metric-${index}-default`)) && (
-            <p className="text-center mt-3 fst-italic bg-info-subtle rounded">
-              Default Value: {watch(`metric-${index}-default`)}{" "}
-              {watch(`metric-${index}-units`)}
-            </p>
-          )} */}
+          {!isNaN(watch(`metric-${index}-default`)) && (
+            <Card border="secondary" className="text-center mt-2">
+              <Card.Header className="p-1">Summary</Card.Header>
+              <Card.Body className="fst-italic p-1">
+                <p className="mb-0">
+                  <span className="text-capitalize">{metricName} </span>
+                  default: {watch(`metric-${index}-default`)}{" "}
+                  {watch(`metric-${index}-units`)}
+                </p>
+                {!isNaN(watch(`metric-${index}-step`)) && (
+                  <p className="mb-0">
+                    Step value: {watch(`metric-${index}-step`)}
+                  </p>
+                )}
+              </Card.Body>
+            </Card>
+          )}
         </>
       );
     default:

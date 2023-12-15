@@ -61,36 +61,29 @@ function AddMetricToExercise({
           register={register}
           index={index}
           watch={watch}
+          metricName={watch(`metric-${index}-name`)}
         >
           {/* Display inputBar here */}
 
           {inputBarType !== "none" && (
-            <>
-              {/* <hr className="text-primary" /> */}
-              {/* <Card bg="light">
-              <Card.Body> */}
-              <Card className="mt-2" style={{ backgroundColor: "#0d6efd33" }}>
-                <Card.Body className="p-2">
-                  <ChooseInputBar
-                    metric={{
-                      name: watch(`metric-${index}-name`),
-                      step: watch(`metric-${index}-step`),
-                    }}
-                    inputBar={inputBarType}
-                    register={register}
-                    setValue={setValue}
-                    getValues={getValues}
-                    resetField={resetField}
-                    units={watch(`metric-${index}-units`)}
-                    placeholder="set default value"
-                    fieldname={`metric-${index}-default`}
-                  />
-                </Card.Body>
-              </Card>
-              {/* </Card.Body>
-            </Card> */}
-              {/* <hr className="text-primary" /> */}
-            </>
+            <Card className="mt-2" style={{ backgroundColor: "#0d6efd33" }}>
+              <Card.Body className="p-2">
+                <ChooseInputBar
+                  metric={{
+                    name: watch(`metric-${index}-name`),
+                    step: watch(`metric-${index}-step`),
+                  }}
+                  inputBar={inputBarType}
+                  register={register}
+                  setValue={setValue}
+                  getValues={getValues}
+                  resetField={resetField}
+                  units={watch(`metric-${index}-units`)}
+                  placeholder="set default value"
+                  fieldname={`metric-${index}-default`}
+                />
+              </Card.Body>
+            </Card>
           )}
         </InputBarOptions>
       </Card.Body>
