@@ -3,8 +3,10 @@ import { Stack } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import vibrator from "vibrator";
+import { useGlobalContext } from "../../context/GlobalContext";
 
-export default function WorkoutModal({ show, onHide, workout }) {
+export default function ProgramModal({ show, onHide, program }) {
+  const { dispatch } = useGlobalContext();
   const [testMessage, setTestMessage] = useState();
 
   return (
@@ -19,21 +21,23 @@ export default function WorkoutModal({ show, onHide, workout }) {
       <Modal.Body>
         <Stack gap={2}>
           <Button
-            onClick={() => setTestMessage(`This will EDIT ${workout.name}`)}
+            onClick={() => setTestMessage(`This will EDIT ${program.name}`)}
           >
             Edit
           </Button>
           <Button
-            onClick={() => setTestMessage(`This will COPY ${workout.name}`)}
+            onClick={() => setTestMessage(`This will COPY ${program.name}`)}
             variant="secondary"
           >
             Copy
           </Button>
           <Button
-            onClick={() => setTestMessage(`This will DELETE ${workout.name}`)}
+            onClick={() =>
+              dispatch({ type: "remove-program", payload: program })
+            }
             variant="danger"
           >
-            Delete
+            Remove
           </Button>
         </Stack>
       </Modal.Body>

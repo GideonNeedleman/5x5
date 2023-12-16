@@ -76,7 +76,7 @@ function BuildExercise() {
     // console.log("raw data", data);
     // console.log("exercise object", exerciseObject);
 
-    dispatch({ type: "add-new-exercise", payload: exerciseObject });
+    dispatch({ type: "create-new-exercise", payload: exerciseObject });
     navigate(-1);
   }
 

@@ -2,6 +2,7 @@ import { createContext, useContext, useReducer, useEffect } from "react";
 import { initialProgramData } from "./initialProgramData";
 import { initialExerciseData } from "./initialExerciseData";
 import { initialWorkoutData } from "./initialWorkoutData";
+import { initialActivePrograms } from "./initialActivePrograms";
 
 const GlobalContext = createContext();
 
@@ -123,20 +124,44 @@ function reducer(state, action) {
             : program
         ),
       };
-    case "add-new-exercise":
+    case "create-new-exercise":
       return {
         ...state,
         exerciseData: [...state.exerciseData, action.payload],
       };
-    case "add-new-workout":
+    case "create-new-workout":
       return {
         ...state,
         workoutData: [...state.workoutData, action.payload],
       };
-    case "add-new-program":
+    case "create-new-program":
       return {
         ...state,
         programData: [...state.programData, action.payload],
+      };
+    case "add-program":
+      return {
+        ...state,
+        activePrograms: [action.payload.id, ...state.activePrograms],
+      };
+    case "add-workout":
+      return {
+        ...state,
+        programData: state.programData.map((program) =>
+          program.id === 0
+            ? {
+                ...program,
+                workouts: [...state.programData[0].workouts, action.payload],
+              }
+            : program
+        ),
+      };
+    case "remove-program":
+      return {
+        ...state,
+        activePrograms: state.activePrograms.filter(
+          (el) => el !== action.payload.id
+        ),
       };
     default:
       throw new Error("unknown action type");
@@ -161,6 +186,8 @@ const initialState = {
     JSON.parse(localStorage.getItem("workoutData")) || initialWorkoutData,
   programData:
     JSON.parse(localStorage.getItem("programData")) || initialProgramData,
+  activePrograms:
+    JSON.parse(localStorage.getItem("activePrograms")) || initialActivePrograms,
 };
 
 function GlobalContextProvider({ children }) {
@@ -172,6 +199,7 @@ function GlobalContextProvider({ children }) {
       isWorkoutFinished,
       activeKey,
       programData,
+      activePrograms,
       tempRecordData,
       recordData,
       workoutHistory,
@@ -211,6 +239,10 @@ function GlobalContextProvider({ children }) {
     localStorage.setItem("workoutData", JSON.stringify(workoutData));
   }, [workoutData]);
 
+  useEffect(() => {
+    localStorage.setItem("activePrograms", JSON.stringify(activePrograms));
+  }, [activePrograms]);
+
   return (
     <GlobalContext.Provider
       value={{
@@ -220,6 +252,7 @@ function GlobalContextProvider({ children }) {
         isWorkoutFinished,
         activeKey,
         programData,
+        activePrograms,
         tempRecordData,
         recordData,
         workoutHistory,

@@ -50,7 +50,7 @@ function BuildProgram() {
     }
 
     const programObject = { id, name, workouts };
-    dispatch({ type: "add-new-program", payload: programObject });
+    dispatch({ type: "create-new-program", payload: programObject });
     navigate(-1);
     console.log("raw data", data);
     console.log("final object", programObject);
