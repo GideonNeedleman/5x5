@@ -8,11 +8,12 @@ import vibrator from "vibrator";
 function WorkoutButton({ children, workout, program, disabled = false }) {
   // const [isOpen, setIsOpen] = useState(false);
   const isInMyWorkouts = program.id === 0;
-  const variant = disabled
-    ? "secondary"
-    : workout.next
-    ? "primary"
-    : "secondary";
+  const variant =
+    disabled || isInMyWorkouts
+      ? "secondary"
+      : workout.next
+      ? "primary"
+      : "secondary";
   const navigate = useNavigate();
   const { dispatch } = useGlobalContext();
 

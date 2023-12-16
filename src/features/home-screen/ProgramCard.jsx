@@ -48,7 +48,7 @@ function ProgramCard({ program, icon = "none", disableButtons = false }) {
       <Card border="primary" style={{ width: "100%" }}>
         <Card.Header className="d-flex justify-content-between">
           <span className="fw-semibold text-capitalize">{program.name}</span>
-          <CorrectIcon icon={icon} />
+          {program.id !== 0 && <CorrectIcon icon={icon} />}
         </Card.Header>
         <Card.Body className="d-flex flex-column gap-2 py-2">
           {program.workouts.map((workout) => (

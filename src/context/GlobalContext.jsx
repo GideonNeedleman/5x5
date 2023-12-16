@@ -186,7 +186,8 @@ const initialState = {
     JSON.parse(localStorage.getItem("workoutData")) || initialWorkoutData,
   programData:
     JSON.parse(localStorage.getItem("programData")) || initialProgramData,
-  activePrograms: JSON.parse(localStorage.getItem("activePrograms")) || [2, 0],
+  activePrograms:
+    JSON.parse(localStorage.getItem("activePrograms")) || initialActivePrograms,
 };
 
 function GlobalContextProvider({ children }) {
