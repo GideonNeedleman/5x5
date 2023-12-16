@@ -1,6 +1,5 @@
 // import { useState } from "react";
 import { Button } from "react-bootstrap";
-// import { BsThreeDotsVertical } from "react-icons/bs";
 // import WorkoutModal from "./ProgramModal";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
@@ -22,12 +21,17 @@ function WorkoutButton({ children, workout, program, disabled = false }) {
     vibrator(1);
   }
 
+  function handleAddWorkout() {
+    dispatch({ type: "add-workout", payload: workout });
+    navigate("/");
+  }
+
   return (
     <div className="WorkoutButton">
       <Button
         className="w-100"
         variant={variant}
-        onClick={disabled ? undefined : handleClick}
+        onClick={disabled ? handleAddWorkout : handleClick}
       >
         {children}
       </Button>

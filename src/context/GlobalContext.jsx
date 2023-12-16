@@ -144,6 +144,14 @@ function reducer(state, action) {
         ...state,
         activePrograms: [...state.activePrograms, action.payload.id],
       };
+    case "add-workout":
+      return {
+        ...state,
+        myWorkouts: {
+          ...state.myWorkouts,
+          workouts: [...state.myWorkouts.workouts, action.payload],
+        },
+      };
     case "remove-program":
       return {
         ...state,
