@@ -176,6 +176,11 @@ const initialState = {
     JSON.parse(localStorage.getItem("programData")) || initialProgramData,
   activePrograms:
     JSON.parse(localStorage.getItem("activePrograms")) || initialActivePrograms,
+  myWorkouts: JSON.parse(localStorage.getItem("myWorkouts")) || {
+    id: 0,
+    name: "My Workouts",
+    workouts: [],
+  },
 };
 
 function GlobalContextProvider({ children }) {
@@ -193,6 +198,7 @@ function GlobalContextProvider({ children }) {
       workoutHistory,
       exerciseData,
       workoutData,
+      myWorkouts,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -231,6 +237,10 @@ function GlobalContextProvider({ children }) {
     localStorage.setItem("activePrograms", JSON.stringify(activePrograms));
   }, [activePrograms]);
 
+  useEffect(() => {
+    localStorage.setItem("myWorkouts", JSON.stringify(myWorkouts));
+  }, [myWorkouts]);
+
   return (
     <GlobalContext.Provider
       value={{
@@ -246,6 +256,7 @@ function GlobalContextProvider({ children }) {
         workoutHistory,
         exerciseData,
         workoutData,
+        myWorkouts,
         dispatch,
 
         handleFinishWorkout,

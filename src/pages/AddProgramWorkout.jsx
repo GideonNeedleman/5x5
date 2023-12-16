@@ -41,6 +41,16 @@ function AddProgramWorkout() {
         >
           + New Workout
         </Button>
+        <h2 className="text-center">Build New Exercise</h2>
+        <Button
+          onClick={() => {
+            navigate("/build-exercise");
+            vibrator(1);
+          }}
+          className="w-100"
+        >
+          + New Exercise
+        </Button>
       </Container>
     </main>
   );
