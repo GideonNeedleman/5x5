@@ -8,7 +8,6 @@ import { useGlobalContext } from "../context/GlobalContext";
 import vibrator from "vibrator";
 import { useNavigate } from "react-router-dom";
 import ProgramCard from "../features/home-screen/ProgramCard";
-// import MyWorkouts from "../features/home-screen/MyWorkouts";
 
 function SelectWorkout() {
   const { programData, activePrograms } = useGlobalContext();
@@ -29,9 +28,6 @@ function SelectWorkout() {
         {programs.map((program) => (
           <ProgramCard program={program} icon="menu" key={program.id} />
         ))}
-
-        {/* Add Personal Workouts card here */}
-        {/* <MyWorkouts /> */}
       </Container>
       <Stack
         gap={2}

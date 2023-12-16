@@ -43,7 +43,6 @@ function ProgramCard({ program, icon = "none", disableButtons = false }) {
     }
   }
 
-  // icon options: 'add': plus sign, 'menu': three dots, 'none': no icon
   return (
     <>
       <Card

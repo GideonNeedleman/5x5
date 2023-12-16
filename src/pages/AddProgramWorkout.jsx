@@ -1,8 +1,9 @@
-import { Button, Container } from "react-bootstrap";
+import { Button, Card, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import vibrator from "vibrator";
 import { useGlobalContext } from "../context/GlobalContext";
 import ProgramCard from "../features/home-screen/ProgramCard";
+import WorkoutButton from "../features/workout/WorkoutButton";
 
 function AddProgramWorkout() {
   const navigate = useNavigate();
@@ -37,6 +38,16 @@ function AddProgramWorkout() {
         </Button>
 
         <h2 className="text-center">Workouts</h2>
+        <Card border="secondary">
+          <Card.Body className="d-flex flex-column gap-2">
+            {workoutData.map((workout) => (
+              <Button variant="secondary" key={workout.id}>
+                {workout.name}
+              </Button>
+            ))}
+          </Card.Body>
+        </Card>
+
         <Button
           className="w-100"
           onClick={() => {
