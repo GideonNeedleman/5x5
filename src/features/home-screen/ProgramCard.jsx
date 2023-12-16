@@ -11,6 +11,7 @@ function ProgramCard({ program, icon = "none", disableButtons = false }) {
   const { dispatch } = useGlobalContext();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const isMyWorkouts = program.id === 0;
 
   function handleAddProgram() {
     dispatch({ type: "add-program", payload: program });
@@ -45,10 +46,13 @@ function ProgramCard({ program, icon = "none", disableButtons = false }) {
   // icon options: 'add': plus sign, 'menu': three dots, 'none': no icon
   return (
     <>
-      <Card border="primary" style={{ width: "100%" }}>
+      <Card
+        border={isMyWorkouts ? "secondary" : "primary"}
+        style={{ width: "100%" }}
+      >
         <Card.Header className="d-flex justify-content-between">
           <span className="fw-semibold text-capitalize">{program.name}</span>
-          {program.id !== 0 && <CorrectIcon icon={icon} />}
+          {!isMyWorkouts && <CorrectIcon icon={icon} />}
         </Card.Header>
         <Card.Body className="d-flex flex-column gap-2 py-2">
           {program.workouts.map((workout) => (
