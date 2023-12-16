@@ -10,8 +10,13 @@ function MyWorkouts() {
         <span className="fw-semibold text-capitalize">My Workouts</span>
       </Card.Header>
       <Card.Body className="d-flex flex-column gap-2 py-2">
-        {myWorkouts.map((workout) => (
-          <WorkoutButton key={workout.name} workout={workout} program={program}>
+        {myWorkouts.workouts.map((workout) => (
+          <WorkoutButton
+            key={workout.id}
+            workout={workout}
+            program={myWorkouts}
+            disabled={true}
+          >
             {workout.name}
           </WorkoutButton>
         ))}

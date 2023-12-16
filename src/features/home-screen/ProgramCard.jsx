@@ -7,7 +7,7 @@ import { IconContext } from "react-icons";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
 
-function ProgramCard({ program, icon = "none" }) {
+function ProgramCard({ program, icon = "none", disableButtons = false }) {
   const { dispatch } = useGlobalContext();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
@@ -53,9 +53,10 @@ function ProgramCard({ program, icon = "none" }) {
         <Card.Body className="d-flex flex-column gap-2 py-2">
           {program.workouts.map((workout) => (
             <WorkoutButton
-              key={workout.name}
+              key={workout.id}
               workout={workout}
               program={program}
+              disabled={disableButtons}
             >
               {workout.name}
             </WorkoutButton>
@@ -68,7 +69,6 @@ function ProgramCard({ program, icon = "none" }) {
         program={program}
       />
     </>
-    // program modal here, copy from WorkoutModal
   );
 }
 

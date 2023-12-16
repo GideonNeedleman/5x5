@@ -18,7 +18,12 @@ function AddProgramWorkout() {
       <h2 className="text-center">Programs</h2>
       <Container className="d-flex flex-column gap-2">
         {availablePrograms.map((program) => (
-          <ProgramCard program={program} icon="add" key={program.id} />
+          <ProgramCard
+            program={program}
+            icon="add"
+            disableButtons={true}
+            key={program.id}
+          />
         ))}
 
         <Button

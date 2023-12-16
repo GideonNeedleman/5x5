@@ -6,9 +6,13 @@ import { useGlobalContext } from "../../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
 import vibrator from "vibrator";
 
-function WorkoutButton({ children, workout, program }) {
+function WorkoutButton({ children, workout, program, disabled = false }) {
   // const [isOpen, setIsOpen] = useState(false);
-  const variant = workout.next ? "primary" : "secondary";
+  const variant = disabled
+    ? "secondary"
+    : workout.next
+    ? "primary"
+    : "secondary";
   const navigate = useNavigate();
   const { dispatch } = useGlobalContext();
 
@@ -20,7 +24,11 @@ function WorkoutButton({ children, workout, program }) {
 
   return (
     <div className="WorkoutButton">
-      <Button className="w-100" variant={variant} onClick={handleClick}>
+      <Button
+        className="w-100"
+        variant={variant}
+        onClick={disabled ? undefined : handleClick}
+      >
         {children}
       </Button>
     </div>
