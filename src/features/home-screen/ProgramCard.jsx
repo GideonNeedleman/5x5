@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Card } from "react-bootstrap";
+import { IconContext } from "react-icons";
 import { BsThreeDotsVertical, BsFillPlusSquareFill } from "react-icons/bs";
 import WorkoutButton from "../workout/WorkoutButton";
 import ProgramModal from "../workout/ProgramModal";
-import { IconContext } from "react-icons";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
 

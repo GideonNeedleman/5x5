@@ -8,6 +8,8 @@ import { useGlobalContext } from "../context/GlobalContext";
 import vibrator from "vibrator";
 import { useNavigate } from "react-router-dom";
 import ProgramCard from "../features/home-screen/ProgramCard";
+import { IconContext } from "react-icons";
+import { BsFillPlusSquareFill } from "react-icons/bs";
 
 function SelectWorkout() {
   const { programData, activePrograms } = useGlobalContext();
@@ -41,7 +43,12 @@ function SelectWorkout() {
             navigate("/add-program-workout");
           }}
         >
-          + Add Program / Workout
+          <IconContext.Provider
+            value={{ color: "var(--bs-primary)", size: "1.5rem" }}
+          >
+            <BsFillPlusSquareFill className="me-2 pb-1" />
+          </IconContext.Provider>
+          Program / Workout
         </Button>
         <Button variant="outline-secondary" onClick={() => vibrator(1)}>
           Just go
