@@ -142,15 +142,19 @@ function reducer(state, action) {
     case "add-program":
       return {
         ...state,
-        activePrograms: [...state.activePrograms, action.payload.id],
+        activePrograms: [action.payload.id, ...state.activePrograms],
       };
     case "add-workout":
       return {
         ...state,
-        myWorkouts: {
-          ...state.myWorkouts,
-          workouts: [...state.myWorkouts.workouts, action.payload],
-        },
+        programData: state.programData.map((program) =>
+          program.id === 0
+            ? {
+                ...program,
+                workouts: [...state.programData[0].workouts, action.payload],
+              }
+            : program
+        ),
       };
     case "remove-program":
       return {
@@ -182,13 +186,7 @@ const initialState = {
     JSON.parse(localStorage.getItem("workoutData")) || initialWorkoutData,
   programData:
     JSON.parse(localStorage.getItem("programData")) || initialProgramData,
-  activePrograms:
-    JSON.parse(localStorage.getItem("activePrograms")) || initialActivePrograms,
-  myWorkouts: JSON.parse(localStorage.getItem("myWorkouts")) || {
-    id: 0,
-    name: "My Workouts",
-    workouts: [],
-  },
+  activePrograms: JSON.parse(localStorage.getItem("activePrograms")) || [2, 0],
 };
 
 function GlobalContextProvider({ children }) {
@@ -206,7 +204,6 @@ function GlobalContextProvider({ children }) {
       workoutHistory,
       exerciseData,
       workoutData,
-      myWorkouts,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -245,10 +242,6 @@ function GlobalContextProvider({ children }) {
     localStorage.setItem("activePrograms", JSON.stringify(activePrograms));
   }, [activePrograms]);
 
-  useEffect(() => {
-    localStorage.setItem("myWorkouts", JSON.stringify(myWorkouts));
-  }, [myWorkouts]);
-
   return (
     <GlobalContext.Provider
       value={{
@@ -264,7 +257,6 @@ function GlobalContextProvider({ children }) {
         workoutHistory,
         exerciseData,
         workoutData,
-        myWorkouts,
         dispatch,
 
         handleFinishWorkout,

@@ -1,1 +1,1 @@
-export const initialActivePrograms = [2];
+export const initialActivePrograms = [2, 0];

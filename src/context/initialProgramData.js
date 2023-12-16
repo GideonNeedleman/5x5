@@ -1,5 +1,10 @@
 export const initialProgramData = [
   {
+    id: 0,
+    name: "My Workouts",
+    workouts: [],
+  },
+  {
     name: "Stronglifts 5x5",
     id: 1,
     workouts: [

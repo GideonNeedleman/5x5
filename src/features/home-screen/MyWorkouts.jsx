@@ -3,7 +3,7 @@ import WorkoutButton from "../workout/WorkoutButton";
 import { useGlobalContext } from "../../context/GlobalContext";
 
 function MyWorkouts() {
-  const { myWorkouts } = useGlobalContext();
+  /*   const { myWorkouts } = useGlobalContext();
   return (
     <Card border="primary" style={{ width: "100%" }}>
       <Card.Header className="d-flex justify-content-between">
@@ -22,7 +22,7 @@ function MyWorkouts() {
         ))}
       </Card.Body>
     </Card>
-  );
+  ); */
 }
 
 export default MyWorkouts;

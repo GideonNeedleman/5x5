@@ -7,6 +7,7 @@ import vibrator from "vibrator";
 
 function WorkoutButton({ children, workout, program, disabled = false }) {
   // const [isOpen, setIsOpen] = useState(false);
+  const isInMyWorkouts = program.id === 0;
   const variant = disabled
     ? "secondary"
     : workout.next
@@ -31,7 +32,14 @@ function WorkoutButton({ children, workout, program, disabled = false }) {
       <Button
         className="w-100"
         variant={variant}
-        onClick={disabled ? handleAddWorkout : handleClick}
+        // stupid logic bc actually 3 states: 1) in My Workouts, 2) in Add Program Workout screen, 3) on Home screen inside a program
+        onClick={
+          isInMyWorkouts
+            ? handleClick
+            : disabled
+            ? handleAddWorkout
+            : handleClick
+        }
       >
         {children}
       </Button>
