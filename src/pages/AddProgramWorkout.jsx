@@ -4,6 +4,8 @@ import vibrator from "vibrator";
 import { useGlobalContext } from "../context/GlobalContext";
 import ProgramCard from "../features/home-screen/ProgramCard";
 import WorkoutButton from "../features/workout/WorkoutButton";
+import { IconContext } from "react-icons";
+import { BsFillPlusSquareFill } from "react-icons/bs";
 
 function AddProgramWorkout() {
   const navigate = useNavigate();
@@ -22,6 +24,17 @@ function AddProgramWorkout() {
   return (
     <main>
       <h1 className="text-center display-3">Add to Home</h1>
+      <p className="text-center mb-0">
+        Tap{" "}
+        <IconContext.Provider
+          value={{ color: "var(--bs-primary)", size: "1.2rem" }}
+        >
+          <BsFillPlusSquareFill className="me-1 mb-1" />
+        </IconContext.Provider>
+        to add Program
+      </p>
+      <p className="text-center mb-1">Tap Workout button adds to My Workouts</p>
+      <hr className="border-primary border-2 my-2" />
       <h2 className="text-center">Programs</h2>
       <Container className="d-flex flex-column gap-2">
         {availablePrograms.map((program) => (
