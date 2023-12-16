@@ -11,6 +11,12 @@ function AddProgramWorkout() {
   const availablePrograms = programData.filter(
     (program) => !activePrograms.includes(program.id)
   );
+  const { dispatch } = useGlobalContext();
+
+  function handleAddWorkout(workout) {
+    dispatch({ type: "add-workout", payload: workout });
+    navigate("/");
+  }
 
   // console.log(availablePrograms);
   return (
@@ -41,7 +47,11 @@ function AddProgramWorkout() {
         <Card border="secondary">
           <Card.Body className="d-flex flex-column gap-2">
             {workoutData.map((workout) => (
-              <Button variant="secondary" key={workout.id}>
+              <Button
+                variant="secondary"
+                onClick={() => handleAddWorkout(workout)}
+                key={workout.id}
+              >
                 {workout.name}
               </Button>
             ))}
