@@ -11,7 +11,7 @@ export const initialProgramData = [
       {
         name: "A day",
         id: 1,
-        workoutIndex: 1,
+        order: 1,
         next: true,
         exercises: [
           {
@@ -112,7 +112,7 @@ export const initialProgramData = [
       {
         name: "B day",
         id: 2,
-        workoutIndex: 2,
+        order: 2,
         next: false,
         exercises: [
           {
@@ -212,8 +212,8 @@ export const initialProgramData = [
     workouts: [
       {
         name: "Push day",
-        id: 1,
-        workoutIndex: 3,
+        id: 3,
+        order: 1,
         next: true,
         exercises: [
           {
@@ -274,8 +274,8 @@ export const initialProgramData = [
       },
       {
         name: "Pull day",
-        id: 2,
-        workoutIndex: 4,
+        id: 4,
+        order: 2,
         next: false,
         exercises: [
           {
@@ -328,8 +328,8 @@ export const initialProgramData = [
       },
       {
         name: "Legs",
-        id: 3,
-        workoutIndex: 5,
+        id: 5,
+        order: 3,
         next: false,
         exercises: [
           {
@@ -398,8 +398,8 @@ export const initialProgramData = [
       },
       {
         name: "Swimming Day",
-        id: 4,
-        workoutIndex: 6,
+        id: 6,
+        order: 4,
         next: false,
         exercises: [
           {
