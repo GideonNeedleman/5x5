@@ -28,7 +28,12 @@ function SelectWorkout() {
       </h1>
       <Container className="d-flex flex-column align-items-center gap-2">
         {programs.map((program) => (
-          <ProgramCard program={program} icon="menu" key={program.id} />
+          <ProgramCard
+            program={program}
+            location={program.id === 0 ? "myworkouts" : "home"}
+            icon="menu"
+            key={program.id}
+          />
         ))}
       </Container>
       <Stack

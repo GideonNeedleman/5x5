@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import vibrator from "vibrator";
 import { useGlobalContext } from "../context/GlobalContext";
 import ProgramCard from "../features/home-screen/ProgramCard";
-import WorkoutButton from "../features/workout/WorkoutButton";
+// import WorkoutButton from "../features/workout/WorkoutButton";
 import { IconContext } from "react-icons";
 import { BsFillPlusSquareFill } from "react-icons/bs";
 
@@ -41,7 +41,7 @@ function AddProgramWorkout() {
           <ProgramCard
             program={program}
             icon="add"
-            disableButtons={true}
+            location="add"
             key={program.id}
           />
         ))}
