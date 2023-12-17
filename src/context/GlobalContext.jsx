@@ -27,13 +27,13 @@ function reducer(state, action) {
     case "begin-workout":
       return {
         ...state,
-        // calculate nextWorkoutOrder to increment 'next' flag. if currentOrder < workouts.length ? increment 1 : set to 0
+        // calculate nextWorkoutOrder to increment 'next' flag. if activeWorkout.order < workouts.length ? increment 1 : set to 1
         nextWorkoutOrder:
-          state.activeWorkout.id <
+          state.activeWorkout.order <
           state.programData.find(
             (program) => program.id === state.activeProgramId
           ).workouts.length
-            ? state.activeWorkout.id + 1
+            ? state.activeWorkout.order + 1
             : 1,
         isWorkoutStarted: true,
         isWorkoutFinished: false,
@@ -54,7 +54,7 @@ function reducer(state, action) {
             ? {
                 ...program,
                 workouts: program.workouts.map((workout) =>
-                  workout.id === state.nextWorkoutOrder
+                  workout.order === state.nextWorkoutOrder
                     ? { ...workout, next: true }
                     : { ...workout, next: false }
                 ),

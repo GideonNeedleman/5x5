@@ -36,7 +36,6 @@ function BuildProgram() {
     const numWorkouts = Object.keys(data).filter((element) =>
       element.includes("id")
     ).length;
-    console.log("numWorkouts", numWorkouts);
 
     // loop over all workouts
     let workouts = [];
@@ -53,8 +52,8 @@ function BuildProgram() {
     const programObject = { id, name, workouts };
     dispatch({ type: "create-new-program", payload: programObject });
     navigate(-1);
-    console.log("raw data", data);
-    console.log("final object", programObject);
+    // console.log("raw data", data);
+    // console.log("final object", programObject);
   }
 
   return (
