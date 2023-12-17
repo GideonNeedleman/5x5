@@ -5,15 +5,12 @@ import { useGlobalContext } from "../../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
 import vibrator from "vibrator";
 
-function WorkoutButton({ children, workout, program, disabled = false }) {
-  // const [isOpen, setIsOpen] = useState(false);
-  const isInMyWorkouts = program.id === 0;
-  const variant =
-    disabled || isInMyWorkouts
-      ? "secondary"
-      : workout.next
-      ? "primary"
-      : "secondary";
+function WorkoutButton({ children, workout, program, location = "home" }) {
+  // location options: home, myworkouts, add
+
+  const variant = location === "home" && workout.next ? "primary" : "secondary";
+
+  const { programData } = useGlobalContext();
   const navigate = useNavigate();
   const { dispatch } = useGlobalContext();
 
@@ -33,13 +30,14 @@ function WorkoutButton({ children, workout, program, disabled = false }) {
       <Button
         className="w-100"
         variant={variant}
-        // stupid logic bc actually 3 states: 1) in My Workouts, 2) in Add Program Workout screen, 3) on Home screen inside a program
         onClick={
-          isInMyWorkouts
+          location === "home" || location === "myworkouts"
             ? handleClick
-            : disabled
-            ? handleAddWorkout
-            : handleClick
+            : handleAddWorkout //location === 'add'
+        }
+        disabled={
+          location === "add" &&
+          programData[0].workouts.some((el) => el.id === workout.id) // workoutIndex vs id mixup again
         }
       >
         {children}

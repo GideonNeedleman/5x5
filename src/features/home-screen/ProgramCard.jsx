@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Card } from "react-bootstrap";
+import { IconContext } from "react-icons";
 import { BsThreeDotsVertical, BsFillPlusSquareFill } from "react-icons/bs";
 import WorkoutButton from "../workout/WorkoutButton";
 import ProgramModal from "../workout/ProgramModal";
-import { IconContext } from "react-icons";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
 
-function ProgramCard({ program, icon = "none", disableButtons = false }) {
+function ProgramCard({ program, icon = "none", location = "home" }) {
   const { dispatch } = useGlobalContext();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
@@ -59,7 +59,7 @@ function ProgramCard({ program, icon = "none", disableButtons = false }) {
               key={workout.id}
               workout={workout}
               program={program}
-              disabled={disableButtons}
+              location={location}
             >
               {workout.name}
             </WorkoutButton>
