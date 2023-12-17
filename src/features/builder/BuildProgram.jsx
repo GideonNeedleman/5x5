@@ -34,26 +34,26 @@ function BuildProgram() {
 
     // get numWorkouts
     const numWorkouts = Object.keys(data).filter((element) =>
-      element.includes("workoutIndex")
+      element.includes("id")
     ).length;
 
     // loop over all workouts
     let workouts = [];
     for (let i = 1; i <= numWorkouts; i++) {
-      const id = i;
-      const workoutIndex = data[`workoutIndex-${i}`];
-      const chosenWorkout = workoutData.find((el) => el.id === workoutIndex);
+      const order = i;
+      const id = data[`id-${i}`];
+      const chosenWorkout = workoutData.find((el) => el.id === id);
       const next = i === 1;
 
-      const workoutObject = { ...chosenWorkout, id, next, workoutIndex };
+      const workoutObject = { ...chosenWorkout, order, next };
       workouts = [...workouts, workoutObject];
     }
 
     const programObject = { id, name, workouts };
     dispatch({ type: "create-new-program", payload: programObject });
     navigate(-1);
-    console.log("raw data", data);
-    console.log("final object", programObject);
+    // console.log("raw data", data);
+    // console.log("final object", programObject);
   }
 
   return (

@@ -37,7 +37,7 @@ function WorkoutButton({ children, workout, program, location = "home" }) {
         }
         disabled={
           location === "add" &&
-          programData[0].workouts.some((el) => el.id === workout.id) // workoutIndex vs id mixup again
+          programData[0].workouts.some((el) => el.id === workout.id)
         }
       >
         {children}
