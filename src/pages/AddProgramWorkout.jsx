@@ -37,7 +37,9 @@ function AddProgramWorkout() {
         </IconContext.Provider>
         to add Program
       </p>
-      <p className="text-center mb-1">Tap Workout button adds to My Workouts</p>
+      <p className="text-center mb-1">
+        Tap Workout button to add to My Workouts
+      </p>
       <hr className="border-primary border-2 my-2" />
       <h2 className="text-center">Programs</h2>
       <Container className="d-flex flex-column gap-2">
