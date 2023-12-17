@@ -3,21 +3,35 @@ import { useNavigate } from "react-router-dom";
 import vibrator from "vibrator";
 import { useGlobalContext } from "../context/GlobalContext";
 import ProgramCard from "../features/home-screen/ProgramCard";
-// import WorkoutButton from "../features/workout/WorkoutButton";
 import { IconContext } from "react-icons";
 import { BsFillPlusSquareFill } from "react-icons/bs";
 
 function AddProgramWorkout() {
+  const { dispatch } = useGlobalContext();
   const navigate = useNavigate();
   const { activePrograms, programData, workoutData } = useGlobalContext();
+
+  // availablePrograms are all programs not already on Home screen (in activePrograms array)
   const availablePrograms = programData.filter(
     (program) => !activePrograms.includes(program.id)
   );
+
+  // availableWorkouts are all workouts not already in My Workouts list
   const availableWorkouts = workoutData.filter(
     (workout) => !programData[0].workouts.some((el) => el.id === workout.id)
   );
 
-  const { dispatch } = useGlobalContext();
+  // create filteredWorkouts to only display workouts that are not already displayed on this page inside availablePrograms: 1) create temp array / set of all workout ids in all availablePrograms.
+  let tempWorkoutIds = [];
+  for (let i = 0; i < availablePrograms.length; i++) {
+    for (let j = 0; j < availablePrograms[i].workouts.length; j++) {
+      tempWorkoutIds = [...tempWorkoutIds, availablePrograms[i].workouts[j].id];
+    }
+  }
+  // 2) filter availableWorkouts more by removing matches in this array
+  const filteredWorkouts = availableWorkouts.filter(
+    (workout) => !tempWorkoutIds.includes(workout.id)
+  );
 
   function handleAddWorkout(workout) {
     dispatch({ type: "add-workout", payload: workout });
@@ -65,7 +79,7 @@ function AddProgramWorkout() {
         <h2 className="text-center mb-0">Additional Workouts</h2>
         <Card border="secondary">
           <Card.Body className="d-flex flex-column gap-2">
-            {availableWorkouts.map((workout) => (
+            {filteredWorkouts.map((workout) => (
               <Button
                 variant="secondary"
                 onClick={() => handleAddWorkout(workout)}
