@@ -13,6 +13,10 @@ function AddProgramWorkout() {
   const availablePrograms = programData.filter(
     (program) => !activePrograms.includes(program.id)
   );
+  const availableWorkouts = workoutData.filter(
+    (workout) => !programData[0].workouts.some((el) => el.id === workout.id)
+  );
+
   const { dispatch } = useGlobalContext();
 
   function handleAddWorkout(workout) {
@@ -56,10 +60,10 @@ function AddProgramWorkout() {
           + New Program
         </Button>
 
-        <h2 className="text-center">Workouts</h2>
+        <h2 className="text-center mb-0">Additional Workouts</h2>
         <Card border="secondary">
           <Card.Body className="d-flex flex-column gap-2">
-            {workoutData.map((workout) => (
+            {availableWorkouts.map((workout) => (
               <Button
                 variant="secondary"
                 onClick={() => handleAddWorkout(workout)}
