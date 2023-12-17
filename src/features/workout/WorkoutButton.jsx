@@ -10,6 +10,7 @@ function WorkoutButton({ children, workout, program, location = "home" }) {
 
   const variant = location === "home" && workout.next ? "primary" : "secondary";
 
+  const { programData } = useGlobalContext();
   const navigate = useNavigate();
   const { dispatch } = useGlobalContext();
 
@@ -33,6 +34,10 @@ function WorkoutButton({ children, workout, program, location = "home" }) {
           location === "home" || location === "myworkouts"
             ? handleClick
             : handleAddWorkout //location === 'add'
+        }
+        disabled={
+          location === "add" &&
+          programData[0].workouts.some((el) => el.id === workout.id)
         }
       >
         {children}
