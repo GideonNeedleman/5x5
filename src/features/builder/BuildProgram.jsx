@@ -24,7 +24,7 @@ function BuildProgram({ edit = false, programToEdit = null }) {
     // formState: { errors },
   } = form;
   const [numWorkouts, setNumWorkouts] = useState(
-    programToEdit.workouts.length || 1
+    edit ? programToEdit.workouts.length : 1
   );
   // const arrayToMap = [...Array(numWorkouts)];
   let arrayToMap = [...Array(numWorkouts)];
@@ -81,7 +81,7 @@ function BuildProgram({ edit = false, programToEdit = null }) {
               placeholder="Enter program name"
               {...register("name")}
               autoFocus
-              defaultValue={programToEdit.name}
+              defaultValue={programToEdit?.name}
             />
           </Form.Group>
 
@@ -97,6 +97,7 @@ function BuildProgram({ edit = false, programToEdit = null }) {
                   // setValue={setValue}
                   // resetField={resetField}
                   watch={watch}
+                  defaultWorkout={edit ? el : null}
                 />
               ))}
             </div>

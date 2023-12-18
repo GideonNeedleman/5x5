@@ -23,6 +23,7 @@ function AddWorkoutToProgram({
             valueAsNumber: true,
           })}
           className="fs-3 text-center"
+          defaultValue={defaultWorkout?.id}
         >
           <option>Choose workout...</option>
           {workoutData.map((workout) => (
