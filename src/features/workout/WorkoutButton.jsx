@@ -1,15 +1,17 @@
-// import { useState } from "react";
+import { useState } from "react";
 import { Button } from "react-bootstrap";
-// import WorkoutModal from "./ProgramModal";
+import WorkoutModal from "./WorkoutModal";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
 import vibrator from "vibrator";
+import { BsThreeDotsVertical } from "react-icons/bs";
 
 function WorkoutButton({ children, workout, program, location = "home" }) {
   // location options: home, myworkouts, add
 
   const variant = location === "home" && workout.next ? "primary" : "secondary";
 
+  const [isOpen, setIsOpen] = useState(false);
   const { programData } = useGlobalContext();
   const navigate = useNavigate();
   const { dispatch } = useGlobalContext();
@@ -26,7 +28,7 @@ function WorkoutButton({ children, workout, program, location = "home" }) {
   }
 
   return (
-    <div className="WorkoutButton">
+    <div>
       <Button
         className="w-100"
         variant={variant}
@@ -42,6 +44,22 @@ function WorkoutButton({ children, workout, program, location = "home" }) {
       >
         {children}
       </Button>
+      {location === "myworkouts" && (
+        <Button
+          variant="secondary"
+          style={{ position: "absolute", right: "16px" }}
+          onClick={() => setIsOpen(true)}
+        >
+          <BsThreeDotsVertical />
+        </Button>
+      )}
+      {isOpen && (
+        <WorkoutModal
+          show={isOpen}
+          onHide={() => setIsOpen(false)}
+          workout={workout}
+        />
+      )}
     </div>
   );
 }

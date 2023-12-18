@@ -3,7 +3,7 @@ import { Card } from "react-bootstrap";
 import { IconContext } from "react-icons";
 import { BsThreeDotsVertical, BsFillPlusSquareFill } from "react-icons/bs";
 import WorkoutButton from "../workout/WorkoutButton";
-import ProgramModal from "../workout/ProgramModal";
+import ProgramModal from "./ProgramModal";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
 
