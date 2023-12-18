@@ -9,7 +9,7 @@ import AddWorkoutToProgram from "./AddWorkoutToProgram";
 import IncrementButtonBar from "../../components/IncrementButtonBar";
 import SubmitButtonBar from "../../components/SubmitButtonBar";
 
-function BuildProgram() {
+function BuildProgram({ edit = false, programToEdit = null }) {
   const { dispatch, programData, workoutData } = useGlobalContext();
   const navigate = useNavigate();
   const form = useForm();
@@ -23,8 +23,17 @@ function BuildProgram() {
     // resetField,
     // formState: { errors },
   } = form;
-  const [numWorkouts, setNumWorkouts] = useState(1);
-  const arrayToMap = [...Array(numWorkouts)];
+  const [numWorkouts, setNumWorkouts] = useState(
+    programToEdit.workouts.length || 1
+  );
+  // const arrayToMap = [...Array(numWorkouts)];
+  let arrayToMap = [...Array(numWorkouts)];
+  if (edit)
+    for (let i = 0; i < numWorkouts; i++) {
+      arrayToMap[i] = programToEdit.workouts[i];
+    }
+
+  console.log("Array to map", arrayToMap);
 
   function handleSubmitProgram(data) {
     const id = programData.length + 1;
@@ -50,7 +59,11 @@ function BuildProgram() {
     }
 
     const programObject = { id, name, workouts };
-    dispatch({ type: "create-new-program", payload: programObject });
+    {
+      edit
+        ? ""
+        : dispatch({ type: "create-new-program", payload: programObject });
+    }
     navigate(-1);
     // console.log("raw data", data);
     // console.log("final object", programObject);
@@ -58,7 +71,7 @@ function BuildProgram() {
 
   return (
     <main>
-      <h1 className="text-center display-3">New Program</h1>
+      {!edit && <h1 className="text-center display-3">New Program</h1>}
       <Container>
         <Form onSubmit={handleSubmit(handleSubmitProgram)}>
           <Form.Group>
@@ -68,6 +81,7 @@ function BuildProgram() {
               placeholder="Enter program name"
               {...register("name")}
               autoFocus
+              defaultValue={programToEdit.name}
             />
           </Form.Group>
 

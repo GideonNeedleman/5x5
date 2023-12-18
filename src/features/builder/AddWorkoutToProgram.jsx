@@ -8,6 +8,7 @@ function AddWorkoutToProgram({
   // getValues,
   // resetField,
   watch,
+  defaultWorkout = null,
 }) {
   const { workoutData } = useGlobalContext();
   const chosenWorkoutId = watch(`id-${index + 1}`);

@@ -4,9 +4,11 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import vibrator from "vibrator";
 import { useGlobalContext } from "../../context/GlobalContext";
+import { useNavigate } from "react-router-dom";
 
 export default function ProgramModal({ show, onHide, program }) {
   const { dispatch } = useGlobalContext();
+  const navigate = useNavigate();
   // const [testMessage, setTestMessage] = useState();
 
   return (
@@ -20,12 +22,15 @@ export default function ProgramModal({ show, onHide, program }) {
       <Modal.Title className="text-center">{program.name}</Modal.Title>
       <Modal.Body>
         <Stack gap={2}>
-          {/* <Button
-            onClick={() => setTestMessage(`This will EDIT ${program.name}`)}
+          <Button
+            onClick={() => {
+              navigate(`/edit-program/${program.id}`);
+              vibrator(1);
+            }}
           >
             Edit
           </Button>
-          <Button
+          {/* <Button
             onClick={() => setTestMessage(`This will COPY ${program.name}`)}
             variant="secondary"
           >

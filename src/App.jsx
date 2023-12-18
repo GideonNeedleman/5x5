@@ -11,6 +11,7 @@ import BuildExercise from "./features/builder/BuildExercise";
 import BuildWorkout from "./features/builder/BuildWorkout";
 import BuildProgram from "./features/builder/BuildProgram";
 import AddProgramWorkout from "./pages/AddProgramWorkout";
+import EditProgram from "./features/edit/EditProgram";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/build-exercise" element={<BuildExercise />} />
           <Route path="/build-workout" element={<BuildWorkout />} />
           <Route path="/build-program" element={<BuildProgram />} />
+          <Route path="/edit-program/:id" element={<EditProgram />} />
         </Routes>
       </BrowserRouter>
     </GlobalContextProvider>
