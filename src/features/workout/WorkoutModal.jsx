@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { Stack } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -7,7 +7,7 @@ import { useGlobalContext } from "../../context/GlobalContext";
 
 export default function WorkoutModal({ show, onHide, workout }) {
   const { dispatch } = useGlobalContext();
-  const [testMessage, setTestMessage] = useState();
+  // const [testMessage, setTestMessage] = useState();
 
   return (
     <Modal
@@ -17,7 +17,7 @@ export default function WorkoutModal({ show, onHide, workout }) {
       centered
       onHide={onHide}
     >
-      <Modal.Title className="text-center">{testMessage}</Modal.Title>
+      <Modal.Title className="text-center">{workout.name}</Modal.Title>
       <Modal.Body>
         <Stack gap={2}>
           {/* <Button
@@ -42,9 +42,6 @@ export default function WorkoutModal({ show, onHide, workout }) {
           </Button>
         </Stack>
       </Modal.Body>
-      {/*       <Modal.Footer>
-        <Button onClick={onHide}>Close</Button>
-      </Modal.Footer> */}
     </Modal>
   );
 }
