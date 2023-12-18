@@ -163,6 +163,20 @@ function reducer(state, action) {
           (el) => el !== action.payload.id
         ),
       };
+    case "remove-workout":
+      return {
+        ...state,
+        programData: state.programData.map((program) =>
+          program.id === 0
+            ? {
+                ...program,
+                workouts: state.programData[0].workouts.filter(
+                  (el) => el.id !== action.payload.id
+                ),
+              }
+            : program
+        ),
+      };
     default:
       throw new Error("unknown action type");
   }
