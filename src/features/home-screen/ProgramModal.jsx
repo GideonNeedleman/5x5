@@ -20,7 +20,7 @@ export default function ProgramModal({ show, onHide, program }) {
       <Modal.Title className="text-center">{testMessage}</Modal.Title>
       <Modal.Body>
         <Stack gap={2}>
-          <Button
+          {/* <Button
             onClick={() => setTestMessage(`This will EDIT ${program.name}`)}
           >
             Edit
@@ -30,11 +30,12 @@ export default function ProgramModal({ show, onHide, program }) {
             variant="secondary"
           >
             Copy
-          </Button>
+          </Button> */}
           <Button
-            onClick={() =>
-              dispatch({ type: "remove-program", payload: program })
-            }
+            onClick={() => {
+              dispatch({ type: "remove-program", payload: program });
+              vibrator(1);
+            }}
             variant="danger"
           >
             Remove

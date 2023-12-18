@@ -20,7 +20,7 @@ export default function WorkoutModal({ show, onHide, workout }) {
       <Modal.Title className="text-center">{testMessage}</Modal.Title>
       <Modal.Body>
         <Stack gap={2}>
-          <Button
+          {/* <Button
             onClick={() => setTestMessage(`This will EDIT ${workout.name}`)}
           >
             Edit
@@ -30,11 +30,12 @@ export default function WorkoutModal({ show, onHide, workout }) {
             variant="secondary"
           >
             Copy
-          </Button>
+          </Button> */}
           <Button
-            onClick={() =>
-              dispatch({ type: "remove-workout", payload: workout })
-            }
+            onClick={() => {
+              dispatch({ type: "remove-workout", payload: workout });
+              vibrator(1);
+            }}
             variant="danger"
           >
             Remove
