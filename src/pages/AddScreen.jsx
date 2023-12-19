@@ -6,7 +6,7 @@ import ProgramCard from "../features/home-screen/ProgramCard";
 import { IconContext } from "react-icons";
 import { BsFillPlusSquareFill } from "react-icons/bs";
 
-function AddProgramWorkout() {
+function AddScreen() {
   const { dispatch } = useGlobalContext();
   const navigate = useNavigate();
   const { activePrograms, programData, workoutData } = useGlobalContext();
@@ -116,4 +116,4 @@ function AddProgramWorkout() {
   );
 }
 
-export default AddProgramWorkout;
+export default AddScreen;
