@@ -5,6 +5,7 @@ import { useGlobalContext } from "../context/GlobalContext";
 import ProgramCard from "../features/home-screen/ProgramCard";
 import { IconContext } from "react-icons";
 import { BsFillPlusSquareFill } from "react-icons/bs";
+import WorkoutButton from "../features/workout/WorkoutButton";
 
 function AddScreen() {
   const { dispatch } = useGlobalContext();
@@ -29,9 +30,10 @@ function AddScreen() {
     }
   }
   // 2) filter availableWorkouts more by removing matches in this array
-  const filteredWorkouts = availableWorkouts.filter(
-    (workout) => !tempWorkoutIds.includes(workout.id)
-  );
+  const filteredWorkouts = availableWorkouts
+    .filter((workout) => !tempWorkoutIds.includes(workout.id))
+    .map((el) => el.id);
+  console.log(filteredWorkouts);
 
   function handleAddWorkout(workout) {
     dispatch({ type: "add-workout", payload: workout });
@@ -79,15 +81,13 @@ function AddScreen() {
         <h2 className="text-center mb-0">Additional Workouts</h2>
         <Card border="secondary" style={{ width: "100%" }}>
           <Card.Body className="d-flex flex-column gap-2">
-            {filteredWorkouts.map((workout) => (
-              <Button
-                // className="w-100"
-                variant="secondary"
-                onClick={() => handleAddWorkout(workout)}
-                key={workout.id}
-              >
-                {workout.name}
-              </Button>
+            {filteredWorkouts.map((workout, index) => (
+              <WorkoutButton
+                key={index}
+                index={index}
+                workoutId={workout}
+                location="add"
+              />
             ))}
           </Card.Body>
         </Card>
