@@ -43,16 +43,11 @@ function BuildProgram({ edit = false, programToEdit = null }) {
     // loop over all workouts
     let workouts = [];
     for (let i = 1; i <= numWorkouts; i++) {
-      const order = i;
       const id = data[`id-${i}`];
-      const chosenWorkout = workoutData.find((el) => el.id === id);
-      const next = i === 1;
-
-      const workoutObject = { ...chosenWorkout, order, next };
-      workouts = [...workouts, workoutObject];
+      workouts = [...workouts, id];
     }
 
-    const programObject = { id, name, workouts };
+    const programObject = { id, name, next: 0, workouts };
     const editedProgramObject = { id: programToEdit?.id, name, workouts };
     {
       edit
