@@ -54,9 +54,9 @@ function ProgramCard({ program, icon = "none", location = "home" }) {
           {!isMyWorkouts && <CorrectIcon icon={icon} />}
         </Card.Header>
         <Card.Body className="d-flex flex-column gap-2 py-2">
-          {program.workouts.map((workout) => (
+          {program.workouts.map((workout, index) => (
             <WorkoutButton
-              key={workout.id}
+              key={index}
               workout={workout}
               program={program}
               location={location}

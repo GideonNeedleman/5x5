@@ -26,23 +26,19 @@ function BuildProgram({ edit = false, programToEdit = null }) {
   const [numWorkouts, setNumWorkouts] = useState(
     edit ? programToEdit.workouts.length : 1
   );
-  // const arrayToMap = [...Array(numWorkouts)];
   let arrayToMap = [...Array(numWorkouts)];
   if (edit)
     for (let i = 0; i < numWorkouts; i++) {
       arrayToMap[i] = programToEdit.workouts[i];
     }
 
+  console.log("numWorkouts", numWorkouts);
+  console.log(("array to map", arrayToMap));
   function handleSubmitProgram(data) {
     const id = programData.length + 1;
     const { name } = data;
 
     // Loop i to numWorkouts, build up workout object, add to workouts array, then build final programObject and dispatch.
-
-    // get numWorkouts
-    const numWorkouts = Object.keys(data).filter((element) =>
-      element.includes("id")
-    ).length;
 
     // loop over all workouts
     let workouts = [];
@@ -63,7 +59,7 @@ function BuildProgram({ edit = false, programToEdit = null }) {
         ? dispatch({ type: "edit-program", payload: editedProgramObject })
         : dispatch({ type: "create-new-program", payload: programObject });
     }
-    // navigate(-1);
+    navigate(-1);
     console.log("raw data", data);
     console.log("final object", programObject);
   }
