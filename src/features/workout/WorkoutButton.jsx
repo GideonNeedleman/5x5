@@ -17,7 +17,7 @@ function WorkoutButton({ workoutId, index, program, location = "home" }) {
     location === "home" && program.next === index ? "primary" : "secondary";
 
   function handleClick() {
-    dispatch({ type: "select-workout", payload: { program, workout } });
+    dispatch({ type: "select-workout", payload: { program, workout, index } });
     navigate("/");
     vibrator(1);
   }
