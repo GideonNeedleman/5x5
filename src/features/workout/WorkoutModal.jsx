@@ -6,7 +6,7 @@ import vibrator from "vibrator";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
 
-export default function WorkoutModal({ show, onHide, workout }) {
+export default function WorkoutModal({ show, onHide, workout, location }) {
   const { dispatch } = useGlobalContext();
   const navigate = useNavigate();
 
@@ -35,16 +35,18 @@ export default function WorkoutModal({ show, onHide, workout }) {
           >
             Copy
           </Button> */}
-          <Button
-            onClick={() => {
-              dispatch({ type: "remove-workout", payload: workout });
-              vibrator(1);
-              onHide();
-            }}
-            variant="danger"
-          >
-            Remove
-          </Button>
+          {location === "myworkouts" && (
+            <Button
+              onClick={() => {
+                dispatch({ type: "remove-workout", payload: workout });
+                vibrator(1);
+                onHide();
+              }}
+              variant="danger"
+            >
+              Remove
+            </Button>
+          )}
         </Stack>
       </Modal.Body>
     </Modal>

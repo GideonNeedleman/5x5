@@ -44,20 +44,21 @@ function WorkoutButton({ workoutId, index, program, location = "home" }) {
       >
         {workout.name}
       </Button>
-      {location === "myworkouts" && (
-        <Button
-          variant="secondary"
-          style={{ position: "absolute", right: "16px" }}
-          onClick={() => setIsOpen(true)}
-        >
-          <BsThreeDotsVertical />
-        </Button>
-      )}
+
+      <Button
+        variant={variant}
+        style={{ position: "absolute", right: "16px" }}
+        onClick={() => setIsOpen(true)}
+      >
+        <BsThreeDotsVertical />
+      </Button>
+
       {isOpen && (
         <WorkoutModal
           show={isOpen}
           onHide={() => setIsOpen(false)}
           workout={workout}
+          location={location}
         />
       )}
     </div>
