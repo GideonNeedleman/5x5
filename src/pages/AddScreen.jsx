@@ -9,7 +9,8 @@ import WorkoutButton from "../features/workout/WorkoutButton";
 
 function AddScreen() {
   const navigate = useNavigate();
-  const { activePrograms, programData, workoutData } = useGlobalContext();
+  const { activePrograms, programData, workoutData, exerciseData } =
+    useGlobalContext();
 
   // availablePrograms are all programs not already on Home screen (in activePrograms array)
   const availablePrograms = programData.filter(
@@ -93,7 +94,20 @@ function AddScreen() {
         >
           + New Workout
         </Button>
-        <h2 className="text-center">Build New Exercise</h2>
+        <h2 className="text-center mb-0">Exercises</h2>
+        {exerciseData.map((exercise, index) => (
+          <p key={index}>{exercise.name}</p>
+        ))}
+        <Button
+          onClick={() => {
+            navigate("/edit-exercise");
+            vibrator(1);
+          }}
+          variant="warning"
+          className="w-75"
+        >
+          Edit Exercise
+        </Button>
         <Button
           onClick={() => {
             navigate("/build-exercise");
