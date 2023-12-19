@@ -3,7 +3,7 @@ import { useGlobalContext } from "../../context/GlobalContext";
 import BuildProgram from "../builder/BuildProgram";
 
 function EditProgram() {
-  const { dispatch, programData } = useGlobalContext();
+  const { programData } = useGlobalContext();
   const { id } = useParams();
   const program = programData.find((el) => el.id === Number(id));
 

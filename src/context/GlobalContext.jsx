@@ -139,6 +139,19 @@ function reducer(state, action) {
         ...state,
         programData: [...state.programData, action.payload],
       };
+    case "edit-program":
+      return {
+        ...state,
+        programData: state.programData.map((program) =>
+          program.id === action.payload.id
+            ? {
+                ...program,
+                name: action.payload.name,
+                workouts: action.payload.workouts,
+              }
+            : program
+        ),
+      };
     case "add-program":
       return {
         ...state,

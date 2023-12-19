@@ -33,8 +33,6 @@ function BuildProgram({ edit = false, programToEdit = null }) {
       arrayToMap[i] = programToEdit.workouts[i];
     }
 
-  console.log("Array to map", arrayToMap);
-
   function handleSubmitProgram(data) {
     const id = programData.length + 1;
     const { name } = data;
@@ -59,14 +57,15 @@ function BuildProgram({ edit = false, programToEdit = null }) {
     }
 
     const programObject = { id, name, workouts };
+    const editedProgramObject = { id: programToEdit?.id, name, workouts };
     {
       edit
-        ? ""
+        ? dispatch({ type: "edit-program", payload: editedProgramObject })
         : dispatch({ type: "create-new-program", payload: programObject });
     }
-    navigate(-1);
-    // console.log("raw data", data);
-    // console.log("final object", programObject);
+    // navigate(-1);
+    console.log("raw data", data);
+    console.log("final object", programObject);
   }
 
   return (

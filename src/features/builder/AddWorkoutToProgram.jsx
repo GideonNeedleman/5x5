@@ -14,8 +14,9 @@ function AddWorkoutToProgram({
   const { workoutData } = useGlobalContext();
   const chosenWorkoutId = watch(`id-${index + 1}`);
   const chosenWorkout = workoutData.find((el) => el.id == chosenWorkoutId);
-  const [rerender, setRerender] = useState(false); // force exercise list to render after defaultValues set
 
+  // force exercise list to render after defaultValues set
+  const [rerender, setRerender] = useState(false);
   useEffect(() => {
     setRerender(true);
   }, []);
