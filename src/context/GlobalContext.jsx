@@ -170,7 +170,7 @@ function reducer(state, action) {
           program.id === 0
             ? {
                 ...program,
-                workouts: [...state.programData[0].workouts, action.payload],
+                workouts: [...state.programData[0].workouts, action.payload.id],
               }
             : program
         ),
@@ -190,7 +190,7 @@ function reducer(state, action) {
             ? {
                 ...program,
                 workouts: state.programData[0].workouts.filter(
-                  (el) => el.id !== action.payload.id
+                  (el) => el !== action.payload.id
                 ),
               }
             : program

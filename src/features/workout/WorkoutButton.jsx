@@ -39,7 +39,7 @@ function WorkoutButton({ workoutId, index, program, location = "home" }) {
         }
         disabled={
           location === "add" &&
-          programData[0].workouts.some((el) => el.id === workout.id)
+          programData[0].workouts.some((el) => el === workout.id)
         }
       >
         {workout.name}
