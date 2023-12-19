@@ -6,6 +6,8 @@ function IncrementButtonBar({
   variant = "secondary",
   decrement,
   increment,
+  disableMinus = false,
+  disablePlus = false,
   children,
 }) {
   return (
@@ -16,6 +18,7 @@ function IncrementButtonBar({
           decrement();
           vibrator(1);
         }}
+        disabled={disableMinus}
       >
         <BsDashLg />
       </Button>
@@ -28,6 +31,7 @@ function IncrementButtonBar({
           vibrator(1);
         }}
         size="lg"
+        disabled={disablePlus}
       >
         {children}
       </Button>
@@ -38,6 +42,7 @@ function IncrementButtonBar({
           increment();
           vibrator(1);
         }}
+        disabled={disablePlus}
       >
         <BsPlusLg />
       </Button>

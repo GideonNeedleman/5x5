@@ -8,7 +8,6 @@ import { BsFillPlusSquareFill } from "react-icons/bs";
 import WorkoutButton from "../features/workout/WorkoutButton";
 
 function AddScreen() {
-  const { dispatch } = useGlobalContext();
   const navigate = useNavigate();
   const { activePrograms, programData, workoutData } = useGlobalContext();
 
@@ -33,14 +32,7 @@ function AddScreen() {
   const filteredWorkouts = availableWorkouts
     .filter((workout) => !tempWorkoutIds.includes(workout.id))
     .map((el) => el.id);
-  console.log(filteredWorkouts);
 
-  function handleAddWorkout(workout) {
-    dispatch({ type: "add-workout", payload: workout });
-    navigate("/");
-  }
-
-  // console.log(availablePrograms);
   return (
     <main>
       <h1 className="text-center display-3">Add to Home</h1>

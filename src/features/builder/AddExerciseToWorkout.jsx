@@ -51,7 +51,7 @@ function AddExerciseToWorkout({
           className="fs-3 text-center"
           defaultValue={defaultExercise?.id}
         >
-          <option>Choose exercise...</option>
+          <option value={0}>Choose exercise...</option>
           {/* <option value="new">+ Create new exercise</option> */}
           {exerciseData.map((exercise) => (
             <option value={exercise.id} key={exercise.id}>

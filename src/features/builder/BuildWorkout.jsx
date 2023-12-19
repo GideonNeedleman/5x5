@@ -1,4 +1,4 @@
-import { Container, Form } from "react-bootstrap";
+import { Button, Container, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 // import { ErrorMessage } from "@hookform/error-message";
 import { DevTool } from "@hookform/devtools";
@@ -27,8 +27,7 @@ function BuildWorkout({ edit = false, workoutToEdit }) {
   const [numExercises, setNumExercises] = useState(
     edit ? workoutToEdit.exercises.length : 1
   );
-  // console.log("numExercises", numExercises);
-  // const arrayToMap = [...Array(numExercises)];
+
   let arrayToMap = [...Array(numExercises)];
   if (edit)
     for (let i = 0; i < numExercises; i++) {
@@ -62,7 +61,7 @@ function BuildWorkout({ edit = false, workoutToEdit }) {
         sets = [...sets, setObject];
       }
 
-      // Combine to build exerciseObject (Note: specify id:i after spreading ...exercise to overwrite id property inside exercise)
+      // Combine to build exerciseObject
       const exerciseObject = { ...exercise, sets };
       // Add to exerciseArray
       exerciseArray = [...exerciseArray, exerciseObject];
@@ -150,9 +149,18 @@ function BuildWorkout({ edit = false, workoutToEdit }) {
               decrement={() =>
                 numExercises > 1 && setNumExercises((prev) => prev - 1)
               }
+              disableMinus={numExercises <= 1}
             >
               Exercise
             </IncrementButtonBar>
+            <Button
+              className="w-100 mt-3"
+              size="sm"
+              variant="info"
+              onClick={() => navigate("/build-exercise")}
+            >
+              Create New Exercise
+            </Button>
           </div>
 
           <SubmitButtonBar>Save Workout</SubmitButtonBar>
