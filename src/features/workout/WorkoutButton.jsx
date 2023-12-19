@@ -6,15 +6,15 @@ import { useNavigate } from "react-router-dom";
 import vibrator from "vibrator";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
-function WorkoutButton({ children, workout, program, location = "home" }) {
+function WorkoutButton({ workoutId, index, program, location = "home" }) {
   // location options: home, myworkouts, add
 
-  const variant = location === "home" && workout.next ? "primary" : "secondary";
-
+  const { dispatch, programData, workoutData } = useGlobalContext();
+  const workout = workoutData.find((el) => el.id === workoutId);
   const [isOpen, setIsOpen] = useState(false);
-  const { programData } = useGlobalContext();
   const navigate = useNavigate();
-  const { dispatch } = useGlobalContext();
+  const variant =
+    location === "home" && program.next === index ? "primary" : "secondary";
 
   function handleClick() {
     dispatch({ type: "select-workout", payload: { program, workout } });
@@ -42,7 +42,7 @@ function WorkoutButton({ children, workout, program, location = "home" }) {
           programData[0].workouts.some((el) => el.id === workout.id)
         }
       >
-        {children}
+        {workout.name}
       </Button>
       {location === "myworkouts" && (
         <Button
