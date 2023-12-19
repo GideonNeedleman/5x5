@@ -19,7 +19,9 @@ export default function ProgramModal({ show, onHide, program, location }) {
       centered
       onHide={onHide}
     >
-      <Modal.Title className="text-center">{program.name}</Modal.Title>
+      <Modal.Title className="text-center display-4 mt-2">
+        {program.name}
+      </Modal.Title>
       <Modal.Body>
         <Stack gap={2}>
           <Button

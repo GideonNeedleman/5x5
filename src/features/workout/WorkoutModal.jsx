@@ -18,7 +18,9 @@ export default function WorkoutModal({ show, onHide, workout, location }) {
       centered
       onHide={onHide}
     >
-      <Modal.Title className="text-center">{workout.name}</Modal.Title>
+      <Modal.Title className="text-center display-4 mt-2">
+        {workout.name}
+      </Modal.Title>
       <Modal.Body>
         <Stack gap={2}>
           <Button
