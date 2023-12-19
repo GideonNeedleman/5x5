@@ -39,6 +39,7 @@ export default function WorkoutModal({ show, onHide, workout }) {
             onClick={() => {
               dispatch({ type: "remove-workout", payload: workout });
               vibrator(1);
+              onHide();
             }}
             variant="danger"
           >

@@ -12,12 +12,14 @@ function reducer(state, action) {
       return {
         ...state,
         activeWorkout: JSON.parse(JSON.stringify(action.payload.workout)),
+        activeWorkoutIndex: action.payload.index,
         activeProgramId: action.payload.program.id,
       };
     case "clear-workout":
       return {
         ...state,
         activeWorkout: null,
+        activeWorkoutIndex: null,
         isWorkoutStarted: false,
         activeProgramId: null,
         tempRecordData: [],
@@ -27,14 +29,6 @@ function reducer(state, action) {
     case "begin-workout":
       return {
         ...state,
-        // calculate nextWorkoutOrder to increment 'next' flag. if activeWorkout.order < workouts.length ? increment 1 : set to 1
-        nextWorkoutOrder:
-          state.activeWorkout.order <
-          state.programData.find(
-            (program) => program.id === state.activeProgramId
-          ).workouts.length
-            ? state.activeWorkout.order + 1
-            : 1,
         isWorkoutStarted: true,
         isWorkoutFinished: false,
         activeKey: 0,
@@ -48,24 +42,23 @@ function reducer(state, action) {
     case "finish-workout":
       return {
         ...state,
-        // increment 'next' flag when workout.order === nextWorkoutOrder
+        // increment 'next' value, set to 0 if last workout
         programData: state.programData.map((program) =>
           program.id === state.activeProgramId
             ? {
                 ...program,
-                workouts: program.workouts.map((workout) =>
-                  workout.order === state.nextWorkoutOrder
-                    ? { ...workout, next: true }
-                    : { ...workout, next: false }
-                ),
+                next:
+                  state.activeWorkoutIndex === program.workouts.length - 1
+                    ? 0
+                    : state.activeWorkoutIndex + 1,
               }
             : program
         ),
         activeWorkout: null,
+        activeWorkoutIndex: null,
         activeProgramId: null,
         isWorkoutStarted: false,
         isWorkoutFinished: true,
-        nextWorkoutOrder: null,
         activeKey: 1,
         recordData: [...state.recordData, ...state.tempRecordData],
         // tempRecordData: [],
@@ -177,7 +170,7 @@ function reducer(state, action) {
           program.id === 0
             ? {
                 ...program,
-                workouts: [...state.programData[0].workouts, action.payload],
+                workouts: [...state.programData[0].workouts, action.payload.id],
               }
             : program
         ),
@@ -197,7 +190,7 @@ function reducer(state, action) {
             ? {
                 ...program,
                 workouts: state.programData[0].workouts.filter(
-                  (el) => el.id !== action.payload.id
+                  (el) => el !== action.payload.id
                 ),
               }
             : program
@@ -208,14 +201,14 @@ function reducer(state, action) {
   }
 }
 
-// use program id=null for self workouts not in a program
+// use program id=0 for workouts not in My Workouts
 const initialState = {
   activeWorkout: null,
+  activeWorkoutIndex: null,
   activeProgramId: null,
   isWorkoutStarted: false,
   isWorkoutFinished: false,
   activeKey: 1,
-  nextWorkoutOrder: null, //check if needed
   tempRecordData: [], //each element is a completed set
   recordData: JSON.parse(localStorage.getItem("recordData")) || [],
   tempWorkoutHistoryRecord: {},
@@ -234,6 +227,7 @@ function GlobalContextProvider({ children }) {
   const [
     {
       activeWorkout,
+      activeWorkoutIndex,
       activeProgramId,
       isWorkoutStarted,
       isWorkoutFinished,
@@ -287,6 +281,7 @@ function GlobalContextProvider({ children }) {
     <GlobalContext.Provider
       value={{
         activeWorkout,
+        activeWorkoutIndex,
         activeProgramId,
         isWorkoutStarted,
         isWorkoutFinished,

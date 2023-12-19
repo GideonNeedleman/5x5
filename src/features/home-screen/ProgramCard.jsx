@@ -76,12 +76,11 @@ function ProgramCard({ program, icon = "none", location = "home" }) {
           {program.workouts.map((workout, index) => (
             <WorkoutButton
               key={index}
-              workout={workout}
+              index={index}
+              workoutId={workout}
               program={program}
               location={location}
-            >
-              {workout.name}
-            </WorkoutButton>
+            />
           ))}
         </Card.Body>
       </Card>

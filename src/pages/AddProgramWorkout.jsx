@@ -18,7 +18,7 @@ function AddProgramWorkout() {
 
   // availableWorkouts are all workouts not already in My Workouts list
   const availableWorkouts = workoutData.filter(
-    (workout) => !programData[0].workouts.some((el) => el.id === workout.id)
+    (workout) => !programData[0].workouts.some((el) => el === workout.id)
   );
 
   // create filteredWorkouts to only display workouts that are not already displayed on this page inside availablePrograms: 1) create temp array / set of all workout ids in all availablePrograms.

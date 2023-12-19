@@ -33,7 +33,7 @@ function BuildProgram({ edit = false, programToEdit = null }) {
     }
 
   console.log("numWorkouts", numWorkouts);
-  console.log(("array to map", arrayToMap));
+  console.log(("array to map ", arrayToMap));
   function handleSubmitProgram(data) {
     const id = programData.length + 1;
     const { name } = data;
@@ -43,17 +43,17 @@ function BuildProgram({ edit = false, programToEdit = null }) {
     // loop over all workouts
     let workouts = [];
     for (let i = 1; i <= numWorkouts; i++) {
-      const order = i;
       const id = data[`id-${i}`];
-      const chosenWorkout = workoutData.find((el) => el.id === id);
-      const next = i === 1;
-
-      const workoutObject = { ...chosenWorkout, order, next };
-      workouts = [...workouts, workoutObject];
+      workouts = [...workouts, id];
     }
 
-    const programObject = { id, name, workouts };
-    const editedProgramObject = { id: programToEdit?.id, name, workouts };
+    const programObject = { id, name, next: 0, workouts };
+    const editedProgramObject = {
+      id: programToEdit?.id,
+      name,
+      next: programToEdit?.next,
+      workouts,
+    };
     {
       edit
         ? dispatch({ type: "edit-program", payload: editedProgramObject })
@@ -61,7 +61,7 @@ function BuildProgram({ edit = false, programToEdit = null }) {
     }
     navigate(-1);
     console.log("raw data", data);
-    console.log("final object", programObject);
+    console.log("final object", editedProgramObject);
   }
 
   return (
@@ -92,7 +92,9 @@ function BuildProgram({ edit = false, programToEdit = null }) {
                   // setValue={setValue}
                   // resetField={resetField}
                   watch={watch}
-                  defaultWorkout={edit ? el : null}
+                  defaultWorkout={
+                    edit ? workoutData.find((data) => data.id === el) : null
+                  }
                 />
               ))}
             </div>
