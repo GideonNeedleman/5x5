@@ -56,7 +56,7 @@ function AddProgramWorkout() {
       </p>
       <hr className="border-primary border-2 my-2" />
       <h2 className="text-center">Programs</h2>
-      <Container className="d-flex flex-column gap-2">
+      <Container className="d-flex flex-column gap-2 align-items-center">
         {availablePrograms.map((program) => (
           <ProgramCard
             program={program}
@@ -67,7 +67,7 @@ function AddProgramWorkout() {
         ))}
 
         <Button
-          className="w-100"
+          className="w-75"
           onClick={() => {
             vibrator(1);
             navigate("/build-program");
@@ -77,10 +77,11 @@ function AddProgramWorkout() {
         </Button>
 
         <h2 className="text-center mb-0">Additional Workouts</h2>
-        <Card border="secondary">
+        <Card border="secondary" style={{ width: "100%" }}>
           <Card.Body className="d-flex flex-column gap-2">
             {filteredWorkouts.map((workout) => (
               <Button
+                // className="w-100"
                 variant="secondary"
                 onClick={() => handleAddWorkout(workout)}
                 key={workout.id}
@@ -92,7 +93,7 @@ function AddProgramWorkout() {
         </Card>
 
         <Button
-          className="w-100"
+          className="w-75"
           onClick={() => {
             navigate("/build-workout");
             vibrator(1);
@@ -106,7 +107,7 @@ function AddProgramWorkout() {
             navigate("/build-exercise");
             vibrator(1);
           }}
-          className="w-100"
+          className="w-75"
         >
           + New Exercise
         </Button>

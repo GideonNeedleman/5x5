@@ -1,5 +1,6 @@
 import { Card, Form } from "react-bootstrap";
 import { useGlobalContext } from "../../context/GlobalContext";
+import { useEffect, useState } from "react";
 
 function AddWorkoutToProgram({
   register,
@@ -8,10 +9,17 @@ function AddWorkoutToProgram({
   // getValues,
   // resetField,
   watch,
+  defaultWorkout = null,
 }) {
   const { workoutData } = useGlobalContext();
   const chosenWorkoutId = watch(`id-${index + 1}`);
   const chosenWorkout = workoutData.find((el) => el.id == chosenWorkoutId);
+
+  // force exercise list to render after defaultValues set
+  const [rerender, setRerender] = useState(false);
+  useEffect(() => {
+    setRerender(true);
+  }, []);
 
   return (
     <Card bg="primary">
@@ -22,8 +30,9 @@ function AddWorkoutToProgram({
             valueAsNumber: true,
           })}
           className="fs-3 text-center"
+          defaultValue={defaultWorkout?.id}
         >
-          <option>Choose workout...</option>
+          <option value={0}>Choose workout...</option>
           {workoutData.map((workout) => (
             <option value={workout.id} key={workout.id}>
               {workout.name}
@@ -32,15 +41,17 @@ function AddWorkoutToProgram({
         </Form.Select>
 
         {/* Display exercises list */}
-        <div className="bg-light rounded">
-          <ul className="list-group">
-            {chosenWorkout?.exercises.map((exercise) => (
-              <li className="list-group-item" key={exercise.id}>
-                {exercise.name}
-              </li>
-            ))}
-          </ul>
-        </div>
+        {rerender && (
+          <div className="bg-light rounded">
+            <ul className="list-group">
+              {chosenWorkout?.exercises.map((exercise) => (
+                <li className="list-group-item" key={exercise.id}>
+                  {exercise.name}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </Card.Body>
     </Card>
   );
