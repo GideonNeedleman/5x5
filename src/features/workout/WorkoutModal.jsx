@@ -4,10 +4,11 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import vibrator from "vibrator";
 import { useGlobalContext } from "../../context/GlobalContext";
+import { useNavigate } from "react-router-dom";
 
 export default function WorkoutModal({ show, onHide, workout }) {
   const { dispatch } = useGlobalContext();
-  // const [testMessage, setTestMessage] = useState();
+  const navigate = useNavigate();
 
   return (
     <Modal
@@ -20,12 +21,15 @@ export default function WorkoutModal({ show, onHide, workout }) {
       <Modal.Title className="text-center">{workout.name}</Modal.Title>
       <Modal.Body>
         <Stack gap={2}>
-          {/* <Button
-            onClick={() => setTestMessage(`This will EDIT ${workout.name}`)}
+          <Button
+            onClick={() => {
+              navigate(`/edit-workout/${workout.id}`);
+              vibrator(1);
+            }}
           >
             Edit
           </Button>
-          <Button
+          {/* <Button
             onClick={() => setTestMessage(`This will COPY ${workout.name}`)}
             variant="secondary"
           >

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Card, Form } from "react-bootstrap";
 import { useGlobalContext } from "../../context/GlobalContext";
 import AddSetToExercise from "./AddSetToExercise";
@@ -11,16 +11,33 @@ function AddExerciseToWorkout({
   resetField,
   watch,
   index,
+  defaultExercise,
+  edit = false,
 }) {
+  const firstUpdate = useRef(1);
   const { exerciseData } = useGlobalContext();
-  const chosenExerciseId = watch(`exerciseIndex-${index + 1}`);
+  const chosenExerciseId = watch(`exerciseId-${index + 1}`);
   const chosenExercise = exerciseData.find((el) => el.id == chosenExerciseId);
-  const [numSets, setNumSets] = useState();
-  const arrayToMap = [...Array(numSets)];
+  const [numSets, setNumSets] = useState(
+    defaultExercise ? defaultExercise.sets.length : 1
+  );
+  // const arrayToMap = [...Array(numSets)];
+  let arrayToMap = [...Array(numSets)];
+  if (edit)
+    for (let i = 0; i < numSets; i++) {
+      arrayToMap[i] = defaultExercise?.sets[i];
+    }
 
   // Remove sets if user changes exercise. Auto add first set.
-  useEffect(() => {
+  /*   useEffect(() => {
     setNumSets(1);
+  }, [chosenExerciseId]); */
+  // console.log(chosenExerciseId, firstUpdate.current);
+  useEffect(() => {
+    // using 4, but maybe should be 2 if not strict mode?
+    if (firstUpdate.current < 4) {
+      firstUpdate.current++;
+    } else setNumSets(1);
   }, [chosenExerciseId]);
 
   // set value of hidden numSets field. Tells handleSubmitWorkout() how many sets to grab
@@ -30,8 +47,9 @@ function AddExerciseToWorkout({
     <Card bg="primary">
       <Card.Body className="d-flex flex-column gap-1">
         <Form.Select
-          {...register(`exerciseIndex-${index + 1}`)}
+          {...register(`exerciseId-${index + 1}`)}
           className="fs-3 text-center"
+          defaultValue={defaultExercise?.id}
         >
           <option>Choose exercise...</option>
           {/* <option value="new">+ Create new exercise</option> */}

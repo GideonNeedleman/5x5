@@ -5,8 +5,8 @@ export default function WorkoutTable({ workout }) {
   return (
     <>
       <div className="mt-2">
-        {workout.exercises.map((exercise) => (
-          <div key={exercise.id}>
+        {workout.exercises.map((exercise, index) => (
+          <div key={index}>
             <h3 className="text-center fw-normal">{exercise.name}</h3>
             <ExerciseTable exercise={exercise} />
           </div>

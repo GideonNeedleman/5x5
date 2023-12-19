@@ -6,7 +6,6 @@ export const initialWorkoutData = [
       {
         name: "Barbell Squats",
         id: 1,
-        exerciseIndex: 1,
         restTimer: 90,
         metrics: [
           {
@@ -37,7 +36,6 @@ export const initialWorkoutData = [
       {
         name: "Barbell Row",
         id: 2,
-        exerciseIndex: 2,
         restTimer: 90,
         metrics: [
           {
@@ -68,7 +66,6 @@ export const initialWorkoutData = [
       {
         name: "Bench Press",
         id: 3,
-        exerciseIndex: 3,
         restTimer: 90,
         metrics: [
           {
@@ -104,8 +101,7 @@ export const initialWorkoutData = [
     exercises: [
       {
         name: "Barbell Squats",
-        id: 4,
-        exerciseIndex: 1,
+        id: 1,
         restTimer: 90,
         metrics: [
           {
@@ -135,8 +131,7 @@ export const initialWorkoutData = [
       },
       {
         name: "Overhead Press",
-        id: 5,
-        exerciseIndex: 4,
+        id: 4,
         restTimer: 90,
         metrics: [
           {
@@ -166,8 +161,7 @@ export const initialWorkoutData = [
       },
       {
         name: "Deadlift",
-        id: 6,
-        exerciseIndex: 5,
+        id: 5,
         restTimer: 90,
         metrics: [
           {
@@ -197,8 +191,7 @@ export const initialWorkoutData = [
     exercises: [
       {
         name: "Pushups",
-        id: 7,
-        exerciseIndex: 6,
+        id: 6,
         restTimer: 60,
         metrics: [
           {
@@ -220,8 +213,7 @@ export const initialWorkoutData = [
       },
       {
         name: "Bench Press",
-        id: 8,
-        exerciseIndex: 3,
+        id: 3,
         restTimer: 90,
         metrics: [
           {
@@ -257,8 +249,7 @@ export const initialWorkoutData = [
     exercises: [
       {
         name: "Pullups",
-        id: 9,
-        exerciseIndex: 7,
+        id: 7,
         restTimer: 90,
         metrics: [
           {
@@ -278,8 +269,7 @@ export const initialWorkoutData = [
       },
       {
         name: "Deadlift",
-        id: 10,
-        exerciseIndex: 5,
+        id: 5,
         restTimer: 90,
         metrics: [
           {
@@ -309,8 +299,7 @@ export const initialWorkoutData = [
     exercises: [
       {
         name: "Barbell Squats",
-        id: 11,
-        exerciseIndex: 1,
+        id: 1,
         restTimer: 90,
         metrics: [
           {
@@ -340,8 +329,7 @@ export const initialWorkoutData = [
       },
       {
         name: "Leg Press",
-        id: 12,
-        exerciseIndex: 8,
+        id: 8,
         restTimer: 90,
         metrics: [
           {
@@ -377,8 +365,7 @@ export const initialWorkoutData = [
     exercises: [
       {
         name: "Swimming Laps",
-        id: 13,
-        exerciseIndex: 9,
+        id: 9,
         restTimer: 300,
         metrics: [
           {

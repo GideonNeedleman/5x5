@@ -9,7 +9,7 @@ function WorkoutAccordion({ workout, activeKey, setNumFinishedExercises }) {
           exercise={exercise}
           index={index}
           tracker={index + activeKey}
-          key={exercise.name}
+          key={index}
           setNumFinishedExercises={setNumFinishedExercises}
         />
       ))}

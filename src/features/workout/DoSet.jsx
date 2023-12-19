@@ -51,7 +51,7 @@ function DoSet({
     setIsFinished(true); // disables 'finish set' button
     const { note, ...metrics } = data;
     const formatData = {
-      exerciseId: exercise.exerciseIndex,
+      exerciseId: exercise.id,
       exerciseName: exercise.name,
       setId: set.id,
       datetime: new Date(),
