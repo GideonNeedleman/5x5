@@ -82,7 +82,7 @@ function BuildWorkout({ edit = false, workoutToEdit }) {
         : dispatch({ type: "create-new-workout", payload: workoutObject });
     }
     // navigate back
-    // navigate(-1);
+    navigate(-1);
     console.log("raw data", data);
     console.log("final object", workoutObject);
   }
