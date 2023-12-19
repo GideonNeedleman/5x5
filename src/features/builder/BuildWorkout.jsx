@@ -106,6 +106,7 @@ function BuildWorkout({ edit = false, workoutToEdit }) {
                   watch={watch}
                   index={index}
                   defaultExercise={edit ? el : null}
+                  edit={edit}
                 />
               ))}
             </div>

@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import ProgramCard from "../features/home-screen/ProgramCard";
 import { IconContext } from "react-icons";
 import { BsFillPlusSquareFill } from "react-icons/bs";
+import { useRef } from "react";
 
 function SelectWorkout() {
   const { programData, activePrograms } = useGlobalContext();
