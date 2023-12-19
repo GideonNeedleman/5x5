@@ -25,7 +25,7 @@ function AddScreen() {
   let tempWorkoutIds = [];
   for (let i = 0; i < availablePrograms.length; i++) {
     for (let j = 0; j < availablePrograms[i].workouts.length; j++) {
-      tempWorkoutIds = [...tempWorkoutIds, availablePrograms[i].workouts[j].id];
+      tempWorkoutIds = [...tempWorkoutIds, availablePrograms[i].workouts[j]];
     }
   }
   // 2) filter availableWorkouts more by removing matches in this array
