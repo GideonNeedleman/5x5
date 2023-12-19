@@ -70,10 +70,19 @@ function BuildWorkout({ edit = false, workoutToEdit }) {
 
     // combine exercises array with workout id & name
     const workoutObject = { id, name, exercises: exerciseArray };
+    const editWorkoutObject = {
+      id: workoutToEdit?.id,
+      name,
+      exercises: exerciseArray,
+    };
     // dispatch to add workout to workoutData
-    dispatch({ type: "create-new-workout", payload: workoutObject });
+    {
+      edit
+        ? dispatch({ type: "edit-workout", payload: editWorkoutObject })
+        : dispatch({ type: "create-new-workout", payload: workoutObject });
+    }
     // navigate back
-    navigate(-1);
+    // navigate(-1);
     console.log("raw data", data);
     console.log("final object", workoutObject);
   }

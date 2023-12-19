@@ -32,7 +32,7 @@ function AddExerciseToWorkout({
   /*   useEffect(() => {
     setNumSets(1);
   }, [chosenExerciseId]); */
-  console.log(chosenExerciseId, firstUpdate.current);
+  // console.log(chosenExerciseId, firstUpdate.current);
   useEffect(() => {
     // using 4, but maybe should be 2 if not strict mode?
     if (firstUpdate.current < 4) {
