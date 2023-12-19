@@ -9,7 +9,7 @@ import AddExerciseToWorkout from "./AddExerciseToWorkout";
 import IncrementButtonBar from "../../components/IncrementButtonBar";
 import SubmitButtonBar from "../../components/SubmitButtonBar";
 
-function BuildWorkout() {
+function BuildWorkout({ edit = false, workoutToEdit }) {
   const { dispatch, workoutData, exerciseData } = useGlobalContext();
   const navigate = useNavigate();
   const form = useForm();
@@ -24,9 +24,16 @@ function BuildWorkout() {
     // formState: { errors },
   } = form;
 
-  const [numExercises, setNumExercises] = useState(1);
+  const [numExercises, setNumExercises] = useState(
+    edit ? workoutToEdit.exercises.length : 1
+  );
   // console.log("numExercises", numExercises);
-  const arrayToMap = [...Array(numExercises)];
+  // const arrayToMap = [...Array(numExercises)];
+  let arrayToMap = [...Array(numExercises)];
+  if (edit)
+    for (let i = 0; i < numExercises; i++) {
+      arrayToMap[i] = workoutToEdit.exercises[i];
+    }
 
   function handleSubmitWorkout(data) {
     const id = workoutData.length + 1;
@@ -34,10 +41,10 @@ function BuildWorkout() {
     let nextSetId = 0; // running tally to specify setId
     // 1) Create exercises array to hold exercise objects
     let exerciseArray = [];
-    // 2) loop over data for numExercises. Grab exerciseIndex to populate from exerciseData,
+    // 2) loop over data for numExercises. Grab exerciseId to populate from exerciseData,
     for (let i = 1; i <= numExercises; i++) {
-      const exerciseIndex = Number(data[`exerciseIndex-${i}`]);
-      const exercise = exerciseData.find((el) => el.id == exerciseIndex);
+      const exerciseId = Number(data[`exerciseId-${i}`]);
+      const exercise = exerciseData.find((el) => el.id == exerciseId);
       // Find numSets
       const numSets = data[`exercise-${i}-numSets`];
       // Build sets array with another loop from all matching exercise-i-set-
@@ -56,7 +63,7 @@ function BuildWorkout() {
       }
 
       // Combine to build exerciseObject (Note: specify id:i after spreading ...exercise to overwrite id property inside exercise)
-      const exerciseObject = { exerciseIndex, ...exercise, id: i, sets };
+      const exerciseObject = { ...exercise, sets };
       // Add to exerciseArray
       exerciseArray = [...exerciseArray, exerciseObject];
     }
@@ -72,7 +79,7 @@ function BuildWorkout() {
   }
   return (
     <main>
-      <h1 className="text-center display-3">New Workout</h1>
+      {!edit && <h1 className="text-center display-3">New Workout</h1>}
       <Container>
         <Form onSubmit={handleSubmit(handleSubmitWorkout)}>
           <Form.Group>
@@ -82,6 +89,7 @@ function BuildWorkout() {
               placeholder="Enter workout name"
               {...register("name")}
               autoFocus
+              defaultValue={workoutToEdit?.name}
             />
           </Form.Group>
 
@@ -97,6 +105,7 @@ function BuildWorkout() {
                   resetField={resetField}
                   watch={watch}
                   index={index}
+                  defaultExercise={edit ? el : null}
                 />
               ))}
             </div>

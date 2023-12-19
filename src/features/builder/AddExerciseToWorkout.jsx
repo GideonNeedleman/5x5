@@ -11,12 +11,16 @@ function AddExerciseToWorkout({
   resetField,
   watch,
   index,
+  defaultExercise,
 }) {
   const { exerciseData } = useGlobalContext();
-  const chosenExerciseId = watch(`exerciseIndex-${index + 1}`);
+  const chosenExerciseId = watch(`exerciseId-${index + 1}`);
   const chosenExercise = exerciseData.find((el) => el.id == chosenExerciseId);
-  const [numSets, setNumSets] = useState();
+  const [numSets, setNumSets] = useState(
+    defaultExercise ? defaultExercise.sets.length : 1
+  );
   const arrayToMap = [...Array(numSets)];
+  console.log("default exercise", defaultExercise);
 
   // Remove sets if user changes exercise. Auto add first set.
   useEffect(() => {
@@ -30,8 +34,9 @@ function AddExerciseToWorkout({
     <Card bg="primary">
       <Card.Body className="d-flex flex-column gap-1">
         <Form.Select
-          {...register(`exerciseIndex-${index + 1}`)}
+          {...register(`exerciseId-${index + 1}`)}
           className="fs-3 text-center"
+          defaultValue={defaultExercise?.id}
         >
           <option>Choose exercise...</option>
           {/* <option value="new">+ Create new exercise</option> */}
