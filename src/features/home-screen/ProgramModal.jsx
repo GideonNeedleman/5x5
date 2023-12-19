@@ -6,7 +6,7 @@ import vibrator from "vibrator";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
 
-export default function ProgramModal({ show, onHide, program }) {
+export default function ProgramModal({ show, onHide, program, location }) {
   const { dispatch } = useGlobalContext();
   const navigate = useNavigate();
   // const [testMessage, setTestMessage] = useState();
@@ -36,15 +36,17 @@ export default function ProgramModal({ show, onHide, program }) {
           >
             Copy
           </Button> */}
-          <Button
-            onClick={() => {
-              dispatch({ type: "remove-program", payload: program });
-              vibrator(1);
-            }}
-            variant="danger"
-          >
-            Remove
-          </Button>
+          {location === "home" && (
+            <Button
+              onClick={() => {
+                dispatch({ type: "remove-program", payload: program });
+                vibrator(1);
+              }}
+              variant="danger"
+            >
+              Remove
+            </Button>
+          )}
         </Stack>
       </Modal.Body>
     </Modal>

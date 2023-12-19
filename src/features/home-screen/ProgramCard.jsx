@@ -30,12 +30,19 @@ function ProgramCard({ program, icon = "none", location = "home" }) {
         );
       case "add":
         return (
+          <BsThreeDotsVertical
+            className="mt-1"
+            onClick={() => setIsOpen(true)}
+          />
+        );
+      /* case "add":
+        return (
           <IconContext.Provider
             value={{ color: "var(--bs-primary)", size: "1.5rem" }}
           >
             <BsFillPlusSquareFill onClick={handleAddProgram} />
           </IconContext.Provider>
-        );
+        ); */
       case "none":
         return <span />;
       default:
@@ -50,7 +57,19 @@ function ProgramCard({ program, icon = "none", location = "home" }) {
         style={{ width: "100%" }}
       >
         <Card.Header className="d-flex justify-content-between">
-          <span className="fw-semibold text-capitalize">{program.name}</span>
+          <span className="fw-semibold text-capitalize">
+            {location === "add" && (
+              <IconContext.Provider
+                value={{ color: "var(--bs-primary)", size: "1.5rem" }}
+              >
+                <BsFillPlusSquareFill
+                  onClick={handleAddProgram}
+                  className="me-2"
+                />
+              </IconContext.Provider>
+            )}
+            {program.name}
+          </span>
           {!isMyWorkouts && <CorrectIcon icon={icon} />}
         </Card.Header>
         <Card.Body className="d-flex flex-column gap-2 py-2">
@@ -70,6 +89,7 @@ function ProgramCard({ program, icon = "none", location = "home" }) {
         show={isOpen}
         onHide={() => setIsOpen(false)}
         program={program}
+        location={location}
       />
     </>
   );
