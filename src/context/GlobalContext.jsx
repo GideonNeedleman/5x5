@@ -170,7 +170,7 @@ function reducer(state, action) {
           program.id === 0
             ? {
                 ...program,
-                workouts: [...state.programData[0].workouts, action.payload.id],
+                workouts: [action.payload.id, ...state.programData[0].workouts],
               }
             : program
         ),
