@@ -1,10 +1,10 @@
-import { Button, Card, Container } from "react-bootstrap";
+import { Button, Card, Container, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import vibrator from "vibrator";
 import { useGlobalContext } from "../context/GlobalContext";
 import ProgramCard from "../features/home-screen/ProgramCard";
 import { IconContext } from "react-icons";
-import { BsFillPlusSquareFill } from "react-icons/bs";
+import { BsFillPencilFill, BsFillPlusSquareFill } from "react-icons/bs";
 import WorkoutButton from "../features/workout/WorkoutButton";
 
 function AddScreen() {
@@ -94,20 +94,31 @@ function AddScreen() {
         >
           + New Workout
         </Button>
+
+        {/* Exercises table */}
         <h2 className="text-center mb-0">Exercises</h2>
-        {exerciseData.map((exercise, index) => (
-          <p key={index}>{exercise.name}</p>
-        ))}
-        <Button
-          onClick={() => {
-            navigate("/edit-exercise");
-            vibrator(1);
-          }}
-          variant="warning"
-          className="w-75"
-        >
-          Edit Exercise
-        </Button>
+        <Table striped bordered>
+          <tbody>
+            {exerciseData.map((exercise, index) => (
+              <tr key={index}>
+                <td className="text-center">
+                  <Button
+                    onClick={() => {
+                      navigate("/edit-exercise");
+                      vibrator(1);
+                    }}
+                    variant="warning"
+                    className="w-75"
+                    size="sm"
+                  >
+                    <BsFillPencilFill />
+                  </Button>
+                </td>
+                <td className="lh-lg">{exercise.name}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
         <Button
           onClick={() => {
             navigate("/build-exercise");
