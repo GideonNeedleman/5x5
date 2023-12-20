@@ -30,7 +30,7 @@ function WorkoutButton({ workoutId, index, program, location = "home" }) {
   return (
     <div>
       <Button
-        className="w-100"
+        className="w-100 px-5"
         variant={variant}
         onClick={
           location === "home" || location === "myworkouts"
