@@ -114,6 +114,7 @@ export function secondsToTime(seconds) {
   const mins = Math.floor(seconds / 60);
   const secs = seconds - mins * 60;
   const smallSecs = secs < 10 ? 0 : "";
-  const output = Number(`${mins}${smallSecs}${secs}`);
-  return output;
+
+  if (mins === 0 && secs === 0) return null;
+  else return Number(`${mins}${smallSecs}${secs}`);
 }

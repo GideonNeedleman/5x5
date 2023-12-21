@@ -10,20 +10,18 @@ function AddMetricToExercise({
   resetField,
   watch,
   index,
-  defaultMetric,
-  edit = false,
 }) {
   const inputBarType = watch(`metric-${index}-inputBar`);
 
   // resets fields to default to avoid bug where values are retained from previously deleted metric.
-  /*   useEffect(() => {
+  useEffect(() => {
     resetField(`metric-${index}-name`);
     resetField(`metric-${index}-units`);
     resetField(`metric-${index}-inputBar`, { defaultValue: "none" });
     resetField(`metric-${index}-step`);
     resetField(`metric-${index}-default`);
     resetField(`metric-${index}-adaptive`);
-  }, [resetField, index]); */
+  }, [resetField, index]);
 
   return (
     <Card border="primary" className="mt-3 ">
@@ -42,7 +40,6 @@ function AddMetricToExercise({
               list="metricNameOptions"
               placeholder="Type of Metric"
               {...register(`metric-${index}-name`)}
-              defaultValue={defaultMetric?.name}
             />
             <datalist id="metricNameOptions">
               <option value="reps" />
@@ -55,11 +52,7 @@ function AddMetricToExercise({
         <Form.Group className="mt-3">
           <InputGroup>
             <InputGroup.Text className="">Input Bar</InputGroup.Text>
-            <Form.Select
-              className=""
-              {...register(`metric-${index}-inputBar`)}
-              defaultValue={defaultMetric?.inputBar}
-            >
+            <Form.Select className="" {...register(`metric-${index}-inputBar`)}>
               <option value="none">Select Input Bar</option>
               <option value="NumberIncrementBar">Number Increment</option>
               {/* <option value="CountdownTimer">Countdown Timer</option> */}
