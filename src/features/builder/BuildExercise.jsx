@@ -100,7 +100,7 @@ function BuildExercise({ edit = false, exerciseToEdit }) {
                 placeholder="Enter exercise name"
                 {...register("name")}
                 autoFocus
-                defaultValue={exerciseToEdit?.name}
+                defaultValue={edit ? exerciseToEdit?.name : ""}
               />
             </InputGroup>
           </Form.Group>
@@ -120,7 +120,9 @@ function BuildExercise({ edit = false, exerciseToEdit }) {
                     message: "Seconds digits must be '00' to '59'",
                   },
                 })}
-                defaultValue={secondsToTime(exerciseToEdit?.restTimer)}
+                defaultValue={
+                  edit ? secondsToTime(exerciseToEdit?.restTimer) : ""
+                }
               />
               <InputGroup.Text>min : sec</InputGroup.Text>
             </InputGroup>

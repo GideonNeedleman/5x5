@@ -1,4 +1,5 @@
 import NumberIncrementBar from "./NumberIncrementBar";
+import BuildNumberIncrementBar from "./BuildNumberIncrementBar";
 
 function ChooseInputBar({
   inputBar,
@@ -11,6 +12,8 @@ function ChooseInputBar({
   units,
   placeholder,
   fieldname,
+  index,
+  watch,
 }) {
   switch (inputBar) {
     case "NumberIncrementBar":
@@ -25,6 +28,18 @@ function ChooseInputBar({
           defaultValue={defaultValue}
           units={units}
           placeholder={placeholder}
+        />
+      );
+    case "BuildNumberIncrementBar":
+      return (
+        <BuildNumberIncrementBar
+          index={index}
+          register={register}
+          setValue={setValue}
+          getValues={getValues}
+          resetField={resetField}
+          defaultValue={defaultValue}
+          watch={watch}
         />
       );
     case "test":

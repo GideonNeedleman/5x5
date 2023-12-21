@@ -125,7 +125,7 @@ function AddScreen() {
             navigate("/build-exercise");
             vibrator(1);
           }}
-          className="w-75"
+          className="w-75 mb-3"
         >
           + New Exercise
         </Button>
