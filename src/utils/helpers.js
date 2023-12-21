@@ -109,3 +109,11 @@ export function timeToSeconds(time) {
   const arr = time.split(":");
   return Number(arr[0] * 60) + Number(arr[1]);
 }
+
+export function secondsToTime(seconds) {
+  const mins = Math.floor(seconds / 60);
+  const secs = seconds - mins * 60;
+  const smallSecs = secs < 10 ? 0 : "";
+  const output = Number(`${mins}${smallSecs}${secs}`);
+  return output;
+}

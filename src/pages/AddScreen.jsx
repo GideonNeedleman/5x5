@@ -104,7 +104,7 @@ function AddScreen() {
                 <td className="text-center">
                   <Button
                     onClick={() => {
-                      navigate("/edit-exercise");
+                      navigate(`/edit-exercise/${exercise.id}`);
                       vibrator(1);
                     }}
                     variant="warning"
