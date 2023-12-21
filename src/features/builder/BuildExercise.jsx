@@ -26,8 +26,15 @@ function BuildExercise({ edit = false, exerciseToEdit }) {
     formState: { errors },
   } = form;
   const registerWithMask = useHookFormMask(register);
-  const [numMetrics, setNumMetrics] = useState(0);
-  const arrayToMap = [...Array(numMetrics)];
+  const [numMetrics, setNumMetrics] = useState(
+    edit ? exerciseToEdit.metrics.length : 0
+  );
+  let arrayToMap = [...Array(numMetrics)];
+  if (edit)
+    for (let i = 0; i < numMetrics; i++) {
+      arrayToMap[i] = exerciseToEdit.metrics[i];
+    }
+  console.log(arrayToMap);
 
   function handleSubmitExercise(data) {
     // format data into correct exercise shape
@@ -135,6 +142,8 @@ function BuildExercise({ edit = false, exerciseToEdit }) {
               watch={watch}
               index={index + 1}
               key={index}
+              defaultMetric={edit ? metric : null}
+              edit={edit}
             />
           ))}
 
