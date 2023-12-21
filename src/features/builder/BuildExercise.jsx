@@ -6,12 +6,12 @@ import { DevTool } from "@hookform/devtools";
 import { useHookFormMask } from "use-mask-input";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
-import { timeToSeconds } from "../../utils/helpers";
+import { secondsToTime, timeToSeconds } from "../../utils/helpers";
 import SubmitButtonBar from "../../components/SubmitButtonBar";
 import IncrementButtonBar from "../../components/IncrementButtonBar";
 import AddMetricToExercise from "./AddMetricToExercise";
 
-function BuildExercise() {
+function BuildExercise({ edit = false, exerciseToEdit }) {
   const { dispatch, exerciseData } = useGlobalContext();
   const navigate = useNavigate();
   const form = useForm();
@@ -26,8 +26,15 @@ function BuildExercise() {
     formState: { errors },
   } = form;
   const registerWithMask = useHookFormMask(register);
-  const [numMetrics, setNumMetrics] = useState(0);
-  const arrayToMap = [...Array(numMetrics)];
+  const [numMetrics, setNumMetrics] = useState(
+    edit ? exerciseToEdit.metrics.length : 0
+  );
+  let arrayToMap = [...Array(numMetrics)];
+  if (edit)
+    for (let i = 0; i < numMetrics; i++) {
+      arrayToMap[i] = exerciseToEdit.metrics[i];
+    }
+  console.log(arrayToMap);
 
   function handleSubmitExercise(data) {
     // format data into correct exercise shape
@@ -82,7 +89,7 @@ function BuildExercise() {
 
   return (
     <main>
-      <h1 className="text-center display-3">New Exercise</h1>
+      {!edit && <h1 className="text-center display-3">New Exercise</h1>}
       <Container>
         <Form onSubmit={handleSubmit(handleSubmitExercise)}>
           <Form.Group controlId="exerciseName">
@@ -93,6 +100,7 @@ function BuildExercise() {
                 placeholder="Enter exercise name"
                 {...register("name")}
                 autoFocus
+                defaultValue={exerciseToEdit?.name}
               />
             </InputGroup>
           </Form.Group>
@@ -112,6 +120,7 @@ function BuildExercise() {
                     message: "Seconds digits must be '00' to '59'",
                   },
                 })}
+                defaultValue={secondsToTime(exerciseToEdit?.restTimer)}
               />
               <InputGroup.Text>min : sec</InputGroup.Text>
             </InputGroup>
@@ -133,6 +142,8 @@ function BuildExercise() {
               watch={watch}
               index={index + 1}
               key={index}
+              defaultMetric={edit ? metric : null}
+              edit={edit}
             />
           ))}
 
