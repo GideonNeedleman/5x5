@@ -36,7 +36,7 @@ function BuildExercise({ edit = false, exerciseToEdit }) {
       arrayToMap[i] = exerciseToEdit.metrics[i];
     } */
   // console.log(arrayToMap);
-  console.log(exerciseToEdit);
+  // console.log(exerciseToEdit);
 
   function handleSubmitExercise(data) {
     // format data into correct exercise shape
@@ -82,11 +82,22 @@ function BuildExercise({ edit = false, exerciseToEdit }) {
       restTimer: restTimerSeconds,
       metrics: metricsArray,
     };
+    const editedExerciseObject = {
+      id: exerciseToEdit?.id,
+      name,
+      restTimer: restTimerSeconds,
+      metrics: metricsArray,
+    };
     console.log("raw data", data);
     console.log("exercise object", exerciseObject);
+    console.log("edited exercise object", editedExerciseObject);
 
-    dispatch({ type: "create-new-exercise", payload: exerciseObject });
-    navigate(-1);
+    /*     {
+      edit
+        ? dispatch({ type: "edit-exercise", payload: exerciseObject })
+        : dispatch({ type: "create-new-exercise", payload: exerciseObject });
+    } */
+    // navigate(-1);
   }
 
   return (
@@ -139,20 +150,19 @@ function BuildExercise({ edit = false, exerciseToEdit }) {
           {edit ? (
             exerciseToEdit.metrics.map((metric, index) => (
               <ChooseBuildInputBar
-                key={index}
-                index={index}
                 inputBar={metric.inputBar}
                 register={register}
                 setValue={setValue}
                 getValues={getValues}
                 resetField={resetField}
                 watch={watch}
+                index={index + 1}
+                key={index}
                 edit={true}
                 defaultValue={metric}
               />
             ))
           ) : (
-            // Not edit: can add & remove metrics
             <>
               {arrayToMap.map((metric, index) => (
                 <AddMetricToExercise
@@ -163,8 +173,6 @@ function BuildExercise({ edit = false, exerciseToEdit }) {
                   watch={watch}
                   index={index + 1}
                   key={index}
-                  defaultMetric={edit ? metric : null}
-                  edit={edit}
                 />
               ))}
 
