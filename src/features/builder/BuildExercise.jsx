@@ -28,15 +28,9 @@ function BuildExercise({ edit = false, exerciseToEdit }) {
   } = form;
   const registerWithMask = useHookFormMask(register);
   const [numMetrics, setNumMetrics] = useState(
-    edit ? exerciseToEdit.metrics.length : 0
+    edit ? exerciseToEdit.metrics.length : 1
   );
   const arrayToMap = [...Array(numMetrics)];
-  /* if (edit)
-    for (let i = 0; i < numMetrics; i++) {
-      arrayToMap[i] = exerciseToEdit.metrics[i];
-    } */
-  // console.log(arrayToMap);
-  // console.log(exerciseToEdit);
 
   function handleSubmitExercise(data) {
     // format data into correct exercise shape
@@ -88,9 +82,9 @@ function BuildExercise({ edit = false, exerciseToEdit }) {
       restTimer: restTimerSeconds,
       metrics: metricsArray,
     };
-    console.log("raw data", data);
-    console.log("exercise object", exerciseObject);
-    console.log("edited exercise object", editedExerciseObject);
+    // console.log("raw data", data);
+    // console.log("exercise object", exerciseObject);
+    // console.log("edited exercise object", editedExerciseObject);
 
     {
       edit
@@ -149,20 +143,18 @@ function BuildExercise({ edit = false, exerciseToEdit }) {
           </Form.Group>
           {edit ? (
             exerciseToEdit.metrics.map((metric, index) => (
-              <>
-                <ChooseBuildInputBar
-                  inputBar={metric.inputBar}
-                  register={register}
-                  setValue={setValue}
-                  getValues={getValues}
-                  resetField={resetField}
-                  watch={watch}
-                  index={index + 1}
-                  key={index}
-                  edit={true}
-                  defaultValue={metric}
-                />
-              </>
+              <ChooseBuildInputBar
+                inputBar={metric.inputBar}
+                register={register}
+                setValue={setValue}
+                getValues={getValues}
+                resetField={resetField}
+                watch={watch}
+                index={index + 1}
+                key={index}
+                edit={true}
+                defaultValue={metric}
+              />
             ))
           ) : (
             <>

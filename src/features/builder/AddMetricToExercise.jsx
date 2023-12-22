@@ -18,7 +18,9 @@ function AddMetricToExercise({
   useEffect(() => {
     resetField(`metric-${index}-name`);
     resetField(`metric-${index}-units`);
-    resetField(`metric-${index}-inputBar`, { defaultValue: "none" });
+    resetField(`metric-${index}-inputBar`, {
+      defaultValue: "NumberIncrementBar",
+    });
     resetField(`metric-${index}-step`);
     resetField(`metric-${index}-default`);
     resetField(`metric-${index}-adaptive`);
@@ -37,25 +39,24 @@ function AddMetricToExercise({
               className="text-center"
               {...register(`metric-${index}-inputBar`)}
             >
-              <option value="none">Select Input Bar</option>
               <option value="NumberIncrementBar">Number Increment Bar</option>
+              {/* <option value="none">Select Input Bar</option> */}
               {/* <option value="CountdownTimer">Countdown Timer</option> */}
             </Form.Select>
           </InputGroup>
         </Form.Group>
 
         {/* Display Input Bar */}
-        {inputBarType !== "none" && (
-          <ChooseBuildInputBar
-            index={index}
-            inputBar={inputBarType}
-            register={register}
-            setValue={setValue}
-            getValues={getValues}
-            resetField={resetField}
-            watch={watch}
-          />
-        )}
+
+        <ChooseBuildInputBar
+          index={index}
+          inputBar={inputBarType}
+          register={register}
+          setValue={setValue}
+          getValues={getValues}
+          resetField={resetField}
+          watch={watch}
+        />
       </Card.Body>
     </Card>
   );
