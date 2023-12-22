@@ -14,6 +14,8 @@ function DoExercise({
   const [activeKey, setActiveKey] = useState(1);
   const [isFinished, setIsFinished] = useState(false);
   const [numFinishedSets, setNumFinishedSets] = useState(0);
+
+  // moreSets is to temporarily allow more sets to be added during workout
   const [moreSets, setMoreSets] = useState(sets);
   const numSets = moreSets.length;
 
