@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import {
   Button,
+  Card,
   Form,
   InputGroup,
   OverlayTrigger,
@@ -45,81 +46,88 @@ function BuildNumberIncrementBar({
 
   return (
     <>
-      <div className="text-center mb-2 d-flex gap-2 justify-content-center">
-        <input
-          className="text-capitalize text-center fw-semibold m-0"
-          {...register(`${fieldName}-name`)}
-          placeholder="metric name"
-          style={{ maxWidth: "50%" }}
-        />
+      <Card className="mt-2" style={{ backgroundColor: "#0d6efd33" }}>
+        <Card.Body className="p-2">
+          <div className="text-center mb-2 d-flex gap-2 justify-content-center">
+            <input
+              className="text-capitalize text-center fw-semibold m-0"
+              {...register(`${fieldName}-name`)}
+              placeholder="metric name"
+              style={{ maxWidth: "50%" }}
+            />
 
-        <input
-          className="fw-normal fst-italic text-center"
-          placeholder="optional units"
-          style={{ maxWidth: "40%" }}
-          type="text"
-          list="metricUnitOptions"
-          {...register(`${fieldName}-units`)}
-        />
-        <datalist id="metricUnitOptions">
-          <option value="kg" />
-          <option value="lbs" />
-        </datalist>
-      </div>
-      <InputGroup className="">
-        <Button
-          variant="secondary"
-          disabled={isFinished && !isUnlocked}
-          onClick={() => {
-            stepMetric(
-              `${fieldName}-default`,
-              -watch(`${fieldName}-step`) || -1
-            );
-            vibrator(1);
-          }}
-        >
-          <BsDashLg />
-        </Button>
-        <Form.Control
-          className="text-center"
-          type="number"
-          step="any"
-          {...register(`${fieldName}-default`, {
-            valueAsNumber: true,
-          })}
-          defaultValue={defaultValue}
-          placeholder="Default Value"
-          disabled={isFinished && !isUnlocked}
-        />
-        <Button
-          variant="secondary"
-          disabled={isFinished && !isUnlocked}
-          onClick={() => {
-            stepMetric(`${fieldName}-default`, watch(`${fieldName}-step`) || 1);
-            vibrator(1);
-          }}
-        >
-          <BsPlusLg />
-        </Button>
-      </InputGroup>
-      <div className="d-flex justify-content-end gap-2 align-items-center">
-        <span>+/&minus; buttons step amount:</span>
-        <input
-          className="mt-2 text-center"
-          placeholder="Step"
-          style={{
-            maxWidth: "15%",
-            /* position: "absolute",
+            <input
+              className="fw-normal fst-italic text-center"
+              placeholder="optional units"
+              style={{ maxWidth: "40%" }}
+              type="text"
+              list="metricUnitOptions"
+              {...register(`${fieldName}-units`)}
+            />
+            <datalist id="metricUnitOptions">
+              <option value="kg" />
+              <option value="lbs" />
+            </datalist>
+          </div>
+          <InputGroup className="">
+            <Button
+              variant="secondary"
+              disabled={isFinished && !isUnlocked}
+              onClick={() => {
+                stepMetric(
+                  `${fieldName}-default`,
+                  -watch(`${fieldName}-step`) || -1
+                );
+                vibrator(1);
+              }}
+            >
+              <BsDashLg />
+            </Button>
+            <Form.Control
+              className="text-center"
+              type="number"
+              step="any"
+              {...register(`${fieldName}-default`, {
+                valueAsNumber: true,
+              })}
+              defaultValue={defaultValue}
+              placeholder="Default Value"
+              disabled={isFinished && !isUnlocked}
+            />
+            <Button
+              variant="secondary"
+              disabled={isFinished && !isUnlocked}
+              onClick={() => {
+                stepMetric(
+                  `${fieldName}-default`,
+                  watch(`${fieldName}-step`) || 1
+                );
+                vibrator(1);
+              }}
+            >
+              <BsPlusLg />
+            </Button>
+          </InputGroup>
+          <div className="d-flex justify-content-end gap-2 align-items-center">
+            <span>+/&minus; buttons step amount:</span>
+            <input
+              className="mt-2 text-center"
+              placeholder="Step"
+              style={{
+                maxWidth: "15%",
+                /* position: "absolute",
           right: "0.5rem",
           bottom: "0.25rem", */
-          }}
-          {...register(`${fieldName}-step`, {
-            valueAsNumber: true,
-            min: 0,
-          })}
-        />
-      </div>
-      {/* Advanced Options */}
+              }}
+              {...register(`${fieldName}-step`, {
+                valueAsNumber: true,
+                min: 0,
+              })}
+            />
+          </div>
+          {/* Advanced Options */}
+        </Card.Body>
+      </Card>
       <details className="mt-2">
         <summary>Advanced options</summary>
         <div className="d-flex align-items-baseline gap-2 ">

@@ -66,19 +66,15 @@ function AddMetricToExercise({
 
         {/* Display Input Bar */}
         {inputBarType !== "none" && (
-          <Card className="mt-2" style={{ backgroundColor: "#0d6efd33" }}>
-            <Card.Body className="p-2">
-              <ChooseBuildInputBar
-                index={index}
-                inputBar={inputBarType}
-                register={register}
-                setValue={setValue}
-                getValues={getValues}
-                resetField={resetField}
-                watch={watch}
-              />
-            </Card.Body>
-          </Card>
+          <ChooseBuildInputBar
+            index={index}
+            inputBar={inputBarType}
+            register={register}
+            setValue={setValue}
+            getValues={getValues}
+            resetField={resetField}
+            watch={watch}
+          />
         )}
       </Card.Body>
     </Card>

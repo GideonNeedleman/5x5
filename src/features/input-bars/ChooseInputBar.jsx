@@ -30,18 +30,6 @@ function ChooseInputBar({
           placeholder={placeholder}
         />
       );
-    case "BuildNumberIncrementBar":
-      return (
-        <BuildNumberIncrementBar
-          index={index}
-          register={register}
-          setValue={setValue}
-          getValues={getValues}
-          resetField={resetField}
-          defaultValue={defaultValue}
-          watch={watch}
-        />
-      );
     case "test":
       return <p>Test successful</p>;
     default:
