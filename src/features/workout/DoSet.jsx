@@ -58,6 +58,7 @@ function DoSet({
       note,
       metrics,
     };
+    console.log(exercise);
 
     // when editing set, create copy of tempRecordData with edited set having updated note and metrics data. Then dispatch to replace recordData with this copy
     const editedRecordData = tempRecordData.map((oldSet) =>

@@ -104,17 +104,9 @@ function reducer(state, action) {
     case "update-adaptive-metrics":
       return {
         ...state,
-        programData: state.programData.map((program) =>
-          program.id === state.activeProgramId
-            ? {
-                ...program,
-                workouts: program.workouts.map((workout) =>
-                  workout.id === state.activeWorkout.id
-                    ? state.activeWorkout
-                    : workout
-                ),
-              }
-            : program
+        // Need to add condition for adaptive metrics
+        workoutData: state.workoutData.map((workout) =>
+          workout.id === action.payload.id ? state.activeWorkout : workout
         ),
       };
     case "create-new-exercise":
@@ -249,7 +241,15 @@ function GlobalContextProvider({ children }) {
       delete tempRecordData[i].setId;
     }
 
-    dispatch({ type: "update-adaptive-metrics" });
+    dispatch({
+      type: "update-adaptive-metrics",
+      payload: workoutData.find(
+        (workout) =>
+          workout.id ===
+          programData.find((program) => program.id === activeProgramId)
+            .workouts[activeWorkoutIndex]
+      ),
+    });
     dispatch({ type: "finish-workout", payload: tempRecordData });
   }
 
