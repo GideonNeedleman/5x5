@@ -2,15 +2,15 @@ import BuildNumberIncrementBar from "./BuildNumberIncrementBar";
 
 function ChooseBuildInputBar({
   inputBar,
-  metric,
+  // metric,
   register,
   setValue,
   getValues,
   resetField,
   defaultValue,
-  units,
-  placeholder,
-  fieldname,
+  // units,
+  // placeholder,
+  // fieldname,
   index,
   watch,
   edit,
@@ -38,13 +38,3 @@ function ChooseBuildInputBar({
 }
 
 export default ChooseBuildInputBar;
-
-/* metric,
-  register,
-  setValue,
-  getValues,
-  resetField, // used to fix deleted field state bug
-  isFinished = false,
-  isUnlocked = true,
-  defaultValue,
-  fieldName = metric.name, */
