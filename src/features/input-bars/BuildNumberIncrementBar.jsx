@@ -100,7 +100,6 @@ function BuildNumberIncrementBar({
               {...register(`${fieldName}-default`, {
                 valueAsNumber: true,
               })}
-              defaultValue={defaultValue}
               placeholder="Default Value"
               defaultValue={defaultValue.default}
               disabled={isFinished && !isUnlocked}
