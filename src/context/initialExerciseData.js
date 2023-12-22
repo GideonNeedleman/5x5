@@ -14,7 +14,7 @@ export const initialExerciseData = [
       },
       {
         name: "reps",
-        adaptive: true,
+        adaptive: false,
         inputBar: "NumberIncrementBar",
         step: 1,
         default: 5,
@@ -37,7 +37,7 @@ export const initialExerciseData = [
       },
       {
         name: "reps",
-        adaptive: true,
+        adaptive: false,
         inputBar: "NumberIncrementBar",
         step: 1,
         default: 5,
@@ -60,7 +60,7 @@ export const initialExerciseData = [
       },
       {
         name: "reps",
-        adaptive: true,
+        adaptive: false,
         inputBar: "NumberIncrementBar",
         step: 1,
         default: 5,
@@ -83,7 +83,7 @@ export const initialExerciseData = [
       },
       {
         name: "reps",
-        adaptive: true,
+        adaptive: false,
         inputBar: "NumberIncrementBar",
         step: 1,
         default: 5,
@@ -106,7 +106,7 @@ export const initialExerciseData = [
       },
       {
         name: "reps",
-        adaptive: true,
+        adaptive: false,
         inputBar: "NumberIncrementBar",
         step: 1,
         default: 5,
@@ -159,7 +159,7 @@ export const initialExerciseData = [
       },
       {
         name: "reps",
-        adaptive: true,
+        adaptive: false,
         inputBar: "NumberIncrementBar",
         step: 1,
         default: 5,
