@@ -1,5 +1,6 @@
 import NumberIncrementBar from "./NumberIncrementBar";
-import BuildNumberIncrementBar from "./BuildNumberIncrementBar";
+
+// use this component for displaying input bar in SetBody
 
 function ChooseInputBar({
   inputBar,
@@ -12,8 +13,6 @@ function ChooseInputBar({
   units,
   placeholder,
   fieldname,
-  index,
-  watch,
 }) {
   switch (inputBar) {
     case "NumberIncrementBar":

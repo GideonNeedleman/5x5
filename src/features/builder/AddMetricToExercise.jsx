@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Card, Form, InputGroup } from "react-bootstrap";
-import ChooseInputBar from "../input-bars/ChooseInputBar";
-import InputBarOptions from "./InputBarOptions";
+// import ChooseInputBar from "../input-bars/ChooseInputBar";
+// import InputBarOptions from "./InputBarOptions";
 import ChooseBuildInputBar from "../input-bars/ChooseBuildInputBar";
 
 function AddMetricToExercise({
