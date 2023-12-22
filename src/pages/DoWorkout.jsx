@@ -20,7 +20,9 @@ function DoWorkout() {
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [showCancelModal, setShowCancelModal] = useState(false);
   const [numFinishedExercises, setNumFinishedExercises] = useState(0);
-  const numExercises = workout.exercises.length;
+  //maybe can just use straight workout (activeWorkout) since it's a deep copy of workoutData?
+  const [expandedWorkout, setExpandedWorkout] = useState(workout);
+  const numExercises = expandedWorkout.exercises.length;
   const [isWorkoutFinished, setIsWorkoutFinished] = useState(false);
 
   function handleBack() {
@@ -59,9 +61,10 @@ function DoWorkout() {
 
       {isWorkoutStarted ? (
         <WorkoutAccordion
-          workout={workout}
+          workout={expandedWorkout}
           activeKey={activeKey}
           setNumFinishedExercises={setNumFinishedExercises}
+          setExpandedWorkout={setExpandedWorkout}
         />
       ) : (
         <WorkoutTable workout={workout} />

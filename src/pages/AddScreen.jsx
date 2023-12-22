@@ -62,7 +62,7 @@ function AddScreen() {
         ))}
 
         <Button
-        variant="outline-primary"
+          variant="outline-primary"
           className="w-75"
           onClick={() => {
             vibrator(1);
@@ -101,24 +101,29 @@ function AddScreen() {
         <h2 className="text-center mb-0">Exercises</h2>
         <Table striped bordered>
           <tbody>
-            {exerciseData.map((exercise, index) => (
-              <tr key={index}>
-                <td className="text-center">
-                  <Button
-                    onClick={() => {
-                      navigate(`/edit-exercise/${exercise.id}`);
-                      vibrator(1);
-                    }}
-                    variant="warning"
-                    className="w-75"
-                    size="sm"
-                  >
-                    <BsFillPencilFill />
-                  </Button>
-                </td>
-                <td className="lh-lg">{exercise.name}</td>
-              </tr>
-            ))}
+            {exerciseData
+              .sort((a, b) => {
+                if (a.name.toUpperCase() < b.name.toUpperCase()) return -1;
+                if (a.name.toUpperCase() > b.name.toUpperCase()) return 1;
+              })
+              .map((exercise, index) => (
+                <tr key={index}>
+                  <td className="text-center">
+                    <Button
+                      onClick={() => {
+                        navigate(`/edit-exercise/${exercise.id}`);
+                        vibrator(1);
+                      }}
+                      variant="warning"
+                      className="w-75"
+                      size="sm"
+                    >
+                      <BsFillPencilFill />
+                    </Button>
+                  </td>
+                  <td className="lh-lg">{exercise.name}</td>
+                </tr>
+              ))}
           </tbody>
         </Table>
         <Button
