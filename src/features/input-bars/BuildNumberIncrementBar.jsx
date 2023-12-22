@@ -24,6 +24,7 @@ function BuildNumberIncrementBar({
   defaultValue,
   watch,
   edit,
+  inputBar,
 }) {
   const fieldName = `metric-${index}`;
 
@@ -44,7 +45,8 @@ function BuildNumberIncrementBar({
   useEffect(() => {
     resetField(`${fieldName}-name`, { defaultValue: defaultValue?.name });
     resetField(`${fieldName}-units`, { defaultValue: defaultValue?.units });
-  }, [resetField, fieldName, defaultValue]);
+    edit && resetField(`${fieldName}-inputBar`, { defaultValue: inputBar });
+  }, [resetField, fieldName, defaultValue, edit, inputBar]);
 
   return (
     <>
@@ -155,6 +157,11 @@ function BuildNumberIncrementBar({
           </Popup>
         </div>
       </details>
+      <input
+        {...register(`${fieldName}-inputBar`)}
+        defaultValue={inputBar}
+        hidden
+      />
     </>
   );
 }

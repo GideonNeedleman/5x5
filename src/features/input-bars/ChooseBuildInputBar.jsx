@@ -27,6 +27,7 @@ function ChooseBuildInputBar({
           defaultValue={defaultValue}
           watch={watch}
           edit={edit}
+          inputBar={inputBar}
         />
       );
     case "test":

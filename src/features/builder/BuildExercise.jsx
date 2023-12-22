@@ -149,18 +149,20 @@ function BuildExercise({ edit = false, exerciseToEdit }) {
           </Form.Group>
           {edit ? (
             exerciseToEdit.metrics.map((metric, index) => (
-              <ChooseBuildInputBar
-                inputBar={metric.inputBar}
-                register={register}
-                setValue={setValue}
-                getValues={getValues}
-                resetField={resetField}
-                watch={watch}
-                index={index + 1}
-                key={index}
-                edit={true}
-                defaultValue={metric}
-              />
+              <>
+                <ChooseBuildInputBar
+                  inputBar={metric.inputBar}
+                  register={register}
+                  setValue={setValue}
+                  getValues={getValues}
+                  resetField={resetField}
+                  watch={watch}
+                  index={index + 1}
+                  key={index}
+                  edit={true}
+                  defaultValue={metric}
+                />
+              </>
             ))
           ) : (
             <>
