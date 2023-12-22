@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import {
   Button,
   Card,
@@ -18,7 +18,7 @@ function BuildNumberIncrementBar({
   register,
   setValue,
   getValues,
-  resetField, // used to fix deleted field state bug
+  // resetField, // used to fix deleted field state bug
   isFinished = false,
   isUnlocked = true,
   defaultValue,
@@ -46,18 +46,23 @@ function BuildNumberIncrementBar({
 
   return (
     <>
-      <Card className="mt-2" style={{ backgroundColor: "#0d6efd33" }}>
+      <Card
+        className="mt-2 border-light"
+        style={{
+          backgroundColor: "#0d6efd33",
+        }}
+      >
         <Card.Body className="p-2">
           <div className="text-center mb-2 d-flex gap-2 justify-content-center">
             <input
-              className="text-capitalize text-center fw-semibold m-0"
+              className="text-capitalize text-center fw-semibold m-0 border-0 rounded"
               {...register(`${fieldName}-name`)}
               placeholder="metric name"
               style={{ maxWidth: "50%" }}
             />
 
             <input
-              className="fw-normal fst-italic text-center"
+              className="fw-normal fst-italic text-center border-0 rounded"
               placeholder="optional units"
               style={{ maxWidth: "40%" }}
               type="text"
@@ -109,10 +114,10 @@ function BuildNumberIncrementBar({
             </Button>
           </InputGroup>
           <div className="d-flex justify-content-end gap-2 align-items-center">
-            <span>+/&minus; buttons step amount:</span>
+            <span className="mt-2">+/&minus; buttons step amount:</span>
             <input
-              className="mt-2 text-center"
-              placeholder="Step"
+              className="mt-2 text-center border-0 rounded fst-italic"
+              placeholder="step"
               style={{
                 maxWidth: "15%",
                 /* position: "absolute",
