@@ -92,12 +92,12 @@ function BuildExercise({ edit = false, exerciseToEdit }) {
     console.log("exercise object", exerciseObject);
     console.log("edited exercise object", editedExerciseObject);
 
-    /*     {
+    {
       edit
-        ? dispatch({ type: "edit-exercise", payload: exerciseObject })
+        ? dispatch({ type: "edit-exercise", payload: editedExerciseObject })
         : dispatch({ type: "create-new-exercise", payload: exerciseObject });
-    } */
-    // navigate(-1);
+    }
+    navigate(-1);
   }
 
   return (
