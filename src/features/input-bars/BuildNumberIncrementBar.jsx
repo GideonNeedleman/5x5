@@ -1,4 +1,4 @@
-// import { useEffect } from "react";
+import { useEffect } from "react";
 import {
   Button,
   Card,
@@ -18,11 +18,13 @@ function BuildNumberIncrementBar({
   register,
   setValue,
   getValues,
-  // resetField, // used to fix deleted field state bug
-  isFinished = false,
-  isUnlocked = true,
+  resetField, // used to fix deleted field state bug
+  // isFinished = false,
+  // isUnlocked = true,
   defaultValue,
   watch,
+  edit,
+  inputBar,
 }) {
   const fieldName = `metric-${index}`;
 
@@ -40,9 +42,11 @@ function BuildNumberIncrementBar({
       <a href="#">{children}</a>
     </OverlayTrigger>
   );
-  /*   useEffect(() => {
-    resetField(fieldName, { defaultValue });
-  }, [resetField, fieldName, defaultValue]); */
+  useEffect(() => {
+    resetField(`${fieldName}-name`, { defaultValue: defaultValue?.name });
+    resetField(`${fieldName}-units`, { defaultValue: defaultValue?.units });
+    edit && resetField(`${fieldName}-inputBar`, { defaultValue: inputBar });
+  }, [resetField, fieldName, defaultValue, edit, inputBar]);
 
   return (
     <>
@@ -59,6 +63,8 @@ function BuildNumberIncrementBar({
               {...register(`${fieldName}-name`)}
               placeholder="metric name"
               style={{ maxWidth: "50%" }}
+              defaultValue={defaultValue?.name}
+              disabled={edit}
             />
 
             <input
@@ -68,6 +74,8 @@ function BuildNumberIncrementBar({
               type="text"
               list="metricUnitOptions"
               {...register(`${fieldName}-units`)}
+              defaultValue={defaultValue?.units}
+              disabled={edit}
             />
             <datalist id="metricUnitOptions">
               <option value="kg" />
@@ -77,7 +85,7 @@ function BuildNumberIncrementBar({
           <InputGroup className="">
             <Button
               variant="secondary"
-              disabled={isFinished && !isUnlocked}
+              // disabled={isFinished && !isUnlocked}
               onClick={() => {
                 stepMetric(
                   `${fieldName}-default`,
@@ -95,13 +103,13 @@ function BuildNumberIncrementBar({
               {...register(`${fieldName}-default`, {
                 valueAsNumber: true,
               })}
-              defaultValue={defaultValue}
               placeholder="Default Value"
-              disabled={isFinished && !isUnlocked}
+              defaultValue={defaultValue?.default}
+              // disabled={isFinished && !isUnlocked}
             />
             <Button
               variant="secondary"
-              disabled={isFinished && !isUnlocked}
+              // disabled={isFinished && !isUnlocked}
               onClick={() => {
                 stepMetric(
                   `${fieldName}-default`,
@@ -120,14 +128,12 @@ function BuildNumberIncrementBar({
               placeholder="step"
               style={{
                 maxWidth: "15%",
-                /* position: "absolute",
-          right: "0.5rem",
-          bottom: "0.25rem", */
               }}
               {...register(`${fieldName}-step`, {
                 valueAsNumber: true,
                 min: 0,
               })}
+              defaultValue={defaultValue?.step}
             />
           </div>
           {/* Advanced Options */}
@@ -142,6 +148,7 @@ function BuildNumberIncrementBar({
             className="mt-3"
             onClick={() => vibrator(1)}
             {...register(`${fieldName}-adaptive`)}
+            defaultChecked={defaultValue?.adaptive}
           />
           <Popup title="Default values will change to match your last entered value">
             <IconContext.Provider value={{ color: "var(--bs-primary)" }}>
@@ -150,6 +157,11 @@ function BuildNumberIncrementBar({
           </Popup>
         </div>
       </details>
+      <input
+        {...register(`${fieldName}-inputBar`)}
+        defaultValue={inputBar}
+        hidden
+      />
     </>
   );
 }

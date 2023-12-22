@@ -2,17 +2,18 @@ import BuildNumberIncrementBar from "./BuildNumberIncrementBar";
 
 function ChooseBuildInputBar({
   inputBar,
-  metric,
+  // metric,
   register,
   setValue,
   getValues,
   resetField,
   defaultValue,
-  units,
-  placeholder,
-  fieldname,
+  // units,
+  // placeholder,
+  // fieldname,
   index,
   watch,
+  edit,
 }) {
   switch (inputBar) {
     case "NumberIncrementBar":
@@ -25,6 +26,8 @@ function ChooseBuildInputBar({
           resetField={resetField}
           defaultValue={defaultValue}
           watch={watch}
+          edit={edit}
+          inputBar={inputBar}
         />
       );
     case "test":
@@ -35,13 +38,3 @@ function ChooseBuildInputBar({
 }
 
 export default ChooseBuildInputBar;
-
-/* metric,
-  register,
-  setValue,
-  getValues,
-  resetField, // used to fix deleted field state bug
-  isFinished = false,
-  isUnlocked = true,
-  defaultValue,
-  fieldName = metric.name, */

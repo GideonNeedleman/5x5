@@ -30,29 +30,9 @@ function AddMetricToExercise({
         Metric {index}
       </Card.Header>
       <Card.Body className="pt-1">
-        {/*  <p className="fst-italic text-center mb-2">What are you tracking?</p> */}
-
-        {/* Metric Name */}
-        {/* <Form.Group>
-          <InputGroup>
-            <InputGroup.Text>Metric</InputGroup.Text>
-            <Form.Control
-              type="text"
-              list="metricNameOptions"
-              placeholder="Type of Metric"
-              {...register(`metric-${index}-name`)}
-            />
-            <datalist id="metricNameOptions">
-              <option value="reps" />
-              <option value="weight" />
-            </datalist>
-          </InputGroup>
-        </Form.Group> */}
-
         {/* Select Input Bar */}
         <Form.Group className="mt-1">
           <InputGroup>
-            {/* <InputGroup.Text className="">Input Bar</InputGroup.Text> */}
             <Form.Select
               className="text-center"
               {...register(`metric-${index}-inputBar`)}

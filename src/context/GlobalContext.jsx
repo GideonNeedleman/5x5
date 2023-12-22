@@ -150,6 +150,13 @@ function reducer(state, action) {
             : workout
         ),
       };
+    case "edit-exercise":
+      return {
+        ...state,
+        exerciseData: state.exerciseData.map((exercise) =>
+          exercise.id === action.payload.id ? action.payload : exercise
+        ),
+      };
     case "add-program":
       return {
         ...state,

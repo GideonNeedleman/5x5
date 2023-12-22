@@ -4,27 +4,7 @@ export const initialWorkoutData = [
     id: 1,
     exercises: [
       {
-        name: "Barbell Squats",
         id: 1,
-        restTimer: 90,
-        metrics: [
-          {
-            name: "weight",
-            adaptive: true,
-            inputBar: "NumberIncrementBar",
-            step: 5,
-            default: 185,
-            units: "lbs",
-          },
-          {
-            name: "reps",
-            adaptive: true,
-            inputBar: "NumberIncrementBar",
-            step: 1,
-            default: 5,
-            units: "",
-          },
-        ],
         sets: [
           { id: 1, metrics: { weight: 185, reps: 5 } },
           { id: 2, metrics: { weight: 185, reps: 5 } },
@@ -34,27 +14,7 @@ export const initialWorkoutData = [
         ],
       },
       {
-        name: "Barbell Row",
         id: 2,
-        restTimer: 90,
-        metrics: [
-          {
-            name: "weight",
-            adaptive: true,
-            inputBar: "NumberIncrementBar",
-            step: 5,
-            default: 135,
-            units: "lbs",
-          },
-          {
-            name: "reps",
-            adaptive: true,
-            inputBar: "NumberIncrementBar",
-            step: 1,
-            default: 5,
-            units: "",
-          },
-        ],
         sets: [
           { id: 6, metrics: { weight: 135, reps: 5 } },
           { id: 7, metrics: { weight: 135, reps: 5 } },
@@ -64,27 +24,7 @@ export const initialWorkoutData = [
         ],
       },
       {
-        name: "Bench Press",
         id: 3,
-        restTimer: 90,
-        metrics: [
-          {
-            name: "weight",
-            adaptive: true,
-            inputBar: "NumberIncrementBar",
-            step: 5,
-            default: 135,
-            units: "lbs",
-          },
-          {
-            name: "reps",
-            adaptive: true,
-            inputBar: "NumberIncrementBar",
-            step: 1,
-            default: 5,
-            units: "",
-          },
-        ],
         sets: [
           { id: 11, metrics: { weight: 125, reps: 5 } },
           { id: 12, metrics: { weight: 125, reps: 5 } },
@@ -100,27 +40,7 @@ export const initialWorkoutData = [
     id: 2,
     exercises: [
       {
-        name: "Barbell Squats",
         id: 1,
-        restTimer: 90,
-        metrics: [
-          {
-            name: "weight",
-            adaptive: true,
-            inputBar: "NumberIncrementBar",
-            step: 5,
-            default: 185,
-            units: "lbs",
-          },
-          {
-            name: "reps",
-            adaptive: true,
-            inputBar: "NumberIncrementBar",
-            step: 1,
-            default: 5,
-            units: "",
-          },
-        ],
         sets: [
           { id: 16, metrics: { weight: 185, reps: 5 } },
           { id: 17, metrics: { weight: 185, reps: 5 } },
@@ -130,27 +50,7 @@ export const initialWorkoutData = [
         ],
       },
       {
-        name: "Overhead Press",
         id: 4,
-        restTimer: 90,
-        metrics: [
-          {
-            name: "weight",
-            adaptive: true,
-            inputBar: "NumberIncrementBar",
-            step: 5,
-            default: 105,
-            units: "lbs",
-          },
-          {
-            name: "reps",
-            adaptive: true,
-            inputBar: "NumberIncrementBar",
-            step: 1,
-            default: 5,
-            units: "",
-          },
-        ],
         sets: [
           { id: 21, metrics: { weight: 95, reps: 5 } },
           { id: 22, metrics: { weight: 95, reps: 5 } },
@@ -160,49 +60,17 @@ export const initialWorkoutData = [
         ],
       },
       {
-        name: "Deadlift",
         id: 5,
-        restTimer: 90,
-        metrics: [
-          {
-            name: "weight",
-            adaptive: true,
-            inputBar: "NumberIncrementBar",
-            step: 5,
-            default: 190,
-            units: "lbs",
-          },
-          {
-            name: "reps",
-            adaptive: true,
-            inputBar: "NumberIncrementBar",
-            step: 1,
-            default: 5,
-            units: "",
-          },
-        ],
         sets: [{ id: 26, metrics: { weight: 195, reps: 5 } }],
       },
     ],
   },
   {
-    name: "Push day",
     id: 3,
+    name: "Push day",
     exercises: [
       {
-        name: "Pushups",
         id: 6,
-        restTimer: 60,
-        metrics: [
-          {
-            name: "reps",
-            adaptive: true,
-            inputBar: "NumberIncrementBar",
-            step: 1,
-            default: 15,
-            units: "",
-          },
-        ],
         sets: [
           { id: 27, metrics: { reps: 15 } },
           { id: 28, metrics: { reps: 15 } },
@@ -212,27 +80,7 @@ export const initialWorkoutData = [
         ],
       },
       {
-        name: "Bench Press",
         id: 3,
-        restTimer: 90,
-        metrics: [
-          {
-            name: "weight",
-            adaptive: true,
-            inputBar: "NumberIncrementBar",
-            step: 5,
-            default: 135,
-            units: "lbs",
-          },
-          {
-            name: "reps",
-            adaptive: true,
-            inputBar: "NumberIncrementBar",
-            step: 1,
-            default: 5,
-            units: "",
-          },
-        ],
         sets: [
           { id: 32, metrics: { weight: 125, reps: 5 } },
           { id: 33, metrics: { weight: 125, reps: 5 } },
@@ -248,19 +96,7 @@ export const initialWorkoutData = [
     id: 4,
     exercises: [
       {
-        name: "Pullups",
         id: 7,
-        restTimer: 90,
-        metrics: [
-          {
-            name: "reps",
-            adaptive: true,
-            inputBar: "NumberIncrementBar",
-            step: 1,
-            default: 7,
-            units: "",
-          },
-        ],
         sets: [
           { id: 37, metrics: { reps: 8 } },
           { id: 38, metrics: { reps: 6 } },
@@ -268,27 +104,7 @@ export const initialWorkoutData = [
         ],
       },
       {
-        name: "Deadlift",
         id: 5,
-        restTimer: 90,
-        metrics: [
-          {
-            name: "weight",
-            adaptive: true,
-            inputBar: "NumberIncrementBar",
-            step: 5,
-            default: 190,
-            units: "lbs",
-          },
-          {
-            name: "reps",
-            adaptive: true,
-            inputBar: "NumberIncrementBar",
-            step: 1,
-            default: 5,
-            units: "",
-          },
-        ],
         sets: [{ id: 40, metrics: { weight: 195, reps: 5 } }],
       },
     ],
@@ -298,27 +114,7 @@ export const initialWorkoutData = [
     id: 5,
     exercises: [
       {
-        name: "Barbell Squats",
         id: 1,
-        restTimer: 90,
-        metrics: [
-          {
-            name: "weight",
-            adaptive: true,
-            inputBar: "NumberIncrementBar",
-            step: 5,
-            default: 185,
-            units: "lbs",
-          },
-          {
-            name: "reps",
-            adaptive: true,
-            inputBar: "NumberIncrementBar",
-            step: 1,
-            default: 5,
-            units: "",
-          },
-        ],
         sets: [
           { id: 41, metrics: { weight: 185, reps: 5 } },
           { id: 42, metrics: { weight: 185, reps: 5 } },
@@ -328,27 +124,7 @@ export const initialWorkoutData = [
         ],
       },
       {
-        name: "Leg Press",
         id: 8,
-        restTimer: 90,
-        metrics: [
-          {
-            name: "weight",
-            adaptive: true,
-            inputBar: "NumberIncrementBar",
-            step: 1,
-            default: 200,
-            units: "lbs",
-          },
-          {
-            name: "reps",
-            adaptive: true,
-            inputBar: "NumberIncrementBar",
-            step: 1,
-            default: 5,
-            units: "",
-          },
-        ],
         sets: [
           { id: 46, metrics: { weight: 215, reps: 5 } },
           { id: 47, metrics: { weight: 215, reps: 5 } },
@@ -364,19 +140,7 @@ export const initialWorkoutData = [
     id: 6,
     exercises: [
       {
-        name: "Swimming Laps",
         id: 9,
-        restTimer: 300,
-        metrics: [
-          {
-            name: "laps",
-            adaptive: true,
-            inputBar: "NumberIncrementBar",
-            step: 1,
-            default: 8,
-            units: "",
-          },
-        ],
         sets: [
           { id: 46, metrics: { laps: 12 } },
           { id: 47, metrics: { laps: 12 } },

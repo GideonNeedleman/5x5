@@ -1,14 +1,21 @@
 import Table from "react-bootstrap/Table";
 import { objectToArray } from "../../utils/helpers";
+import { useGlobalContext } from "../../context/GlobalContext";
 
 export default function WorkoutTable({ workout }) {
+  const { exerciseData } = useGlobalContext();
   return (
     <>
       <div className="mt-2">
         {workout.exercises.map((exercise, index) => (
           <div key={index}>
-            <h3 className="text-center fw-normal">{exercise.name}</h3>
-            <ExerciseTable exercise={exercise} />
+            <h3 className="text-center fw-normal">
+              {exerciseData.find((el) => el.id === exercise.id).name}
+            </h3>
+            <ExerciseTable
+              exercise={exerciseData.find((el) => el.id === exercise.id)}
+              sets={exercise.sets}
+            />
           </div>
         ))}
       </div>
@@ -16,7 +23,7 @@ export default function WorkoutTable({ workout }) {
   );
 }
 
-function ExerciseTable({ exercise }) {
+function ExerciseTable({ exercise, sets }) {
   return (
     <Table striped bordered hover>
       <thead className="text-center">
@@ -30,7 +37,7 @@ function ExerciseTable({ exercise }) {
         </tr>
       </thead>
       <tbody>
-        {exercise.sets.map((set, index) => (
+        {sets.map((set, index) => (
           <SetRow set={set} index={index} key={index} />
         ))}
       </tbody>
