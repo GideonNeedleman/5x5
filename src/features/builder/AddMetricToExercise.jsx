@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Card, Form, InputGroup } from "react-bootstrap";
 import ChooseInputBar from "../input-bars/ChooseInputBar";
 import InputBarOptions from "./InputBarOptions";
+import ChooseBuildInputBar from "../input-bars/ChooseBuildInputBar";
 
 function AddMetricToExercise({
   register,
@@ -57,9 +58,7 @@ function AddMetricToExercise({
               {...register(`metric-${index}-inputBar`)}
             >
               <option value="none">Select Input Bar</option>
-              <option value="BuildNumberIncrementBar">
-                Number Increment Bar
-              </option>
+              <option value="NumberIncrementBar">Number Increment Bar</option>
               {/* <option value="CountdownTimer">Countdown Timer</option> */}
             </Form.Select>
           </InputGroup>
@@ -69,7 +68,7 @@ function AddMetricToExercise({
         {inputBarType !== "none" && (
           <Card className="mt-2" style={{ backgroundColor: "#0d6efd33" }}>
             <Card.Body className="p-2">
-              <ChooseInputBar
+              <ChooseBuildInputBar
                 index={index}
                 inputBar={inputBarType}
                 register={register}

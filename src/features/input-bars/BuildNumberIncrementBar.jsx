@@ -1,6 +1,13 @@
 import { useEffect } from "react";
-import { Button, Form, InputGroup } from "react-bootstrap";
-import { BsDashLg, BsPlusLg } from "react-icons/bs";
+import {
+  Button,
+  Form,
+  InputGroup,
+  OverlayTrigger,
+  Tooltip,
+} from "react-bootstrap";
+import { IconContext } from "react-icons";
+import { BsDashLg, BsInfoCircleFill, BsPlusLg } from "react-icons/bs";
 import vibrator from "vibrator";
 
 // not including units. Could try pass in metric then get metric.name and metric.inputBar.step
@@ -27,6 +34,11 @@ function BuildNumberIncrementBar({
     setValue(metricToStep, Number(getValues(metricToStep)) + step);
   }
 
+  const Popup = ({ id, children, title }) => (
+    <OverlayTrigger overlay={<Tooltip id={id}>{title}</Tooltip>}>
+      <a href="#">{children}</a>
+    </OverlayTrigger>
+  );
   /*   useEffect(() => {
     resetField(fieldName, { defaultValue });
   }, [resetField, fieldName, defaultValue]); */
@@ -54,13 +66,13 @@ function BuildNumberIncrementBar({
           <option value="lbs" />
         </datalist>
       </div>
-      <InputGroup className="mb-4 pb-2">
+      <InputGroup className="">
         <Button
           variant="secondary"
           disabled={isFinished && !isUnlocked}
           onClick={() => {
             stepMetric(
-              `${fieldName}-metric`,
+              `${fieldName}-default`,
               -watch(`${fieldName}-step`) || -1
             );
             vibrator(1);
@@ -72,7 +84,7 @@ function BuildNumberIncrementBar({
           className="text-center"
           type="number"
           step="any"
-          {...register(`${fieldName}-metric`, {
+          {...register(`${fieldName}-default`, {
             valueAsNumber: true,
           })}
           defaultValue={defaultValue}
@@ -83,27 +95,48 @@ function BuildNumberIncrementBar({
           variant="secondary"
           disabled={isFinished && !isUnlocked}
           onClick={() => {
-            stepMetric(`${fieldName}-metric`, watch(`${fieldName}-step`) || 1);
+            stepMetric(`${fieldName}-default`, watch(`${fieldName}-step`) || 1);
             vibrator(1);
           }}
         >
           <BsPlusLg />
         </Button>
       </InputGroup>
-      <input
-        className="mt-2 text-center"
-        placeholder="Step"
-        style={{
-          maxWidth: "15%",
-          position: "absolute",
+      <div className="d-flex justify-content-end gap-2 align-items-center">
+        <span>+/&minus; buttons step amount:</span>
+        <input
+          className="mt-2 text-center"
+          placeholder="Step"
+          style={{
+            maxWidth: "15%",
+            /* position: "absolute",
           right: "0.5rem",
-          bottom: "0.25rem",
-        }}
-        {...register(`${fieldName}-step`, {
-          valueAsNumber: true,
-          min: 0,
-        })}
-      />
+          bottom: "0.25rem", */
+          }}
+          {...register(`${fieldName}-step`, {
+            valueAsNumber: true,
+            min: 0,
+          })}
+        />
+      </div>
+      {/* Advanced Options */}
+      <details className="mt-2">
+        <summary>Advanced options</summary>
+        <div className="d-flex align-items-baseline gap-2 ">
+          <Form.Check
+            type="switch"
+            label="Adaptive Metric"
+            className="mt-3"
+            onClick={() => vibrator(1)}
+            {...register(`${fieldName}-adaptive`)}
+          />
+          <Popup title="Default values will change to match your last entered value">
+            <IconContext.Provider value={{ color: "var(--bs-primary)" }}>
+              <BsInfoCircleFill />
+            </IconContext.Provider>
+          </Popup>
+        </div>
+      </details>
     </>
   );
 }
