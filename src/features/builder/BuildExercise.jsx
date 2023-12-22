@@ -34,7 +34,7 @@ function BuildExercise({ edit = false, exerciseToEdit }) {
     for (let i = 0; i < numMetrics; i++) {
       arrayToMap[i] = exerciseToEdit.metrics[i];
     }
-  console.log(arrayToMap);
+  // console.log(arrayToMap);
 
   function handleSubmitExercise(data) {
     // format data into correct exercise shape
@@ -80,8 +80,8 @@ function BuildExercise({ edit = false, exerciseToEdit }) {
       restTimer: restTimerSeconds,
       metrics: metricsArray,
     };
-    // console.log("raw data", data);
-    // console.log("exercise object", exerciseObject);
+    console.log("raw data", data);
+    console.log("exercise object", exerciseObject);
 
     dispatch({ type: "create-new-exercise", payload: exerciseObject });
     navigate(-1);
@@ -100,7 +100,7 @@ function BuildExercise({ edit = false, exerciseToEdit }) {
                 placeholder="Enter exercise name"
                 {...register("name")}
                 autoFocus
-                defaultValue={exerciseToEdit?.name}
+                defaultValue={edit ? exerciseToEdit?.name : ""}
               />
             </InputGroup>
           </Form.Group>
@@ -120,7 +120,9 @@ function BuildExercise({ edit = false, exerciseToEdit }) {
                     message: "Seconds digits must be '00' to '59'",
                   },
                 })}
-                defaultValue={secondsToTime(exerciseToEdit?.restTimer)}
+                defaultValue={
+                  edit ? secondsToTime(exerciseToEdit?.restTimer) : ""
+                }
               />
               <InputGroup.Text>min : sec</InputGroup.Text>
             </InputGroup>
