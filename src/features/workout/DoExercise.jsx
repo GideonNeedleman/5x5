@@ -2,6 +2,7 @@ import { useState } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import DoSet from "./DoSet";
 import { BsCheckSquareFill } from "react-icons/bs";
+import { Button } from "react-bootstrap";
 
 function DoExercise({
   exercise,
@@ -13,7 +14,11 @@ function DoExercise({
   const [activeKey, setActiveKey] = useState(1);
   const [isFinished, setIsFinished] = useState(false);
   const [numFinishedSets, setNumFinishedSets] = useState(0);
-  const numSets = sets.length;
+  const [moreSets, setMoreSets] = useState(sets);
+  const numSets = moreSets.length;
+
+  console.log("sets", sets);
+  console.log("moreSets", moreSets);
 
   function handleFinishSet() {
     setActiveKey((prev) => prev - 1);
@@ -25,6 +30,15 @@ function DoExercise({
       setIsFinished(true);
       setNumFinishedExercises((prev) => prev + 1);
     }
+  }
+
+  function handleAddSet() {
+    const newId = Math.floor(Math.random() * 1000000);
+
+    const newSet = { ...moreSets[numSets - 1], id: newId };
+
+    setMoreSets([...moreSets, newSet]);
+    console.log(newSet);
   }
 
   return (
@@ -42,7 +56,7 @@ function DoExercise({
       </Accordion.Header>
       <Accordion.Body className="">
         <Accordion defaultActiveKey="0" flush>
-          {sets.map((set, i) => (
+          {moreSets.map((set, i) => (
             <DoSet
               set={set}
               key={i}
@@ -58,6 +72,15 @@ function DoExercise({
             />
           ))}
         </Accordion>
+        <div className="d-flex justify-content-center">
+          <Button
+            onClick={handleAddSet}
+            className="mt-3 w-50"
+            variant="outline-primary"
+          >
+            Add set
+          </Button>
+        </div>
       </Accordion.Body>
     </Accordion.Item>
   );
