@@ -10,6 +10,7 @@ import { secondsToTime, timeToSeconds } from "../../utils/helpers";
 import SubmitButtonBar from "../../components/SubmitButtonBar";
 import IncrementButtonBar from "../../components/IncrementButtonBar";
 import AddMetricToExercise from "./AddMetricToExercise";
+import ChooseBuildInputBar from "../input-bars/ChooseBuildInputBar";
 
 function BuildExercise({ edit = false, exerciseToEdit }) {
   const { dispatch, exerciseData } = useGlobalContext();
@@ -29,12 +30,13 @@ function BuildExercise({ edit = false, exerciseToEdit }) {
   const [numMetrics, setNumMetrics] = useState(
     edit ? exerciseToEdit.metrics.length : 0
   );
-  let arrayToMap = [...Array(numMetrics)];
-  if (edit)
+  const arrayToMap = [...Array(numMetrics)];
+  /* if (edit)
     for (let i = 0; i < numMetrics; i++) {
       arrayToMap[i] = exerciseToEdit.metrics[i];
-    }
+    } */
   // console.log(arrayToMap);
+  console.log(exerciseToEdit);
 
   function handleSubmitExercise(data) {
     // format data into correct exercise shape
@@ -134,29 +136,48 @@ function BuildExercise({ edit = false, exerciseToEdit }) {
               )}
             />
           </Form.Group>
+          {edit ? (
+            exerciseToEdit.metrics.map((metric, index) => (
+              <ChooseBuildInputBar
+                key={index}
+                index={index}
+                inputBar={metric.inputBar}
+                register={register}
+                setValue={setValue}
+                getValues={getValues}
+                resetField={resetField}
+                watch={watch}
+                edit={true}
+                defaultValue={metric}
+              />
+            ))
+          ) : (
+            // Not edit: can add & remove metrics
+            <>
+              {arrayToMap.map((metric, index) => (
+                <AddMetricToExercise
+                  register={register}
+                  setValue={setValue}
+                  getValues={getValues}
+                  resetField={resetField}
+                  watch={watch}
+                  index={index + 1}
+                  key={index}
+                  defaultMetric={edit ? metric : null}
+                  edit={edit}
+                />
+              ))}
 
-          {arrayToMap.map((metric, index) => (
-            <AddMetricToExercise
-              register={register}
-              setValue={setValue}
-              getValues={getValues}
-              resetField={resetField}
-              watch={watch}
-              index={index + 1}
-              key={index}
-              defaultMetric={edit ? metric : null}
-              edit={edit}
-            />
-          ))}
-
-          <IncrementButtonBar
-            increment={() => setNumMetrics((prev) => prev + 1)}
-            decrement={() =>
-              numMetrics > 0 && setNumMetrics((prev) => prev - 1)
-            }
-          >
-            Metric
-          </IncrementButtonBar>
+              <IncrementButtonBar
+                increment={() => setNumMetrics((prev) => prev + 1)}
+                decrement={() =>
+                  numMetrics > 0 && setNumMetrics((prev) => prev - 1)
+                }
+              >
+                Metric
+              </IncrementButtonBar>
+            </>
+          )}
 
           <SubmitButtonBar>Save Exercise</SubmitButtonBar>
         </Form>

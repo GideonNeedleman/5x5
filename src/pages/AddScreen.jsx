@@ -110,7 +110,6 @@ function AddScreen() {
                     variant="warning"
                     className="w-75"
                     size="sm"
-                    disabled
                   >
                     <BsFillPencilFill />
                   </Button>

@@ -13,6 +13,7 @@ function ChooseBuildInputBar({
   fieldname,
   index,
   watch,
+  edit,
 }) {
   switch (inputBar) {
     case "NumberIncrementBar":
@@ -25,6 +26,7 @@ function ChooseBuildInputBar({
           resetField={resetField}
           defaultValue={defaultValue}
           watch={watch}
+          edit={edit}
         />
       );
     case "test":

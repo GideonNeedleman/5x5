@@ -23,6 +23,7 @@ function BuildNumberIncrementBar({
   isUnlocked = true,
   defaultValue,
   watch,
+  edit,
 }) {
   const fieldName = `metric-${index}`;
 
@@ -59,6 +60,8 @@ function BuildNumberIncrementBar({
               {...register(`${fieldName}-name`)}
               placeholder="metric name"
               style={{ maxWidth: "50%" }}
+              defaultValue={defaultValue.name}
+              disabled={edit}
             />
 
             <input
@@ -68,6 +71,8 @@ function BuildNumberIncrementBar({
               type="text"
               list="metricUnitOptions"
               {...register(`${fieldName}-units`)}
+              defaultValue={defaultValue.units}
+              disabled={edit}
             />
             <datalist id="metricUnitOptions">
               <option value="kg" />
@@ -97,6 +102,7 @@ function BuildNumberIncrementBar({
               })}
               defaultValue={defaultValue}
               placeholder="Default Value"
+              defaultValue={defaultValue.default}
               disabled={isFinished && !isUnlocked}
             />
             <Button
@@ -128,6 +134,7 @@ function BuildNumberIncrementBar({
                 valueAsNumber: true,
                 min: 0,
               })}
+              defaultValue={defaultValue.step}
             />
           </div>
           {/* Advanced Options */}
@@ -142,6 +149,7 @@ function BuildNumberIncrementBar({
             className="mt-3"
             onClick={() => vibrator(1)}
             {...register(`${fieldName}-adaptive`)}
+            defaultChecked={defaultValue.adaptive}
           />
           <Popup title="Default values will change to match your last entered value">
             <IconContext.Provider value={{ color: "var(--bs-primary)" }}>
