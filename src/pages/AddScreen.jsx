@@ -62,6 +62,7 @@ function AddScreen() {
         ))}
 
         <Button
+        variant="outline-primary"
           className="w-75"
           onClick={() => {
             vibrator(1);
@@ -86,6 +87,7 @@ function AddScreen() {
         </Card>
 
         <Button
+          variant="outline-primary"
           className="w-75"
           onClick={() => {
             navigate("/build-workout");
@@ -120,6 +122,7 @@ function AddScreen() {
           </tbody>
         </Table>
         <Button
+          variant="outline-primary"
           onClick={() => {
             navigate("/build-exercise");
             vibrator(1);
