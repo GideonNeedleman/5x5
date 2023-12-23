@@ -35,30 +35,31 @@ function SelectWorkout() {
             key={program.id}
           />
         ))}
-      </Container>
-      <Stack
-        gap={2}
-        className="col-sm-5 mx-auto px-2 mt-2"
-        style={{ overflow: "hidden" }}
-      >
-        <Button
-          variant="dark"
-          onClick={() => {
-            vibrator(1);
-            navigate("/add-program-workout");
-          }}
-        >
-          <IconContext.Provider
-            value={{ color: "var(--bs-primary)", size: "1.5rem" }}
+        <div className="d-flex gap-2 w-100">
+          <Button
+            className="w-50"
+            variant="outline-dark"
+            onClick={() => {
+              vibrator(1);
+              navigate("/add-program-workout");
+            }}
           >
-            <BsFillPlusSquareFill className="me-2 pb-1" />
-          </IconContext.Provider>
-          Program / Workout
-        </Button>
-        <Button variant="outline-secondary" onClick={() => vibrator(1)}>
-          Just go
-        </Button>
-      </Stack>
+            <IconContext.Provider
+              value={{ color: "var(--bs-primary)", size: "1.5rem" }}
+            >
+              <BsFillPlusSquareFill className="me-1 pb-1" />
+            </IconContext.Provider>
+            Workouts
+          </Button>
+          <Button
+            className="w-50"
+            variant="outline-primary"
+            onClick={() => vibrator(1)}
+          >
+            Just go
+          </Button>
+        </div>
+      </Container>
       <Container className="mt-2 mb-2 d-flex justify-content-center">
         <Calendar />
       </Container>
