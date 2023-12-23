@@ -8,7 +8,7 @@ function FinishWorkoutButtons({
   isWorkoutFinished,
   handleCancelModal,
   handleConfirmationModal,
-  justGo = false,
+  justGo,
 }) {
   const { handleFinishWorkout, handleFinishJustGo } = useGlobalContext();
   const navigate = useNavigate();
