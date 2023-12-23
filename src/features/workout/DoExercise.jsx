@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import DoSet from "./DoSet";
 import { BsCheckSquareFill } from "react-icons/bs";
@@ -33,6 +33,13 @@ function DoExercise({
       setNumFinishedExercises((prev) => prev + 1);
     }
   }
+
+  useEffect(() => {
+    if (numFinishedSets < numSets && isFinished) {
+      setIsFinished(false);
+      setNumFinishedExercises((prev) => prev - 1);
+    }
+  }, [numSets, isFinished, numFinishedSets, setNumFinishedExercises]);
 
   function handleAddSet() {
     const newId = Math.floor(Math.random() * 1000000);
