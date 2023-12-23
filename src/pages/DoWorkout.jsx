@@ -9,7 +9,7 @@ import FinishWorkoutButtons from "../features/workout/FinishWorkoutButtons";
 import WorkoutAccordion from "../features/workout/WorkoutAccordion";
 import WorkoutTable from "../features/workout/WorkoutTable";
 
-function DoWorkout() {
+function DoWorkout({ justGo }) {
   const {
     activeWorkout: workout,
     isWorkoutStarted,
@@ -77,6 +77,7 @@ function DoWorkout() {
         isWorkoutFinished={isWorkoutFinished}
         handleCancelModal={handleCancelModal}
         handleConfirmationModal={handleConfirmationModal}
+        justGo={justGo}
       />
 
       <ConfirmFinishWorkoutModal

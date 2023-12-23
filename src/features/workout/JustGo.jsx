@@ -3,7 +3,7 @@ import DoWorkout from "../../pages/DoWorkout";
 function JustGo() {
   return (
     <main>
-      <DoWorkout />
+      <DoWorkout justGo={true} />
     </main>
   );
 }

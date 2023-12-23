@@ -8,8 +8,9 @@ function FinishWorkoutButtons({
   isWorkoutFinished,
   handleCancelModal,
   handleConfirmationModal,
+  justGo = false,
 }) {
-  const { handleFinishWorkout } = useGlobalContext();
+  const { handleFinishWorkout, handleFinishJustGo } = useGlobalContext();
   const navigate = useNavigate();
   return (
     <>
@@ -34,7 +35,7 @@ function FinishWorkoutButtons({
                 className="w-100"
                 type="submit"
                 onClick={() => {
-                  handleFinishWorkout();
+                  justGo ? handleFinishJustGo() : handleFinishWorkout();
                   navigate("/review");
                   vibrator([100, 100, 100, 100, 500]);
                 }}
