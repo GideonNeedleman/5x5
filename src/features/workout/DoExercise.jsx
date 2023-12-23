@@ -40,7 +40,7 @@ function DoExercise({
     const newSet = { ...moreSets[numSets - 1], id: newId };
 
     setMoreSets([...moreSets, newSet]);
-    console.log(newSet);
+    // console.log(newSet);
   }
 
   return (

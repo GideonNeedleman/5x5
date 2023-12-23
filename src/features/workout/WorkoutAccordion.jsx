@@ -32,7 +32,6 @@ function WorkoutAccordion({
     const newExercise = { ...exercise, sets: [firstSet] };
     // add exercise to exercises array
     const newExercisesArray = [...expandedWorkout.exercises, newExercise];
-    console.log("new exercises array", newExercisesArray);
     // update exercises array in expandedWorkout
     setExpandedWorkout({ ...expandedWorkout, exercises: newExercisesArray });
   }
