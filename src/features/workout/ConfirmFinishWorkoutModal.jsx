@@ -4,8 +4,8 @@ import Modal from "react-bootstrap/Modal";
 import { useGlobalContext } from "../../context/GlobalContext";
 import vibrator from "vibrator";
 
-function ConfirmFinishWorkoutModal({ onHide, show }) {
-  const { handleFinishWorkout } = useGlobalContext();
+function ConfirmFinishWorkoutModal({ onHide, show, justGo }) {
+  const { handleFinishWorkout, handleFinishJustGo } = useGlobalContext();
   const navigate = useNavigate();
 
   return (
@@ -30,7 +30,7 @@ function ConfirmFinishWorkoutModal({ onHide, show }) {
         </Button>
         <Button
           onClick={() => {
-            handleFinishWorkout();
+            justGo ? handleFinishJustGo() : handleFinishWorkout();
             navigate("/review");
             vibrator([100, 100, 100, 100, 500]);
           }}

@@ -39,6 +39,24 @@ function reducer(state, action) {
         },
         tempRecordData: [],
       };
+    case "just-go":
+      return {
+        ...state,
+        isWorkoutStarted: true,
+        isWorkoutFinished: false,
+        activeKey: 0,
+        activeWorkout: {
+          name: "Just Go",
+          id: 0,
+          exercises: [],
+        },
+        tempWorkoutHistoryRecord: {
+          workoutId: 0,
+          workoutName: "Just Go",
+          startTime: new Date(),
+        },
+        tempRecordData: [],
+      };
     case "finish-workout":
       return {
         ...state,
@@ -54,6 +72,23 @@ function reducer(state, action) {
               }
             : program
         ),
+        activeWorkout: null,
+        activeWorkoutIndex: null,
+        activeProgramId: null,
+        isWorkoutStarted: false,
+        isWorkoutFinished: true,
+        activeKey: 1,
+        recordData: [...state.recordData, ...state.tempRecordData],
+        // tempRecordData: [],
+        workoutHistory: [
+          ...state.workoutHistory,
+          { ...state.tempWorkoutHistoryRecord, finishTime: new Date() },
+        ],
+        tempWorkoutHistoryRecord: {},
+      };
+    case "finish-just-go":
+      return {
+        ...state,
         activeWorkout: null,
         activeWorkoutIndex: null,
         activeProgramId: null,
@@ -243,7 +278,7 @@ function GlobalContextProvider({ children }) {
   ] = useReducer(reducer, initialState);
 
   function handleFinishWorkout() {
-    // strip out setId
+    // strip out setId, not needed in recordData
     for (let i in tempRecordData) {
       delete tempRecordData[i].setId;
     }
@@ -257,7 +292,25 @@ function GlobalContextProvider({ children }) {
             .workouts[activeWorkoutIndex]
       ),
     });
-    dispatch({ type: "finish-workout", payload: tempRecordData });
+    dispatch({ type: "finish-workout" });
+  }
+
+  function handleFinishJustGo() {
+    // strip out setId
+    for (let i in tempRecordData) {
+      delete tempRecordData[i].setId;
+    }
+
+    /* dispatch({
+      type: "update-adaptive-metrics",
+      payload: workoutData.find(
+        (workout) =>
+          workout.id ===
+          programData.find((program) => program.id === activeProgramId)
+            .workouts[activeWorkoutIndex]
+      ),
+    }); */
+    dispatch({ type: "finish-just-go" });
   }
 
   useEffect(() => {
@@ -303,6 +356,7 @@ function GlobalContextProvider({ children }) {
         dispatch,
 
         handleFinishWorkout,
+        handleFinishJustGo,
       }}
     >
       {children}
