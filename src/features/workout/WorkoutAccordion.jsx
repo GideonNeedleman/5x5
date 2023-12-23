@@ -3,20 +3,38 @@ import DoExercise from "./DoExercise";
 import { useGlobalContext } from "../../context/GlobalContext";
 import AddExerciseModal from "../builder/AddExerciseModal";
 import { useState } from "react";
+import vibrator from "vibrator";
 
 function WorkoutAccordion({
   workout,
   activeKey,
   setNumFinishedExercises,
+  expandedWorkout,
   setExpandedWorkout,
 }) {
   const { exerciseData } = useGlobalContext();
   const [showAddExerciseModal, setShowAddExerciseModal] = useState(false);
 
-  function handleAddExercise() {
-    // const newExercise = new exercise
-    // const newExercisesArray = [...expandedWorkout.exercises, newExercise]
-    // setExpandedWorkout({...expandedWorkout, exercises: newExercisesArray})
+  function handleAddExercise(exercise) {
+    vibrator(1);
+    setShowAddExerciseModal(false);
+    // need to build firs set for new exercise from exercise metrics defaults
+    // set needs id & metrics object
+    const newId = Math.floor(Math.random() * 1000000);
+    let newMetrics = {};
+    for (let i = 0; i < exercise.metrics.length; i++) {
+      const key = exercise.metrics[i].name;
+      const value = exercise.metrics[i].default;
+      newMetrics = { ...newMetrics, [key]: value };
+    }
+    const firstSet = { id: newId, metrics: newMetrics };
+    // add sets array to exercise
+    const newExercise = { ...exercise, sets: [firstSet] };
+    // add exercise to exercises array
+    const newExercisesArray = [...expandedWorkout.exercises, newExercise];
+    console.log("new exercises array", newExercisesArray);
+    // update exercises array in expandedWorkout
+    setExpandedWorkout({ ...expandedWorkout, exercises: newExercisesArray });
   }
 
   return (

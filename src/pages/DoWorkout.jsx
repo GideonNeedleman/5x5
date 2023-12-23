@@ -64,6 +64,7 @@ function DoWorkout() {
           workout={expandedWorkout}
           activeKey={activeKey}
           setNumFinishedExercises={setNumFinishedExercises}
+          expandedWorkout={expandedWorkout}
           setExpandedWorkout={setExpandedWorkout}
         />
       ) : (

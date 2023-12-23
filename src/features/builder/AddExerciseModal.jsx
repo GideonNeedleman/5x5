@@ -19,9 +19,8 @@ function AddExerciseModal({ onHide, show, workout, handleAddExercise }) {
       if (a.name.toUpperCase() < b.name.toUpperCase()) return -1;
       if (a.name.toUpperCase() > b.name.toUpperCase()) return 1;
     });
-  // .map((el) => el.id);
   // console.log(tempExerciseIds);
-  console.log(filteredExercises);
+  // console.log(filteredExercises);
 
   return (
     <Modal
@@ -35,9 +34,14 @@ function AddExerciseModal({ onHide, show, workout, handleAddExercise }) {
         <h3 className="display-4 text-center">Add Exercise</h3>
 
         {/* Add input search to filter list */}
+        {/* Add checkbox to include existing exercises */}
         <div className="d-flex flex-column gap-2">
           {filteredExercises.map((exercise, index) => (
-            <Button onClick={handleAddExercise} variant="secondary" key={index}>
+            <Button
+              onClick={() => handleAddExercise(exercise)}
+              variant="secondary"
+              key={index}
+            >
               {exercise.name}
             </Button>
           ))}

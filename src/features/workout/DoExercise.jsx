@@ -19,8 +19,8 @@ function DoExercise({
   const [moreSets, setMoreSets] = useState(sets);
   const numSets = moreSets.length;
 
-  console.log("sets", sets);
-  console.log("moreSets", moreSets);
+  // console.log("sets", sets);
+  // console.log("moreSets", moreSets);
 
   function handleFinishSet() {
     setActiveKey((prev) => prev - 1);
