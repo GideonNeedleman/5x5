@@ -19,8 +19,8 @@ function DoExercise({
   const [moreSets, setMoreSets] = useState(sets);
   const numSets = moreSets.length;
 
-  console.log("sets", sets);
-  console.log("moreSets", moreSets);
+  // console.log("sets", sets);
+  // console.log("moreSets", moreSets);
 
   function handleFinishSet() {
     setActiveKey((prev) => prev - 1);
@@ -40,7 +40,7 @@ function DoExercise({
     const newSet = { ...moreSets[numSets - 1], id: newId };
 
     setMoreSets([...moreSets, newSet]);
-    console.log(newSet);
+    // console.log(newSet);
   }
 
   return (
