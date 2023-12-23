@@ -44,6 +44,7 @@ function DoWorkout() {
 
   useEffect(() => {
     if (numFinishedExercises === numExercises) setIsWorkoutFinished(true);
+    if (numFinishedExercises !== numExercises) setIsWorkoutFinished(false);
   }, [numFinishedExercises, numExercises]);
 
   return (
