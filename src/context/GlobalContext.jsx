@@ -39,6 +39,24 @@ function reducer(state, action) {
         },
         tempRecordData: [],
       };
+    case "just-go":
+      return {
+        ...state,
+        isWorkoutStarted: true,
+        isWorkoutFinished: false,
+        activeKey: 0,
+        activeWorkout: {
+          name: "Just Go",
+          id: state.workoutData.length + 1,
+          exercises: [],
+        },
+        tempWorkoutHistoryRecord: {
+          workoutId: state.workoutData.length + 1,
+          workoutName: "Just Go",
+          startTime: new Date(),
+        },
+        tempRecordData: [],
+      };
     case "finish-workout":
       return {
         ...state,

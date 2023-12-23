@@ -12,7 +12,7 @@ import { IconContext } from "react-icons";
 import { BsFillPlusSquareFill } from "react-icons/bs";
 
 function SelectWorkout() {
-  const { programData, activePrograms } = useGlobalContext();
+  const { programData, activePrograms, dispatch } = useGlobalContext();
   const navigate = useNavigate();
 
   const programs = activePrograms.map((program) =>
@@ -54,7 +54,11 @@ function SelectWorkout() {
           <Button
             className="w-50"
             variant="outline-primary"
-            onClick={() => vibrator(1)}
+            onClick={() => {
+              vibrator(1);
+              dispatch({ type: "just-go" });
+              navigate("/just-go");
+            }}
           >
             Just go
           </Button>

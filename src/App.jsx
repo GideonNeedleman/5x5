@@ -14,6 +14,7 @@ import AddScreen from "./pages/AddScreen";
 import EditProgram from "./features/edit/EditProgram";
 import EditWorkout from "./features/edit/EditWorkout";
 import EditExercise from "./features/edit/EditExercise";
+import JustGo from "./features/workout/JustGo";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         {/* <Toaster /> */}
         <Routes>
           <Route path="/" element={<Workout />} />
+          <Route path="/just-go" element={<JustGo />} />
           <Route path="/history" element={<History />} />
           <Route path="/review" element={<Review />} />
           <Route path="/add-program-workout" element={<AddScreen />} />
