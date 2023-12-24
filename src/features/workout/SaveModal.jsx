@@ -54,6 +54,7 @@ function SaveModal({ /* onHide, */ show, workout /* setShowSaveModal */ }) {
           onClick={() => {
             dispatch({ type: "create-new-workout", payload: newWorkout });
             dispatch({ type: "add-workout", payload: newWorkout });
+            dispatch({ type: "just-go-save-workout", payload: newWorkout });
             handleFinishJustGo();
             navigate("/review");
             vibrator([100, 100, 100, 100, 500]);
