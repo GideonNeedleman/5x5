@@ -16,7 +16,7 @@ function SaveModal({ /* onHide, */ show, workout /* setShowSaveModal */ }) {
     name: workoutName,
     id: workoutData.length + 1,
   };
-  console.log("new workout", newWorkout);
+  // console.log("new/expanded workout", newWorkout);
 
   return (
     <Modal
@@ -27,36 +27,40 @@ function SaveModal({ /* onHide, */ show, workout /* setShowSaveModal */ }) {
     >
       <Modal.Body>
         <h3 className="text-center">
-          Enter name to save this workout for later:
+          Enter name to save exercises as a workout:
         </h3>
         <Form.Control
           type="text"
+          placeholder="Workout name"
           value={workoutName}
           onChange={(e) => setWorkoutName(e.target.value)}
         />
+        <p className="mt-3 mb-0 text-center">
+          Or you can just submit data without saving the workout
+        </p>
       </Modal.Body>
       <Modal.Footer>
         <Button
           onClick={() => {
             handleFinishJustGo();
-            // onHide();
             navigate("/review");
             vibrator(1);
           }}
           variant="secondary"
         >
-          Cancel
+          Just Submit Data
         </Button>
         <Button
           onClick={() => {
             dispatch({ type: "create-new-workout", payload: newWorkout });
+            dispatch({ type: "add-workout", payload: newWorkout });
             handleFinishJustGo();
             navigate("/review");
             vibrator([100, 100, 100, 100, 500]);
           }}
           disabled={!workoutName}
         >
-          Confirm
+          Save Workout
         </Button>
       </Modal.Footer>
     </Modal>

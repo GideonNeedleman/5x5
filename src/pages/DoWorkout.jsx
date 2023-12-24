@@ -43,7 +43,7 @@ function DoWorkout({ justGo = false }) {
   function handleCancelModal() {
     setShowCancelModal(true);
   }
-  console.log("save workout modal", showSaveModal);
+  // console.log("save workout modal", showSaveModal);
 
   useEffect(() => {
     if (numFinishedExercises === numExercises) setIsWorkoutFinished(true);

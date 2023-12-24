@@ -47,6 +47,8 @@ function WorkoutAccordion({
             tracker={index + activeKey}
             key={index}
             setNumFinishedExercises={setNumFinishedExercises}
+            expandedWorkout={expandedWorkout}
+            setExpandedWorkout={setExpandedWorkout}
           />
         ))}
       </Accordion>

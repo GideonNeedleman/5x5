@@ -28,7 +28,6 @@ function Review() {
           navigate("/");
         }}
       >
-        {/* <BsFillHouseDoorFill className="me-1" /> */}
         Home
       </Button>
       <WorkoutOverview />

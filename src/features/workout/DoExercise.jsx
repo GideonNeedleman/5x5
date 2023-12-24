@@ -10,6 +10,8 @@ function DoExercise({
   index,
   tracker,
   setNumFinishedExercises,
+  expandedWorkout,
+  setExpandedWorkout,
 }) {
   const [activeKey, setActiveKey] = useState(1);
   const [isFinished, setIsFinished] = useState(false);
@@ -47,7 +49,18 @@ function DoExercise({
     const newSet = { ...moreSets[numSets - 1], id: newId };
 
     setMoreSets([...moreSets, newSet]);
-    // console.log(newSet);
+    // console.log("new set", newSet);
+    // console.log("more sets", moreSets);
+
+    // Add new set to expandedWorkout sets array
+    const fullSetsArray = [...moreSets, newSet];
+    const newWorkout = {
+      ...expandedWorkout,
+      exercises: expandedWorkout.exercises.map((exercise, i) =>
+        i === index ? { ...exercise, sets: fullSetsArray } : exercise
+      ),
+    };
+    setExpandedWorkout(newWorkout);
   }
 
   return (
