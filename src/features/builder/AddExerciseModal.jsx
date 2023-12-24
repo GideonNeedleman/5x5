@@ -2,9 +2,13 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import vibrator from "vibrator";
 import { useGlobalContext } from "../../context/GlobalContext";
+import { Form, InputGroup } from "react-bootstrap";
+import { useState } from "react";
 
 function AddExerciseModal({ onHide, show, workout, handleAddExercise }) {
   const { exerciseData } = useGlobalContext();
+  const [includeExistingExercises, setIncludeExistingExercises] =
+    useState(false);
 
   // get temp list of all exercise ids
   let tempExerciseIds = [];
@@ -36,10 +40,22 @@ function AddExerciseModal({ onHide, show, workout, handleAddExercise }) {
         {/* Add input search to filter list */}
         {/* Add checkbox to include existing exercises */}
         <div className="d-flex flex-column gap-2">
+          <InputGroup className="d-flex justify-content-center">
+            <InputGroup.Checkbox
+              checked={includeExistingExercises}
+              onChange={() => setIncludeExistingExercises((prev) => !prev)}
+              id="checkbox"
+            />
+            <label htmlFor="checkbox">
+              <InputGroup.Text className="fst-italic">
+                Include existing exercises
+              </InputGroup.Text>
+            </label>
+          </InputGroup>
           {filteredExercises.map((exercise, index) => (
             <Button
               onClick={() => handleAddExercise(exercise)}
-              variant="secondary"
+              variant="outline-dark"
               key={index}
             >
               {exercise.name}
