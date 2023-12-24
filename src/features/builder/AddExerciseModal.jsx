@@ -81,14 +81,14 @@ function AddExerciseModal({ onHide, show, workout, handleAddExercise }) {
         >
           Cancel
         </Button>
-        {/* <Button
+        <Button
           onClick={() => {
-            handleConfirm();
+            // handleConfirm();
             vibrator(1);
           }}
         >
-          Confirm
-        </Button> */}
+          + Create Exercise
+        </Button>
       </Modal.Footer>
     </Modal>
   );
