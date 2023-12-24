@@ -8,6 +8,7 @@ import BeginWorkoutButtons from "../features/workout/BeginWorkoutButtons";
 import FinishWorkoutButtons from "../features/workout/FinishWorkoutButtons";
 import WorkoutAccordion from "../features/workout/WorkoutAccordion";
 import WorkoutTable from "../features/workout/WorkoutTable";
+import SaveModal from "../features/workout/SaveModal";
 
 function DoWorkout({ justGo = false }) {
   const {
@@ -19,6 +20,7 @@ function DoWorkout({ justGo = false }) {
   const navigate = useNavigate();
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [showCancelModal, setShowCancelModal] = useState(false);
+  const [showSaveModal, setShowSaveModal] = useState(false);
   const [numFinishedExercises, setNumFinishedExercises] = useState(0);
   //maybe can just use straight workout (activeWorkout) since it's a deep copy of workoutData?
   const [expandedWorkout, setExpandedWorkout] = useState(workout);
@@ -41,10 +43,11 @@ function DoWorkout({ justGo = false }) {
   function handleCancelModal() {
     setShowCancelModal(true);
   }
+  // console.log("save workout modal", showSaveModal);
 
   useEffect(() => {
     if (numFinishedExercises === numExercises) setIsWorkoutFinished(true);
-    if (numFinishedExercises !== numExercises) setIsWorkoutFinished(false);
+    else setIsWorkoutFinished(false);
   }, [numFinishedExercises, numExercises]);
 
   return (
@@ -78,18 +81,27 @@ function DoWorkout({ justGo = false }) {
         handleCancelModal={handleCancelModal}
         handleConfirmationModal={handleConfirmationModal}
         justGo={justGo}
+        setShowSaveModal={setShowSaveModal}
       />
 
       <ConfirmFinishWorkoutModal
         show={showConfirmationModal}
         onHide={() => setShowConfirmationModal(false)}
         justGo={justGo}
+        setShowSaveModal={setShowSaveModal}
       />
 
       <ConfirmCancelWorkoutModal
         show={showCancelModal}
         onHide={() => setShowCancelModal(false)}
         handleClose={handleBack}
+      />
+
+      <SaveModal
+        show={showSaveModal}
+        workout={expandedWorkout}
+        // onHide={() => setShowSaveModal(false)}
+        // handleClose={handleBack}
       />
     </>
   );

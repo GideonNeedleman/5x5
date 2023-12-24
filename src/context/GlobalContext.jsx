@@ -57,6 +57,14 @@ function reducer(state, action) {
         },
         tempRecordData: [],
       };
+    case "just-go-save-workout":
+      return {
+        ...state,
+        tempWorkoutHistoryRecord: {
+          workoutId: action.payload.id,
+          workoutName: action.payload.name,
+        },
+      };
     case "finish-workout":
       return {
         ...state,
