@@ -4,8 +4,8 @@ import Modal from "react-bootstrap/Modal";
 import { useGlobalContext } from "../../context/GlobalContext";
 import vibrator from "vibrator";
 
-function ConfirmFinishWorkoutModal({ onHide, show, justGo, setShowSaveModal }) {
-  const { handleFinishWorkout } = useGlobalContext();
+function SaveWorkoutModal({ onHide, show /* setShowSaveModal */ }) {
+  const { handleFinishJustGo } = useGlobalContext();
   const navigate = useNavigate();
 
   return (
@@ -16,12 +16,16 @@ function ConfirmFinishWorkoutModal({ onHide, show, justGo, setShowSaveModal }) {
       centered
     >
       <Modal.Body>
-        <h3 className="text-center">Confirm finish workout early</h3>
+        <h3 className="text-center">
+          Do you want to save this workout for later?
+        </h3>
       </Modal.Body>
       <Modal.Footer>
         <Button
           onClick={() => {
-            onHide();
+            handleFinishJustGo();
+            // onHide();
+            navigate("/review");
             vibrator(1);
           }}
           variant="secondary"
@@ -29,19 +33,11 @@ function ConfirmFinishWorkoutModal({ onHide, show, justGo, setShowSaveModal }) {
           Cancel
         </Button>
         <Button
-          onClick={
-            justGo
-              ? () => {
-                  setShowSaveModal(true);
-                  vibrator(1);
-                  onHide();
-                }
-              : () => {
-                  handleFinishWorkout();
-                  navigate("/review");
-                  vibrator([100, 100, 100, 100, 500]);
-                }
-          }
+          onClick={() => {
+            handleFinishJustGo();
+            navigate("/review");
+            vibrator([100, 100, 100, 100, 500]);
+          }}
         >
           Confirm
         </Button>
@@ -50,4 +46,4 @@ function ConfirmFinishWorkoutModal({ onHide, show, justGo, setShowSaveModal }) {
   );
 }
 
-export default ConfirmFinishWorkoutModal;
+export default SaveWorkoutModal;
