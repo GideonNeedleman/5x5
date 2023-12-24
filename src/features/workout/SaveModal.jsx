@@ -4,7 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import { useGlobalContext } from "../../context/GlobalContext";
 import vibrator from "vibrator";
 
-function SaveWorkoutModal({ onHide, show /* setShowSaveModal */ }) {
+function SaveModal({ onHide, show /* setShowSaveModal */ }) {
   const { handleFinishJustGo } = useGlobalContext();
   const navigate = useNavigate();
 
@@ -46,4 +46,4 @@ function SaveWorkoutModal({ onHide, show /* setShowSaveModal */ }) {
   );
 }
 
-export default SaveWorkoutModal;
+export default SaveModal;

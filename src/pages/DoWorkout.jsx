@@ -8,7 +8,7 @@ import BeginWorkoutButtons from "../features/workout/BeginWorkoutButtons";
 import FinishWorkoutButtons from "../features/workout/FinishWorkoutButtons";
 import WorkoutAccordion from "../features/workout/WorkoutAccordion";
 import WorkoutTable from "../features/workout/WorkoutTable";
-import SaveWorkoutModal from "../features/workout/SaveWorkoutModal";
+import SaveModal from "../features/workout/SaveModal";
 
 function DoWorkout({ justGo = false }) {
   const {
@@ -97,7 +97,7 @@ function DoWorkout({ justGo = false }) {
         handleClose={handleBack}
       />
 
-      <SaveWorkoutModal
+      <SaveModal
         show={showSaveModal}
         onHide={() => setShowSaveModal(false)}
         handleClose={handleBack}
