@@ -39,7 +39,7 @@ function FinishWorkoutButtons({
                   justGo
                     ? () => {
                         setShowSaveModal(true);
-                        console.log("pressed finish workout");
+                        vibrator(1);
                       }
                     : () => {
                         handleFinishWorkout();

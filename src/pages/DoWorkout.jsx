@@ -99,8 +99,9 @@ function DoWorkout({ justGo = false }) {
 
       <SaveModal
         show={showSaveModal}
-        onHide={() => setShowSaveModal(false)}
-        handleClose={handleBack}
+        workout={expandedWorkout}
+        // onHide={() => setShowSaveModal(false)}
+        // handleClose={handleBack}
       />
     </>
   );
