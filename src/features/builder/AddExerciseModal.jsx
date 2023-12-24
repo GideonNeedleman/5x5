@@ -16,13 +16,21 @@ function AddExerciseModal({ onHide, show, workout, handleAddExercise }) {
     tempExerciseIds = [...tempExerciseIds, workout.exercises[i].id];
   }
 
+  // sort exercises alphabetically
+  const sortedExercises = exerciseData.sort((a, b) => {
+    if (a.name.toUpperCase() < b.name.toUpperCase()) return -1;
+    if (a.name.toUpperCase() > b.name.toUpperCase()) return 1;
+  });
+
   // filter out exercise ids already in workout and list alphabetically
-  const filteredExercises = exerciseData
-    .filter((exercise) => !tempExerciseIds.includes(exercise.id))
-    .sort((a, b) => {
-      if (a.name.toUpperCase() < b.name.toUpperCase()) return -1;
-      if (a.name.toUpperCase() > b.name.toUpperCase()) return 1;
-    });
+  const filteredExercises = sortedExercises.filter(
+    (exercise) => !tempExerciseIds.includes(exercise.id)
+  );
+
+  const exercisesToMap = includeExistingExercises
+    ? sortedExercises
+    : filteredExercises;
+
   // console.log(tempExerciseIds);
   // console.log(filteredExercises);
 
@@ -52,7 +60,7 @@ function AddExerciseModal({ onHide, show, workout, handleAddExercise }) {
               </InputGroup.Text>
             </label>
           </InputGroup>
-          {filteredExercises.map((exercise, index) => (
+          {exercisesToMap.map((exercise, index) => (
             <Button
               onClick={() => handleAddExercise(exercise)}
               variant="outline-dark"
