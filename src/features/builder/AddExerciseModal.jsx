@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import vibrator from "vibrator";
 import { useGlobalContext } from "../../context/GlobalContext";
-import { Form, InputGroup } from "react-bootstrap";
+import { InputGroup } from "react-bootstrap";
 import { useState } from "react";
 import CreateExerciseModal from "./CreateExerciseModal";
 
