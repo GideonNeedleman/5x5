@@ -12,7 +12,15 @@ import IncrementButtonBar from "../../components/IncrementButtonBar";
 import AddMetricToExercise from "./AddMetricToExercise";
 import ChooseBuildInputBar from "../input-bars/ChooseBuildInputBar";
 
-function BuildExercise({ edit = false, exerciseToEdit }) {
+function BuildExercise({
+  edit = false,
+  exerciseToEdit,
+  onHide,
+  defaultSetup,
+  workoutInProgress,
+  hideAddExerciseModal,
+  handleAddExercise,
+}) {
   const { dispatch, exerciseData } = useGlobalContext();
   const navigate = useNavigate();
   const form = useForm();
@@ -71,14 +79,14 @@ function BuildExercise({ edit = false, exerciseToEdit }) {
 
     // final formatted exercise object
     const exerciseObject = {
-      id,
       name,
+      id,
       restTimer: restTimerSeconds,
       metrics: metricsArray,
     };
     const editedExerciseObject = {
-      id: exerciseToEdit?.id,
       name,
+      id: exerciseToEdit?.id,
       restTimer: restTimerSeconds,
       metrics: metricsArray,
     };
@@ -91,7 +99,13 @@ function BuildExercise({ edit = false, exerciseToEdit }) {
         ? dispatch({ type: "edit-exercise", payload: editedExerciseObject })
         : dispatch({ type: "create-new-exercise", payload: exerciseObject });
     }
-    navigate(-1);
+
+    // If workout in ProgressEvent, then add new exercise to workout directly and close modals
+    if (workoutInProgress) {
+      onHide();
+      hideAddExerciseModal();
+      handleAddExercise(exerciseObject);
+    } else navigate(-1);
   }
 
   return (
@@ -181,7 +195,9 @@ function BuildExercise({ edit = false, exerciseToEdit }) {
             </>
           )}
 
-          <SubmitButtonBar>Save Exercise</SubmitButtonBar>
+          <SubmitButtonBar onHide={onHide} modal={workoutInProgress}>
+            Save Exercise
+          </SubmitButtonBar>
         </Form>
         <DevTool control={control} />
       </Container>

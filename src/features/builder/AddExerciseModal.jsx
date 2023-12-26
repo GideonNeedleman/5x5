@@ -4,11 +4,19 @@ import vibrator from "vibrator";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { Form, InputGroup } from "react-bootstrap";
 import { useState } from "react";
+import CreateExerciseModal from "./CreateExerciseModal";
 
-function AddExerciseModal({ onHide, show, workout, handleAddExercise }) {
+function AddExerciseModal({
+  onHide,
+  show,
+  workout,
+  handleAddExercise,
+  workoutInProgress = false,
+}) {
   const { exerciseData } = useGlobalContext();
   const [includeExistingExercises, setIncludeExistingExercises] =
     useState(false);
+  const [showCreateExerciseModal, setShowCreateExerciseModal] = useState(false);
 
   // get temp list of all exercise ids
   let tempExerciseIds = [];
@@ -35,62 +43,71 @@ function AddExerciseModal({ onHide, show, workout, handleAddExercise }) {
   // console.log(filteredExercises);
 
   return (
-    <Modal
-      size="lg"
-      show={show}
-      onHide={onHide}
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Body>
-        <h3 className="display-4 text-center">Add Exercise</h3>
+    <>
+      <Modal
+        size="lg"
+        show={show}
+        onHide={onHide}
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Body>
+          <h3 className="display-4 text-center">Add Exercise</h3>
 
-        {/* Add input search to filter list */}
-        {/* Add checkbox to include existing exercises */}
-        <div className="d-flex flex-column gap-2">
-          <InputGroup className="d-flex justify-content-center">
-            <InputGroup.Checkbox
-              checked={includeExistingExercises}
-              onChange={() => setIncludeExistingExercises((prev) => !prev)}
-              id="checkbox"
-            />
-            <label htmlFor="checkbox">
-              <InputGroup.Text className="fst-italic">
-                Include existing exercises
-              </InputGroup.Text>
-            </label>
-          </InputGroup>
-          {exercisesToMap.map((exercise, index) => (
-            <Button
-              onClick={() => handleAddExercise(exercise)}
-              variant="outline-dark"
-              key={index}
-            >
-              {exercise.name}
-            </Button>
-          ))}
-        </div>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button
-          onClick={() => {
-            onHide();
-            vibrator(1);
-          }}
-          variant="secondary"
-        >
-          Cancel
-        </Button>
-        <Button
-          onClick={() => {
-            // handleConfirm();
-            vibrator(1);
-          }}
-        >
-          + Create Exercise
-        </Button>
-      </Modal.Footer>
-    </Modal>
+          {/* Add input search to filter list */}
+          {/* Add checkbox to include existing exercises */}
+          <div className="d-flex flex-column gap-2">
+            <InputGroup className="d-flex justify-content-center">
+              <InputGroup.Checkbox
+                checked={includeExistingExercises}
+                onChange={() => setIncludeExistingExercises((prev) => !prev)}
+                id="checkbox"
+              />
+              <label htmlFor="checkbox">
+                <InputGroup.Text className="fst-italic">
+                  Include existing exercises
+                </InputGroup.Text>
+              </label>
+            </InputGroup>
+            {exercisesToMap.map((exercise, index) => (
+              <Button
+                onClick={() => handleAddExercise(exercise)}
+                variant="outline-dark"
+                key={index}
+              >
+                {exercise.name}
+              </Button>
+            ))}
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            onClick={() => {
+              onHide();
+              vibrator(1);
+            }}
+            variant="secondary"
+          >
+            Cancel
+          </Button>
+          <Button
+            onClick={() => {
+              setShowCreateExerciseModal(true);
+              vibrator(1);
+            }}
+          >
+            Create New Exercise
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      <CreateExerciseModal
+        show={showCreateExerciseModal}
+        onHide={() => setShowCreateExerciseModal(false)}
+        workoutInProgress={workoutInProgress}
+        hideAddExerciseModal={onHide}
+        handleAddExercise={handleAddExercise}
+      />
+    </>
   );
 }
 

@@ -66,6 +66,7 @@ function WorkoutAccordion({
         onHide={() => setShowAddExerciseModal(false)}
         workout={workout}
         handleAddExercise={handleAddExercise}
+        workoutInProgress={true}
       />
     </>
   );
