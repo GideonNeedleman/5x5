@@ -71,7 +71,10 @@ function AddExerciseModal({
             </InputGroup>
             {exercisesToMap.map((exercise, index) => (
               <Button
-                onClick={() => handleAddExercise(exercise)}
+                onClick={() => {
+                  handleAddExercise(exercise);
+                  vibrator(1);
+                }}
                 variant="outline-dark"
                 key={index}
               >

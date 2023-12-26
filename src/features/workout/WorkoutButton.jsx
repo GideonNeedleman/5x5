@@ -34,8 +34,14 @@ function WorkoutButton({ workoutId, index, program, location = "home" }) {
         variant={variant}
         onClick={
           location === "home" || location === "myworkouts"
-            ? handleClick
-            : handleAddWorkout //location === 'add'
+            ? () => {
+                handleClick();
+                vibrator(1);
+              }
+            : () => {
+                handleAddWorkout();
+                vibrator(1);
+              } //location === 'add'
         }
         disabled={
           location === "add" &&
@@ -48,7 +54,10 @@ function WorkoutButton({ workoutId, index, program, location = "home" }) {
       <Button
         variant={variant}
         style={{ position: "absolute", right: "16px" }}
-        onClick={() => setIsOpen(true)}
+        onClick={() => {
+          setIsOpen(true);
+          vibrator(1);
+        }}
       >
         <BsThreeDotsVertical />
       </Button>

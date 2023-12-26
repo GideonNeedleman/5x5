@@ -54,7 +54,10 @@ function WorkoutAccordion({
       </Accordion>
       <div className="d-flex justify-content-center">
         <Button
-          onClick={() => setShowAddExerciseModal(true)}
+          onClick={() => {
+            vibrator(1);
+            setShowAddExerciseModal(true);
+          }}
           className="mt-3 w-50"
           variant="outline-primary"
         >

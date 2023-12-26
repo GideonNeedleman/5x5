@@ -13,7 +13,7 @@ function SubmitButtonBar({ children, onHide, modal = false }) {
           modal
             ? () => {
                 onHide();
-                vibrator(-1);
+                vibrator(1);
               }
             : () => {
                 navigate(-1);

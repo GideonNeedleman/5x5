@@ -48,7 +48,10 @@ function SetButtons({
           <Button
             variant="secondary"
             className="w-100"
-            onClick={() => setIsModalOpen(true)}
+            onClick={() => {
+              setIsModalOpen(true);
+              vibrator(1);
+            }}
           >
             <BsInfoCircleFill /> Info
           </Button>

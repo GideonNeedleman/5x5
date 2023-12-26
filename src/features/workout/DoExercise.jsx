@@ -3,6 +3,7 @@ import Accordion from "react-bootstrap/Accordion";
 import DoSet from "./DoSet";
 import { BsCheckSquareFill } from "react-icons/bs";
 import { Button } from "react-bootstrap";
+import vibrator from "vibrator";
 
 function DoExercise({
   exercise,
@@ -96,7 +97,10 @@ function DoExercise({
         </Accordion>
         <div className="d-flex justify-content-center">
           <Button
-            onClick={handleAddSet}
+            onClick={() => {
+              vibrator(1);
+              handleAddSet();
+            }}
             className="mt-3"
             size="sm"
             variant="outline-dark"

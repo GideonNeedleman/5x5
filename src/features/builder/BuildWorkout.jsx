@@ -8,6 +8,7 @@ import { useGlobalContext } from "../../context/GlobalContext";
 import AddExerciseToWorkout from "./AddExerciseToWorkout";
 import IncrementButtonBar from "../../components/IncrementButtonBar";
 import SubmitButtonBar from "../../components/SubmitButtonBar";
+import vibrator from "vibrator";
 
 function BuildWorkout({ edit = false, workoutToEdit }) {
   const { dispatch, workoutData, exerciseData } = useGlobalContext();
@@ -157,7 +158,10 @@ function BuildWorkout({ edit = false, workoutToEdit }) {
               className="w-100 mt-3"
               size="sm"
               variant="info"
-              onClick={() => navigate("/build-exercise")}
+              onClick={() => {
+                navigate("/build-exercise");
+                vibrator(1);
+              }}
             >
               Create New Exercise
             </Button>

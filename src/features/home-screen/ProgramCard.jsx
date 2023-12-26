@@ -6,6 +6,7 @@ import WorkoutButton from "../workout/WorkoutButton";
 import ProgramModal from "./ProgramModal";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
+import vibrator from "vibrator";
 
 function ProgramCard({ program, icon = "none", location = "home" }) {
   const { dispatch } = useGlobalContext();
@@ -25,14 +26,20 @@ function ProgramCard({ program, icon = "none", location = "home" }) {
         return (
           <BsThreeDotsVertical
             className="mt-1"
-            onClick={() => setIsOpen(true)}
+            onClick={() => {
+              setIsOpen(true);
+              vibrator(1);
+            }}
           />
         );
       case "add":
         return (
           <BsThreeDotsVertical
             className="mt-1"
-            onClick={() => setIsOpen(true)}
+            onClick={() => {
+              setIsOpen(true);
+              vibrator(1);
+            }}
           />
         );
       /* case "add":
@@ -63,7 +70,10 @@ function ProgramCard({ program, icon = "none", location = "home" }) {
                 value={{ color: "var(--bs-primary)", size: "1.5rem" }}
               >
                 <BsFillPlusSquareFill
-                  onClick={handleAddProgram}
+                  onClick={() => {
+                    handleAddProgram();
+                    vibrator(1);
+                  }}
                   className="me-2"
                 />
               </IconContext.Provider>

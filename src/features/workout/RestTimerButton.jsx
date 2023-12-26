@@ -40,7 +40,10 @@ function RestTimerButton({ seconds, onClick, setIsDoneCountDown }) {
       <ButtonGroup className="w-100" size="lg">
         <Button
           variant={timerId.current ? "warning" : "primary"}
-          onClick={() => setCountdown((prev) => prev - 30)}
+          onClick={() => {
+            setCountdown((prev) => prev - 30);
+            vibrator(1);
+          }}
         >
           <BsDashLg />
         </Button>
@@ -49,14 +52,20 @@ function RestTimerButton({ seconds, onClick, setIsDoneCountDown }) {
             className="w-100"
             variant="warning"
             size="lg"
-            onClick={() => setCountdown(0)}
+            onClick={() => {
+              setCountdown(0);
+              vibrator(1);
+            }}
           >
             <span className="fw-bold">{formatTime(countdown)}</span>
           </Button>
         ) : (
           <Button
             className="w-100"
-            onClick={startTimer}
+            onClick={() => {
+              startTimer();
+              vibrator(1);
+            }}
             type="submit"
             size="lg"
           >
@@ -72,7 +81,10 @@ function RestTimerButton({ seconds, onClick, setIsDoneCountDown }) {
         )}
         <Button
           variant={timerId.current ? "warning" : "primary"}
-          onClick={() => setCountdown((prev) => prev + 30)}
+          onClick={() => {
+            setCountdown((prev) => prev + 30);
+            vibrator(1);
+          }}
         >
           <BsPlusLg />
         </Button>
