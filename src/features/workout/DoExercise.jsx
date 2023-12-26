@@ -97,10 +97,11 @@ function DoExercise({
         <div className="d-flex justify-content-center">
           <Button
             onClick={handleAddSet}
-            className="mt-3 w-50"
-            variant="outline-primary"
+            className="mt-3"
+            size="sm"
+            variant="outline-dark"
           >
-            Add set
+            + Add Set
           </Button>
         </div>
       </Accordion.Body>

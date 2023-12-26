@@ -58,7 +58,7 @@ function WorkoutAccordion({
           className="mt-3 w-50"
           variant="outline-primary"
         >
-          Add Exercise
+          + Add Exercise
         </Button>
       </div>
       <AddExerciseModal
@@ -66,6 +66,7 @@ function WorkoutAccordion({
         onHide={() => setShowAddExerciseModal(false)}
         workout={workout}
         handleAddExercise={handleAddExercise}
+        workoutInProgress={true}
       />
     </>
   );
