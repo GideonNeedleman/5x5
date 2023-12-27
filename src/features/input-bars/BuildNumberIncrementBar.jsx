@@ -62,6 +62,7 @@ function BuildNumberIncrementBar({
               className="text-capitalize text-center fw-semibold m-0 border-0 rounded"
               {...register(`${fieldName}-name`)}
               placeholder="metric name"
+              required
               style={{ maxWidth: "50%" }}
               defaultValue={defaultValue?.name}
               disabled={edit}
