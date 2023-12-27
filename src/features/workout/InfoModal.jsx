@@ -15,12 +15,12 @@ export default function InfoModal({ show, onHide, exercise }) {
         <Card.Header className="text-center" as={"h3"}>
           Exercise Info
         </Card.Header>
-        <Card.Body>
+        <Card.Body className="py-2">
           {hasDescription
             ? exercise.description
             : "Sorry, no exercise description available"}
         </Card.Body>
-        <Card.Header className="text-center mt-2" as="h3">
+        <Card.Header className="text-center " as="h3">
           Metric Info
         </Card.Header>
         <Card.Body className="p-0">

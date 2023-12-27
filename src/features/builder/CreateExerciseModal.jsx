@@ -16,7 +16,7 @@ function CreateExerciseModal({
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Body>
+      <Modal.Body className="p-1">
         <BuildExercise
           onHide={onHide}
           workoutInProgress={workoutInProgress}
