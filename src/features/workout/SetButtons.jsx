@@ -98,7 +98,11 @@ function SetButtons({
           )}
         </Col>
       </Row>
-      <InfoModal show={isModalOpen} onHide={() => setIsModalOpen(false)} />
+      <InfoModal
+        show={isModalOpen}
+        onHide={() => setIsModalOpen(false)}
+        exercise={exercise}
+      />
     </>
   );
 }

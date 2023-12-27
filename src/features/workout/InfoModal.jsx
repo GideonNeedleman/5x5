@@ -1,6 +1,8 @@
+import { Card, ListGroup } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 
-export default function InfoModal({ show, onHide, info }) {
+export default function InfoModal({ show, onHide, exercise }) {
+  const hasDescription = exercise.description ? "true" : false;
   return (
     <Modal
       show={show}
@@ -9,11 +11,35 @@ export default function InfoModal({ show, onHide, info }) {
       centered
       onHide={onHide}
     >
-      <Modal.Title className="text-center">Info Box</Modal.Title>
-      <Modal.Body>Information will go here</Modal.Body>
-      {/*       <Modal.Footer>
-        <Button onClick={onHide}>Close</Button>
-      </Modal.Footer> */}
+      <Card border="primary">
+        <Card.Header className="text-center" as={"h3"}>
+          Exercise Info
+        </Card.Header>
+        <Card.Body className="py-2">
+          {hasDescription
+            ? exercise.description
+            : "Sorry, no exercise description available"}
+        </Card.Body>
+        <Card.Header className="text-center " as="h3">
+          Metric Info
+        </Card.Header>
+        <Card.Body className="p-0">
+          <ListGroup variant="flush" className="">
+            {exercise.metrics.map((metric, index) => (
+              <ListGroup.Item key={index} className="">
+                <span className="text-capitalize">
+                  {metric.name}:
+                  {metric.adaptive ? (
+                    <span> adaptive</span>
+                  ) : (
+                    <span> not adaptive</span>
+                  )}
+                </span>
+              </ListGroup.Item>
+            ))}
+          </ListGroup>
+        </Card.Body>
+      </Card>
     </Modal>
   );
 }

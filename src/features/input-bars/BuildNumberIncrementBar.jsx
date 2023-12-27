@@ -62,6 +62,7 @@ function BuildNumberIncrementBar({
               className="text-capitalize text-center fw-semibold m-0 border-0 rounded"
               {...register(`${fieldName}-name`)}
               placeholder="metric name"
+              required
               style={{ maxWidth: "50%" }}
               defaultValue={defaultValue?.name}
               disabled={edit}
@@ -141,7 +142,7 @@ function BuildNumberIncrementBar({
       </Card>
       <details className="mt-2">
         <summary>Advanced options</summary>
-        <div className="d-flex align-items-baseline gap-2 ">
+        <div className="d-flex align-items-baseline gap-2 mb-2">
           <Form.Check
             type="switch"
             label="Adaptive Metric"
@@ -156,6 +157,22 @@ function BuildNumberIncrementBar({
             </IconContext.Provider>
           </Popup>
         </div>
+        <Form.Check
+          {...register(`${fieldName}-better`)}
+          name={`${fieldName}-better`}
+          type="radio"
+          value="bigger"
+          label="Bigger is better"
+          defaultChecked={defaultValue?.better === "bigger" || !defaultValue}
+        />
+        <Form.Check
+          {...register(`${fieldName}-better`)}
+          name={`${fieldName}-better`}
+          type="radio"
+          value="smaller"
+          label="Smaller is better"
+          defaultChecked={defaultValue?.better === "smaller"}
+        />
       </details>
       <input
         {...register(`${fieldName}-inputBar`)}

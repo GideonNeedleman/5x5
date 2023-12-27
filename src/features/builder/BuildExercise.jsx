@@ -45,7 +45,7 @@ function BuildExercise({
     // dispatch newExercise into exerciseData object
     // navigate away
     const id = exerciseData.length + 1;
-    const { name, restTimer, ...metricsObject } = data;
+    const { name, restTimer, description, ...metricsObject } = data;
 
     // 1) count number of metrics
     const keys = Object.keys(metricsObject);
@@ -81,18 +81,20 @@ function BuildExercise({
     const exerciseObject = {
       name,
       id,
+      description,
       restTimer: restTimerSeconds,
       metrics: metricsArray,
     };
     const editedExerciseObject = {
       name,
       id: exerciseToEdit?.id,
+      description,
       restTimer: restTimerSeconds,
       metrics: metricsArray,
     };
-    // console.log("raw data", data);
-    // console.log("exercise object", exerciseObject);
-    // console.log("edited exercise object", editedExerciseObject);
+    console.log("raw data", data);
+    console.log("exercise object", exerciseObject);
+    console.log("edited exercise object", editedExerciseObject);
 
     {
       edit
@@ -126,7 +128,19 @@ function BuildExercise({
             </InputGroup>
           </Form.Group>
 
-          <Form.Group controlId="restTimer" className="mt-3">
+          <Form.Group controlId="exerciseDescription" className="mt-2">
+            <InputGroup>
+              <Form.Control
+                as="textarea"
+                rows={2}
+                placeholder="Optional description"
+                {...register("description")}
+                defaultValue={edit ? exerciseToEdit?.description : ""}
+              />
+            </InputGroup>
+          </Form.Group>
+
+          <Form.Group controlId="restTimer" className="mt-2">
             <InputGroup>
               <InputGroup.Text>Rest Timer</InputGroup.Text>
 
