@@ -162,6 +162,7 @@ function BuildNumberIncrementBar({
           type="radio"
           value="bigger"
           label="Bigger is better"
+          defaultChecked={defaultValue?.better === "bigger" || !defaultValue}
         />
         <Form.Check
           {...register(`${fieldName}-better`)}
@@ -169,6 +170,7 @@ function BuildNumberIncrementBar({
           type="radio"
           value="smaller"
           label="Smaller is better"
+          defaultChecked={defaultValue?.better === "smaller"}
         />
       </details>
       <input

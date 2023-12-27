@@ -13,7 +13,7 @@ function SetBody({
   // in future can generalize to other metrics by looping over set metrics and displaying input fields for each one. Can also have different types of metrics (integer values, times, distances, text dropdown, etc) to properly format the inputs. Use metric.inputBar to choose correct inputBar type. Maybe use switch statement when mapping over the metrics array.
   return (
     <>
-      {exercise.metrics.map((metric) => (
+      {exercise.metrics.map((metric, index) => (
         <NumberIncrementBar
           metric={metric}
           register={register}
@@ -24,7 +24,7 @@ function SetBody({
           isUnlocked={isUnlocked}
           defaultValue={set.metrics[metric.name]}
           // fieldName={metric.name}
-          key={metric.name}
+          key={index}
         />
       ))}
     </>
