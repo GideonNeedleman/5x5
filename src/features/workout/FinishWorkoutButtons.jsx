@@ -9,9 +9,10 @@ function FinishWorkoutButtons({
   handleCancelModal,
   handleConfirmationModal,
   justGo,
-  setShowSaveModal,
+  newWorkout,
 }) {
-  const { handleFinishWorkout } = useGlobalContext();
+  const { handleFinishWorkout, handleFinishJustGo, handleFinishJustGoAndSave } =
+    useGlobalContext();
   const navigate = useNavigate();
   return (
     <>
@@ -37,10 +38,17 @@ function FinishWorkoutButtons({
                 type="submit"
                 onClick={
                   justGo
-                    ? () => {
-                        setShowSaveModal(true);
-                        vibrator(1);
-                      }
+                    ? newWorkout.name
+                      ? () => {
+                          handleFinishJustGoAndSave(newWorkout);
+                          navigate("/review");
+                          vibrator([100, 100, 100, 100, 500]);
+                        }
+                      : () => {
+                          handleFinishJustGo();
+                          navigate("/review");
+                          vibrator(1);
+                        }
                     : () => {
                         handleFinishWorkout();
                         navigate("/review");

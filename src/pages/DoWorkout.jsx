@@ -8,24 +8,32 @@ import BeginWorkoutButtons from "../features/workout/BeginWorkoutButtons";
 import FinishWorkoutButtons from "../features/workout/FinishWorkoutButtons";
 import WorkoutAccordion from "../features/workout/WorkoutAccordion";
 import WorkoutTable from "../features/workout/WorkoutTable";
-import SaveModal from "../features/workout/SaveModal";
+import SaveWorkoutName from "../features/workout/SaveWorkoutName";
 
 function DoWorkout({ justGo = false }) {
   const {
     activeWorkout: workout,
     isWorkoutStarted,
     activeKey,
+    workoutData,
     dispatch,
   } = useGlobalContext();
   const navigate = useNavigate();
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [showCancelModal, setShowCancelModal] = useState(false);
-  const [showSaveModal, setShowSaveModal] = useState(false);
   const [numFinishedExercises, setNumFinishedExercises] = useState(0);
   //maybe can just use straight workout (activeWorkout) since it's a deep copy of workoutData?
   const [expandedWorkout, setExpandedWorkout] = useState(workout);
   const numExercises = expandedWorkout.exercises.length;
   const [isWorkoutFinished, setIsWorkoutFinished] = useState(false);
+  const [workoutName, setWorkoutName] = useState();
+  const newWorkout = {
+    ...expandedWorkout,
+    name: workoutName,
+    id: workoutData.length + 1,
+  };
+
+  console.log("new workout", newWorkout);
 
   function handleBack() {
     dispatch({ type: "clear-workout" });
@@ -43,7 +51,6 @@ function DoWorkout({ justGo = false }) {
   function handleCancelModal() {
     setShowCancelModal(true);
   }
-  // console.log("save workout modal", showSaveModal);
 
   useEffect(() => {
     if (numFinishedExercises === numExercises) setIsWorkoutFinished(true);
@@ -81,27 +88,27 @@ function DoWorkout({ justGo = false }) {
         handleCancelModal={handleCancelModal}
         handleConfirmationModal={handleConfirmationModal}
         justGo={justGo}
-        setShowSaveModal={setShowSaveModal}
+        newWorkout={newWorkout}
       />
+
+      {justGo && newWorkout.exercises.length > 0 && (
+        <SaveWorkoutName
+          workoutName={workoutName}
+          setWorkoutName={setWorkoutName}
+        />
+      )}
 
       <ConfirmFinishWorkoutModal
         show={showConfirmationModal}
         onHide={() => setShowConfirmationModal(false)}
         justGo={justGo}
-        setShowSaveModal={setShowSaveModal}
+        newWorkout={newWorkout}
       />
 
       <ConfirmCancelWorkoutModal
         show={showCancelModal}
         onHide={() => setShowCancelModal(false)}
         handleClose={handleBack}
-      />
-
-      <SaveModal
-        show={showSaveModal}
-        workout={expandedWorkout}
-        // onHide={() => setShowSaveModal(false)}
-        // handleClose={handleBack}
       />
     </>
   );
