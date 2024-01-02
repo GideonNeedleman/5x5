@@ -310,6 +310,19 @@ function GlobalContextProvider({ children }) {
     dispatch({ type: "finish-just-go" });
   }
 
+  function handleFinishJustGoAndSave(newWorkout) {
+    dispatch({
+      type: "create-new-workout",
+      payload: newWorkout,
+    });
+    dispatch({ type: "add-workout", payload: newWorkout });
+    dispatch({
+      type: "just-go-save-workout",
+      payload: newWorkout,
+    });
+    handleFinishJustGo();
+  }
+
   useEffect(() => {
     localStorage.setItem("recordData", JSON.stringify(recordData));
   }, [recordData]);
@@ -354,6 +367,7 @@ function GlobalContextProvider({ children }) {
 
         handleFinishWorkout,
         handleFinishJustGo,
+        handleFinishJustGoAndSave,
       }}
     >
       {children}

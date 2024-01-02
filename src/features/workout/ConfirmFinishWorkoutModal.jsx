@@ -5,7 +5,8 @@ import { useGlobalContext } from "../../context/GlobalContext";
 import vibrator from "vibrator";
 
 function ConfirmFinishWorkoutModal({ onHide, show, justGo, newWorkout }) {
-  const { handleFinishWorkout, handleFinishJustGo } = useGlobalContext();
+  const { handleFinishWorkout, handleFinishJustGo, handleFinishJustGoAndSave } =
+    useGlobalContext();
   const navigate = useNavigate();
 
   return (
@@ -31,11 +32,17 @@ function ConfirmFinishWorkoutModal({ onHide, show, justGo, newWorkout }) {
         <Button
           onClick={
             justGo
-              ? () => {
-                  handleFinishJustGo();
-                  navigate("/review");
-                  vibrator(1);
-                }
+              ? newWorkout.name
+                ? () => {
+                    handleFinishJustGoAndSave(newWorkout);
+                    navigate("/review");
+                    vibrator([100, 100, 100, 100, 500]);
+                  }
+                : () => {
+                    handleFinishJustGo();
+                    navigate("/review");
+                    vibrator(1);
+                  }
               : () => {
                   handleFinishWorkout();
                   navigate("/review");
