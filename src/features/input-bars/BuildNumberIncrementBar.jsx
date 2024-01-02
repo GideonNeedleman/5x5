@@ -49,6 +49,9 @@ function BuildNumberIncrementBar({
     resetField(`${fieldName}-adaptive`, {
       defaultValue: defaultValue?.adaptive,
     });
+    resetField(`${fieldName}-better`, {
+      defaultValue: defaultValue?.better,
+    });
     edit && resetField(`${fieldName}-inputBar`, { defaultValue: inputBar });
   }, [resetField, fieldName, defaultValue, edit, inputBar]);
 

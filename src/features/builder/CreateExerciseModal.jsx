@@ -19,7 +19,7 @@ function CreateExerciseModal({
       units: "lbs",
     },
     {
-      adaptive: true,
+      adaptive: false,
       better: "bigger",
       default: null,
       inputBar: "NumberInputBar",
