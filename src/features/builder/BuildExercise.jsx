@@ -36,7 +36,7 @@ function BuildExercise({
   } = form;
   const registerWithMask = useHookFormMask(register);
   const [numMetrics, setNumMetrics] = useState(
-    edit ? exerciseToEdit.metrics.length : 1
+    edit ? exerciseToEdit.metrics.length : defaultSetup?.length || 1
   );
   const arrayToMap = [...Array(numMetrics)];
 
@@ -195,6 +195,7 @@ function BuildExercise({
                   watch={watch}
                   index={index + 1}
                   key={index}
+                  defaultValue={defaultSetup[index]}
                 />
               ))}
 
