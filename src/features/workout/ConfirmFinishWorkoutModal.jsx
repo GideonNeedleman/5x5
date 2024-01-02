@@ -17,7 +17,7 @@ function ConfirmFinishWorkoutModal({ onHide, show, justGo, newWorkout }) {
       centered
     >
       <Modal.Body>
-        <h3 className="text-center">Confirm finish workout early</h3>
+        <h3 className="text-center">Confirm Finish Workout</h3>
       </Modal.Body>
       <Modal.Footer>
         <Button
