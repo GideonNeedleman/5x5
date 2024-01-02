@@ -8,24 +8,33 @@ import BeginWorkoutButtons from "../features/workout/BeginWorkoutButtons";
 import FinishWorkoutButtons from "../features/workout/FinishWorkoutButtons";
 import WorkoutAccordion from "../features/workout/WorkoutAccordion";
 import WorkoutTable from "../features/workout/WorkoutTable";
-import SaveModal from "../features/workout/SaveModal";
+// import SaveModal from "../features/workout/SaveModal";
+import { Form } from "react-bootstrap";
 
 function DoWorkout({ justGo = false }) {
   const {
     activeWorkout: workout,
     isWorkoutStarted,
     activeKey,
+    workoutData,
     dispatch,
   } = useGlobalContext();
   const navigate = useNavigate();
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [showCancelModal, setShowCancelModal] = useState(false);
-  const [showSaveModal, setShowSaveModal] = useState(false);
   const [numFinishedExercises, setNumFinishedExercises] = useState(0);
   //maybe can just use straight workout (activeWorkout) since it's a deep copy of workoutData?
   const [expandedWorkout, setExpandedWorkout] = useState(workout);
   const numExercises = expandedWorkout.exercises.length;
   const [isWorkoutFinished, setIsWorkoutFinished] = useState(false);
+  const [workoutName, setWorkoutName] = useState();
+  const newWorkout = {
+    ...expandedWorkout,
+    name: workoutName,
+    id: workoutData.length + 1,
+  };
+
+  console.log("new workout", newWorkout);
 
   function handleBack() {
     dispatch({ type: "clear-workout" });
@@ -75,20 +84,36 @@ function DoWorkout({ justGo = false }) {
         <WorkoutTable workout={workout} />
       )}
 
+      {justGo && (
+        <Form.Group className="mx-2 mt-2">
+          <Form.Label className="mb-1" htmlFor="workoutName">
+            Enter name to save workout for future use
+          </Form.Label>
+          <Form.Control
+            type="text"
+            id="workoutName"
+            placeholder="Workout name"
+            className=""
+            value={workoutName}
+            onChange={(e) => setWorkoutName(e.target.value)}
+          />
+        </Form.Group>
+      )}
+
       <FinishWorkoutButtons
         isWorkoutStarted={isWorkoutStarted}
         isWorkoutFinished={isWorkoutFinished}
         handleCancelModal={handleCancelModal}
         handleConfirmationModal={handleConfirmationModal}
         justGo={justGo}
-        setShowSaveModal={setShowSaveModal}
+        newWorkout={newWorkout}
       />
 
       <ConfirmFinishWorkoutModal
         show={showConfirmationModal}
         onHide={() => setShowConfirmationModal(false)}
         justGo={justGo}
-        setShowSaveModal={setShowSaveModal}
+        newWorkout={newWorkout}
       />
 
       <ConfirmCancelWorkoutModal
@@ -97,12 +122,12 @@ function DoWorkout({ justGo = false }) {
         handleClose={handleBack}
       />
 
-      <SaveModal
+      {/*       <SaveModal
         show={showSaveModal}
         workout={expandedWorkout}
         // onHide={() => setShowSaveModal(false)}
         // handleClose={handleBack}
-      />
+      /> */}
     </>
   );
 }

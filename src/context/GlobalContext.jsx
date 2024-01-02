@@ -104,7 +104,6 @@ function reducer(state, action) {
         isWorkoutFinished: true,
         activeKey: 1,
         recordData: [...state.recordData, ...state.tempRecordData],
-        // tempRecordData: [],
         workoutHistory: [
           ...state.workoutHistory,
           { ...state.tempWorkoutHistoryRecord, finishTime: new Date() },
@@ -308,16 +307,6 @@ function GlobalContextProvider({ children }) {
     for (let i in tempRecordData) {
       delete tempRecordData[i].setId;
     }
-
-    /* dispatch({
-      type: "update-adaptive-metrics",
-      payload: workoutData.find(
-        (workout) =>
-          workout.id ===
-          programData.find((program) => program.id === activeProgramId)
-            .workouts[activeWorkoutIndex]
-      ),
-    }); */
     dispatch({ type: "finish-just-go" });
   }
 
