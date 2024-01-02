@@ -85,7 +85,7 @@ function DoWorkout({ justGo = false }) {
       )}
 
       {justGo && (
-        <Form.Group className="mx-2 mt-2">
+        <Form.Group className="px-2 mt-3 pb-2 bg-primary-subtle">
           <Form.Label className="mb-1" htmlFor="workoutName">
             Enter name to save workout for future use
           </Form.Label>
