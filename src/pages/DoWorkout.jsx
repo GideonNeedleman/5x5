@@ -8,8 +8,7 @@ import BeginWorkoutButtons from "../features/workout/BeginWorkoutButtons";
 import FinishWorkoutButtons from "../features/workout/FinishWorkoutButtons";
 import WorkoutAccordion from "../features/workout/WorkoutAccordion";
 import WorkoutTable from "../features/workout/WorkoutTable";
-// import SaveModal from "../features/workout/SaveModal";
-import { Form } from "react-bootstrap";
+import SaveWorkoutName from "../features/workout/SaveWorkoutName";
 
 function DoWorkout({ justGo = false }) {
   const {
@@ -52,7 +51,6 @@ function DoWorkout({ justGo = false }) {
   function handleCancelModal() {
     setShowCancelModal(true);
   }
-  // console.log("save workout modal", showSaveModal);
 
   useEffect(() => {
     if (numFinishedExercises === numExercises) setIsWorkoutFinished(true);
@@ -84,22 +82,6 @@ function DoWorkout({ justGo = false }) {
         <WorkoutTable workout={workout} />
       )}
 
-      {justGo && (
-        <Form.Group className="px-2 mt-3 pb-2 bg-primary-subtle">
-          <Form.Label className="mb-1" htmlFor="workoutName">
-            Enter name to save workout for future use
-          </Form.Label>
-          <Form.Control
-            type="text"
-            id="workoutName"
-            placeholder="Workout name"
-            className=""
-            value={workoutName}
-            onChange={(e) => setWorkoutName(e.target.value)}
-          />
-        </Form.Group>
-      )}
-
       <FinishWorkoutButtons
         isWorkoutStarted={isWorkoutStarted}
         isWorkoutFinished={isWorkoutFinished}
@@ -108,6 +90,13 @@ function DoWorkout({ justGo = false }) {
         justGo={justGo}
         newWorkout={newWorkout}
       />
+
+      {justGo && newWorkout.exercises.length > 0 && (
+        <SaveWorkoutName
+          workoutName={workoutName}
+          setWorkoutName={setWorkoutName}
+        />
+      )}
 
       <ConfirmFinishWorkoutModal
         show={showConfirmationModal}
@@ -121,13 +110,6 @@ function DoWorkout({ justGo = false }) {
         onHide={() => setShowCancelModal(false)}
         handleClose={handleBack}
       />
-
-      {/*       <SaveModal
-        show={showSaveModal}
-        workout={expandedWorkout}
-        // onHide={() => setShowSaveModal(false)}
-        // handleClose={handleBack}
-      /> */}
     </>
   );
 }
