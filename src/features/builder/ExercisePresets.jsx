@@ -2,7 +2,11 @@ import { Button } from "react-bootstrap";
 import { useGlobalContext } from "../../context/GlobalContext";
 import vibrator from "vibrator";
 
-function ExercisePresets({ onHide, setChosenPreset, setShowPresets }) {
+function ExercisePresets({
+  onHide,
+  setChosenPreset,
+  setShowCreateExerciseModal,
+}) {
   const { exercisePresets } = useGlobalContext();
 
   return (
@@ -11,8 +15,9 @@ function ExercisePresets({ onHide, setChosenPreset, setShowPresets }) {
       <div className="d-flex flex-column gap-2">
         <Button
           onClick={() => {
+            setShowCreateExerciseModal(true);
             vibrator(1);
-            setShowPresets(false);
+            onHide();
           }}
           variant="secondary"
           className="text-capitalize"
@@ -24,7 +29,8 @@ function ExercisePresets({ onHide, setChosenPreset, setShowPresets }) {
             onClick={() => {
               vibrator(1);
               setChosenPreset(preset.metrics);
-              setShowPresets(false);
+              setShowCreateExerciseModal(true);
+              onHide();
             }}
             variant="outline-secondary"
             key={index}

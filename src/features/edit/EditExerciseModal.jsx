@@ -1,19 +1,18 @@
 import Modal from "react-bootstrap/Modal";
-import BuildExercise from "./BuildExercise";
+import BuildExercise from "../builder/BuildExercise";
 // import { useState } from "react";
-// import ExercisePresets from "./ExercisePresets";
 
-function CreateExerciseModal({
+function EditExerciseModal({
   onHide,
   show,
+  exerciseToEdit,
   workoutInProgress,
-  hideAddExerciseModal,
   handleAddExercise,
-  chosenPreset,
+  // hideAddExerciseModal,
 }) {
-  /*   function resetAndHide() {
+  function resetAndHide() {
     onHide();
-  } */
+  }
 
   return (
     <Modal
@@ -25,15 +24,16 @@ function CreateExerciseModal({
     >
       <Modal.Body className="p-1">
         <BuildExercise
-          onHide={onHide}
-          workoutInProgress={workoutInProgress}
-          hideAddExerciseModal={hideAddExerciseModal}
+          onHide={resetAndHide}
+          workoutInProgress={false}
+          // hideAddExerciseModal={hideAddExerciseModal}
+          edit={true}
+          exerciseToEdit={exerciseToEdit}
           handleAddExercise={handleAddExercise}
-          defaultSetup={chosenPreset}
         />
       </Modal.Body>
     </Modal>
   );
 }
 
-export default CreateExerciseModal;
+export default EditExerciseModal;

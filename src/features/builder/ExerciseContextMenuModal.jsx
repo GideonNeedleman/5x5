@@ -10,11 +10,13 @@ export default function ExerciseContextMenuModal({
   show,
   onHide,
   exercise,
+  // setExerciseToEdit,
+  setShowEditExerciseModal,
+  setIsEdit,
   // location,
 }) {
   // const { dispatch } = useGlobalContext();
   // const navigate = useNavigate();
-  console.log(show);
 
   return (
     <Modal
@@ -31,7 +33,10 @@ export default function ExerciseContextMenuModal({
         <Stack gap={2}>
           <Button
             onClick={() => {
-              // navigate(`/edit-exercise/${exercise.id}`);
+              // show BuildExerciseModal with Edit & exercise props
+              // setExerciseToEdit(exercise);
+              setIsEdit(true);
+              setShowEditExerciseModal(true);
               onHide();
               vibrator(1);
             }}
