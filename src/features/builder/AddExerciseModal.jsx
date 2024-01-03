@@ -6,6 +6,7 @@ import { Form, InputGroup } from "react-bootstrap";
 import { useState } from "react";
 import CreateExerciseModal from "./CreateExerciseModal";
 import { BsSearch, BsThreeDotsVertical } from "react-icons/bs";
+import ExerciseContextMenuModal from "./ExerciseContextMenuModal";
 
 function AddExerciseModal({
   onHide,
@@ -18,6 +19,8 @@ function AddExerciseModal({
   const [includeExistingExercises, setIncludeExistingExercises] =
     useState(false);
   const [showCreateExerciseModal, setShowCreateExerciseModal] = useState(false);
+  const [showEditExerciseModal, setShowEditExerciseModal] = useState(false);
+  const [exerciseToEdit, setExerciseToEdit] = useState();
 
   // get temp list of all exercise ids
   let tempExerciseIds = [];
@@ -30,7 +33,7 @@ function AddExerciseModal({
   const searchedExercises = exerciseData.filter((exercise) =>
     exercise.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  console.log(searchedExercises);
+  // console.log(searchedExercises);
 
   // sort exercises alphabetically
   const sortedExercises = searchedExercises.sort((a, b) => {
@@ -115,7 +118,8 @@ function AddExerciseModal({
                     color: "var(--dark)",
                   }}
                   onClick={() => {
-                    // setIsOpen(true);
+                    setShowEditExerciseModal(true);
+                    setExerciseToEdit(exercise);
                     vibrator(1);
                   }}
                 >
@@ -137,6 +141,11 @@ function AddExerciseModal({
           </Button>
         </Modal.Footer>
       </Modal>
+      <ExerciseContextMenuModal
+        show={showEditExerciseModal}
+        onHide={() => setShowEditExerciseModal(false)}
+        exercise={exerciseToEdit}
+      />
       <CreateExerciseModal
         show={showCreateExerciseModal}
         onHide={() => setShowCreateExerciseModal(false)}

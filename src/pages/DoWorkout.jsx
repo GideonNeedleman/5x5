@@ -33,7 +33,7 @@ function DoWorkout({ justGo = false }) {
     id: workoutData.length + 1,
   };
 
-  console.log("new workout", newWorkout);
+  // console.log("new workout", newWorkout);
 
   function handleBack() {
     dispatch({ type: "clear-workout" });
