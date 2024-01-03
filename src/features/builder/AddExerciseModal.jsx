@@ -2,9 +2,10 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import vibrator from "vibrator";
 import { useGlobalContext } from "../../context/GlobalContext";
-import { InputGroup } from "react-bootstrap";
+import { Form, InputGroup } from "react-bootstrap";
 import { useState } from "react";
 import CreateExerciseModal from "./CreateExerciseModal";
+import { BsSearch } from "react-icons/bs";
 
 function AddExerciseModal({
   onHide,
@@ -24,8 +25,15 @@ function AddExerciseModal({
     tempExerciseIds = [...tempExerciseIds, workout.exercises[i].id];
   }
 
+  // now apply search filter
+  const [searchTerm, setSearchTerm] = useState("");
+  const searchedExercises = exerciseData.filter((exercise) =>
+    exercise.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  console.log(searchedExercises);
+
   // sort exercises alphabetically
-  const sortedExercises = exerciseData.sort((a, b) => {
+  const sortedExercises = searchedExercises.sort((a, b) => {
     if (a.name.toUpperCase() < b.name.toUpperCase()) return -1;
     if (a.name.toUpperCase() > b.name.toUpperCase()) return 1;
   });
@@ -54,9 +62,19 @@ function AddExerciseModal({
         <Modal.Body>
           <h3 className="display-4 text-center">Add Exercise</h3>
 
-          {/* Add input search to filter list */}
-          {/* Add checkbox to include existing exercises */}
           <div className="d-flex flex-column gap-2">
+            {/* Input search to filter list */}
+            <InputGroup>
+              <InputGroup.Text>
+                <BsSearch />
+              </InputGroup.Text>
+              <Form.Control
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </InputGroup>
+            {/* Checkbox to include existing exercises */}
             <InputGroup className="d-flex justify-content-center">
               <InputGroup.Checkbox
                 checked={includeExistingExercises}
