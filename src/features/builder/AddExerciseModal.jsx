@@ -5,7 +5,7 @@ import { useGlobalContext } from "../../context/GlobalContext";
 import { Form, InputGroup } from "react-bootstrap";
 import { useState } from "react";
 import CreateExerciseModal from "./CreateExerciseModal";
-import { BsSearch } from "react-icons/bs";
+import { BsSearch, BsThreeDotsVertical } from "react-icons/bs";
 
 function AddExerciseModal({
   onHide,
@@ -96,16 +96,32 @@ function AddExerciseModal({
               Create New Exercise
             </Button>
             {exercisesToMap.map((exercise, index) => (
-              <Button
-                onClick={() => {
-                  handleAddExercise(exercise);
-                  vibrator(1);
-                }}
-                variant="outline-dark"
-                key={index}
-              >
-                {exercise.name}
-              </Button>
+              <div key={index}>
+                <Button
+                  className="w-100"
+                  onClick={() => {
+                    handleAddExercise(exercise);
+                    vibrator(1);
+                  }}
+                  variant="outline-dark"
+                >
+                  {exercise.name}
+                </Button>
+                <Button
+                  variant="link"
+                  style={{
+                    position: "absolute",
+                    right: "16px",
+                    color: "var(--dark)",
+                  }}
+                  onClick={() => {
+                    // setIsOpen(true);
+                    vibrator(1);
+                  }}
+                >
+                  <BsThreeDotsVertical />
+                </Button>
+              </div>
             ))}
           </div>
         </Modal.Body>
