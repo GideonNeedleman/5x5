@@ -1,5 +1,7 @@
 import Modal from "react-bootstrap/Modal";
 import BuildExercise from "./BuildExercise";
+import { useState } from "react";
+import ExercisePresets from "./ExercisePresets";
 
 function CreateExerciseModal({
   onHide,
@@ -8,6 +10,14 @@ function CreateExerciseModal({
   hideAddExerciseModal,
   handleAddExercise,
 }) {
+  const [showPresets, setShowPresets] = useState(true);
+  const [chosenPreset, setChosenPreset] = useState(null);
+  function resetAndHide() {
+    onHide();
+    setChosenPreset(null);
+    setShowPresets(true);
+  }
+
   return (
     <Modal
       size="lg"
@@ -17,12 +27,21 @@ function CreateExerciseModal({
       centered
     >
       <Modal.Body className="p-1">
-        <BuildExercise
-          onHide={onHide}
-          workoutInProgress={workoutInProgress}
-          hideAddExerciseModal={hideAddExerciseModal}
-          handleAddExercise={handleAddExercise}
-        />
+        {showPresets ? (
+          <ExercisePresets
+            onHide={onHide}
+            setChosenPreset={setChosenPreset}
+            setShowPresets={setShowPresets}
+          />
+        ) : (
+          <BuildExercise
+            onHide={resetAndHide}
+            workoutInProgress={workoutInProgress}
+            hideAddExerciseModal={hideAddExerciseModal}
+            handleAddExercise={handleAddExercise}
+            defaultSetup={chosenPreset}
+          />
+        )}
       </Modal.Body>
     </Modal>
   );

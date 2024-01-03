@@ -11,6 +11,7 @@ function AddMetricToExercise({
   resetField,
   watch,
   index,
+  defaultValue,
 }) {
   const inputBarType = watch(`metric-${index}-inputBar`);
 
@@ -56,6 +57,7 @@ function AddMetricToExercise({
           getValues={getValues}
           resetField={resetField}
           watch={watch}
+          defaultValue={defaultValue}
         />
       </Card.Body>
     </Card>

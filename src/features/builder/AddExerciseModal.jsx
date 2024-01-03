@@ -69,6 +69,14 @@ function AddExerciseModal({
                 </InputGroup.Text>
               </label>
             </InputGroup>
+            <Button
+              onClick={() => {
+                setShowCreateExerciseModal(true);
+                vibrator(1);
+              }}
+            >
+              Create New Exercise
+            </Button>
             {exercisesToMap.map((exercise, index) => (
               <Button
                 onClick={() => {
@@ -92,14 +100,6 @@ function AddExerciseModal({
             variant="secondary"
           >
             Cancel
-          </Button>
-          <Button
-            onClick={() => {
-              setShowCreateExerciseModal(true);
-              vibrator(1);
-            }}
-          >
-            Create New Exercise
           </Button>
         </Modal.Footer>
       </Modal>

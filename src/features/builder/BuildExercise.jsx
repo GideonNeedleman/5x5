@@ -36,7 +36,7 @@ function BuildExercise({
   } = form;
   const registerWithMask = useHookFormMask(register);
   const [numMetrics, setNumMetrics] = useState(
-    edit ? exerciseToEdit.metrics.length : 1
+    edit ? exerciseToEdit.metrics.length : defaultSetup?.length || 1
   );
   const arrayToMap = [...Array(numMetrics)];
 
@@ -123,6 +123,7 @@ function BuildExercise({
                 placeholder="Enter exercise name"
                 {...register("name")}
                 autoFocus
+                required
                 defaultValue={edit ? exerciseToEdit?.name : ""}
               />
             </InputGroup>
@@ -195,6 +196,7 @@ function BuildExercise({
                   watch={watch}
                   index={index + 1}
                   key={index}
+                  defaultValue={defaultSetup ? defaultSetup[index] : ""}
                 />
               ))}
 
