@@ -4,7 +4,7 @@ import vibrator from "vibrator";
 
 function ExercisePresets({ onHide, setChosenPreset, setShowPresets }) {
   const { exercisePresets } = useGlobalContext();
-  console.log(exercisePresets);
+
   return (
     <div className="mx-2">
       <h1 className="text-center display-4">Select Preset</h1>

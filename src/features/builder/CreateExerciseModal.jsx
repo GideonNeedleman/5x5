@@ -22,13 +22,14 @@ function CreateExerciseModal({
     <Modal
       size="lg"
       show={show}
-      onHide={resetAndHide}
+      onHide={onHide}
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
       <Modal.Body className="p-1">
         {showPresets ? (
           <ExercisePresets
+            onHide={onHide}
             setChosenPreset={setChosenPreset}
             setShowPresets={setShowPresets}
           />

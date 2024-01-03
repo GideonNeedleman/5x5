@@ -123,6 +123,7 @@ function BuildExercise({
                 placeholder="Enter exercise name"
                 {...register("name")}
                 autoFocus
+                required
                 defaultValue={edit ? exerciseToEdit?.name : ""}
               />
             </InputGroup>
@@ -195,7 +196,7 @@ function BuildExercise({
                   watch={watch}
                   index={index + 1}
                   key={index}
-                  defaultValue={defaultSetup[index]}
+                  defaultValue={defaultSetup ? defaultSetup[index] : ""}
                 />
               ))}
 
