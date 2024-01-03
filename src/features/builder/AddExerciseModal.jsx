@@ -27,10 +27,13 @@ function AddExerciseModal({
 
   // now apply search filter
   const [searchTerm, setSearchTerm] = useState("");
-  // const searchedExercises = exerciseData.filter()
+  const searchedExercises = exerciseData.filter((exercise) =>
+    exercise.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  console.log(searchedExercises);
 
   // sort exercises alphabetically
-  const sortedExercises = exerciseData.sort((a, b) => {
+  const sortedExercises = searchedExercises.sort((a, b) => {
     if (a.name.toUpperCase() < b.name.toUpperCase()) return -1;
     if (a.name.toUpperCase() > b.name.toUpperCase()) return 1;
   });
