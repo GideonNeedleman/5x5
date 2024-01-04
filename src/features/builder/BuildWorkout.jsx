@@ -156,12 +156,13 @@ function BuildWorkout({ edit = false, workoutToEdit }) {
             </IncrementButtonBar>
             <Button
               className="w-100 mt-3"
-              size="sm"
-              variant="info"
+              size=""
+              variant="outline-primary"
               onClick={() => {
                 navigate("/build-exercise");
                 vibrator(1);
               }}
+              disabled
             >
               Create New Exercise
             </Button>
