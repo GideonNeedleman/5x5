@@ -5,7 +5,7 @@ import { ErrorMessage } from "@hookform/error-message";
 import { DevTool } from "@hookform/devtools";
 import { useHookFormMask } from "use-mask-input";
 import { useGlobalContext } from "../../context/GlobalContext";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { secondsToTime, timeToSeconds } from "../../utils/helpers";
 import SubmitButtonBar from "../../components/SubmitButtonBar";
 import IncrementButtonBar from "../../components/IncrementButtonBar";
@@ -22,7 +22,7 @@ function BuildExercise({
   handleAddExercise,
 }) {
   const { dispatch, exerciseData } = useGlobalContext();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const form = useForm();
   const {
     register,
@@ -107,12 +107,16 @@ function BuildExercise({
       onHide();
       hideAddExerciseModal();
       handleAddExercise(exerciseObject);
-    } else navigate(-1);
+    } else onHide();
   }
 
   return (
     <main>
-      {!edit && <h1 className="text-center display-3">New Exercise</h1>}
+      {edit ? (
+        <h1 className="text-center display-3">Edit Exercise</h1>
+      ) : (
+        <h1 className="text-center display-3">New Exercise</h1>
+      )}
       <Container>
         <Form onSubmit={handleSubmit(handleSubmitExercise)}>
           <Form.Group controlId="exerciseName">
@@ -211,7 +215,7 @@ function BuildExercise({
             </>
           )}
 
-          <SubmitButtonBar onHide={onHide} modal={workoutInProgress}>
+          <SubmitButtonBar onHide={onHide} modal={true}>
             Save Exercise
           </SubmitButtonBar>
         </Form>

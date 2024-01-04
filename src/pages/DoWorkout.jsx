@@ -26,14 +26,14 @@ function DoWorkout({ justGo = false }) {
   const [expandedWorkout, setExpandedWorkout] = useState(workout);
   const numExercises = expandedWorkout.exercises.length;
   const [isWorkoutFinished, setIsWorkoutFinished] = useState(false);
-  const [workoutName, setWorkoutName] = useState();
+  const [workoutName, setWorkoutName] = useState("");
   const newWorkout = {
     ...expandedWorkout,
     name: workoutName,
     id: workoutData.length + 1,
   };
 
-  console.log("new workout", newWorkout);
+  // console.log("new workout", newWorkout);
 
   function handleBack() {
     dispatch({ type: "clear-workout" });

@@ -5,7 +5,10 @@ import { useGlobalContext } from "../../context/GlobalContext";
 import { Form, InputGroup } from "react-bootstrap";
 import { useState } from "react";
 import CreateExerciseModal from "./CreateExerciseModal";
-import { BsSearch } from "react-icons/bs";
+import { BsSearch, BsThreeDotsVertical } from "react-icons/bs";
+import ExerciseContextMenuModal from "./ExerciseContextMenuModal";
+import EditExerciseModal from "../edit/EditExerciseModal";
+import PresetsModal from "./PresetsModal";
 
 function AddExerciseModal({
   onHide,
@@ -18,6 +21,14 @@ function AddExerciseModal({
   const [includeExistingExercises, setIncludeExistingExercises] =
     useState(false);
   const [showCreateExerciseModal, setShowCreateExerciseModal] = useState(false);
+  const [showExerciseContextMenuModal, setShowExerciseContextMenuModal] =
+    useState(false);
+  const [showEditExerciseModal, setShowEditExerciseModal] = useState(false);
+  const [exerciseToEdit, setExerciseToEdit] = useState();
+  const [isEdit, setIsEdit] = useState(false);
+
+  const [showPresets, setShowPresets] = useState(false);
+  const [chosenPreset, setChosenPreset] = useState();
 
   // get temp list of all exercise ids
   let tempExerciseIds = [];
@@ -30,7 +41,7 @@ function AddExerciseModal({
   const searchedExercises = exerciseData.filter((exercise) =>
     exercise.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  console.log(searchedExercises);
+  // console.log(searchedExercises);
 
   // sort exercises alphabetically
   const sortedExercises = searchedExercises.sort((a, b) => {
@@ -89,23 +100,41 @@ function AddExerciseModal({
             </InputGroup>
             <Button
               onClick={() => {
-                setShowCreateExerciseModal(true);
+                setShowPresets(true);
                 vibrator(1);
               }}
             >
               Create New Exercise
             </Button>
             {exercisesToMap.map((exercise, index) => (
-              <Button
-                onClick={() => {
-                  handleAddExercise(exercise);
-                  vibrator(1);
-                }}
-                variant="outline-dark"
-                key={index}
-              >
-                {exercise.name}
-              </Button>
+              <div key={index}>
+                <Button
+                  className="w-100"
+                  onClick={() => {
+                    handleAddExercise(exercise);
+                    vibrator(1);
+                  }}
+                  variant="outline-dark"
+                >
+                  {exercise.name}
+                </Button>
+                <Button
+                  variant="link"
+                  style={{
+                    position: "absolute",
+                    right: "16px",
+                    color: "var(--dark)",
+                  }}
+                  onClick={() => {
+                    setShowExerciseContextMenuModal(true);
+                    setExerciseToEdit(exercise);
+                    // setShowEditExerciseModal(true);
+                    vibrator(1);
+                  }}
+                >
+                  <BsThreeDotsVertical />
+                </Button>
+              </div>
             ))}
           </div>
         </Modal.Body>
@@ -121,12 +150,44 @@ function AddExerciseModal({
           </Button>
         </Modal.Footer>
       </Modal>
+      <ExerciseContextMenuModal
+        show={showExerciseContextMenuModal}
+        onHide={() => setShowExerciseContextMenuModal(false)}
+        exercise={exerciseToEdit}
+        setExerciseToEdit={setExerciseToEdit}
+        setShowEditExerciseModal={setShowEditExerciseModal}
+        setIsEdit={setIsEdit}
+      />
+      {isEdit ? (
+        <EditExerciseModal
+          onHide={() => {
+            setShowEditExerciseModal(false);
+            setIsEdit(false);
+          }}
+          show={showEditExerciseModal}
+          exerciseToEdit={exerciseToEdit}
+          // workoutInProgress={false}
+          // hideAddExerciseModal={onHide}
+        />
+      ) : (
+        <PresetsModal
+          onHide={() => setShowPresets(false)}
+          show={showPresets}
+          setChosenPreset={setChosenPreset}
+          setShowCreateExerciseModal={setShowCreateExerciseModal}
+        />
+      )}
       <CreateExerciseModal
         show={showCreateExerciseModal}
-        onHide={() => setShowCreateExerciseModal(false)}
+        onHide={() => {
+          setShowCreateExerciseModal(false);
+          setChosenPreset();
+        }}
         workoutInProgress={workoutInProgress}
         hideAddExerciseModal={onHide}
         handleAddExercise={handleAddExercise}
+        chosenPreset={chosenPreset}
+        isEdit={isEdit}
       />
     </>
   );
