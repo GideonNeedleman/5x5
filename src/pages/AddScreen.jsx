@@ -1,15 +1,15 @@
-import { Button, Card, Container, Table } from "react-bootstrap";
+import { Button, Card, Container /* Table */ } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import vibrator from "vibrator";
 import { useGlobalContext } from "../context/GlobalContext";
 import ProgramCard from "../features/home-screen/ProgramCard";
 import { IconContext } from "react-icons";
-import { BsFillPencilFill, BsFillPlusSquareFill } from "react-icons/bs";
+import { /* BsFillPencilFill, */ BsFillPlusSquareFill } from "react-icons/bs";
 import WorkoutButton from "../features/workout/WorkoutButton";
 
 function AddScreen() {
   const navigate = useNavigate();
-  const { activePrograms, programData, workoutData, exerciseData } =
+  const { activePrograms, programData, workoutData /* exerciseData */ } =
     useGlobalContext();
 
   // availablePrograms are all programs not already on Home screen (in activePrograms array)
@@ -88,7 +88,7 @@ function AddScreen() {
 
         <Button
           variant="outline-primary"
-          className="w-75"
+          className="w-75  mb-3"
           onClick={() => {
             navigate("/build-workout");
             vibrator(1);
@@ -98,7 +98,7 @@ function AddScreen() {
         </Button>
 
         {/* Exercises table */}
-        <h2 className="text-center mb-0">Exercises</h2>
+        {/* <h2 className="text-center mb-0">Exercises</h2>
         <Table striped bordered>
           <tbody>
             {exerciseData
@@ -135,7 +135,7 @@ function AddScreen() {
           className="w-75 mb-3"
         >
           + New Exercise
-        </Button>
+        </Button> */}
       </Container>
     </main>
   );
