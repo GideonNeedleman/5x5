@@ -6,7 +6,7 @@ function EditExerciseModal({
   onHide,
   show,
   exerciseToEdit,
-  workoutInProgress,
+  // workoutInProgress,
   handleAddExercise,
   // hideAddExerciseModal,
 }) {
