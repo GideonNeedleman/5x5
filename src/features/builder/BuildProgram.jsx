@@ -2,7 +2,7 @@ import { Container, Form } from "react-bootstrap";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 // import { ErrorMessage } from "@hookform/error-message";
-import { DevTool } from "@hookform/devtools";
+// import { DevTool } from "@hookform/devtools";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
 import AddWorkoutToProgram from "./AddWorkoutToProgram";
@@ -15,7 +15,7 @@ function BuildProgram({ edit = false, programToEdit = null }) {
   const form = useForm();
   const {
     register,
-    control,
+    // control,
     handleSubmit,
     watch,
     // setValue,
@@ -111,7 +111,7 @@ function BuildProgram({ edit = false, programToEdit = null }) {
 
           <SubmitButtonBar>Save Program</SubmitButtonBar>
         </Form>
-        <DevTool control={control} />
+        {/* <DevTool control={control} /> */}
       </Container>
     </main>
   );

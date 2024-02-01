@@ -3,7 +3,7 @@ import { BsCheckSquareFill } from "react-icons/bs";
 import { useState } from "react";
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useForm } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
+// import { DevTool } from "@hookform/devtools";
 
 import SetBody from "./SetBody";
 import SetNote from "./SetNote";
@@ -31,8 +31,14 @@ function DoSet({
   const [isEditSet, setIsEditSet] = useState(false);
 
   const form = useForm();
-  const { register, control, handleSubmit, setValue, getValues, resetField } =
-    form;
+  const {
+    register,
+    // control,
+    handleSubmit,
+    setValue,
+    getValues,
+    resetField,
+  } = form;
 
   const ACCORDION_HEIGHT = 52;
 
@@ -132,7 +138,7 @@ function DoSet({
             exercise={exercise}
           />
         </form>
-        <DevTool control={control} />
+        {/* <DevTool control={control} /> */}
       </Accordion.Body>
     </Accordion.Item>
   );

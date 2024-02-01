@@ -2,7 +2,7 @@ import { Container, Form, InputGroup } from "react-bootstrap";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
-import { DevTool } from "@hookform/devtools";
+// import { DevTool } from "@hookform/devtools";
 import { useHookFormMask } from "use-mask-input";
 import { useGlobalContext } from "../../context/GlobalContext";
 // import { useNavigate } from "react-router-dom";
@@ -26,7 +26,7 @@ function BuildExercise({
   const form = useForm();
   const {
     register,
-    control,
+    // control,
     handleSubmit,
     setValue,
     getValues,
@@ -219,7 +219,7 @@ function BuildExercise({
             Save Exercise
           </SubmitButtonBar>
         </Form>
-        <DevTool control={control} />
+        {/* <DevTool control={control} /> */}
       </Container>
     </main>
   );
