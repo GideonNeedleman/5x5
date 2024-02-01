@@ -47,7 +47,7 @@ function DoSet({
     checkExercise(); // display check mark in set head
     setNumFinishedSets((prev) => prev + 1); // tally to display check mark in exercise head
     if (index + 1 === numSets) dispatch({ type: "next-exercise" }); // if last set for exercise then go to next exercise
-    vibrator(100);
+    vibrator([50, 100, 50, 100, 50, 100, 50, 100, 100]);
     numSets === index + 1
       ? scroller.scrollTo(`ex-${exerciseIndex}`, { offset: ACCORDION_HEIGHT })
       : window.scrollBy(0, ACCORDION_HEIGHT);
